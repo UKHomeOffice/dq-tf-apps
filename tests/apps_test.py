@@ -21,17 +21,17 @@ class TestE2E(unittest.TestCase):
                 aws = "aws"
               }
 
-              cidr_block             = "10.1.0.0/16"
-              vpc_subnet1_cidr_block = "10.1.0.0/24"
-              vpc_subnet2_cidr_block = "10.1.2.0/24"
-              vpc_subnet3_cidr_block = "10.1.4.0/24"
-              vpc_subnet4_cidr_block = "10.1.6.0/24"
-              vpc_subnet5_cidr_block = "10.1.8.0/24"
-              vpc_subnet6_cidr_block = "10.1.10.0/24"
-              vpc_subnet7_cidr_block = "10.1.12.0/24"
-              vpc_subnet8_cidr_block = "10.1.14.0/24"
-              az                     = "eu-west-2a"
-              name_prefix            = "dq-"
+              cidr_block                  = "10.1.0.0/16"
+              public_subnet_cidr_block    = "10.1.0.0/24"
+              dqdb_apps_cidr_block        = "10.1.2.0/24"
+              ext_feed_apps_cidr_block    = "10.1.4.0/24"
+              data_ingest_apps_cidr_block = "10.1.6.0/24"
+              data_pipe_apps_cidr_block   = "10.1.8.0/24"
+              mdm_apps_cidr_block         = "10.1.10.0/24"
+              int_dashboard_cidr_block    = "10.1.12.0/24"
+              ext_dashboard_cidr_block    = "10.1.14.0/24"
+              az                          = "eu-west-2a"
+              name_prefix                 = "dq-"
             }
         """
         self.result = Runner(self.snippet).result
@@ -42,59 +42,86 @@ class TestE2E(unittest.TestCase):
     def test_apps_vpc_cidr_block(self):
         self.assertEqual(self.result['apps']["aws_vpc.appsvpc"]["cidr_block"], "10.1.0.0/16")
 
-    def test_apps_subnet1_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet1"]["cidr_block"], "10.1.0.0/24")
+    def test_apps_public_subnet_cidr_block(self):
+        self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["cidr_block"], "10.1.0.0/24")
 
-    def test_apps_subnet2_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet2"]["cidr_block"], "10.1.2.0/24")
+    def test_apps_dqdb_apps_cidr_block(self):
+        self.assertEqual(self.result['apps']["aws_subnet.dqdb_apps"]["cidr_block"], "10.1.2.0/24")
 
-    def test_apps_subnet3_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet3"]["cidr_block"], "10.1.4.0/24")
+    def test_apps_ext_feed_apps_cidr_block(self):
+        self.assertEqual(self.result['apps']["aws_subnet.ext_feed_apps"]["cidr_block"], "10.1.4.0/24")
 
-    def test_apps_subnet4_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet4"]["cidr_block"], "10.1.6.0/24")
+    def test_apps_data_ingest_apps_cidr_block(self):
+        self.assertEqual(self.result['apps']["aws_subnet.data_ingest_apps"]["cidr_block"], "10.1.6.0/24")
 
-    def test_apps_subnet5_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet5"]["cidr_block"], "10.1.8.0/24")
+    def test_apps_data_pipe_apps_cidr_block(self):
+        self.assertEqual(self.result['apps']["aws_subnet.data_pipe_apps"]["cidr_block"], "10.1.8.0/24")
 
-    def test_apps_subnet6_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet6"]["cidr_block"], "10.1.10.0/24")
+    def test_apps_mdm_apps_cidr_block(self):
+        self.assertEqual(self.result['apps']["aws_subnet.mdm_apps"]["cidr_block"], "10.1.10.0/24")
 
-    def test_apps_subnet7_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet7"]["cidr_block"], "10.1.12.0/24")
+    def test_apps_int_dashboard_cidr_block(self):
+        self.assertEqual(self.result['apps']["aws_subnet.int_dashboard"]["cidr_block"], "10.1.12.0/24")
 
-    def test_apps_subnet8_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet8"]["cidr_block"], "10.1.14.0/24")
+    def test_apps_ext_dashboard_cidr_block(self):
+        self.assertEqual(self.result['apps']["aws_subnet.ext_dashboard"]["cidr_block"], "10.1.14.0/24")
 
-    def test_az_subnet1(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet1"]["availability_zone"], "eu-west-2a")
+    def test_az_public_subnet(self):
+        self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["availability_zone"], "eu-west-2a")
 
-    def test_az_subnet2(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet2"]["availability_zone"], "eu-west-2a")
+    def test_az_dqdb_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.dqdb_apps"]["availability_zone"], "eu-west-2a")
 
-    def test_az_subnet3(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet3"]["availability_zone"], "eu-west-2a")
+    def test_az_ext_feed_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.ext_feed_apps"]["availability_zone"], "eu-west-2a")
 
-    def test_az_subnet4(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet4"]["availability_zone"], "eu-west-2a")
+    def test_az_data_ingest_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.data_ingest_apps"]["availability_zone"], "eu-west-2a")
 
-    def test_az_subnet5(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet5"]["availability_zone"], "eu-west-2a")
+    def test_az_data_pipe_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.data_pipe_apps"]["availability_zone"], "eu-west-2a")
 
-    def test_az_subnet6(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet6"]["availability_zone"], "eu-west-2a")
+    def test_az_mdm_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.mdm_apps"]["availability_zone"], "eu-west-2a")
 
-    def test_az_subnet7(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet7"]["availability_zone"], "eu-west-2a")
+    def test_az_int_dashboard(self):
+        self.assertEqual(self.result['apps']["aws_subnet.int_dashboard"]["availability_zone"], "eu-west-2a")
 
-    def test_az_subnet8(self):
-        self.assertEqual(self.result['apps']["aws_subnet.AppsSubnet8"]["availability_zone"], "eu-west-2a")
+    def test_az_ext_dashboard(self):
+        self.assertEqual(self.result['apps']["aws_subnet.ext_dashboard"]["availability_zone"], "eu-west-2a")
 
     def test_name_prefix_AppsRouteToInternet(self):
         self.assertEqual(self.result['apps']["aws_internet_gateway.AppsRouteToInternet"]["tags.Name"], "dq-apps-igw")
 
     def test_name_prefix_appsvpc(self):
         self.assertEqual(self.result['apps']["aws_vpc.appsvpc"]["tags.Name"], "dq-apps-vpc")
+
+    def test_name_prefix_public_subnet(self):
+        self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["tags.Name"], "dq-apps-public-subnet")
+
+    def test_name_prefix_dqdb_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.dqdb_apps"]["tags.Name"], "dq-apps-dqdb-subnet")
+
+    def test_name_prefix_ext_feed_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.ext_feed_apps"]["tags.Name"], "dq-apps-ext-feed-subnet")
+
+    def test_name_prefix_data_ingest_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.data_ingest_apps"]["tags.Name"], "dq-apps-data-ingest-subnet")
+
+    def test_name_prefix_data_pipe_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.data_pipe_apps"]["tags.Name"], "dq-apps-data-pipe-subnet")
+
+    def test_name_prefix_mdm_apps(self):
+        self.assertEqual(self.result['apps']["aws_subnet.mdm_apps"]["tags.Name"], "dq-apps-mdm-subnet")
+
+    def test_name_prefix_int_dashboard(self):
+        self.assertEqual(self.result['apps']["aws_subnet.int_dashboard"]["tags.Name"], "dq-apps-int-dashboard-subnet")
+
+    def test_name_prefix_ext_dashboard(self):
+        self.assertEqual(self.result['apps']["aws_subnet.ext_dashboard"]["tags.Name"], "dq-apps-ext-dashboard-subnet")
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
