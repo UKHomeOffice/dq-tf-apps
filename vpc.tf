@@ -130,3 +130,12 @@ resource "aws_subnet" "ext_dashboard" {
     Name = "${local.name_prefix}ext-dashboard-subnet"
   }
 }
+
+
+output "appsvpc_id" {
+  value = "${aws_vpc.appsvpc.id}"
+}
+
+output "appsvpc_cidr_block" {
+  value = "${var.cidr_block}"
+}
