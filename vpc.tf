@@ -33,7 +33,7 @@ resource "aws_internet_gateway" "AppsRouteToInternet" {
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = "${aws_vpc.appsvpc.id}"
   cidr_block              = "${var.public_subnet_cidr_block}"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   availability_zone       = "${var.az}"
 
   tags {
@@ -44,7 +44,7 @@ resource "aws_subnet" "public_subnet" {
 resource "aws_subnet" "dqdb_apps" {
   vpc_id                  = "${aws_vpc.appsvpc.id}"
   cidr_block              = "${var.dqdb_apps_cidr_block}"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   availability_zone       = "${var.az}"
 
   tags {
@@ -55,7 +55,7 @@ resource "aws_subnet" "dqdb_apps" {
 resource "aws_subnet" "ext_feed_apps" {
   vpc_id                  = "${aws_vpc.appsvpc.id}"
   cidr_block              = "${var.ext_feed_apps_cidr_block}"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   availability_zone       = "${var.az}"
 
   tags {
@@ -66,7 +66,7 @@ resource "aws_subnet" "ext_feed_apps" {
 resource "aws_subnet" "data_ingest_apps" {
   vpc_id                  = "${aws_vpc.appsvpc.id}"
   cidr_block              = "${var.data_ingest_apps_cidr_block}"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   availability_zone       = "${var.az}"
 
   tags {
@@ -77,7 +77,7 @@ resource "aws_subnet" "data_ingest_apps" {
 resource "aws_subnet" "data_pipe_apps" {
   vpc_id                  = "${aws_vpc.appsvpc.id}"
   cidr_block              = "${var.data_pipe_apps_cidr_block}"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   availability_zone       = "${var.az}"
 
   tags {
@@ -88,7 +88,7 @@ resource "aws_subnet" "data_pipe_apps" {
 resource "aws_subnet" "mdm_apps" {
   vpc_id                  = "${aws_vpc.appsvpc.id}"
   cidr_block              = "${var.mdm_apps_cidr_block}"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   availability_zone       = "${var.az}"
 
   tags {
@@ -99,7 +99,7 @@ resource "aws_subnet" "mdm_apps" {
 resource "aws_subnet" "int_dashboard" {
   vpc_id                  = "${aws_vpc.appsvpc.id}"
   cidr_block              = "${var.int_dashboard_cidr_block}"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   availability_zone       = "${var.az}"
 
   tags {
@@ -110,7 +110,7 @@ resource "aws_subnet" "int_dashboard" {
 resource "aws_subnet" "ext_dashboard" {
   vpc_id                  = "${aws_vpc.appsvpc.id}"
   cidr_block              = "${var.ext_dashboard_cidr_block}"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   availability_zone       = "${var.az}"
 
   tags {
