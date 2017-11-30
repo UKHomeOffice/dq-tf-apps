@@ -1,2 +1,3 @@
 # DQ Terraform Module
-[insert some docs and usage guide]
+
+This module describes required VPC components for testing app modules against the DQ VPC.
