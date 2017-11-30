@@ -120,8 +120,8 @@ class TestE2E(unittest.TestCase):
     def test_name_prefix_ext_dashboard(self):
         self.assertEqual(self.result['apps']["aws_subnet.ext_dashboard"]["tags.Name"], "dq-apps-ext-dashboard-subnet")
 
-
-
+    def test_name_prefix_appsnatgw(self):
+        self.assertEqual(self.result['apps']["aws_nat_gateway.appsnatgw"]["tags.Name"], "dq-apps-natgw")
 
 if __name__ == '__main__':
     unittest.main()

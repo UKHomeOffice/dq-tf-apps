@@ -22,6 +22,19 @@ resource "aws_vpc" "appsvpc" {
   }
 }
 
+resource "aws_eip" "appseip" {
+  vpc = true
+}
+
+resource "aws_nat_gateway" "appsnatgw" {
+  allocation_id = "${aws_eip.appseip.id}"
+  subnet_id     = "${aws_subnet.public_subnet.id}"
+
+  tags {
+    Name = "${local.name_prefix}natgw"
+  }
+}
+
 resource "aws_internet_gateway" "AppsRouteToInternet" {
   vpc_id = "${aws_vpc.appsvpc.id}"
 
