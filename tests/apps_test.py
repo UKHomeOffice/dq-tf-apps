@@ -24,9 +24,6 @@ class TestE2E(unittest.TestCase):
               cidr_block                  = "10.1.0.0/16"
               public_subnet_cidr_block    = "10.1.0.0/24"
               dqdb_apps_cidr_block        = "10.1.2.0/24"
-              ext_feed_apps_cidr_block    = "10.1.4.0/24"
-              data_ingest_apps_cidr_block = "10.1.6.0/24"
-              data_pipe_apps_cidr_block   = "10.1.8.0/24"
               mdm_apps_cidr_block         = "10.1.10.0/24"
               int_dashboard_cidr_block    = "10.1.12.0/24"
               ext_dashboard_cidr_block    = "10.1.14.0/24"
@@ -48,15 +45,6 @@ class TestE2E(unittest.TestCase):
     def test_apps_dqdb_apps_cidr_block(self):
         self.assertEqual(self.result['apps']["aws_subnet.dqdb_apps"]["cidr_block"], "10.1.2.0/24")
 
-    def test_apps_ext_feed_apps_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.ext_feed_apps"]["cidr_block"], "10.1.4.0/24")
-
-    def test_apps_data_ingest_apps_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.data_ingest_apps"]["cidr_block"], "10.1.6.0/24")
-
-    def test_apps_data_pipe_apps_cidr_block(self):
-        self.assertEqual(self.result['apps']["aws_subnet.data_pipe_apps"]["cidr_block"], "10.1.8.0/24")
-
     def test_apps_mdm_apps_cidr_block(self):
         self.assertEqual(self.result['apps']["aws_subnet.mdm_apps"]["cidr_block"], "10.1.10.0/24")
 
@@ -71,15 +59,6 @@ class TestE2E(unittest.TestCase):
 
     def test_az_dqdb_apps(self):
         self.assertEqual(self.result['apps']["aws_subnet.dqdb_apps"]["availability_zone"], "eu-west-2a")
-
-    def test_az_ext_feed_apps(self):
-        self.assertEqual(self.result['apps']["aws_subnet.ext_feed_apps"]["availability_zone"], "eu-west-2a")
-
-    def test_az_data_ingest_apps(self):
-        self.assertEqual(self.result['apps']["aws_subnet.data_ingest_apps"]["availability_zone"], "eu-west-2a")
-
-    def test_az_data_pipe_apps(self):
-        self.assertEqual(self.result['apps']["aws_subnet.data_pipe_apps"]["availability_zone"], "eu-west-2a")
 
     def test_az_mdm_apps(self):
         self.assertEqual(self.result['apps']["aws_subnet.mdm_apps"]["availability_zone"], "eu-west-2a")
@@ -101,15 +80,6 @@ class TestE2E(unittest.TestCase):
 
     def test_name_prefix_dqdb_apps(self):
         self.assertEqual(self.result['apps']["aws_subnet.dqdb_apps"]["tags.Name"], "dq-apps-dqdb-subnet")
-
-    def test_name_prefix_ext_feed_apps(self):
-        self.assertEqual(self.result['apps']["aws_subnet.ext_feed_apps"]["tags.Name"], "dq-apps-ext-feed-subnet")
-
-    def test_name_prefix_data_ingest_apps(self):
-        self.assertEqual(self.result['apps']["aws_subnet.data_ingest_apps"]["tags.Name"], "dq-apps-data-ingest-subnet")
-
-    def test_name_prefix_data_pipe_apps(self):
-        self.assertEqual(self.result['apps']["aws_subnet.data_pipe_apps"]["tags.Name"], "dq-apps-data-pipe-subnet")
 
     def test_name_prefix_mdm_apps(self):
         self.assertEqual(self.result['apps']["aws_subnet.mdm_apps"]["tags.Name"], "dq-apps-mdm-subnet")
