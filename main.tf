@@ -67,7 +67,6 @@ module "data_pipeline" {
   name_prefix               = "dq-"
 }
 
-
 locals {
   name_prefix = "${var.name_prefix}apps-"
 }
