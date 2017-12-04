@@ -1,3 +1,17 @@
+module "external_tableau" {
+  source = "github.com/UKHomeOffice/dq-tf-external-tableau"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  acp_prod_ingress_cidr = "10.5.0.0/16"
+  dq_ops_ingress_cidr   = "10.2.0.0/16"
+  dq_apps_cidr          = "10.1.0.0/16"
+  greenplum_ip          = "foo"
+  apps_vpc_id           = "${aws_vpc.appsvpc.id}"
+}
+
 module "internal_tableau" {
   source = "github.com/UKHomeOffice/dq-tf-internal-tableau"
 
@@ -5,11 +19,11 @@ module "internal_tableau" {
     aws = "aws.APPS"
   }
 
-  acp_prod_ingress_cidr        = "10.5.0.0/16"
-  dq_ops_ingress_cidr          = "10.2.0.0/16"
-  dq_apps_cidr                 = "10.1.0.0/16"
-  greenplum_ip                 = "foo"
-  apps_vpc_id                  = "${aws_vpc.appsvpc.id}"
+  acp_prod_ingress_cidr = "10.5.0.0/16"
+  dq_ops_ingress_cidr   = "10.2.0.0/16"
+  dq_apps_cidr          = "10.1.0.0/16"
+  greenplum_ip          = "foo"
+  apps_vpc_id           = "${aws_vpc.appsvpc.id}"
 }
 
 module "bdm" {
