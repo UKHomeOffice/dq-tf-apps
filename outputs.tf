@@ -1,7 +1,7 @@
-output "appsvpc_id" {
+output "vpc_id" {
   value = "${aws_vpc.appsvpc.id}"
 }
 
-output "appsvpc_cidr_block" {
+output "vpc_cidr_block" {
   value = "${var.cidr_block}"
 }

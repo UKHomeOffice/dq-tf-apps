@@ -1,0 +1,157 @@
+module "data_feeds" {
+  source = "github.com/UKHomeOffice/dq-tf-datafeeds?ref=initial-df"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  appsvpc_id            = "${aws_vpc.appsvpc.id}"
+  appsvpc_cidr_block    = "${var.cidr_block}"
+  opsvpc_cidr_block     = "10.2.0.0/16"
+  data_feeds_cidr_block = "10.1.4.0/24"
+  az                    = "eu-west-2a"
+  name_prefix           = "dq-"
+}
+
+module "data_ingest" {
+  source = "github.com/UKHomeOffice/dq-tf-dataingest?ref=initial-di"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  appsvpc_id             = "${aws_vpc.appsvpc.id}"
+  appsvpc_cidr_block     = "${var.cidr_block}"
+  opsvpc_cidr_block      = "10.2.0.0/16"
+  data_ingest_cidr_block = "10.1.6.0/24"
+  az                     = "eu-west-2a"
+  name_prefix            = "dq-"
+}
+
+module "di_connectivity_tester_db" {
+  source    = "github.com/ukhomeoffice/connectivity-tester-tf"
+  user_data = "CHECK_self=127.0.0.1:80 CHECK_google=google.com:80 CHECK_googletls=google.com:443 LISTEN_tcp=0.0.0.0:5432"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  security_groups = ["${module.data_ingest.di_db_sg}"]
+  subnet_id       = "${module.data_ingest.di_subnet_id}"
+}
+
+module "di_connectivity_tester_web" {
+  source    = "github.com/ukhomeoffice/connectivity-tester-tf"
+  user_data = "CHECK_self=127.0.0.1:80 CHECK_google=google.com:80 CHECK_googletls=google.com:443 LISTEN_rdp=0.0.0.0:3389 LISTEN_tcp=0.0.0.0:135"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  security_groups = ["${module.data_ingest.di_web_sg}"]
+  subnet_id       = "${module.data_ingest.di_subnet_id}"
+}
+
+module "data_pipeline" {
+  source = "github.com/UKHomeOffice/dq-tf-datapipeline"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  appsvpc_id                = "${aws_vpc.appsvpc.id}"
+  appsvpc_cidr_block        = "${var.cidr_block}"
+  opsvpc_cidr_block         = "10.2.0.0/16"
+  data_pipe_apps_cidr_block = "10.1.8.0/24"
+  az                        = "eu-west-2a"
+  name_prefix               = "dq-"
+}
+
+
+locals {
+  name_prefix = "${var.name_prefix}apps-"
+}
+
+resource "aws_vpc" "appsvpc" {
+  cidr_block = "${var.cidr_block}"
+
+  tags {
+    Name = "${local.name_prefix}vpc"
+  }
+}
+
+resource "aws_eip" "appseip" {
+  vpc = true
+}
+
+resource "aws_nat_gateway" "appsnatgw" {
+  allocation_id = "${aws_eip.appseip.id}"
+  subnet_id     = "${aws_subnet.public_subnet.id}"
+
+  tags {
+    Name = "${local.name_prefix}natgw"
+  }
+}
+
+resource "aws_internet_gateway" "AppsRouteToInternet" {
+  vpc_id = "${aws_vpc.appsvpc.id}"
+
+  tags {
+    Name = "${local.name_prefix}igw"
+  }
+}
+
+resource "aws_subnet" "public_subnet" {
+  vpc_id                  = "${aws_vpc.appsvpc.id}"
+  cidr_block              = "${var.public_subnet_cidr_block}"
+  map_public_ip_on_launch = false
+  availability_zone       = "${var.az}"
+
+  tags {
+    Name = "${local.name_prefix}public-subnet"
+  }
+}
+
+resource "aws_subnet" "dqdb_apps" {
+  vpc_id                  = "${aws_vpc.appsvpc.id}"
+  cidr_block              = "${var.dqdb_apps_cidr_block}"
+  map_public_ip_on_launch = false
+  availability_zone       = "${var.az}"
+
+  tags {
+    Name = "${local.name_prefix}dqdb-subnet"
+  }
+}
+
+resource "aws_subnet" "mdm_apps" {
+  vpc_id                  = "${aws_vpc.appsvpc.id}"
+  cidr_block              = "${var.mdm_apps_cidr_block}"
+  map_public_ip_on_launch = false
+  availability_zone       = "${var.az}"
+
+  tags {
+    Name = "${local.name_prefix}mdm-subnet"
+  }
+}
+
+resource "aws_subnet" "int_dashboard" {
+  vpc_id                  = "${aws_vpc.appsvpc.id}"
+  cidr_block              = "${var.int_dashboard_cidr_block}"
+  map_public_ip_on_launch = false
+  availability_zone       = "${var.az}"
+
+  tags {
+    Name = "${local.name_prefix}int-dashboard-subnet"
+  }
+}
+
+resource "aws_subnet" "ext_dashboard" {
+  vpc_id                  = "${aws_vpc.appsvpc.id}"
+  cidr_block              = "${var.ext_dashboard_cidr_block}"
+  map_public_ip_on_launch = false
+  availability_zone       = "${var.az}"
+
+  tags {
+    Name = "${local.name_prefix}ext-dashboard-subnet"
+  }
+}
