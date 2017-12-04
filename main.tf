@@ -1,3 +1,15 @@
+module "bdm" {
+  source = "github.com/ukhomeoffice/dq-tf-business-data-manager?ref=mock-bdm"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  RDS_name     = "gp_database"
+  RDS_username = "foo"
+  RDS_password = "bar"
+}
+
 module "data_feeds" {
   source = "github.com/ukhomeoffice/dq-tf-datafeeds?ref=initial-df"
 
