@@ -1,31 +1,31 @@
 module "data_feeds" {
-  source = "github.com/UKHomeOffice/dq-tf-datafeeds?ref=initial-df"
+  source = "github.com/ukhomeoffice/dq-tf-datafeeds?ref=initial-df"
 
   providers = {
     aws = "aws.APPS"
   }
 
-  appsvpc_id            = "${aws_vpc.appsvpc.id}"
-  appsvpc_cidr_block    = "${var.cidr_block}"
-  opsvpc_cidr_block     = "10.2.0.0/16"
-  data_feeds_cidr_block = "10.1.4.0/24"
-  az                    = "eu-west-2a"
-  name_prefix           = "dq-"
+  appsvpc_id                = "${aws_vpc.appsvpc.id}"
+  data_pipe_apps_cidr_block = "10.1.8.0/24"
+  opssubnet_cidr_block      = "10.2.0.0/24"
+  data_feeds_cidr_block     = "10.1.4.0/24"
+  az                        = "eu-west-2a"
+  name_prefix               = "dq-"
 }
 
 module "data_ingest" {
-  source = "github.com/UKHomeOffice/dq-tf-dataingest?ref=initial-di"
+  source = "github.com/ukhomeoffice/dq-tf-dataingest?ref=initial-di"
 
   providers = {
     aws = "aws.APPS"
   }
 
-  appsvpc_id             = "${aws_vpc.appsvpc.id}"
-  appsvpc_cidr_block     = "${var.cidr_block}"
-  opsvpc_cidr_block      = "10.2.0.0/16"
-  data_ingest_cidr_block = "10.1.6.0/24"
-  az                     = "eu-west-2a"
-  name_prefix            = "dq-"
+  appsvpc_id                = "${aws_vpc.appsvpc.id}"
+  data_pipe_apps_cidr_block = "10.8.0.0/24"
+  opssubnet_cidr_block      = "10.2.0.0/24"
+  data_ingest_cidr_block    = "10.1.6.0/24"
+  az                        = "eu-west-2a"
+  name_prefix               = "dq-"
 }
 
 module "di_connectivity_tester_db" {
@@ -53,7 +53,7 @@ module "di_connectivity_tester_web" {
 }
 
 module "data_pipeline" {
-  source = "github.com/UKHomeOffice/dq-tf-datapipeline"
+  source = "github.com/UKHomeOffice/dq-tf-datapipeline?ref=initial-dp"
 
   providers = {
     aws = "aws.APPS"
@@ -61,10 +61,85 @@ module "data_pipeline" {
 
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
   appsvpc_cidr_block        = "${var.cidr_block}"
-  opsvpc_cidr_block         = "10.2.0.0/16"
+  opssubnet_cidr_block      = "10.2.0.0/24"
   data_pipe_apps_cidr_block = "10.1.8.0/24"
   az                        = "eu-west-2a"
   name_prefix               = "dq-"
+}
+
+module "gpdb" {
+  source = "github.com/UKHomeOffice/dq-tf-gpdb?ref=initial-gpdb"
+
+  appsvpc_id                    = "${aws_vpc.appsvpc.id}"
+  dq_database_cidr_block        = "10.1.2.0/24"
+  internal_dashboard_cidr_block = "10.1.12.0/24"
+  external_dashboard_cidr_block = "10.1.14.0/24"
+  data_ingest_cidr_block        = "10.1.6.0/24"
+  data_pipe_apps_cidr_block     = "10.1.8.0/24"
+  data_feeds_cidr_block         = "10.1.4.0/24"
+  opssubnet_cidr_block          = "10.2.0.0/24"
+  az                            = "eu-west-2a"
+  name_prefix                   = "dq-"
+}
+
+module "gpdb_master1" {
+  source    = "github.com/ukhomeoffice/connectivity-tester-tf"
+  user_data = "CHECK_self=127.0.0.1:80 CHECK_google=google.com:80 CHECK_googletls=google.com:443 LISTEN_db=0.0.0.0:5432 LISTEN_ssh=0.0.0.0:9000 LISTEN_ssh2=22 LISTEN_https=28090"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  security_groups = ["${module.gpdb.master_sg_id}"]
+  subnet_id       = "${module.gpdb.dq_database_subnet_id}"
+}
+
+module "gpdb_master2" {
+  source    = "github.com/ukhomeoffice/connectivity-tester-tf"
+  user_data = "CHECK_self=127.0.0.1:80 CHECK_google=google.com:80 CHECK_googletls=google.com:443 LISTEN_db=0.0.0.0:5432 LISTEN_ssh=0.0.0.0:9000 LISTEN_ssh2=22 LISTEN_https=28090"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  security_groups = ["${module.gpdb.master_sg_id}"]
+  subnet_id       = "${module.gpdb.dq_database_subnet_id}"
+}
+
+module "gpdb_segment1" {
+  source    = "github.com/ukhomeoffice/connectivity-tester-tf"
+  user_data = "CHECK_self=127.0.0.1:80 CHECK_google=google.com:80 CHECK_googletls=google.com:443 LISTEN_rdp=0.0.0.0:5432"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  security_groups = ["${module.gpdb.segment_sg_id}"]
+  subnet_id       = "${module.gpdb.dq_database_subnet_id}"
+}
+
+module "gpdb_segment2" {
+  source    = "github.com/ukhomeoffice/connectivity-tester-tf"
+  user_data = "CHECK_self=127.0.0.1:80 CHECK_google=google.com:80 CHECK_googletls=google.com:443 LISTEN_rdp=0.0.0.0:5432"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  security_groups = ["${module.gpdb.segment_sg_id}"]
+  subnet_id       = "${module.gpdb.dq_database_subnet_id}"
+}
+
+module "gpdb_segment3" {
+  source    = "github.com/ukhomeoffice/connectivity-tester-tf"
+  user_data = "CHECK_self=127.0.0.1:80 CHECK_google=google.com:80 CHECK_googletls=google.com:443 LISTEN_rdp=0.0.0.0:5432"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  security_groups = ["${module.gpdb.segment_sg_id}"]
+  subnet_id       = "${module.gpdb.dq_database_subnet_id}"
 }
 
 locals {
