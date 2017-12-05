@@ -1,5 +1,5 @@
 module "external_tableau" {
-  source = "github.com/UKHomeOffice/dq-tf-external-tableau"
+  source = "github.com/UKHomeOffice/dq-tf-external-tableau?ref=mock-build"
 
   providers = {
     aws = "aws.APPS"
@@ -13,7 +13,7 @@ module "external_tableau" {
 }
 
 module "internal_tableau" {
-  source = "github.com/UKHomeOffice/dq-tf-internal-tableau"
+  source = "github.com/UKHomeOffice/dq-tf-internal-tableau?ref=ec2"
 
   providers = {
     aws = "aws.APPS"
@@ -186,6 +186,8 @@ module "gpdb_segment3" {
   subnet_id       = "${module.gpdb.dq_database_subnet_id}"
 }
 
+data "aws_caller_identity" "current" {}
+
 locals {
   name_prefix = "${var.name_prefix}apps-"
 }
@@ -195,6 +197,14 @@ resource "aws_vpc" "appsvpc" {
 
   tags {
     Name = "${local.name_prefix}vpc"
+  }
+}
+
+resource "aws_route_table" "apps_route_table" {
+  vpc_id = "${aws_vpc.appsvpc.id}"
+
+  tags {
+    Name = "${local.name_prefix}route-table"
   }
 }
 
