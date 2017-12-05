@@ -78,8 +78,6 @@ module "gpdb" {
   name_prefix                   = "${local.name_prefix}"
 }
 
-data "aws_caller_identity" "current" {}
-
 locals {
   name_prefix = "${var.name_prefix}apps-"
 }
