@@ -1,3 +1,5 @@
+provider "aws" {}
+
 module "external_tableau" {
   source = "github.com/UKHomeOffice/dq-tf-external-tableau"
 
@@ -9,8 +11,7 @@ module "external_tableau" {
 }
 
 module "internal_tableau" {
-  source = "github.com/UKHomeOffice/dq-tf-internal-tableau"
-
+  source                            = "github.com/UKHomeOffice/dq-tf-internal-tableau"
   acp_prod_ingress_cidr             = "10.5.0.0/16"
   dq_ops_ingress_cidr               = "10.2.0.0/16"
   dq_internal_dashboard_subnet_cidr = "10.1.12.0/24"
@@ -19,11 +20,7 @@ module "internal_tableau" {
 }
 
 module "bdm" {
-  source = "github.com/ukhomeoffice/dq-tf-business-data-manager"
-
-  RDS_name              = "gp_database"
-  RDS_username          = "foo"
-  RDS_password          = "bar"
+  source                = "github.com/ukhomeoffice/dq-tf-business-data-manager?ref=use_connectivity_tester"
   dq_data_pipeline_cidr = "10.1.8.0/24"
   dq_opps_subnet_1_cidr = "10.2.0.0/24"
   dq_BDM_subnet_cidr    = "10.1.10.0/24"
@@ -31,8 +28,7 @@ module "bdm" {
 }
 
 module "data_feeds" {
-  source = "github.com/ukhomeoffice/dq-tf-datafeeds?ref=initial-df"
-
+  source                    = "github.com/ukhomeoffice/dq-tf-datafeeds?ref=initial-df"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
   data_pipe_apps_cidr_block = "10.1.8.0/24"
   opssubnet_cidr_block      = "10.2.0.0/24"
@@ -42,8 +38,7 @@ module "data_feeds" {
 }
 
 module "data_ingest" {
-  source = "github.com/ukhomeoffice/dq-tf-dataingest?ref=initial-di"
-
+  source                    = "github.com/ukhomeoffice/dq-tf-dataingest"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
   data_pipe_apps_cidr_block = "10.8.0.0/24"
   opssubnet_cidr_block      = "10.2.0.0/24"
@@ -53,8 +48,7 @@ module "data_ingest" {
 }
 
 module "data_pipeline" {
-  source = "github.com/UKHomeOffice/dq-tf-datapipeline?ref=initial-dp"
-
+  source                    = "github.com/UKHomeOffice/dq-tf-datapipeline?ref=initial-dp"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
   appsvpc_cidr_block        = "${var.cidr_block}"
   opssubnet_cidr_block      = "10.2.0.0/24"
@@ -64,8 +58,7 @@ module "data_pipeline" {
 }
 
 module "gpdb" {
-  source = "github.com/UKHomeOffice/dq-tf-gpdb?ref=initial-gpdb"
-
+  source                        = "github.com/UKHomeOffice/dq-tf-gpdb?ref=initial-gpdb"
   appsvpc_id                    = "${aws_vpc.appsvpc.id}"
   dq_database_cidr_block        = "10.1.2.0/24"
   internal_dashboard_cidr_block = "10.1.12.0/24"
