@@ -1,3 +1,31 @@
+module "external_tableau" {
+  source = "github.com/UKHomeOffice/dq-tf-external-tableau"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  acp_prod_ingress_cidr = "10.5.0.0/16"
+  dq_ops_ingress_cidr   = "10.2.0.0/16"
+  dq_apps_cidr          = "10.1.0.0/16"
+  greenplum_ip          = "foo"
+  apps_vpc_id           = "${aws_vpc.appsvpc.id}"
+}
+
+module "internal_tableau" {
+  source = "github.com/UKHomeOffice/dq-tf-internal-tableau"
+
+  providers = {
+    aws = "aws.APPS"
+  }
+
+  acp_prod_ingress_cidr = "10.5.0.0/16"
+  dq_ops_ingress_cidr   = "10.2.0.0/16"
+  dq_apps_cidr          = "10.1.0.0/16"
+  greenplum_ip          = "foo"
+  apps_vpc_id           = "${aws_vpc.appsvpc.id}"
+}
+
 module "bdm" {
   source = "github.com/ukhomeoffice/dq-tf-business-data-manager?ref=mock-bdm"
 
@@ -5,9 +33,13 @@ module "bdm" {
     aws = "aws.APPS"
   }
 
-  RDS_name     = "gp_database"
-  RDS_username = "foo"
-  RDS_password = "bar"
+  RDS_name              = "gp_database"
+  RDS_username          = "foo"
+  RDS_password          = "bar"
+  dq_data_pipeline_cidr = "10.1.8.0/24"
+  dq_opps_subnet_1_cidr = "10.2.0.0/24"
+  dq_BDM_subnet_cidr    = "10.1.10.0/24"
+  apps_vpc_id           = "${aws_vpc.appsvpc.id}"
 }
 
 module "data_feeds" {
