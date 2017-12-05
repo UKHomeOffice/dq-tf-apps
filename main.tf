@@ -38,7 +38,7 @@ module "data_feeds" {
   opssubnet_cidr_block      = "10.2.0.0/24"
   data_feeds_cidr_block     = "10.1.4.0/24"
   az                        = "${var.az}"
-  name_prefix               = "dq-"
+  name_prefix               = "${local.name_prefix}"
 }
 
 module "data_ingest" {
@@ -49,7 +49,7 @@ module "data_ingest" {
   opssubnet_cidr_block      = "10.2.0.0/24"
   data_ingest_cidr_block    = "10.1.6.0/24"
   az                        = "${var.az}"
-  name_prefix               = "dq-"
+  name_prefix               = "${local.name_prefix}"
 }
 
 module "data_pipeline" {
@@ -60,7 +60,7 @@ module "data_pipeline" {
   opssubnet_cidr_block      = "10.2.0.0/24"
   data_pipe_apps_cidr_block = "10.1.8.0/24"
   az                        = "${var.az}"
-  name_prefix               = "dq-"
+  name_prefix               = "${local.name_prefix}"
 }
 
 module "gpdb" {
@@ -75,7 +75,7 @@ module "gpdb" {
   data_feeds_cidr_block         = "10.1.4.0/24"
   opssubnet_cidr_block          = "10.2.0.0/24"
   az                            = "${var.az}"
-  name_prefix                   = "dq-"
+  name_prefix                   = "${local.name_prefix}"
 }
 
 data "aws_caller_identity" "current" {}
