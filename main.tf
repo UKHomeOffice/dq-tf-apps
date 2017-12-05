@@ -37,7 +37,7 @@ module "data_feeds" {
   data_pipe_apps_cidr_block = "10.1.8.0/24"
   opssubnet_cidr_block      = "10.2.0.0/24"
   data_feeds_cidr_block     = "10.1.4.0/24"
-  az                        = "eu-west-2a"
+  az                        = "${var.az}"
   name_prefix               = "dq-"
 }
 
@@ -48,7 +48,7 @@ module "data_ingest" {
   data_pipe_apps_cidr_block = "10.8.0.0/24"
   opssubnet_cidr_block      = "10.2.0.0/24"
   data_ingest_cidr_block    = "10.1.6.0/24"
-  az                        = "eu-west-2a"
+  az                        = "${var.az}"
   name_prefix               = "dq-"
 }
 
@@ -59,7 +59,7 @@ module "data_pipeline" {
   appsvpc_cidr_block        = "${var.cidr_block}"
   opssubnet_cidr_block      = "10.2.0.0/24"
   data_pipe_apps_cidr_block = "10.1.8.0/24"
-  az                        = "eu-west-2a"
+  az                        = "${var.az}"
   name_prefix               = "dq-"
 }
 
@@ -74,7 +74,7 @@ module "gpdb" {
   data_pipe_apps_cidr_block     = "10.1.8.0/24"
   data_feeds_cidr_block         = "10.1.4.0/24"
   opssubnet_cidr_block          = "10.2.0.0/24"
-  az                            = "eu-west-2a"
+  az                            = "${var.az}"
   name_prefix                   = "dq-"
 }
 
