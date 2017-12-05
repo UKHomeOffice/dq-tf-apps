@@ -33,9 +33,13 @@ module "bdm" {
     aws = "aws.APPS"
   }
 
-  RDS_name     = "gp_database"
-  RDS_username = "foo"
-  RDS_password = "bar"
+  RDS_name              = "gp_database"
+  RDS_username          = "foo"
+  RDS_password          = "bar"
+  dq_data_pipeline_cidr = "10.1.8.0/24"
+  dq_opps_subnet_1_cidr = "10.2.0.0/24"
+  dq_BDM_subnet_cidr    = "10.1.10.0/24"
+  apps_vpc_id           = "${aws_vpc.appsvpc.id}"
 }
 
 module "data_feeds" {
