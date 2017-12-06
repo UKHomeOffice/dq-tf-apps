@@ -20,7 +20,7 @@ module "internal_tableau" {
 }
 
 module "bdm" {
-  source                = "github.com/ukhomeoffice/dq-tf-business-data-manager?ref=use_connectivity_tester"
+  source                = "github.com/ukhomeoffice/dq-tf-business-data-manager"
   dq_data_pipeline_cidr = "10.1.8.0/24"
   dq_opps_subnet_1_cidr = "10.2.0.0/24"
   dq_BDM_subnet_cidr    = "10.1.10.0/24"
