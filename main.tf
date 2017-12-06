@@ -28,7 +28,7 @@ module "bdm" {
 }
 
 module "data_feeds" {
-  source                    = "github.com/ukhomeoffice/dq-tf-datafeeds?ref=initial-df"
+  source                    = "github.com/ukhomeoffice/dq-tf-datafeeds"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
   data_pipe_apps_cidr_block = "10.1.8.0/24"
   opssubnet_cidr_block      = "10.2.0.0/24"
@@ -38,7 +38,7 @@ module "data_feeds" {
 }
 
 module "data_ingest" {
-  source                    = "github.com/ukhomeoffice/dq-tf-dataingest"
+  source                    = "github.com/ukhomeoffice/dq-tf-dataingest?ref=ports"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
   data_pipe_apps_cidr_block = "10.8.0.0/24"
   opssubnet_cidr_block      = "10.2.0.0/24"
@@ -58,7 +58,7 @@ module "data_pipeline" {
 }
 
 module "gpdb" {
-  source                        = "github.com/UKHomeOffice/dq-tf-gpdb?ref=initial-gpdb"
+  source                        = "github.com/UKHomeOffice/dq-tf-gpdb"
   appsvpc_id                    = "${aws_vpc.appsvpc.id}"
   dq_database_cidr_block        = "10.1.2.0/24"
   internal_dashboard_cidr_block = "10.1.12.0/24"
