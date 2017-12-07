@@ -8,6 +8,7 @@ module "external_tableau" {
   dq_external_dashboard_subnet = "10.1.14.0/24"
   greenplum_ip                 = "${module.gpdb.gpdb_master1_ip}"
   apps_vpc_id                  = "${aws_vpc.appsvpc.id}"
+  route_table_id               = "${aws_route_table.apps_route_table.id}"
 }
 
 module "internal_tableau" {
