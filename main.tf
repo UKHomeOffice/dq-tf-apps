@@ -38,7 +38,7 @@ module "data_feeds" {
 }
 
 module "data_ingest" {
-  source                    = "github.com/ukhomeoffice/dq-tf-dataingest?ref=ports"
+  source                    = "github.com/ukhomeoffice/dq-tf-dataingest"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
   data_pipe_apps_cidr_block = "10.8.0.0/24"
   opssubnet_cidr_block      = "10.2.0.0/24"
@@ -48,7 +48,7 @@ module "data_ingest" {
 }
 
 module "data_pipeline" {
-  source                    = "github.com/UKHomeOffice/dq-tf-datapipeline?ref=initial-dp"
+  source                    = "github.com/UKHomeOffice/dq-tf-datapipeline"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
   appsvpc_cidr_block        = "${var.cidr_block}"
   opssubnet_cidr_block      = "10.2.0.0/24"
