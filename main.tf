@@ -17,6 +17,7 @@ module "internal_tableau" {
   dq_internal_dashboard_subnet_cidr = "10.1.12.0/24"
   greenplum_ip                      = "${module.gpdb.gpdb_master1_ip}"
   apps_vpc_id                       = "${aws_vpc.appsvpc.id}"
+  route_table_id                    = "${aws_route_table.apps_route_table.id}"
 }
 
 module "bdm" {
