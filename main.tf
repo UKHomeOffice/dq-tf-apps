@@ -112,7 +112,7 @@ resource "aws_route_table" "apps_public_route_table" {
   }
 
   tags {
-    Name = "${local.name_prefix}private-route-table"
+    Name = "${local.name_prefix}public-route-table"
   }
 }
 
