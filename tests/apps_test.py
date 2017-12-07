@@ -53,6 +53,9 @@ class TestE2E(unittest.TestCase):
     def test_name_prefix_route_table(self):
         self.assertEqual(self.result['apps']["aws_route_table.apps_route_table"]["tags.Name"], "dq-apps-route-table")
 
+    def test_name_prefix_public_route(self):
+        self.assertEqual(self.result['apps']["aws_route_table.apps_public_route_table"]["tags.Name"], "dq-apps-public-route-table")
+
     def test_name_prefix_appsnatgw(self):
         self.assertEqual(self.result['apps']["aws_nat_gateway.appsnatgw"]["tags.Name"], "dq-apps-natgw")
 
