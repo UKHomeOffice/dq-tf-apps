@@ -1,4 +1,4 @@
-# pylint: disable=missing-docstring, line-too-long, protected-access
+# pylint: disable=missing-docstring, line-too-long, protected-access, C0202
 import unittest
 from runner import Runner
 
@@ -35,13 +35,13 @@ class TestE2E(unittest.TestCase):
     def test_apps_vpc_cidr_block(self):
         self.assertEqual(self.result['apps']["aws_vpc.appsvpc"]["cidr_block"], "10.1.0.0/16")
 
-    def test_apps_public_subnet_cidr_block(self):
+    def test_apps_public_cidr(self):
         self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["cidr_block"], "10.1.0.0/24")
 
     def test_az_public_subnet(self):
         self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["availability_zone"], "eu-west-2a")
 
-    def test_name_prefix_AppsRouteToInternet(self):
+    def test_name_prefix_ari(self):
         self.assertEqual(self.result['apps']["aws_internet_gateway.AppsRouteToInternet"]["tags.Name"], "dq-apps-igw")
 
     def test_name_prefix_appsvpc(self):
