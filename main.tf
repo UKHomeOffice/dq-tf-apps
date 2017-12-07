@@ -8,6 +8,7 @@ module "external_tableau" {
   dq_external_dashboard_subnet = "10.1.14.0/24"
   greenplum_ip                 = "${module.gpdb.gpdb_master1_ip}"
   apps_vpc_id                  = "${aws_vpc.appsvpc.id}"
+  route_table_id               = "${aws_route_table.apps_route_table.id}"
 }
 
 module "internal_tableau" {
@@ -26,6 +27,7 @@ module "bdm" {
   dq_opps_subnet_1_cidr = "10.2.0.0/24"
   dq_BDM_subnet_cidr    = "10.1.10.0/24"
   apps_vpc_id           = "${aws_vpc.appsvpc.id}"
+  route_table_id        = "${aws_route_table.apps_route_table.id}"
 }
 
 module "data_feeds" {
@@ -36,6 +38,7 @@ module "data_feeds" {
   data_feeds_cidr_block     = "10.1.4.0/24"
   az                        = "${var.az}"
   name_prefix               = "${local.name_prefix}"
+  route_table_id            = "${aws_route_table.apps_route_table.id}"
 }
 
 module "data_ingest" {
@@ -46,6 +49,7 @@ module "data_ingest" {
   data_ingest_cidr_block    = "10.1.6.0/24"
   az                        = "${var.az}"
   name_prefix               = "${local.name_prefix}"
+  route_table_id            = "${aws_route_table.apps_route_table.id}"
 }
 
 module "data_pipeline" {
@@ -56,6 +60,7 @@ module "data_pipeline" {
   data_pipe_apps_cidr_block = "10.1.8.0/24"
   az                        = "${var.az}"
   name_prefix               = "${local.name_prefix}"
+  route_table_id            = "${aws_route_table.apps_route_table.id}"
 }
 
 module "gpdb" {
@@ -70,6 +75,7 @@ module "gpdb" {
   opssubnet_cidr_block          = "10.2.0.0/24"
   az                            = "${var.az}"
   name_prefix                   = "${local.name_prefix}"
+  route_table_id                = "${aws_route_table.apps_route_table.id}"
 }
 
 locals {
@@ -86,6 +92,11 @@ resource "aws_vpc" "appsvpc" {
 
 resource "aws_route_table" "apps_route_table" {
   vpc_id = "${aws_vpc.appsvpc.id}"
+
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = "${aws_nat_gateway.appsnatgw.id}"
+  }
 
   tags {
     Name = "${local.name_prefix}route-table"
