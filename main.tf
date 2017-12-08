@@ -44,7 +44,7 @@ module "data_feeds" {
 module "data_ingest" {
   source                    = "github.com/ukhomeoffice/dq-tf-dataingest"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
-  data_pipe_apps_cidr_block = "10.8.0.0/24"
+  data_pipe_apps_cidr_block = "10.1.8.0/24"
   opssubnet_cidr_block      = "10.2.0.0/24"
   data_ingest_cidr_block    = "10.1.6.0/24"
   az                        = "${var.az}"
