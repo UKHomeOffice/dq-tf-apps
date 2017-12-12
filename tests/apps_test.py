@@ -25,13 +25,8 @@ class TestE2E(unittest.TestCase):
               public_subnet_cidr_block    = "10.1.0.0/24"
               az                          = "eu-west-2a"
               name_prefix                 = "dq-"
-              peeringvpc_cidr             = "1.1.0.0/16"
-              opsvpc_cidr                 = "1.1.0.0/16"
-              acpops_cidr_block           = "1.1.0.0/16"
-              acpcicd_cidr_block          = "1.1.0.0/16"
-              acpprod_cidr_block          = "1.1.0.0/16"
-              acpvpn_cidr_block           = "1.1.0.0/16"
-              vpc_peering_to_peering_id      = "12345"
+              route_table_cidr_blocks     = "[1234, 1234]"
+              vpc_peering_to_peering_id   = "12345"
             }
         """
         self.result = Runner(self.snippet).result
