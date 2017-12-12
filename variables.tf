@@ -2,3 +2,10 @@ variable "cidr_block" {}
 variable "public_subnet_cidr_block" {}
 variable "az" {}
 variable "name_prefix" {}
+variable "peeringvpc_cidr" {}
+variable "opsvpc_cidr" {}
+variable "acpops_cidr_block" {}
+variable "acpcicd_cidr_block" {}
+variable "acpprod_cidr_block" {}
+variable "acpvpn_cidr_block" {}
+variable "vpc_peering_to_peering_id" {}
