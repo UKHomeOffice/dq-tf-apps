@@ -96,6 +96,31 @@ resource "aws_route_table" "apps_route_table" {
   vpc_id = "${aws_vpc.appsvpc.id}"
 
   route {
+    cidr_block                = "${var.route_table_cidr_blocks.["peering_cidr"]}"
+    vpc_peering_connection_id = "${var.vpc_peering_to_peering_id}"
+  }
+
+  route {
+    cidr_block                = "${var.route_table_cidr_blocks.["acp_vpn"]}"
+    vpc_peering_connection_id = "${var.vpc_peering_to_peering_id}"
+  }
+
+  route {
+    cidr_block                = "${var.route_table_cidr_blocks.["acp_prod"]}"
+    vpc_peering_connection_id = "${var.vpc_peering_to_peering_id}"
+  }
+
+  route {
+    cidr_block                = "${var.route_table_cidr_blocks.["acp_ops"]}"
+    vpc_peering_connection_id = "${var.vpc_peering_to_peering_id}"
+  }
+
+  route {
+    cidr_block                = "${var.route_table_cidr_blocks.["acp_cicd"]}"
+    vpc_peering_connection_id = "${var.vpc_peering_to_peering_id}"
+  }
+
+  route {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = "${aws_nat_gateway.appsnatgw.id}"
   }
