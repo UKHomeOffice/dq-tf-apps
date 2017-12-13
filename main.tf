@@ -28,6 +28,8 @@ module "bdm" {
   dq_BDM_subnet_cidr    = "10.1.10.0/24"
   apps_vpc_id           = "${aws_vpc.appsvpc.id}"
   route_table_id        = "${aws_route_table.apps_route_table.id}"
+  az                    = "eu-west-2a"
+  az2                   = "eu-west-2b"
 }
 
 module "data_feeds" {
