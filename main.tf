@@ -96,6 +96,11 @@ resource "aws_route_table" "apps_route_table" {
   vpc_id = "${aws_vpc.appsvpc.id}"
 
   route {
+    cidr_block                = "${var.route_table_cidr_blocks["ops_cidr"]}"
+    vpc_peering_connection_id = "${var.vpc_peering_to_ops_id}"
+  }
+
+  route {
     cidr_block                = "${var.route_table_cidr_blocks["peering_cidr"]}"
     vpc_peering_connection_id = "${var.vpc_peering_to_peering_id}"
   }
