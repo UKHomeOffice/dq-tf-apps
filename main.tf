@@ -9,6 +9,7 @@ module "external_tableau" {
   greenplum_ip                 = "${module.gpdb.gpdb_master1_ip}"
   apps_vpc_id                  = "${aws_vpc.appsvpc.id}"
   route_table_id               = "${aws_route_table.apps_route_table.id}"
+  az                           = "eu-west-2a"
 }
 
 module "internal_tableau" {
@@ -19,6 +20,7 @@ module "internal_tableau" {
   greenplum_ip                      = "${module.gpdb.gpdb_master1_ip}"
   apps_vpc_id                       = "${aws_vpc.appsvpc.id}"
   route_table_id                    = "${aws_route_table.apps_route_table.id}"
+  az                                = "eu-west-2a"
 }
 
 module "bdm" {
