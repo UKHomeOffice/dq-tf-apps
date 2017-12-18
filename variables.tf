@@ -3,9 +3,6 @@ variable "public_subnet_cidr_block" {}
 variable "az" {}
 variable "name_prefix" {}
 
-# variable "vpc_peering_to_peering_id" {}
-# variable "vpc_peering_to_ops_id" {}
-
 variable "vpc_peering_connection_ids" {
   description = "List of peering VPC connection ids."
   type        = "map"
