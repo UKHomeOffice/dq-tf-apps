@@ -32,9 +32,17 @@ class TestE2E(unittest.TestCase):
                 acp_prod = "1234"
                 acp_ops = "1234"
                 acp_cicd = "1234"
+                ad_cidr = "1234"
               }
-              vpc_peering_to_peering_id   = "12345"
-              vpc_peering_to_ops_id       = "12345"
+            #   vpc_peering_to_peering_id   = "12345"
+            #   vpc_peering_to_ops_id       = "12345"
+            #   vpc_peering_to_ad_id        = "1234"
+              vpc_peering_connection_ids  = {
+                peering_to_peering = "1234"
+                peering_to_ops     = "1234"
+                peering_to_ad      = "1234"
+              }
+
             }
         """
         self.result = Runner(self.snippet).result
