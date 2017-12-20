@@ -23,8 +23,11 @@ class TestE2E(unittest.TestCase):
 
               cidr_block                  = "10.1.0.0/16"
               public_subnet_cidr_block    = "10.1.0.0/24"
+              ad_subnet_cidr_block        = "10.1.0.0/24"
               az                          = "eu-west-2a"
               name_prefix                 = "dq-"
+              ad_aws_ssm_document_name    = "1234"
+              ad_writer_instance_profile_name = "1234"
               route_table_cidr_blocks     = {
                 peering_cidr = "1234"
                 ops_cidr = "1234"
@@ -64,6 +67,9 @@ class TestE2E(unittest.TestCase):
 
     def test_name_prefix_public_subnet(self):
         self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["tags.Name"], "dq-apps-public-subnet")
+
+    def test_name_prefix_ad_subnet(self):
+        self.assertEqual(self.result['apps']["aws_subnet.ad_subnet"]["tags.Name"], "dq-apps-ad-subnet")
 
     def test_name_prefix_route_table(self):
         self.assertEqual(self.result['apps']["aws_route_table.apps_route_table"]["tags.Name"], "dq-apps-route-table")
