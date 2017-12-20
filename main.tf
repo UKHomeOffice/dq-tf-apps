@@ -129,11 +129,6 @@ resource "aws_route_table" "apps_route_table" {
   }
 
   route {
-    cidr_block                = "${var.route_table_cidr_blocks["ad_cidr"]}"
-    vpc_peering_connection_id = "${var.vpc_peering_connection_ids["peering_to_ad"]}"
-  }
-
-  route {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = "${aws_nat_gateway.appsnatgw.id}"
   }
