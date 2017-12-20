@@ -26,10 +26,16 @@ resource "aws_instance" "win" {
   ]
 
   count = "${local.windows}"
+
+  tags {
+    Name        = "ec2-ad-${var.service}-apps-win-${var.environment}"
+    Service     = "${var.service}"
+    Environment = "${var.environment}"
+  }
 }
 
 locals {
-  windows = 0
+  windows = 1
   rhel    = 1
 }
 
@@ -103,7 +109,7 @@ EOF
   count = "${local.rhel}"
 
   tags {
-    Name        = "ec2-ad-${var.service}-rhel-${var.environment}"
+    Name        = "ec2-ad-${var.service}-apps-rhel-${var.environment}"
     Service     = "${var.service}"
     Environment = "${var.environment}"
   }
