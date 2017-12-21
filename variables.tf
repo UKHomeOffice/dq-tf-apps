@@ -3,6 +3,7 @@ variable "public_subnet_cidr_block" {}
 variable "ad_subnet_cidr_block" {}
 variable "az" {}
 variable "name_prefix" {}
+variable "adminpassword" {}
 variable "ad_aws_ssm_document_name" {}
 variable "ad_writer_instance_profile_name" {}
 

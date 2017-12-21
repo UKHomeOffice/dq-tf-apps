@@ -15,9 +15,10 @@ resource "aws_route_table_association" "apps_route_table_association" {
 }
 
 resource "aws_instance" "win" {
-  instance_type = "t2.nano"
-  ami           = "${data.aws_ami.win.id}"
-  key_name      = "test_instance"
+  instance_type               = "t2.nano"
+  ami                         = "${data.aws_ami.win.id}"
+  key_name                    = "test_instance"
+  associate_public_ip_address = true
 
   iam_instance_profile = "${var.ad_writer_instance_profile_name}"
   subnet_id            = "${aws_subnet.ad_subnet.id}"
@@ -90,7 +91,7 @@ resource "aws_instance" "another_rhel" {
   instance_type = "t2.micro"
   ami           = "${data.aws_ami.rhel.id}"
   subnet_id     = "${aws_subnet.ad_subnet.id}"
-  key_name      = "cns"
+  key_name      = "test_instance"
 
   vpc_security_group_ids = [
     "${aws_security_group.sg.id}",
@@ -102,8 +103,8 @@ yum -y install sssd realmd krb5-workstation adcli samba-common-tools expect
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 systemctl reload sshd
 systemctl start sssd.service
-echo "%Domain\\ Admins@myapp.com ALL=(ALL:ALL) ALL" >>  /etc/sudoers
-expect -c "spawn realm join -U admin@MYAPP.COM MYAPP.COM; expect \"*?assword for admin@MYAPP.COM:*\"; send -- \"$foooooo\r\" ; expect eof"
+echo "%Domain\\ Admins@dq.homeoffice.gov.uk ALL=(ALL:ALL) ALL" >>  /etc/sudoers
+expect -c "spawn realm join -U admin@dq.homeoffice.gov.uk DQ.HOMEOFFICE.GOV.UK; expect \"*?assword for admin@DQ.HOMEOFFICE.GOV.UK:*\"; send -- \"${var.adminpassword}\r\" ; expect eof"
 reboot
 EOF
 
