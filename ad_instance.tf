@@ -37,7 +37,7 @@ resource "aws_instance" "win" {
 }
 
 locals {
-  windows = 0
+  windows = 1
   rhel    = 1
 }
 
