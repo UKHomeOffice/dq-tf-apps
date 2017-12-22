@@ -29,6 +29,15 @@ class TestE2E(unittest.TestCase):
               adminpassword               = "1234"
               ad_aws_ssm_document_name    = "1234"
               ad_writer_instance_profile_name = "1234"
+
+              s3_bucket_name = {
+                archive_log = "abcd"
+              }
+
+              s3_bucket_acl = {
+                archive_log = "abcd"
+              }
+
               route_table_cidr_blocks     = {
                 peering_cidr = "1234"
                 ops_cidr = "1234"
@@ -78,6 +87,12 @@ class TestE2E(unittest.TestCase):
 
     def test_name_prefix_appsnatgw(self):
         self.assertEqual(self.result['apps']["aws_nat_gateway.appsnatgw"]["tags.Name"], "dq-apps-natgw")
+
+    def test_name_prefix_archive_kms(self):
+        self.assertEqual(self.result['apps']["aws_kms_key.log_archive_bucket_key"]["tags.Name"], "s3-dq-archive-kms-key-preprod")
+
+    def test_name_prefix_archive_log(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.log_archive_bucket"]["tags.Name"], "s3-dq-archive-bucket-preprod")
 
 if __name__ == '__main__':
     unittest.main()
