@@ -7,12 +7,20 @@ variable "adminpassword" {}
 variable "ad_aws_ssm_document_name" {}
 variable "ad_writer_instance_profile_name" {}
 
+variable "region" {
+  default = "eu-west-2"
+}
+
 variable "service" {
   default = "dq"
 }
 
 variable "environment" {
   default = "preprod"
+}
+
+variable "environment_group" {
+  default = "dq-s3"
 }
 
 variable "vpc_peering_connection_ids" {
@@ -22,5 +30,15 @@ variable "vpc_peering_connection_ids" {
 
 variable "route_table_cidr_blocks" {
   description = "Map of CIDR blocks for the Apps private route table."
+  type        = "map"
+}
+
+variable "s3_bucket_name" {
+  description = "Map of the S3 bucket names"
+  type        = "map"
+}
+
+variable "s3_bucket_acl" {
+  description = "Map of the S3 bucket canned ACLs"
   type        = "map"
 }
