@@ -37,15 +37,15 @@ resource "aws_instance" "win" {
 }
 
 locals {
-  windows = 1
+  windows = 0
   rhel    = 1
 }
 
-resource "aws_ssm_association" "win" {
-  name        = "${var.ad_aws_ssm_document_name}"
-  instance_id = "${element(aws_instance.win.*.id, count.index)}"
-  count       = "${local.windows}"
-}
+# resource "aws_ssm_association" "win" {
+#   name        = "${var.ad_aws_ssm_document_name}"
+#   instance_id = "${element(aws_instance.win.*.id, count.index)}"
+#   count       = "${local.windows}"
+# }
 
 resource "aws_security_group" "sg" {
   vpc_id = "${aws_vpc.appsvpc.id}"
