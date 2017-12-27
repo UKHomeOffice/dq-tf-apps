@@ -27,3 +27,7 @@ output "outputs" {
 output "ad_subnet_id" {
   value = "${aws_subnet.ad_subnet.id}"
 }
+
+output "log_archive_bucket_id" {
+  value = "${aws_s3_bucket.log_archive_bucket.id}"
+}
