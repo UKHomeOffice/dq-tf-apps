@@ -53,9 +53,9 @@ Code and resource tester with mock data. It can be expanded by adding further de
 This project currently depends on:
 
 * drone v0.5+dev
-* terraform
-* terragrunt
-* python
+* terraform v0.11.1+
+* terragrunt v0.13.21+
+* python v3.6.3+
 
 Please ensure that you have the correct versions installed (it is not currently tested against the latest version of Drone)
 
