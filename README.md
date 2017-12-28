@@ -65,8 +65,8 @@ To run the scripts from your local machine:
 
 ```
 # export/set variables
-terraform plan
-terraform apply
+terragrunt plan
+terragrunt apply
 ```
 
 ## FAQs
@@ -76,5 +76,5 @@ terraform apply
 If the CI process appears to be stuck with a stale `tf state` then run the following command to force a refresh:
 
 ```
-terraform refresh
+terragrunt refresh
 ```
