@@ -76,5 +76,5 @@ terraform apply
 If the CI process appears to be stuck with a stale `tf state` then run the following command to force a refresh:
 
 ```
-<tf command to force refresh>
+terraform refresh
 ```
