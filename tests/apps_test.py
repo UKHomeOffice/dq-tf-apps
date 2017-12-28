@@ -94,26 +94,14 @@ class TestE2E(unittest.TestCase):
     def test_name_prefix_appsnatgw(self):
         self.assertEqual(self.result['apps']["aws_nat_gateway.appsnatgw"]["tags.Name"], "dq-apps-natgw")
 
-    def test_name_prefix_archive_kms(self):
-        self.assertEqual(self.result['apps']["aws_kms_key.log_archive_bucket_key"]["tags.Name"], "s3-dq-log-archive-kms-key-preprod")
-
     def test_name_prefix_archive_log(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.log_archive_bucket"]["tags.Name"], "s3-dq-log-archive-bucket-preprod")
-
-    def test_name_prefix_data_archive_kms(self):
-        self.assertEqual(self.result['apps']["aws_kms_key.data_archive_bucket_key"]["tags.Name"], "s3-dq-data-archive-kms-key-preprod")
 
     def test_name_prefix_data_archive_log(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.data_archive_bucket"]["tags.Name"], "s3-dq-data-archive-bucket-preprod")
 
-    def test_name_prefix_data_working_kms(self):
-        self.assertEqual(self.result['apps']["aws_kms_key.data_working_bucket_key"]["tags.Name"], "s3-dq-data-working-kms-key-preprod")
-
     def test_name_prefix_data_working(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.data_working_bucket"]["tags.Name"], "s3-dq-data-working-bucket-preprod")
-
-    def test_name_prefix_data_landing_kms(self):
-        self.assertEqual(self.result['apps']["aws_kms_key.data_landing_bucket_key"]["tags.Name"], "s3-dq-data-landing-kms-key-preprod")
 
     def test_name_prefix_data_landing(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.data_landing_bucket"]["tags.Name"], "s3-dq-data-landing-bucket-preprod")
