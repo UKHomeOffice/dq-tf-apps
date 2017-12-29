@@ -1,18 +1,10 @@
-resource "random_string" "bucket_string" {
-  length  = 4
-  upper   = false
-  number  = false
-  special = false
-  lower   = true
-}
-
 resource "aws_kms_key" "bucket_key" {
   description             = "This key is used to encrypt Archive Log bucket objects"
   deletion_window_in_days = 7
 }
 
 resource "aws_s3_bucket" "log_archive_bucket" {
-  bucket = "${var.s3_bucket_name["archive_log"]}-${random_string.bucket_string.result}"
+  bucket = "${var.s3_bucket_name["archive_log"]}"
   acl    = "${var.s3_bucket_acl["archive_log"]}"
   region = "${var.region}"
 
@@ -23,6 +15,10 @@ resource "aws_s3_bucket" "log_archive_bucket" {
         sse_algorithm     = "aws:kms"
       }
     }
+  }
+
+  versioning {
+    enabled = true
   }
 
   tags = {
@@ -42,8 +38,8 @@ resource "aws_iam_policy" "log_archive_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": ["s3:ListBucket"],
-      "Resource": ["${aws_s3_bucket.log_archive_bucket.arn}"]
+      "Action": "s3:ListBucket",
+      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}"
     },
     {
       "Effect": "Allow",
@@ -52,7 +48,7 @@ resource "aws_iam_policy" "log_archive_bucket_policy" {
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": ["${aws_s3_bucket.log_archive_bucket.arn}/*"]
+      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}/*"
     }
   ]
 }
@@ -60,7 +56,7 @@ EOF
 }
 
 resource "aws_s3_bucket" "data_archive_bucket" {
-  bucket = "${var.s3_bucket_name["archive_data"]}-${random_string.bucket_string.result}"
+  bucket = "${var.s3_bucket_name["archive_data"]}"
   acl    = "${var.s3_bucket_acl["archive_data"]}"
   region = "${var.region}"
 
@@ -71,6 +67,10 @@ resource "aws_s3_bucket" "data_archive_bucket" {
         sse_algorithm     = "aws:kms"
       }
     }
+  }
+
+  versioning {
+    enabled = true
   }
 
   tags = {
@@ -90,8 +90,8 @@ resource "aws_iam_policy" "data_archive_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": ["s3:ListBucket"],
-      "Resource": ["${aws_s3_bucket.data_archive_bucket.arn}"]
+      "Action": "s3:ListBucket",
+      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
     },
     {
       "Effect": "Allow",
@@ -100,7 +100,7 @@ resource "aws_iam_policy" "data_archive_bucket_policy" {
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": ["${aws_s3_bucket.data_archive_bucket.arn}/*"]
+      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
     }
   ]
 }
@@ -108,7 +108,7 @@ EOF
 }
 
 resource "aws_s3_bucket" "data_working_bucket" {
-  bucket = "${var.s3_bucket_name["working_data"]}-${random_string.bucket_string.result}"
+  bucket = "${var.s3_bucket_name["working_data"]}"
   acl    = "${var.s3_bucket_acl["working_data"]}"
   region = "${var.region}"
 
@@ -119,6 +119,10 @@ resource "aws_s3_bucket" "data_working_bucket" {
         sse_algorithm     = "aws:kms"
       }
     }
+  }
+
+  versioning {
+    enabled = true
   }
 
   tags = {
@@ -138,8 +142,8 @@ resource "aws_iam_policy" "data_working_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": ["s3:ListBucket"],
-      "Resource": ["${aws_s3_bucket.data_working_bucket.arn}"]
+      "Action": "s3:ListBucket",
+      "Resource": "${aws_s3_bucket.data_working_bucket.arn}"
     },
     {
       "Effect": "Allow",
@@ -148,7 +152,7 @@ resource "aws_iam_policy" "data_working_bucket_policy" {
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": ["${aws_s3_bucket.data_working_bucket.arn}/*"]
+      "Resource": "${aws_s3_bucket.data_working_bucket.arn}/*"
     }
   ]
 }
@@ -156,7 +160,7 @@ EOF
 }
 
 resource "aws_s3_bucket" "data_landing_bucket" {
-  bucket = "${var.s3_bucket_name["landing_data"]}-${random_string.bucket_string.result}"
+  bucket = "${var.s3_bucket_name["landing_data"]}"
   acl    = "${var.s3_bucket_acl["landing_data"]}"
   region = "${var.region}"
 
@@ -167,6 +171,10 @@ resource "aws_s3_bucket" "data_landing_bucket" {
         sse_algorithm     = "aws:kms"
       }
     }
+  }
+
+  versioning {
+    enabled = true
   }
 
   tags = {
@@ -186,8 +194,8 @@ resource "aws_iam_policy" "data_landing_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": ["s3:ListBucket"],
-      "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}"]
+      "Action": "s3:ListBucket",
+      "Resource": "${aws_s3_bucket.data_landing_bucket.arn}"
     },
     {
       "Effect": "Allow",
@@ -196,7 +204,7 @@ resource "aws_iam_policy" "data_landing_bucket_policy" {
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}/*"]
+      "Resource": "${aws_s3_bucket.data_landing_bucket.arn}/*"
     }
   ]
 }
