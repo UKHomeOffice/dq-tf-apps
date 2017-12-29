@@ -38,17 +38,17 @@ resource "aws_iam_policy" "log_archive_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}"
+      "Action": ["s3:ListBucket"],
+      "Resource": "*"
     },
     {
       "Effect": "Allow",
       "Action": [
-        "s3:PutObject"
+        "s3:PutObject",
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}/*"
+      "Resource": "*"
     }
   ]
 }
@@ -90,17 +90,17 @@ resource "aws_iam_policy" "data_archive_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
+      "Action": ["s3:ListBucket"],
+      "Resource": ["${aws_s3_bucket.data_archive_bucket.arn}"]
     },
     {
       "Effect": "Allow",
       "Action": [
-        "s3:PutObject"
+        "s3:PutObject",
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
+      "Resource": ["${aws_s3_bucket.data_archive_bucket.arn}/*"]
     }
   ]
 }
@@ -142,17 +142,17 @@ resource "aws_iam_policy" "data_working_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.data_working_bucket.arn}"
+      "Action": ["s3:ListBucket"],
+      "Resource": ["${aws_s3_bucket.data_working_bucket.arn}"]
     },
     {
       "Effect": "Allow",
       "Action": [
-        "s3:PutObject"
+        "s3:PutObject",
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": "${aws_s3_bucket.data_working_bucket.arn}/*"
+      "Resource": ["${aws_s3_bucket.data_working_bucket.arn}/*"]
     }
   ]
 }
@@ -194,17 +194,17 @@ resource "aws_iam_policy" "data_landing_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.data_landing_bucket.arn}"
+      "Action": ["s3:ListBucket"],
+      "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}"]
     },
     {
       "Effect": "Allow",
       "Action": [
-        "s3:PutObject"
+        "s3:PutObject",
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": "${aws_s3_bucket.data_landing_bucket.arn}/*"
+      "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}/*"]
     }
   ]
 }
