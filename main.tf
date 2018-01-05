@@ -102,7 +102,7 @@ resource "aws_vpc" "appsvpc" {
   enable_dns_hostnames = true
 
   tags {
-    Name = "${local.name_prefix}vpc"
+    Name = "vpc-${local.naming_suffix}"
   }
 }
 
@@ -110,7 +110,7 @@ resource "aws_route_table" "apps_route_table" {
   vpc_id = "${aws_vpc.appsvpc.id}"
 
   tags {
-    Name = "${local.name_prefix}route-table"
+    Name = "route-table-${local.naming_suffix}"
   }
 }
 
@@ -160,7 +160,7 @@ resource "aws_route_table" "apps_public_route_table" {
   vpc_id = "${aws_vpc.appsvpc.id}"
 
   tags {
-    Name = "${local.name_prefix}public-route-table"
+    Name = "public-route-table-${local.naming_suffix}"
   }
 }
 
@@ -179,7 +179,7 @@ resource "aws_nat_gateway" "appsnatgw" {
   subnet_id     = "${aws_subnet.public_subnet.id}"
 
   tags {
-    Name = "${local.name_prefix}natgw"
+    Name = "natgw-${local.naming_suffix}"
   }
 }
 
@@ -187,7 +187,7 @@ resource "aws_internet_gateway" "AppsRouteToInternet" {
   vpc_id = "${aws_vpc.appsvpc.id}"
 
   tags {
-    Name = "${local.name_prefix}igw"
+    Name = "igw-${local.naming_suffix}"
   }
 }
 
@@ -198,7 +198,7 @@ resource "aws_subnet" "public_subnet" {
   availability_zone       = "${var.az}"
 
   tags {
-    Name = "${local.name_prefix}public-subnet"
+    Name = "public-subnet-${local.naming_suffix}"
   }
 }
 

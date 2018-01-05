@@ -78,26 +78,26 @@ class TestE2E(unittest.TestCase):
     def test_az_public_subnet(self):
         self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["availability_zone"], "eu-west-2a")
 
-    def test_name_prefix_ari(self):
-        self.assertEqual(self.result['apps']["aws_internet_gateway.AppsRouteToInternet"]["tags.Name"], "dq-apps-igw")
+    def test_name_suffix_ari(self):
+        self.assertEqual(self.result['apps']["aws_internet_gateway.AppsRouteToInternet"]["tags.Name"], "igw-apps-preprod-dq")
 
-    def test_name_prefix_appsvpc(self):
-        self.assertEqual(self.result['apps']["aws_vpc.appsvpc"]["tags.Name"], "dq-apps-vpc")
+    def test_name_suffix_appsvpc(self):
+        self.assertEqual(self.result['apps']["aws_vpc.appsvpc"]["tags.Name"], "vpc-apps-preprod-dq")
 
-    def test_name_prefix_public_subnet(self):
-        self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["tags.Name"], "dq-apps-public-subnet")
+    def test_name_suffix_public_subnet(self):
+        self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["tags.Name"], "public-subnet-apps-preprod-dq")
 
     def test_name_prefix_ad_subnet(self):
         self.assertEqual(self.result['apps']["aws_subnet.ad_subnet"]["tags.Name"], "dq-apps-ad-subnet")
 
-    def test_name_prefix_route_table(self):
-        self.assertEqual(self.result['apps']["aws_route_table.apps_route_table"]["tags.Name"], "dq-apps-route-table")
+    def test_name_suffix_route_table(self):
+        self.assertEqual(self.result['apps']["aws_route_table.apps_route_table"]["tags.Name"], "route-table-apps-preprod-dq")
 
-    def test_name_prefix_public_route(self):
-        self.assertEqual(self.result['apps']["aws_route_table.apps_public_route_table"]["tags.Name"], "dq-apps-public-route-table")
+    def test_name_suffix_public_route(self):
+        self.assertEqual(self.result['apps']["aws_route_table.apps_public_route_table"]["tags.Name"], "public-route-table-apps-preprod-dq")
 
-    def test_name_prefix_appsnatgw(self):
-        self.assertEqual(self.result['apps']["aws_nat_gateway.appsnatgw"]["tags.Name"], "dq-apps-natgw")
+    def test_name_suffix_appsnatgw(self):
+        self.assertEqual(self.result['apps']["aws_nat_gateway.appsnatgw"]["tags.Name"], "natgw-apps-preprod-dq")
 
     def test_name_prefix_archive_log(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.log_archive_bucket"]["tags.Name"], "s3-dq-log-archive-bucket-preprod")
