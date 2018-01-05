@@ -29,8 +29,8 @@ resource "aws_s3_bucket" "log_archive_bucket" {
   }
 }
 
-resource "aws_iam_policy" "log_archive_bucket_policy" {
-  name = "log_archive_bucket_policy"
+resource "aws_s3_bucket_policy" "log_archive_bucket_policy" {
+  bucket = "${aws_s3_bucket.log_archive_bucket.id}"
 
   policy = <<EOF
 {
@@ -38,17 +38,25 @@ resource "aws_iam_policy" "log_archive_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+        "Service": "s3.amazonaws.com",
+        "Service": "monitoring.amazonaws.com"
+      },
       "Action": ["s3:ListBucket"],
-      "Resource": "*"
+      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}"
     },
     {
       "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com",
+        "Service": "s3.amazonaws.com",
+        "Service": "monitoring.amazonaws.com"
+      },
       "Action": [
-        "s3:PutObject",
-        "s3:GetObject",
-        "s3:ListObject"
+        "s3:PutObject"
       ],
-      "Resource": "*"
+      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}/*"
     }
   ]
 }
@@ -81,8 +89,8 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 }
 
-resource "aws_iam_policy" "data_archive_bucket_policy" {
-  name = "data_archive_bucket_policy"
+resource "aws_s3_bucket_policy" "data_archive_bucket_policy" {
+  bucket = "${aws_s3_bucket.data_archive_bucket.id}"
 
   policy = <<EOF
 {
@@ -90,17 +98,19 @@ resource "aws_iam_policy" "data_archive_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
+      "Principal": {"Service": "ec2.amazonaws.com"},
       "Action": ["s3:ListBucket"],
-      "Resource": ["${aws_s3_bucket.data_archive_bucket.arn}"]
+      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
     },
     {
       "Effect": "Allow",
+      "Principal": {"Service": "ec2.amazonaws.com"},
       "Action": [
         "s3:PutObject",
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": ["${aws_s3_bucket.data_archive_bucket.arn}/*"]
+      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
     }
   ]
 }
@@ -133,8 +143,8 @@ resource "aws_s3_bucket" "data_working_bucket" {
   }
 }
 
-resource "aws_iam_policy" "data_working_bucket_policy" {
-  name = "data_working_bucket_policy"
+resource "aws_s3_bucket_policy" "data_working_bucket_policy" {
+  bucket = "${aws_s3_bucket.data_working_bucket.id}"
 
   policy = <<EOF
 {
@@ -142,17 +152,19 @@ resource "aws_iam_policy" "data_working_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
+      "Principal": {"Service": "ec2.amazonaws.com"},
       "Action": ["s3:ListBucket"],
-      "Resource": ["${aws_s3_bucket.data_working_bucket.arn}"]
+      "Resource": "${aws_s3_bucket.data_working_bucket.arn}"
     },
     {
       "Effect": "Allow",
+      "Principal": {"Service": "ec2.amazonaws.com"},
       "Action": [
         "s3:PutObject",
         "s3:GetObject",
         "s3:ListObject"
       ],
-      "Resource": ["${aws_s3_bucket.data_working_bucket.arn}/*"]
+      "Resource": "${aws_s3_bucket.data_working_bucket.arn}/*"
     }
   ]
 }
@@ -185,8 +197,8 @@ resource "aws_s3_bucket" "data_landing_bucket" {
   }
 }
 
-resource "aws_iam_policy" "data_landing_bucket_policy" {
-  name = "data_landing_bucket_policy"
+resource "aws_s3_bucket_policy" "data_landing_bucket_policy" {
+  bucket = "${aws_s3_bucket.data_landing_bucket.id}"
 
   policy = <<EOF
 {
@@ -194,11 +206,13 @@ resource "aws_iam_policy" "data_landing_bucket_policy" {
   "Statement": [
     {
       "Effect": "Allow",
+      "Principal": {"Service": "ec2.amazonaws.com"},
       "Action": ["s3:ListBucket"],
       "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}"]
     },
     {
       "Effect": "Allow",
+      "Principal": {"Service": "ec2.amazonaws.com"},
       "Action": [
         "s3:PutObject",
         "s3:GetObject",
