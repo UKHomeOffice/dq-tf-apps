@@ -6,6 +6,7 @@ variable "name_prefix" {}
 variable "adminpassword" {}
 variable "ad_aws_ssm_document_name" {}
 variable "ad_writer_instance_profile_name" {}
+variable "naming_suffix" {}
 
 variable "region" {
   default = "eu-west-2"
