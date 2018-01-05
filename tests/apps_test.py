@@ -56,7 +56,11 @@ class TestE2E(unittest.TestCase):
                 peering_to_peering = "1234"
                 peering_to_ops     = "1234"
               }
-
+              ad_sg_cidr_ingress = [
+                "1.2.0.0/16",
+                "1.2.0.0/16",
+                "1.2.0.0/16"
+              ]
             }
         """
         self.result = Runner(self.snippet).result

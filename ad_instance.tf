@@ -56,7 +56,7 @@ resource "aws_security_group" "sg" {
     protocol  = "tcp"
 
     cidr_blocks = [
-      "0.0.0.0/0",
+      "${var.ad_sg_cidr_ingress}",
     ]
   }
 
@@ -66,7 +66,7 @@ resource "aws_security_group" "sg" {
     protocol  = "tcp"
 
     cidr_blocks = [
-      "0.0.0.0/0",
+      "${var.ad_sg_cidr_ingress}",
     ]
   }
 
