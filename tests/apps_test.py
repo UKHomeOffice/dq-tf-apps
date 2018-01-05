@@ -87,8 +87,8 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_public_subnet(self):
         self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["tags.Name"], "public-subnet-apps-preprod-dq")
 
-    def test_name_prefix_ad_subnet(self):
-        self.assertEqual(self.result['apps']["aws_subnet.ad_subnet"]["tags.Name"], "dq-apps-ad-subnet")
+    def test_name_suffix_ad_subnet(self):
+        self.assertEqual(self.result['apps']["aws_subnet.ad_subnet"]["tags.Name"], "ad-subnet-apps-preprod-dq")
 
     def test_name_suffix_route_table(self):
         self.assertEqual(self.result['apps']["aws_route_table.apps_route_table"]["tags.Name"], "route-table-apps-preprod-dq")
