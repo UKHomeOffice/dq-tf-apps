@@ -1,5 +1,9 @@
 provider "aws" {}
 
+locals {
+  naming_suffix = "apps-${var.naming_suffix}"
+}
+
 module "external_tableau" {
   source = "github.com/UKHomeOffice/dq-tf-external-tableau"
 
