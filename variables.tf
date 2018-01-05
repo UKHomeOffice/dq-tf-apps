@@ -8,6 +8,11 @@ variable "ad_aws_ssm_document_name" {}
 variable "ad_writer_instance_profile_name" {}
 variable "naming_suffix" {}
 
+variable "ad_sg_cidr_ingress" {
+  description = "List of CIDR block ingress to AD machines SG"
+  type        = "list"
+}
+
 variable "region" {
   default = "eu-west-2"
 }
