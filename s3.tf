@@ -41,9 +41,12 @@ resource "aws_s3_bucket_policy" "log_archive_bucket_policy" {
       "Principal": {
         "Service": "ec2.amazonaws.com"
         "Service": "s3.amazonaws.com",
-        "Service": "monitoring.amazonaws.com"
+        "Service": "logs.eu-west2.amazonaws.com"
       },
-      "Action": ["s3:ListBucket"],
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetBucketAcl"
+      ],
       "Resource": "${aws_s3_bucket.log_archive_bucket.arn}"
     },
     {
@@ -51,12 +54,13 @@ resource "aws_s3_bucket_policy" "log_archive_bucket_policy" {
       "Principal": {
         "Service": "ec2.amazonaws.com",
         "Service": "s3.amazonaws.com",
-        "Service": "monitoring.amazonaws.com"
+        "Service": "logs.eu-west-2.amazonaws.com"
       },
       "Action": [
         "s3:PutObject"
       ],
       "Resource": "${aws_s3_bucket.log_archive_bucket.arn}/*"
+      "Condition": { "StringEquals": { "s3:x-amz-acl": "bucket-owner-full-control" } }
     }
   ]
 }
