@@ -59,7 +59,7 @@ resource "aws_s3_bucket_policy" "log_archive_bucket_policy" {
       "Action": [
         "s3:PutObject"
       ],
-      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}/*"
+      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}/*",
       "Condition": { "StringEquals": { "s3:x-amz-acl": "bucket-owner-full-control" } }
     }
   ]
