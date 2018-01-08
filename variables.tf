@@ -17,18 +17,6 @@ variable "region" {
   default = "eu-west-2"
 }
 
-variable "service" {
-  default = "dq"
-}
-
-variable "environment" {
-  default = "preprod"
-}
-
-variable "environment_group" {
-  default = "dq-s3"
-}
-
 variable "vpc_peering_connection_ids" {
   description = "List of peering VPC connection ids."
   type        = "map"
