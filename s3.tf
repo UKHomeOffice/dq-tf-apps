@@ -36,9 +36,7 @@ resource "aws_s3_bucket_policy" "log_archive_bucket_policy" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": "ec2.amazonaws.com",
-        "Service": "s3.amazonaws.com",
-        "Service": "logs.eu-west2.amazonaws.com"
+        "Service": "logs.amazonaws.com"
       },
       "Action": [
         "s3:ListBucket",
@@ -49,15 +47,12 @@ resource "aws_s3_bucket_policy" "log_archive_bucket_policy" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": "ec2.amazonaws.com",
-        "Service": "s3.amazonaws.com",
-        "Service": "logs.eu-west-2.amazonaws.com"
+        "Service": "logs.amazonaws.com"
       },
       "Action": [
         "s3:PutObject"
       ],
-      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}/*",
-      "Condition": { "StringEquals": { "s3:x-amz-acl": "bucket-owner-full-control" } }
+      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}/*"
     }
   ]
 }
@@ -97,7 +92,7 @@ resource "aws_s3_bucket_policy" "data_archive_bucket_policy" {
     {
       "Effect": "Allow",
       "Principal": {"Service": "ec2.amazonaws.com"},
-      "Action": ["s3:ListBucket"],
+      "Action": "s3:ListBucket",
       "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
     },
     {
@@ -105,8 +100,7 @@ resource "aws_s3_bucket_policy" "data_archive_bucket_policy" {
       "Principal": {"Service": "ec2.amazonaws.com"},
       "Action": [
         "s3:PutObject",
-        "s3:GetObject",
-        "s3:ListObject"
+        "s3:GetObject"
       ],
       "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
     }
@@ -148,7 +142,7 @@ resource "aws_s3_bucket_policy" "data_working_bucket_policy" {
     {
       "Effect": "Allow",
       "Principal": {"Service": "ec2.amazonaws.com"},
-      "Action": ["s3:ListBucket"],
+      "Action": "s3:ListBucket",
       "Resource": "${aws_s3_bucket.data_working_bucket.arn}"
     },
     {
@@ -156,8 +150,7 @@ resource "aws_s3_bucket_policy" "data_working_bucket_policy" {
       "Principal": {"Service": "ec2.amazonaws.com"},
       "Action": [
         "s3:PutObject",
-        "s3:GetObject",
-        "s3:ListObject"
+        "s3:GetObject"
       ],
       "Resource": "${aws_s3_bucket.data_working_bucket.arn}/*"
     }
@@ -199,7 +192,7 @@ resource "aws_s3_bucket_policy" "data_landing_bucket_policy" {
     {
       "Effect": "Allow",
       "Principal": {"Service": "ec2.amazonaws.com"},
-      "Action": ["s3:ListBucket"],
+      "Action": "s3:ListBucket",
       "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}"]
     },
     {
@@ -207,8 +200,7 @@ resource "aws_s3_bucket_policy" "data_landing_bucket_policy" {
       "Principal": {"Service": "ec2.amazonaws.com"},
       "Action": [
         "s3:PutObject",
-        "s3:GetObject",
-        "s3:ListObject"
+        "s3:GetObject"
       ],
       "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}/*"]
     }
