@@ -28,6 +28,7 @@ module "internal_tableau" {
   apps_vpc_id                       = "${aws_vpc.appsvpc.id}"
   route_table_id                    = "${aws_route_table.apps_route_table.id}"
   az                                = "eu-west-2a"
+  naming_suffix                     = "${local.naming_suffix}"
 }
 
 module "bdm" {
