@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "log_archive_bucket" {
   }
 
   tags = {
-    Name             = "s3-${var.service}-log-archive-bucket-${var.environment}"
+    Name             = "s3-log-archive-bucket-${local.naming_suffix}"
     Service          = "${var.service}"
     Environment      = "${var.environment}"
     EnvironmentGroup = "${var.environment_group}"
@@ -81,7 +81,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 
   tags = {
-    Name             = "s3-${var.service}-data-archive-bucket-${var.environment}"
+    Name             = "s3-data-archive-bucket-${local.naming_suffix}"
     Service          = "${var.service}"
     Environment      = "${var.environment}"
     EnvironmentGroup = "${var.environment_group}"
@@ -134,7 +134,7 @@ resource "aws_s3_bucket" "data_working_bucket" {
   }
 
   tags = {
-    Name             = "s3-${var.service}-data-working-bucket-${var.environment}"
+    Name             = "s3-data-working-bucket-${local.naming_suffix}"
     Service          = "${var.service}"
     Environment      = "${var.environment}"
     EnvironmentGroup = "${var.environment_group}"
@@ -187,7 +187,7 @@ resource "aws_s3_bucket" "data_landing_bucket" {
   }
 
   tags = {
-    Name             = "s3-${var.service}-data-landing-bucket-${var.environment}"
+    Name             = "s3-data-landing-bucket-${local.naming_suffix}"
     Service          = "${var.service}"
     Environment      = "${var.environment}"
     EnvironmentGroup = "${var.environment_group}"
