@@ -30,9 +30,7 @@ resource "aws_instance" "win" {
   count = "${local.windows}"
 
   tags {
-    Name        = "ad-win${count.index}-${local.naming_suffix}"
-    Service     = "${var.service}"
-    Environment = "${var.environment}"
+    Name = "ad-win${count.index}-${local.naming_suffix}"
   }
 }
 
@@ -81,9 +79,7 @@ resource "aws_security_group" "sg" {
   }
 
   tags {
-    Name        = "sg-ad-${local.naming_suffix}"
-    Service     = "${var.service}"
-    Environment = "${var.environment}"
+    Name = "sg-ad-${local.naming_suffix}"
   }
 }
 
@@ -111,8 +107,6 @@ EOF
   count = "${local.rhel}"
 
   tags {
-    Name        = "ad-rhel${count.index}-${local.naming_suffix}"
-    Service     = "${var.service}"
-    Environment = "${var.environment}"
+    Name = "ad-rhel${count.index}-${local.naming_suffix}"
   }
 }

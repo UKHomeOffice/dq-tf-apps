@@ -22,10 +22,7 @@ resource "aws_s3_bucket" "log_archive_bucket" {
   }
 
   tags = {
-    Name             = "s3-log-archive-bucket-${local.naming_suffix}"
-    Service          = "${var.service}"
-    Environment      = "${var.environment}"
-    EnvironmentGroup = "${var.environment_group}"
+    Name = "s3-log-archive-bucket-${local.naming_suffix}"
   }
 }
 
@@ -81,10 +78,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 
   tags = {
-    Name             = "s3-data-archive-bucket-${local.naming_suffix}"
-    Service          = "${var.service}"
-    Environment      = "${var.environment}"
-    EnvironmentGroup = "${var.environment_group}"
+    Name = "s3-data-archive-bucket-${local.naming_suffix}"
   }
 }
 
@@ -134,10 +128,7 @@ resource "aws_s3_bucket" "data_working_bucket" {
   }
 
   tags = {
-    Name             = "s3-data-working-bucket-${local.naming_suffix}"
-    Service          = "${var.service}"
-    Environment      = "${var.environment}"
-    EnvironmentGroup = "${var.environment_group}"
+    Name = "s3-data-working-bucket-${local.naming_suffix}"
   }
 }
 
@@ -187,10 +178,7 @@ resource "aws_s3_bucket" "data_landing_bucket" {
   }
 
   tags = {
-    Name             = "s3-data-landing-bucket-${local.naming_suffix}"
-    Service          = "${var.service}"
-    Environment      = "${var.environment}"
-    EnvironmentGroup = "${var.environment_group}"
+    Name = "s3-data-landing-bucket-${local.naming_suffix}"
   }
 }
 
