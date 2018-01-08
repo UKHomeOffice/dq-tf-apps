@@ -39,6 +39,7 @@ module "bdm" {
   route_table_id        = "${aws_route_table.apps_route_table.id}"
   az                    = "eu-west-2a"
   az2                   = "eu-west-2b"
+  naming_suffix         = "${local.naming_suffix}"
 }
 
 module "data_feeds" {
