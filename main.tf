@@ -52,7 +52,7 @@ module "data_feeds" {
   data_feeds_cidr_block     = "10.1.4.0/24"
   peering_cidr_block        = "10.3.0.0/16"
   az                        = "${var.az}"
-  name_prefix               = "${local.name_prefix}"
+  naming_suffix             = "${local.naming_suffix}"
   route_table_id            = "${aws_route_table.apps_route_table.id}"
 }
 
