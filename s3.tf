@@ -39,7 +39,7 @@ resource "aws_s3_bucket_policy" "log_archive_bucket_policy" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": "ec2.amazonaws.com"
+        "Service": "ec2.amazonaws.com",
         "Service": "s3.amazonaws.com",
         "Service": "logs.eu-west2.amazonaws.com"
       },
