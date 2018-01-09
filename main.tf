@@ -96,10 +96,6 @@ module "gpdb" {
   route_table_id                = "${aws_route_table.apps_route_table.id}"
 }
 
-locals {
-  name_prefix = "${var.name_prefix}apps-"
-}
-
 resource "aws_vpc" "appsvpc" {
   cidr_block           = "${var.cidr_block}"
   enable_dns_hostnames = true
