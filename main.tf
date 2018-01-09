@@ -14,7 +14,7 @@ module "external_tableau" {
   greenplum_ip                 = "${module.gpdb.gpdb_master1_ip}"
   apps_vpc_id                  = "${aws_vpc.appsvpc.id}"
   route_table_id               = "${aws_route_table.apps_route_table.id}"
-  az                           = "eu-west-2a"
+  az                           = "${var.az}"
   naming_suffix                = "${local.naming_suffix}"
 }
 
@@ -27,7 +27,7 @@ module "internal_tableau" {
   greenplum_ip                      = "${module.gpdb.gpdb_master1_ip}"
   apps_vpc_id                       = "${aws_vpc.appsvpc.id}"
   route_table_id                    = "${aws_route_table.apps_route_table.id}"
-  az                                = "eu-west-2a"
+  az                                = "${var.az}"
   naming_suffix                     = "${local.naming_suffix}"
 }
 
@@ -39,7 +39,7 @@ module "bdm" {
   peering_cidr_block    = "10.3.0.0/16"
   apps_vpc_id           = "${aws_vpc.appsvpc.id}"
   route_table_id        = "${aws_route_table.apps_route_table.id}"
-  az                    = "eu-west-2a"
+  az                    = "${var.az}"
   az2                   = "eu-west-2b"
   naming_suffix         = "${local.naming_suffix}"
 }
