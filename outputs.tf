@@ -14,10 +14,6 @@ output "apps_natgw_id" {
   value = "${aws_nat_gateway.appsnatgw.id}"
 }
 
-output "bdm_db_server_ip_address" {
-  value = "${module.bdm.bdm_db_server_ip_address}"
-}
-
 output "outputs" {
   value = {
     windows = "${aws_instance.win.*.public_dns}"

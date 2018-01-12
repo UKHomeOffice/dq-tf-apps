@@ -31,19 +31,6 @@ module "internal_tableau" {
   naming_suffix                     = "${local.naming_suffix}"
 }
 
-module "bdm" {
-  source                = "github.com/ukhomeoffice/dq-tf-business-data-manager"
-  dq_data_pipeline_cidr = "10.1.8.0/24"
-  dq_opps_subnet_1_cidr = "10.2.0.0/24"
-  dq_BDM_subnet_cidr    = "10.1.10.0/24"
-  peering_cidr_block    = "10.3.0.0/16"
-  apps_vpc_id           = "${aws_vpc.appsvpc.id}"
-  route_table_id        = "${aws_route_table.apps_route_table.id}"
-  az                    = "${var.az}"
-  az2                   = "eu-west-2b"
-  naming_suffix         = "${local.naming_suffix}"
-}
-
 module "data_feeds" {
   source                    = "github.com/ukhomeoffice/dq-tf-datafeeds"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
