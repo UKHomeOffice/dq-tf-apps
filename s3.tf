@@ -103,7 +103,21 @@ resource "aws_s3_bucket_policy" "data_archive_bucket_policy" {
         "s3:GetObject"
       ],
       "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
-    }
+    },
+    {
+      "Effect": "Allow",
+      "Principal": {"AWS": "${aws_iam_group.rmr.arn}"},
+      "Action": "s3:ListBucket",
+      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
+    },
+    {
+      "Effect": "Allow",
+      "Principal": {"AWS": "${aws_iam_group.rmr.arn}"},
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
+    },
   ]
 }
 EOF
