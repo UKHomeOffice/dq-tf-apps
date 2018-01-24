@@ -107,8 +107,5 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_data_working(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.data_working_bucket"]["tags.Name"], "s3-data-working-bucket-apps-preprod-dq")
 
-    def test_name_suffix_data_landing(self):
-        self.assertEqual(self.result['apps']["aws_s3_bucket.data_landing_bucket"]["tags.Name"], "s3-data-landing-bucket-apps-preprod-dq")
-
 if __name__ == '__main__':
     unittest.main()
