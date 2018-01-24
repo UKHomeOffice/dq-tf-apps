@@ -203,25 +203,6 @@ resource "aws_s3_bucket_policy" "data_landing_bucket_policy" {
         "s3:GetObject"
       ],
       "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}/*"]
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {"AWS": "${module.data_ingest.data_ingest_landing_user_arn}"},
-      "Action": [
-        "s3:ListBucket",
-        "s3:GetBucketAcl"
-      ],
-      "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}"]
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {"AWS": "${module.data_ingest.data_ingest_landing_user_arn}"},
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObject",
-        "s3:DeleteObject"
-      ],
-      "Resource": ["${aws_s3_bucket.data_landing_bucket.arn}/*"]
     }
   ]
 }
