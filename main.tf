@@ -44,15 +44,17 @@ module "data_feeds" {
 }
 
 module "data_ingest" {
-  source                    = "github.com/ukhomeoffice/dq-tf-dataingest"
-  appsvpc_id                = "${aws_vpc.appsvpc.id}"
-  data_pipe_apps_cidr_block = "10.1.8.0/24"
-  opssubnet_cidr_block      = "10.2.0.0/24"
-  data_ingest_cidr_block    = "10.1.6.0/24"
-  peering_cidr_block        = "10.3.0.0/16"
-  az                        = "${var.az}"
-  naming_suffix             = "${local.naming_suffix}"
-  route_table_id            = "${aws_route_table.apps_route_table.id}"
+  source                     = "github.com/ukhomeoffice/dq-tf-dataingest"
+  appsvpc_id                 = "${aws_vpc.appsvpc.id}"
+  data_pipe_apps_cidr_block  = "10.1.8.0/24"
+  opssubnet_cidr_block       = "10.2.0.0/24"
+  data_ingest_cidr_block     = "10.1.6.0/24"
+  data_ingest_rds_cidr_block = "10.1.7.0/24"
+  peering_cidr_block         = "10.3.0.0/16"
+  az                         = "${var.az}"
+  az2                        = "${var.az2}"
+  naming_suffix              = "${local.naming_suffix}"
+  route_table_id             = "${aws_route_table.apps_route_table.id}"
 }
 
 module "data_pipeline" {
@@ -61,8 +63,10 @@ module "data_pipeline" {
   appsvpc_cidr_block        = "${var.cidr_block}"
   opssubnet_cidr_block      = "10.2.0.0/24"
   data_pipe_apps_cidr_block = "10.1.8.0/24"
+  data_pipe_rds_cidr_block  = "10.1.9.0/24"
   peering_cidr_block        = "10.3.0.0/16"
   az                        = "${var.az}"
+  az2                       = "${var.az2}"
   naming_suffix             = "${local.naming_suffix}"
   route_table_id            = "${aws_route_table.apps_route_table.id}"
 }
