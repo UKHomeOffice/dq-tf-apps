@@ -49,7 +49,6 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 }
 
-
 resource "aws_s3_bucket" "data_working_bucket" {
   bucket = "${var.s3_bucket_name["working_data"]}"
   acl    = "${var.s3_bucket_acl["working_data"]}"
