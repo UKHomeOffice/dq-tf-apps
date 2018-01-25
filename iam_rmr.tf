@@ -23,14 +23,6 @@ resource "aws_iam_group_policy" "rmr" {
   "Statement": [
     {
       "Action": [
-        "s3:ListBucket",
-        "s3:GetBucketAcl"
-      ],
-      "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
-    },
-    {
-      "Action": [
         "s3:GetObject"
       ],
       "Effect": "Allow",
