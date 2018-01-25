@@ -26,39 +26,6 @@ resource "aws_s3_bucket" "log_archive_bucket" {
   }
 }
 
-resource "aws_s3_bucket_policy" "log_archive_bucket_policy" {
-  bucket = "${aws_s3_bucket.log_archive_bucket.id}"
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "logs.amazonaws.com"
-      },
-      "Action": [
-        "s3:ListBucket",
-        "s3:GetBucketAcl"
-      ],
-      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}"
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "logs.amazonaws.com"
-      },
-      "Action": [
-        "s3:PutObject"
-      ],
-      "Resource": "${aws_s3_bucket.log_archive_bucket.arn}/*"
-    }
-  ]
-}
-EOF
-}
-
 resource "aws_s3_bucket" "data_archive_bucket" {
   bucket = "${var.s3_bucket_name["archive_data"]}"
   acl    = "${var.s3_bucket_acl["archive_data"]}"
@@ -82,46 +49,6 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 }
 
-resource "aws_s3_bucket_policy" "data_archive_bucket_policy" {
-  bucket = "${aws_s3_bucket.data_archive_bucket.id}"
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {"Service": "ec2.amazonaws.com"},
-      "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {"Service": "ec2.amazonaws.com"},
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObject"
-      ],
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {"AWS": "${aws_iam_group.rmr.arn}"},
-      "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {"AWS": "${aws_iam_group.rmr.arn}"},
-      "Action": [
-        "s3:GetObject"
-      ],
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
-    },
-  ]
-}
-EOF
-}
 
 resource "aws_s3_bucket" "data_working_bucket" {
   bucket = "${var.s3_bucket_name["working_data"]}"
@@ -144,33 +71,6 @@ resource "aws_s3_bucket" "data_working_bucket" {
   tags = {
     Name = "s3-data-working-bucket-${local.naming_suffix}"
   }
-}
-
-resource "aws_s3_bucket_policy" "data_working_bucket_policy" {
-  bucket = "${aws_s3_bucket.data_working_bucket.id}"
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {"Service": "ec2.amazonaws.com"},
-      "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.data_working_bucket.arn}"
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {"Service": "ec2.amazonaws.com"},
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObject"
-      ],
-      "Resource": "${aws_s3_bucket.data_working_bucket.arn}/*"
-    }
-  ]
-}
-EOF
 }
 
 resource "aws_vpc_endpoint" "s3_endpoint" {
