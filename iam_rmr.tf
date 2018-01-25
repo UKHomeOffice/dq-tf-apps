@@ -17,7 +17,6 @@ resource "aws_iam_group_policy" "rmr" {
   group = "${aws_iam_group.rmr.id}"
 
   policy = <<EOF
-
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -27,7 +26,7 @@ resource "aws_iam_group_policy" "rmr" {
       ],
       "Effect": "Allow",
       "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
-    },
+    }
   ]
 }
 EOF
