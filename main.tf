@@ -51,10 +51,13 @@ module "data_ingest" {
   data_ingest_cidr_block     = "10.1.6.0/24"
   data_ingest_rds_cidr_block = "10.1.7.0/24"
   peering_cidr_block         = "10.3.0.0/16"
+  dp_web_private_ip          = "10.1.6.100"
+  key_name                   = "test_instance"
   az                         = "${var.az}"
   az2                        = "${var.az2}"
   naming_suffix              = "${local.naming_suffix}"
   route_table_id             = "${aws_route_table.apps_route_table.id}"
+  bucket_src_path            = ""
 }
 
 module "data_pipeline" {
@@ -65,10 +68,14 @@ module "data_pipeline" {
   data_pipe_apps_cidr_block = "10.1.8.0/24"
   data_pipe_rds_cidr_block  = "10.1.9.0/24"
   peering_cidr_block        = "10.3.0.0/16"
+  dp_web_private_ip         = "10.1.8.100"
+  key_name                  = "test_instance"
   az                        = "${var.az}"
   az2                       = "${var.az2}"
   naming_suffix             = "${local.naming_suffix}"
   route_table_id            = "${aws_route_table.apps_route_table.id}"
+  archive_bucket            = "${aws_s3_bucket.data_archive_bucket.arn}"
+  bucket_key                = "${aws_kms_key.bucket_key.arn}"
 }
 
 module "gpdb" {
