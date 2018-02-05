@@ -58,6 +58,7 @@ module "data_ingest" {
   naming_suffix              = "${local.naming_suffix}"
   route_table_id             = "${aws_route_table.apps_route_table.id}"
   bucket_src_path            = ""
+  logging_bucket_id          = "${aws_s3_bucket.log_archive_bucket.id}"
 }
 
 module "data_pipeline" {
