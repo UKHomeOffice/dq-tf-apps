@@ -31,3 +31,7 @@ output "log_archive_bucket_id" {
 output "log_archive_bucket_arn" {
   value = "${aws_s3_bucket.log_archive_bucket.arn}"
 }
+
+output "iam_roles" {
+  value = "${concat(module.data_ingest.iam_roles, module.data_pipeline.iam_roles)}"
+}
