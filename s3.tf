@@ -44,6 +44,11 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     enabled = true
   }
 
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "data_archive_bucket/"
+  }
+
   tags = {
     Name = "s3-data-archive-bucket-${local.naming_suffix}"
   }
@@ -65,6 +70,11 @@ resource "aws_s3_bucket" "data_working_bucket" {
 
   versioning {
     enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "data_working_bucket/"
   }
 
   tags = {
