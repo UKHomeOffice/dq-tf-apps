@@ -60,6 +60,7 @@ module "data_ingest" {
   logging_bucket_id          = "${aws_s3_bucket.log_archive_bucket.id}"
   archive_bucket             = "${aws_s3_bucket.data_archive_bucket.arn}"
   archive_bucket_name        = "${aws_s3_bucket.data_archive_bucket.id}"
+  apps_buckets_kms_key       = "${aws_kms_key.bucket_key.arn}"
 }
 
 module "data_pipeline" {
