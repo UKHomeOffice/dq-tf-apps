@@ -126,30 +126,6 @@ resource "aws_route" "peering" {
   vpc_peering_connection_id = "${var.vpc_peering_connection_ids["peering_to_peering"]}"
 }
 
-resource "aws_route" "acp_ops" {
-  route_table_id            = "${aws_route_table.apps_route_table.id}"
-  destination_cidr_block    = "${var.route_table_cidr_blocks["acp_ops"]}"
-  vpc_peering_connection_id = "${var.vpc_peering_connection_ids["peering_to_peering"]}"
-}
-
-resource "aws_route" "acp_vpn" {
-  route_table_id            = "${aws_route_table.apps_route_table.id}"
-  destination_cidr_block    = "${var.route_table_cidr_blocks["acp_vpn"]}"
-  vpc_peering_connection_id = "${var.vpc_peering_connection_ids["peering_to_peering"]}"
-}
-
-resource "aws_route" "acp_prod" {
-  route_table_id            = "${aws_route_table.apps_route_table.id}"
-  destination_cidr_block    = "${var.route_table_cidr_blocks["acp_prod"]}"
-  vpc_peering_connection_id = "${var.vpc_peering_connection_ids["peering_to_peering"]}"
-}
-
-resource "aws_route" "acp_cicd" {
-  route_table_id            = "${aws_route_table.apps_route_table.id}"
-  destination_cidr_block    = "${var.route_table_cidr_blocks["acp_cicd"]}"
-  vpc_peering_connection_id = "${var.vpc_peering_connection_ids["peering_to_peering"]}"
-}
-
 resource "aws_route" "nat" {
   route_table_id         = "${aws_route_table.apps_route_table.id}"
   destination_cidr_block = "0.0.0.0/0"
