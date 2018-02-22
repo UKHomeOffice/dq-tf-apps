@@ -27,6 +27,12 @@ variable "route_table_cidr_blocks" {
   type        = "map"
 }
 
+variable "ops_cidr" {
+  description = "CIDR block of OPS"
+  default     = "10.2.0.0/16"
+  type        = "string"
+}
+
 variable "s3_bucket_name" {
   description = "Map of the S3 bucket names"
   type        = "map"
