@@ -23,6 +23,7 @@ class TestE2E(unittest.TestCase):
 
               cidr_block                  = "10.1.0.0/16"
               public_subnet_cidr_block    = "10.1.0.0/24"
+              ad_subnet_cidr_block        = "10.1.0.0/24"
               az                          = "eu-west-2a"
               az2                         = "eu-west-2b"
               adminpassword               = "1234"
@@ -85,6 +86,9 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_public_subnet(self):
         self.assertEqual(self.result['apps']["aws_subnet.public_subnet"]["tags.Name"], "public-subnet-apps-preprod-dq")
+
+    def test_name_suffix_ad_subnet(self):
+        self.assertEqual(self.result['apps']["aws_subnet.ad_subnet"]["tags.Name"], "ad-subnet-apps-preprod-dq")
 
     def test_name_suffix_route_table(self):
         self.assertEqual(self.result['apps']["aws_route_table.apps_route_table"]["tags.Name"], "route-table-apps-preprod-dq")

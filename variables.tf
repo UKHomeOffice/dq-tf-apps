@@ -1,5 +1,6 @@
 variable "cidr_block" {}
 variable "public_subnet_cidr_block" {}
+variable "ad_subnet_cidr_block" {}
 variable "az" {}
 variable "az2" {}
 variable "adminpassword" {}
