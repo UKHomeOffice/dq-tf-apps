@@ -39,6 +39,7 @@ module "data_feeds" {
   data_feeds_cidr_block     = "10.1.4.0/24"
   data_feeds_cidr_block_az2 = "10.1.5.0/24"
   peering_cidr_block        = "10.3.0.0/16"
+  dq_database_cidr_block    = ["${module.gpdb.dq_database_cidr_block}"]
   key_name                  = "test_instance"
   az                        = "${var.az}"
   az2                       = "${var.az2}"
