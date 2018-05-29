@@ -101,6 +101,8 @@ module "gpdb" {
   az                            = "${var.az}"
   naming_suffix                 = "${local.naming_suffix}"
   route_table_id                = "${aws_route_table.apps_route_table.id}"
+  archive_bucket                = "${aws_s3_bucket.data_archive_bucket.arn}"
+  apps_buckets_kms_key          = "${aws_kms_key.bucket_key.arn}"
 }
 
 resource "aws_vpc" "appsvpc" {
