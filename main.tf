@@ -108,7 +108,6 @@ module "gpdb" {
 module "gpdb-secondary" {
   source                        = "github.com/UKHomeOffice/dq-tf-gpdb-secondary"
   appsvpc_id                    = "${aws_vpc.appsvpc.id}"
-  dq_database_cidr_block        = "10.1.2.0/24"
   internal_dashboard_cidr_block = "10.1.12.0/24"
   external_dashboard_cidr_block = "10.1.14.0/24"
   data_ingest_cidr_block        = "10.1.6.0/24"
@@ -119,8 +118,6 @@ module "gpdb-secondary" {
   az                            = "${var.az}"
   naming_suffix                 = "${local.naming_suffix}"
   route_table_id                = "${aws_route_table.apps_route_table.id}"
-  archive_bucket                = "${aws_s3_bucket.data_archive_bucket.arn}"
-  apps_buckets_kms_key          = "${aws_kms_key.bucket_key.arn}"
 }
 
 resource "aws_vpc" "appsvpc" {
