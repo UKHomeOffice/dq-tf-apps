@@ -56,6 +56,7 @@ module "data_ingest" {
   data_ingest_rds_cidr_block = "10.1.7.0/24"
   peering_cidr_block         = "10.3.0.0/16"
   dq_database_cidr_block     = ["${module.gpdb.dq_database_cidr_block}"]
+  dq_database_cidr_block_secondary = ["${module.gpdb-secondary.dq_database_cidr_block_secondary}"]
   dp_web_private_ip          = "10.1.6.100"
   key_name                   = "test_instance"
   az                         = "${var.az}"
@@ -77,7 +78,6 @@ module "data_pipeline" {
   data_pipe_rds_cidr_block         = "10.1.9.0/24"
   peering_cidr_block               = "10.3.0.0/16"
   dq_database_cidr_block           = ["${module.gpdb.dq_database_cidr_block}"]
-  dq_database_cidr_block_secondary = ["${module.gpdb-secondary.dq_database_cidr_block_secondary}"]
   dp_web_private_ip                = "10.1.8.100"
   key_name                         = "test_instance"
   az                               = "${var.az}"
