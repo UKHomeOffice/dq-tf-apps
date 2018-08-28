@@ -11,7 +11,6 @@ module "external_tableau" {
   dq_ops_ingress_cidr          = "${var.route_table_cidr_blocks["ops_cidr"]}"
   dq_external_dashboard_subnet = "10.1.14.0/24"
   peering_cidr_block           = "10.3.0.0/16"
-  greenplum_ip                 = "${module.gpdb.gpdb_master1_ip}"
   apps_vpc_id                  = "${aws_vpc.appsvpc.id}"
   route_table_id               = "${aws_route_table.apps_route_table.id}"
   az                           = "${var.az}"
@@ -24,7 +23,6 @@ module "internal_tableau" {
   dq_ops_ingress_cidr               = "${var.route_table_cidr_blocks["ops_cidr"]}"
   dq_internal_dashboard_subnet_cidr = "10.1.12.0/24"
   peering_cidr_block                = "10.3.0.0/16"
-  greenplum_ip                      = "${module.gpdb.gpdb_master1_ip}"
   apps_vpc_id                       = "${aws_vpc.appsvpc.id}"
   route_table_id                    = "${aws_route_table.apps_route_table.id}"
   az                                = "${var.az}"
@@ -39,7 +37,6 @@ module "data_feeds" {
   data_feeds_cidr_block            = "10.1.4.0/24"
   data_feeds_cidr_block_az2        = "10.1.5.0/24"
   peering_cidr_block               = "10.3.0.0/16"
-  dq_database_cidr_block           = ["${module.gpdb.dq_database_cidr_block}"]
   dq_database_cidr_block_secondary = ["${module.gpdb-secondary.dq_database_cidr_block_secondary}"]
   key_name                         = "test_instance"
   az                               = "${var.az}"
@@ -56,7 +53,6 @@ module "data_ingest" {
   data_ingest_cidr_block           = "10.1.6.0/24"
   data_ingest_rds_cidr_block       = "10.1.7.0/24"
   peering_cidr_block               = "10.3.0.0/16"
-  dq_database_cidr_block           = ["${module.gpdb.dq_database_cidr_block}"]
   dq_database_cidr_block_secondary = ["${module.gpdb-secondary.dq_database_cidr_block_secondary}"]
   dp_web_private_ip                = "10.1.6.100"
   key_name                         = "test_instance"
@@ -78,7 +74,6 @@ module "data_pipeline" {
   data_pipe_apps_cidr_block        = "10.1.8.0/24"
   data_pipe_rds_cidr_block         = "10.1.9.0/24"
   peering_cidr_block               = "10.3.0.0/16"
-  dq_database_cidr_block           = ["${module.gpdb.dq_database_cidr_block}"]
   dq_database_cidr_block_secondary = ["${module.gpdb-secondary.dq_database_cidr_block_secondary}"]
   dp_web_private_ip                = "10.1.8.100"
   key_name                         = "test_instance"
