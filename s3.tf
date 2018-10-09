@@ -26,6 +26,11 @@ resource "aws_s3_bucket" "log_archive_bucket" {
   }
 }
 
+resource "aws_s3_bucket_metric" "log_archive_bucket_logging" {
+  bucket = "${var.s3_bucket_name["archive_log"]}"
+  name   = "EntireBucket"
+}
+
 resource "aws_s3_bucket" "data_archive_bucket" {
   bucket = "${var.s3_bucket_name["archive_data"]}"
   acl    = "${var.s3_bucket_acl["archive_data"]}"
@@ -54,6 +59,11 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 }
 
+resource "aws_s3_bucket_metric" "data_archive_bucket_logging" {
+  bucket = "${var.s3_bucket_name["archive_data"]}"
+  name   = "EntireBucket"
+}
+
 resource "aws_s3_bucket" "data_working_bucket" {
   bucket = "${var.s3_bucket_name["working_data"]}"
   acl    = "${var.s3_bucket_acl["working_data"]}"
@@ -80,6 +90,11 @@ resource "aws_s3_bucket" "data_working_bucket" {
   tags = {
     Name = "s3-data-working-bucket-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_metric" "data_working_bucket_logging" {
+  bucket = "${var.s3_bucket_name["working_data"]}"
+  name   = "EntireBucket"
 }
 
 resource "aws_vpc_endpoint" "s3_endpoint" {
