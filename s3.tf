@@ -28,7 +28,7 @@ resource "aws_s3_bucket" "log_archive_bucket" {
 
 resource "aws_s3_bucket_metric" "log_archive_bucket_logging" {
   bucket = "${var.s3_bucket_name["archive_log"]}"
-  name   = "EntireBucket"
+  name   = "log_archive_bucket_metric"
 }
 
 resource "aws_s3_bucket" "data_archive_bucket" {
@@ -94,7 +94,7 @@ resource "aws_s3_bucket" "data_working_bucket" {
 
 resource "aws_s3_bucket_metric" "data_working_bucket_logging" {
   bucket = "${var.s3_bucket_name["working_data"]}"
-  name   = "EntireBucket"
+  name   = "data_working_bucket_metric"
 }
 
 resource "aws_vpc_endpoint" "s3_endpoint" {
