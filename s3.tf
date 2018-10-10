@@ -61,7 +61,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
 
 resource "aws_s3_bucket_metric" "data_archive_bucket_logging" {
   bucket = "${var.s3_bucket_name["archive_data"]}"
-  name   = "EntireBucket"
+  name   = "data_archive_bucket_metric"
 }
 
 resource "aws_s3_bucket" "data_working_bucket" {
