@@ -71,12 +71,12 @@ resource "aws_iam_group_policy" "cdp-s4-data" {
 {
   "Version": "2012-10-17",
   "Statement": [
-        {
-          "Action": ["s3:ListBucket", "s3:GetObject"],
-          "Effect": "Allow",
-          "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/s4/parsed/2018",
-          "Condition":{"StringLike":{"s3:prefix":["09/07", "09/08", "09/09", "09/10", "09/11", "09/12", "09/13", "09/14", "09/15", "09/16", "09/17", "09/18", "09/19", "09/20", "09/21", "09/22", "09/23", "09/24", "09/25", "09/26", "09/27", "09/28", "09/29", "09/30", "10/01", "10/02", "10/03", "10/04", "10/05", "10/06", "10/07", "10/08", "10/09", "10/10", "10/11", "10/12", "10/13", "10/14", "10/15", "10/16", "10/17", "10/18", "10/19"]}}
-        }
+    {
+      "Action": "s3:ListBucket",
+      "Effect": "Allow",
+      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}",
+      "Condition":{"StringEquals":{"s3:prefix":["", "s4/parsed/2018/", "s4/parsed/2018/09/", "s4/parsed/2018/09/07/", "s4/parsed/2018/09/08/", "s4/parsed/2018/09/09/", "s4/parsed/2018/09/10/", "s4/parsed/2018/09/11/", "s4/parsed/2018/09/12/", "s4/parsed/2018/09/13/", "s4/parsed/2018/09/14/", "s4/parsed/2018/09/15/", "s4/parsed/2018/09/16/", "s4/parsed/2018/09/17/", "s4/parsed/2018/09/18/", "s4/parsed/2018/09/19/", "s4/parsed/2018/09/20/", "s4/parsed/2018/09/21/", "s4/parsed/2018/09/22/", "s4/parsed/2018/09/23/", "s4/parsed/2018/09/24/", "s4/parsed/2018/09/25/", "s4/parsed/2018/09/26/", "s4/parsed/2018/09/27/", "s4/parsed/2018/09/28/", "s4/parsed/2018/09/29/", "s4/parsed/2018/09/30/", "s4/parsed/2018/10/", "s4/parsed/2018/10/01/", "s4/parsed/2018/10/02/", "s4/parsed/2018/10/03/", "s4/parsed/2018/10/04/", "s4/parsed/2018/10/05/", "s4/parsed/2018/10/06/", "s4/parsed/2018/10/07/", "s4/parsed/2018/10/08/", "s4/parsed/2018/10/09/", "s4/parsed/2018/10/10/", "s4/parsed/2018/10/11/", "s4/parsed/2018/10/12/", "s4/parsed/2018/10/13/", "s4/parsed/2018/10/14/", "s4/parsed/2018/10/15/", "s4/parsed/2018/10/16/", "s4/parsed/2018/10/17/", "s4/parsed/2018/10/18/", "s4/parsed/2018/10/19/"], "s3:delimiter":["/"]}}
+    }
   ]
 }
 EOF
