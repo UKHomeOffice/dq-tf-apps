@@ -122,7 +122,7 @@ resource "aws_iam_group_policy" "cdp-s4-data" {
         "s4/parsed/2018/10/16/",
         "s4/parsed/2018/10/17/",
         "s4/parsed/2018/10/18/",
-        s4/parsed/2018/10/19/"],
+        "s4/parsed/2018/10/19/"],
         "s3:delimiter":["/"]}}
     },
     {
