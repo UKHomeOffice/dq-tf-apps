@@ -15,8 +15,7 @@ module "external_tableau" {
   route_table_id               = "${aws_route_table.apps_route_table.id}"
   az                           = "${var.az}"
   naming_suffix                = "${local.naming_suffix}"
-  s3_archive_bucket            = "${aws_s3_bucket.data_archive_bucket.arn}"
-  s3_archive_bucket_key        = "${aws_kms_key.bucket_key.arn}"
+  s3_archive_bucket_name       = "${aws_s3_bucket.data_archive_bucket.arn}"  
 }
 
 module "internal_tableau" {
