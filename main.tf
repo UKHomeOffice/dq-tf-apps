@@ -16,6 +16,7 @@ module "external_tableau" {
   az                           = "${var.az}"
   naming_suffix                = "${local.naming_suffix}"
   s3_archive_bucket_name       = "${aws_s3_bucket.data_archive_bucket.id}"
+  s3_archive_bucket_key        = "${aws_kms_key.bucket_key.arn}"  
 }
 
 module "internal_tableau" {
