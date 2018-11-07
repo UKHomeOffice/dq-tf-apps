@@ -11,7 +11,7 @@ resource "aws_kms_key" "bucket_key" {
             "Sid": "Enable IAM User Permissions",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::483846886818:root"
+                "AWS": "${data.aws_caller_identity.current.arn}"
             },
             "Action": "kms:*",
             "Resource": "*"

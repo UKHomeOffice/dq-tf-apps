@@ -31,3 +31,5 @@ data "aws_ami" "rhel" {
     "309956199498",
   ]
 }
+
+data "aws_caller_identity" "current" {}
