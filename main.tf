@@ -5,8 +5,7 @@ locals {
 }
 
 module "external_tableau" {
-  source = "github.com/UKHomeOffice/dq-tf-external-tableau"
-
+  source                       = "github.com/UKHomeOffice/dq-tf-external-tableau"
   acp_prod_ingress_cidr        = "10.5.0.0/16"
   dq_ops_ingress_cidr          = "${var.route_table_cidr_blocks["ops_cidr"]}"
   dq_external_dashboard_subnet = "10.1.14.0/24"
@@ -30,6 +29,9 @@ module "internal_tableau" {
   route_table_id                    = "${aws_route_table.apps_route_table.id}"
   az                                = "${var.az}"
   naming_suffix                     = "${local.naming_suffix}"
+  s3_archive_bucket_name            = "${aws_s3_bucket.data_archive_bucket.id}"
+  s3_archive_bucket                 = "${aws_s3_bucket.data_archive_bucket.arn}"
+  s3_archive_bucket_key             = "${aws_kms_key.bucket_key.arn}"
 }
 
 module "data_feeds" {

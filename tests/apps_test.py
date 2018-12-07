@@ -21,25 +21,25 @@ class TestE2E(unittest.TestCase):
                 aws = "aws"
               }
 
-              cidr_block                  = "10.1.0.0/16"
-              public_subnet_cidr_block    = "10.1.0.0/24"
-              ad_subnet_cidr_block        = "10.1.0.0/24"
-              az                          = "eu-west-2a"
-              az2                         = "eu-west-2b"
-              adminpassword               = "1234"
-              ad_aws_ssm_document_name    = "1234"
+              cidr_block                      = "10.1.0.0/16"
+              public_subnet_cidr_block        = "10.1.0.0/24"
+              ad_subnet_cidr_block            = "10.1.0.0/24"
+              az                              = "eu-west-2a"
+              az2                             = "eu-west-2b"
+              adminpassword                   = "1234"
+              ad_aws_ssm_document_name        = "1234"
               ad_writer_instance_profile_name = "1234"
-              naming_suffix               = "preprod-dq"
+              naming_suffix                   = "preprod-dq"
 
               s3_bucket_name = {
-                archive_log = "abcd"
+                archive_log  = "abcd"
                 archive_data = "abcd"
                 working_data = "abcd"
                 landing_data = "abcd"
               }
 
               s3_bucket_acl = {
-                archive_log = "abcd"
+                archive_log  = "abcd"
                 archive_data = "abcd"
                 working_data = "abcd"
                 landing_data = "abcd"
@@ -47,11 +47,11 @@ class TestE2E(unittest.TestCase):
 
               route_table_cidr_blocks     = {
                 peering_cidr = "1234"
-                ops_cidr = "10.2.0.0/24"
-                acp_vpn = "1234"
-                acp_prod = "1234"
-                acp_ops = "1234"
-                acp_cicd = "1234"
+                ops_cidr     = "10.2.0.0/24"
+                acp_vpn      = "1234"
+                acp_prod     = "1234"
+                acp_ops      = "1234"
+                acp_cicd     = "1234"
               }
               vpc_peering_connection_ids  = {
                 peering_to_peering = "1234"
