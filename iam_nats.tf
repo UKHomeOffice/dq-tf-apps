@@ -1,9 +1,9 @@
 resource "aws_iam_group" "nats" {
-  name = "iam-group-nats-${local.naming_suffix}"
+  name = "iam-group-nats-apps-${local.naming_suffix}"
 }
 
 resource "aws_iam_group_membership" "nats" {
-  name = "iam-group-membership-nats-${local.naming_suffix}"
+  name = "iam-group-membership-nats-apps-${local.naming_suffix}"
 
   users = [
     "${aws_iam_user.nats.name}",
@@ -13,7 +13,7 @@ resource "aws_iam_group_membership" "nats" {
 }
 
 resource "aws_iam_group_policy" "nats" {
-  name  = "group-policy-nats-${local.naming_suffix}"
+  name  = "group-policy-nats-apps-${local.naming_suffix}"
   group = "${aws_iam_group.nats.id}"
 
   policy = <<EOF
@@ -52,7 +52,7 @@ EOF
 }
 
 resource "aws_iam_user" "nats" {
-  name = "iam-user-nats-${local.naming_suffix}"
+  name = "iam-user-nats-apps-${local.naming_suffix}"
 }
 
 resource "aws_iam_access_key" "nats" {
