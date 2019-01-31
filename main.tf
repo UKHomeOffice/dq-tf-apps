@@ -17,6 +17,7 @@ module "external_tableau" {
   s3_archive_bucket_name       = "${aws_s3_bucket.data_archive_bucket.id}"
   s3_archive_bucket            = "${aws_s3_bucket.data_archive_bucket.arn}"
   s3_archive_bucket_key        = "${aws_kms_key.bucket_key.arn}"
+  haproxy_private_ip2          = "${var.haproxy_private_ip2}"
 }
 
 module "internal_tableau" {
@@ -32,6 +33,7 @@ module "internal_tableau" {
   s3_archive_bucket_name            = "${aws_s3_bucket.data_archive_bucket.id}"
   s3_archive_bucket                 = "${aws_s3_bucket.data_archive_bucket.arn}"
   s3_archive_bucket_key             = "${aws_kms_key.bucket_key.arn}"
+  haproxy_private_ip                = "${var.haproxy_private_ip}"
 }
 
 module "data_feeds" {

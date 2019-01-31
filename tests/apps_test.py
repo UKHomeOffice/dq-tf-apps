@@ -30,6 +30,8 @@ class TestE2E(unittest.TestCase):
               ad_aws_ssm_document_name        = "1234"
               ad_writer_instance_profile_name = "1234"
               naming_suffix                   = "preprod-dq"
+              haproxy_private_ip              = "1.2.3.3"
+              haproxy_private_ip2             = "1.2.3.4"
 
               s3_bucket_name = {
                 archive_log  = "abcd"
@@ -113,6 +115,27 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_data_working(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.data_working_bucket"]["tags.Name"], "s3-data-working-bucket-apps-preprod-dq")
+
+    def test_name_suffix_airports_archive(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_archive_bucket"]["tags.Name"], "dq-airports-archive-apps-preprod-dq")
+
+    def test_name_suffix_airports_internal(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_internal_bucket"]["tags.Name"], "dq-airports-internal-apps-preprod-dq")
+
+    def test_name_suffix_airports_working(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_working_bucket"]["tags.Name"], "dq-airports-working-apps-preprod-dq")
+
+    def test_name_suffix_nats_iam_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.nats"]["name"], "iam-group-nats-apps-preprod-dq")
+
+    def test_name_suffix_nats_iam_group_membership(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_membership.nats"]["name"], "iam-group-membership-nats-apps-preprod-dq")
+
+    def test_name_suffix_nats_iam_group_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.nats"]["name"], "group-policy-nats-apps-preprod-dq")
+
+    def test_name_suffix_nats_iam_user(self):
+        self.assertEqual(self.result['apps']["aws_iam_user.nats"]["name"], "iam-user-nats-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
