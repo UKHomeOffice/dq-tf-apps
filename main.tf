@@ -109,6 +109,17 @@ module "gpdb-secondary" {
   apps_buckets_kms_key          = "${aws_kms_key.bucket_key.arn}"
 }
 
+module "lambda" {
+  source                           = "github.com/ukhomeoffice/dq-tf-lambda"
+  appsvpc_id                       = "${aws_vpc.appsvpc.id}"
+  dq_lambda_subnet_cidr            = "10.1.42.0/24"
+  dq_lambda_subnet_cidr_az2        = "10.1.43.0/24"
+  az                               = "${var.az}"
+  az2                              = "${var.az2}"
+  naming_suffix                    = "${local.naming_suffix}"
+  route_table_id                   = "${aws_route_table.apps_route_table.id}"
+}
+
 resource "aws_vpc" "appsvpc" {
   cidr_block           = "${var.cidr_block}"
   enable_dns_hostnames = true
