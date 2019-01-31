@@ -31,7 +31,7 @@ class TestE2E(unittest.TestCase):
               ad_writer_instance_profile_name = "1234"
               naming_suffix                   = "preprod-dq"
               haproxy_private_ip              = "1.2.3.3"
-              haproxy_private_ip              = "1.2.3.4"
+              haproxy_private_ip2             = "1.2.3.4"
 
               s3_bucket_name = {
                 archive_log  = "abcd"
