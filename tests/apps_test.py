@@ -36,6 +36,9 @@ class TestE2E(unittest.TestCase):
                 archive_data = "abcd"
                 working_data = "abcd"
                 landing_data = "abcd"
+                airports_archive = "abcd"
+                airports_working = "abcd"
+                airports_internal = "abcd"
               }
 
               s3_bucket_acl = {
@@ -43,6 +46,9 @@ class TestE2E(unittest.TestCase):
                 archive_data = "abcd"
                 working_data = "abcd"
                 landing_data = "abcd"
+                airports_archive = "abcd"
+                airports_working = "abcd"
+                airports_internal = "abcd"
               }
 
               route_table_cidr_blocks     = {
