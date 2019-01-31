@@ -30,6 +30,8 @@ class TestE2E(unittest.TestCase):
               ad_aws_ssm_document_name        = "1234"
               ad_writer_instance_profile_name = "1234"
               naming_suffix                   = "preprod-dq"
+              haproxy_private_ip              = "1.2.3.3"
+              haproxy_private_ip2             = "1.2.3.4"
 
               s3_bucket_name = {
                 archive_log  = "abcd"
@@ -133,7 +135,7 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_iam_group_policy.nats"]["name"], "group-policy-nats-apps-preprod-dq")
 
     def test_name_suffix_nats_iam_user(self):
-        self.assertEqual(self.result['apps']["aws_iam_user.nats"]["name"], "iam-user-nats-apps-preprod-dq")  
+        self.assertEqual(self.result['apps']["aws_iam_user.nats"]["name"], "iam-user-nats-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()

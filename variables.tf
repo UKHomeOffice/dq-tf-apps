@@ -7,6 +7,8 @@ variable "adminpassword" {}
 variable "ad_aws_ssm_document_name" {}
 variable "ad_writer_instance_profile_name" {}
 variable "naming_suffix" {}
+variable "haproxy_private_ip" {}
+variable "haproxy_private_ip2" {}
 
 variable "ad_sg_cidr_ingress" {
   description = "List of CIDR block ingress to AD machines SG"
