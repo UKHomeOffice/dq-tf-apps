@@ -38,6 +38,9 @@ class TestE2E(unittest.TestCase):
                 archive_data = "abcd"
                 working_data = "abcd"
                 landing_data = "abcd"
+                airports_archive = "abcd"
+                airports_working = "abcd"
+                airports_internal = "abcd"
               }
 
               s3_bucket_acl = {
@@ -45,6 +48,9 @@ class TestE2E(unittest.TestCase):
                 archive_data = "abcd"
                 working_data = "abcd"
                 landing_data = "abcd"
+                airports_archive = "abcd"
+                airports_working = "abcd"
+                airports_internal = "abcd"
               }
 
               route_table_cidr_blocks     = {
@@ -109,6 +115,15 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_data_working(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.data_working_bucket"]["tags.Name"], "s3-data-working-bucket-apps-preprod-dq")
+
+    def test_name_suffix_airports_archive(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_archive_bucket"]["tags.Name"], "dq-airports-archive-apps-preprod-dq")
+
+    def test_name_suffix_airports_internal(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_internal_bucket"]["tags.Name"], "dq-airports-internal-apps-preprod-dq")
+
+    def test_name_suffix_airports_working(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_working_bucket"]["tags.Name"], "dq-airports-working-apps-preprod-dq")
 
     def test_name_suffix_nats_iam_group(self):
         self.assertEqual(self.result['apps']["aws_iam_group.nats"]["name"], "iam-group-nats-apps-preprod-dq")

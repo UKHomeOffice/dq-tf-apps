@@ -131,6 +131,90 @@ resource "aws_s3_bucket_metric" "data_working_bucket_logging" {
   name   = "data_working_bucket_metric"
 }
 
+resource "aws_s3_bucket" "airports_archive_bucket" {
+  bucket = "${var.s3_bucket_name["airports_archive"]}"
+  acl    = "${var.s3_bucket_acl["airports_archive"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "airports_archive_bucket/"
+  }
+
+  tags = {
+    Name = "dq-airports-archive-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket" "airports_internal_bucket" {
+  bucket = "${var.s3_bucket_name["airports_internal"]}"
+  acl    = "${var.s3_bucket_acl["airports_internal"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "airports_internal_bucket/"
+  }
+
+  tags = {
+    Name = "dq-airports-internal-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket" "airports_working_bucket" {
+  bucket = "${var.s3_bucket_name["airports_working"]}"
+  acl    = "${var.s3_bucket_acl["airports_working"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "airports_working_bucket/"
+  }
+
+  tags = {
+    Name = "dq-airports-working-${local.naming_suffix}"
+  }
+}
+
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = "${aws_vpc.appsvpc.id}"
   route_table_ids = ["${aws_route_table.apps_route_table.id}"]
