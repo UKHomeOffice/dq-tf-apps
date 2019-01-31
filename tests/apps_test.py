@@ -123,5 +123,17 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_airports_working(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.airports_working_bucket"]["tags.Name"], "dq-airports-working-apps-preprod-dq")
 
+    def test_name_suffix_nats_iam_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.nats"]["name"], "iam-group-nats-apps-preprod-dq")
+
+    def test_name_suffix_nats_iam_group_membership(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_membership.nats"]["name"], "iam-group-membership-nats-apps-preprod-dq")
+
+    def test_name_suffix_nats_iam_group_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.nats"]["name"], "group-policy-nats-apps-preprod-dq")
+
+    def test_name_suffix_nats_iam_user(self):
+        self.assertEqual(self.result['apps']["aws_iam_user.nats"]["name"], "iam-user-nats-apps-preprod-dq")  
+
 if __name__ == '__main__':
     unittest.main()
