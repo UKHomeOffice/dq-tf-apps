@@ -21,19 +21,21 @@ module "external_tableau" {
 }
 
 module "internal_tableau" {
-  source                            = "github.com/UKHomeOffice/dq-tf-internal-tableau"
-  acp_prod_ingress_cidr             = "10.5.0.0/16"
-  dq_ops_ingress_cidr               = "${var.route_table_cidr_blocks["ops_cidr"]}"
-  dq_internal_dashboard_subnet_cidr = "10.1.12.0/24"
-  peering_cidr_block                = "10.3.0.0/16"
-  apps_vpc_id                       = "${aws_vpc.appsvpc.id}"
-  route_table_id                    = "${aws_route_table.apps_route_table.id}"
-  az                                = "${var.az}"
-  naming_suffix                     = "${local.naming_suffix}"
-  s3_archive_bucket_name            = "${aws_s3_bucket.data_archive_bucket.id}"
-  s3_archive_bucket                 = "${aws_s3_bucket.data_archive_bucket.arn}"
-  s3_archive_bucket_key             = "${aws_kms_key.bucket_key.arn}"
-  haproxy_private_ip                = "${var.haproxy_private_ip}"
+  source                                = "github.com/UKHomeOffice/dq-tf-internal-tableau"
+  acp_prod_ingress_cidr                 = "10.5.0.0/16"
+  dq_ops_ingress_cidr                   = "${var.route_table_cidr_blocks["ops_cidr"]}"
+  dq_internal_dashboard_subnet_cidr     = "10.1.12.0/24"
+  dq_internal_dashboard_subnet_cidr_az2 = "10.1.13.0/24"
+  peering_cidr_block                    = "10.3.0.0/16"
+  apps_vpc_id                           = "${aws_vpc.appsvpc.id}"
+  route_table_id                        = "${aws_route_table.apps_route_table.id}"
+  az                                    = "${var.az}"
+  az2                                   = "${var.az2}"
+  naming_suffix                         = "${local.naming_suffix}"
+  s3_archive_bucket_name                = "${aws_s3_bucket.data_archive_bucket.id}"
+  s3_archive_bucket                     = "${aws_s3_bucket.data_archive_bucket.arn}"
+  s3_archive_bucket_key                 = "${aws_kms_key.bucket_key.arn}"
+  haproxy_private_ip                    = "${var.haproxy_private_ip}"
 }
 
 module "data_feeds" {
