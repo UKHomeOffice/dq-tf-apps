@@ -11,7 +11,10 @@ pipeline:
 
   run-testrunner-tests:
     image: quay.io/ukhomeofficedigital/tf-testrunner
-    commands: python -m unittest tests/*_test.py
+    commands: 
+      - mkdir /root/.ssh && echo "$SSH_KEY" > /root/.ssh/id_rsa && chmod 0600 /root/.ssh/id_rsa
+      - ssh-keyscan -t rsa -p 2222 gitlab.digital.homeoffice.gov.uk >>  ~/.ssh/known_hosts
+      - python -m unittest tests/*_test.py
     secrets:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
