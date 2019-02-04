@@ -38,3 +38,18 @@ variable "s3_bucket_acl" {
   description = "Map of the S3 bucket canned ACLs"
   type        = "map"
 }
+
+variable "rds_instance" {
+  description = "The logical name of the RDS instance for a Postgres deployment to run against" 
+  default     = "internal_tableau"
+}
+
+variable "rds_endpoint" {
+  description = "The RDS endpoint that the Postgres deployment will be run against"
+  default     = "int-tableau-postgres-internal-tableau-apps-test-dq.czqp9ptbtrmd.eu-west-2.rds.amazonaws.com"
+}
+
+variable "rds_db_name" {
+  description = "Supplies the database name for a Postgres deployment"
+  default     = "internal_tableau"
+}
