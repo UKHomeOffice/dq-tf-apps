@@ -122,6 +122,16 @@ module "lambda" {
   route_table_id                   = "${aws_route_table.apps_route_table.id}"
 }
 
+module "rds_deploy" {
+  source                           = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git?ref=feature/module_source"
+  lambda_subnet                    = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2                = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp                      = "${module.lambda.lambda_sgrp}"
+  pipeline_count                   = "${var.pipeline_count}"
+  naming_suffix                    = "${local.naming_suffix}"
+  namespace                        = "${var.naming_suffix}"
+}
+
 resource "aws_vpc" "appsvpc" {
   cidr_block           = "${var.cidr_block}"
   enable_dns_hostnames = true
