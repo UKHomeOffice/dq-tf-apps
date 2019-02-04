@@ -38,3 +38,7 @@ variable "s3_bucket_acl" {
   description = "Map of the S3 bucket canned ACLs"
   type        = "map"
 }
+
+variable "pipeline_count" {
+  default = 1
+}
