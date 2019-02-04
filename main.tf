@@ -123,7 +123,7 @@ module "lambda" {
 }
 
 module "rds_deploy" {
-  source                           = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git?ref=feature/module_source"
+  source                           = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git"
   lambda_subnet                    = "${module.lambda.lambda_subnet}"
   lambda_subnet_az2                = "${module.lambda.lambda_subnet_az2}"
   lambda_sgrp                      = "${module.lambda.lambda_sgrp}"
