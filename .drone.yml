@@ -18,5 +18,6 @@ pipeline:
     secrets:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
+      - SSH_KEY
     when:
       event: push
