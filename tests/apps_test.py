@@ -137,5 +137,14 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_nats_iam_user(self):
         self.assertEqual(self.result['apps']["aws_iam_user.nats"]["name"], "iam-user-nats-apps-preprod-dq")
 
+    def test_name_suffix_rds_deploy_iam_lambda_rds(self):
+        self.assertEqual(self.result['apps']['rds_deploy']["aws_iam_role.lambda_rds"]["tags.Name"], "iam-lambda-rds-deploy-apps-preprod-dq")
+
+    def test_name_suffix_rds_deploy_lambda_function(self):
+        self.assertEqual(self.result['apps']['rds_deploy']["aws_lambda_function.lambda_rds"]["tags.Name"], "lambda-rds-deploy-apps-preprod-dq")
+
+    def test_name_suffix_rds_deploy_cloudwatch_log_group(self):
+        self.assertEqual(self.result['apps']['rds_deploy']["aws_cloudwatch_log_group.lambda_rds"]["tags.Name"], "lambda-rds-deploy-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
