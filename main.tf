@@ -127,7 +127,6 @@ module "rds_deploy" {
   lambda_subnet                    = "${module.lambda.lambda_subnet}"
   lambda_subnet_az2                = "${module.lambda.lambda_subnet_az2}"
   lambda_sgrp                      = "${module.lambda.lambda_sgrp}"
-  pipeline_count                   = "${var.pipeline_count}"
   naming_suffix                    = "${local.naming_suffix}"
   namespace                        = "${var.naming_suffix}"
 }
