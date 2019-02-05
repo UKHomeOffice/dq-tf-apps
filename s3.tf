@@ -155,7 +155,7 @@ resource "aws_s3_bucket" "airports_archive_bucket" {
   }
 
   tags = {
-    Name = "dq-airports-archive-${local.naming_suffix}"
+    Name = "s3-dq-airports-archive-${local.naming_suffix}"
   }
 }
 
@@ -183,7 +183,7 @@ resource "aws_s3_bucket" "airports_internal_bucket" {
   }
 
   tags = {
-    Name = "dq-airports-internal-${local.naming_suffix}"
+    Name = "s3-dq-airports-internal-${local.naming_suffix}"
   }
 }
 
@@ -211,7 +211,91 @@ resource "aws_s3_bucket" "airports_working_bucket" {
   }
 
   tags = {
-    Name = "dq-airports-working-${local.naming_suffix}"
+    Name = "s3-dq-airports-working-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket" "oag_archive_bucket" {
+  bucket = "${var.s3_bucket_name["oag_archive"]}"
+  acl    = "${var.s3_bucket_acl["oag_archive"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "oag_archive_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-oag-archive-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket" "oag_internal_bucket" {
+  bucket = "${var.s3_bucket_name["oag_internal"]}"
+  acl    = "${var.s3_bucket_acl["oag_internal"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "oag_internal_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-oag-internal-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket" "oag_transform_bucket" {
+  bucket = "${var.s3_bucket_name["oag_transform"]}"
+  acl    = "${var.s3_bucket_acl["oag_transform"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "oag_transform_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-oag-transform-${local.naming_suffix}"
   }
 }
 
