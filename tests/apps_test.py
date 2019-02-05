@@ -41,6 +41,9 @@ class TestE2E(unittest.TestCase):
                 airports_archive = "abcd"
                 airports_working = "abcd"
                 airports_internal = "abcd"
+                oag_archive = "abcd"
+                oag_internal = "abcd"
+                oag_transform = "abcd"
               }
 
               s3_bucket_acl = {
@@ -51,6 +54,9 @@ class TestE2E(unittest.TestCase):
                 airports_archive = "abcd"
                 airports_working = "abcd"
                 airports_internal = "abcd"
+                oag_archive = "abcd"
+                oag_internal = "abcd"
+                oag_transform = "abcd"
               }
 
               route_table_cidr_blocks     = {
@@ -117,13 +123,13 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_s3_bucket.data_working_bucket"]["tags.Name"], "s3-data-working-bucket-apps-preprod-dq")
 
     def test_name_suffix_airports_archive(self):
-        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_archive_bucket"]["tags.Name"], "dq-airports-archive-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_archive_bucket"]["tags.Name"], "s3-dq-airports-archive-apps-preprod-dq")
 
     def test_name_suffix_airports_internal(self):
-        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_internal_bucket"]["tags.Name"], "dq-airports-internal-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_internal_bucket"]["tags.Name"], "s3-dq-airports-internal-apps-preprod-dq")
 
     def test_name_suffix_airports_working(self):
-        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_working_bucket"]["tags.Name"], "dq-airports-working-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_s3_bucket.airports_working_bucket"]["tags.Name"], "s3-dq-airports-working-apps-preprod-dq")
 
     def test_name_suffix_nats_iam_group(self):
         self.assertEqual(self.result['apps']["aws_iam_group.nats"]["name"], "iam-group-nats-apps-preprod-dq")
@@ -145,6 +151,15 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_rds_deploy_cloudwatch_log_group(self):
         self.assertEqual(self.result['apps']['rds_deploy']["aws_cloudwatch_log_group.lambda_rds"]["tags.Name"], "log-lambda-rds-deploy-apps-preprod-dq")
+
+    def test_name_suffix_oag_archive(self):
+        self.assertEqual(self.result['apps']['aws_s3_bucket.oag_archive_bucket']["tags.Name"], "s3-dq-oag-archive-apps-preprod-dq")
+
+    def test_name_suffix_oag_internal(self):
+        self.assertEqual(self.result['apps']['aws_s3_bucket.oag_internal_bucket']["tags.Name"], "s3-dq-oag-internal-apps-preprod-dq")
+
+    def test_name_suffix_oag_transform(self):
+        self.assertEqual(self.result['apps']['aws_s3_bucket.oag_transform_bucket']["tags.Name"], "s3-dq-oag-transform-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
