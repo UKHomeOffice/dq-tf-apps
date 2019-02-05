@@ -39,14 +39,9 @@ variable "s3_bucket_acl" {
   type        = "map"
 }
 
-variable "rds_instance" {
-  description = "The logical name of the RDS instance for a Postgres deployment to run against" 
-  default     = "internal_tableau"
-}
-
 variable "rds_endpoint" {
   description = "The RDS endpoint that the Postgres deployment will be run against"
-  default     = "postgres-internal-tableau-apps-notprod-dq.cjwr8jp0ndrs.eu-west-2.rds.amazonaws.com"
+  default     = "int-tableau-postgres-internal-tableau-apps-test-dq.czqp9ptbtrmd.eu-west-2.rds.amazonaws.com"
 }
 
 variable "rds_db_name" {
