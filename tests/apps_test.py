@@ -144,7 +144,7 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']['rds_deploy']["aws_lambda_function.lambda_rds"]["tags.Name"], "lambda-rds-deploy-apps-preprod-dq")
 
     def test_name_suffix_rds_deploy_cloudwatch_log_group(self):
-        self.assertEqual(self.result['apps']['rds_deploy']["aws_cloudwatch_log_group.lambda_rds"]["tags.Name"], "lambda-rds-deploy-apps-preprod-dq")
+        self.assertEqual(self.result['apps']['rds_deploy']["aws_cloudwatch_log_group.lambda_rds"]["tags.Name"], "log-lambda-rds-deploy-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
