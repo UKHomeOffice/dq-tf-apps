@@ -32,6 +32,7 @@ class TestE2E(unittest.TestCase):
               naming_suffix                   = "preprod-dq"
               haproxy_private_ip              = "1.2.3.3"
               haproxy_private_ip2             = "1.2.3.4"
+              rds_internal_tableau_endpoint   = "foo.abcd1234.eu-west-2.rds.amazonaws.com"
 
               s3_bucket_name = {
                 archive_log  = "abcd"
