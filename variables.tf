@@ -41,7 +41,6 @@ variable "s3_bucket_acl" {
 
 variable "rds_internal_tableau_endpoint" {
   description = "The RDS endpoint that the Postgres deployment will be run against"
-  default     = "int-tableau-postgres-internal-tableau-apps-test-dq.czqp9ptbtrmd.eu-west-2.rds.amazonaws.com"
 }
 
 variable "rds_db_name" {
