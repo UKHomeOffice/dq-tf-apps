@@ -122,6 +122,12 @@ module "lambda" {
   route_table_id                   = "${aws_route_table.apps_route_table.id}"
 }
 
+module "airports_input_pipeline" {
+  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-input.git"
+  naming_suffix  = "${local.naming_suffix}"
+  namespace      = "${var.namespace}"
+}
+
 module "rds_deploy" {
   source                           = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git"
   lambda_subnet                    = "${module.lambda.lambda_subnet}"
