@@ -122,6 +122,18 @@ module "lambda" {
   route_table_id                   = "${aws_route_table.apps_route_table.id}"
 }
 
+module "airports_pipeline" {
+  source                             = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-pipeline.git"
+  kms_key_s3                         = "${aws_kms_key.bucket_key.arn}"
+  lambda_subnet                      = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2                  = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp                        = "${module.lambda.lambda_sgrp}"
+  rds_db_name                        = "${var.rds_db_name}"
+  rds_internal_tableau_address       = "${module.internal_tableau.rds_internal_tableau_address}"
+  naming_suffix                      = "${local.naming_suffix}"
+  namespace                          = "${var.namespace}"
+}
+
 module "airports_input_pipeline" {
   source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-input.git"
   naming_suffix  = "${local.naming_suffix}"
