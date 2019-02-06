@@ -128,7 +128,7 @@ module "rds_deploy" {
   lambda_subnet_az2                = "${module.lambda.lambda_subnet_az2}"
   lambda_sgrp                      = "${module.lambda.lambda_sgrp}"
   rds_db_name                      = "${var.rds_db_name}"
-  rds_internal_tableau_endpoint    = "${module.internal_tableau.rds_internal_tableau_endpoint}"
+  rds_internal_tableau_address     = "${module.internal_tableau.rds_internal_tableau_address}"
   naming_suffix                    = "${local.naming_suffix}"
   namespace                        = "${var.naming_suffix}"
 }
