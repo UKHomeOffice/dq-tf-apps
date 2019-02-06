@@ -30,6 +30,7 @@ class TestE2E(unittest.TestCase):
               ad_aws_ssm_document_name        = "1234"
               ad_writer_instance_profile_name = "1234"
               naming_suffix                   = "preprod-dq"
+              namespace                       = "preprod"
               haproxy_private_ip              = "1.2.3.3"
               haproxy_private_ip2             = "1.2.3.4"
 
@@ -172,6 +173,31 @@ class TestE2E(unittest.TestCase):
 
     def test_name_oag_iam_user(self):
         self.assertEqual(self.result['apps']["aws_iam_user.oag"]["name"], "iam-user-oag-apps-preprod-dq")
+
+    def test_name_suffix_airports_input_pipeline_lambda_athena(self):
+        self.assertEqual(self.result['apps']['airports_input_pipeline']["aws_lambda_function.lambda_athena"]["tags.Name"], "lambda-athena-airports-input-apps-preprod-dq")
+
+    def test_name_suffix_airports_input_pipeline_iam_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['airports_input_pipeline']["aws_iam_role.lambda_trigger"]["tags.Name"], "iam-lambda-trigger-airports-input-apps-preprod-dq")
+
+    def test_name_suffix_airports_input_pipeline_ssm_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['airports_input_pipeline']["aws_ssm_parameter.lambda_trigger_enabled"]["tags.Name"], "ssm-lambda-trigger-enabled-airports-input-apps-preprod-dq")
+
+    def test_name_suffix_airports_input_pipeline_iam_lambda_athena(self):
+        self.assertEqual(self.result['apps']['airports_input_pipeline']["aws_iam_role.lambda_athena"]["tags.Name"], "iam-lambda-athena-airports-input-apps-preprod-dq")
+
+    def test_name_suffix_airports_input_pipeline_log_lambda_athena(self):
+        self.assertEqual(self.result['apps']['airports_input_pipeline']["aws_cloudwatch_log_group.lambda_athena"]["tags.Name"], "log-lambda-athena-airports-input-apps-preprod-dq")
+
+    def test_name_suffix_airports_input_pipeline_sfn_state_machine(self):
+        self.assertEqual(self.result['apps']['airports_input_pipeline']["aws_sfn_state_machine.sfn_state_machine"]["tags.Name"], "sfn-state-machine-airports-input-apps-preprod-dq")
+
+    def test_name_suffix_airports_input_pipeline_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['airports_input_pipeline']["aws_lambda_function.lambda_trigger"]["tags.Name"], "lambda-trigger-airports-input-apps-preprod-dq")
+
+    def test_name_suffix_airports_input_pipeline_log_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['airports_input_pipeline']["aws_cloudwatch_log_group.lambda_trigger"]["tags.Name"], "log-lambda-trigger-airports-input-apps-preprod-dq")
+
 
 if __name__ == '__main__':
     unittest.main()
