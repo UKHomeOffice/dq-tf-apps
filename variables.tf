@@ -9,6 +9,7 @@ variable "ad_writer_instance_profile_name" {}
 variable "naming_suffix" {}
 variable "haproxy_private_ip" {}
 variable "haproxy_private_ip2" {}
+variable "namespace" {}
 
 variable "ad_sg_cidr_ingress" {
   description = "List of CIDR block ingress to AD machines SG"
@@ -44,4 +45,3 @@ variable "rds_db_name" {
   default     = "internal_tableau"
 }
 
-variable "namespace" {}
