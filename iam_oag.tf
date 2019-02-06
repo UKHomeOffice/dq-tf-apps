@@ -24,7 +24,10 @@ resource "aws_iam_group_policy" "oag" {
       "Sid": "ListS3Bucket",
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "${module.data_ingest.data_landing_bucket_arn}"
+      "Resource": [
+        "${module.data_ingest.data_landing_bucket_arn}",
+        "${aws_s3_bucket.oag_archive_bucket.arn}"
+      ]
     },
     {
       "Sid": "PutS3Bucket",
@@ -32,7 +35,10 @@ resource "aws_iam_group_policy" "oag" {
       "Action": [
         "s3:PutObject"
       ],
-      "Resource": "${module.data_ingest.data_landing_bucket_arn}/*"
+      "Resource": [
+        "${module.data_ingest.data_landing_bucket_arn}/*",
+        "${aws_s3_bucket.oag_archive_bucket.arn}/*"
+      ]
     },
     {
       "Sid": "UseKMSKey",
@@ -44,7 +50,10 @@ resource "aws_iam_group_policy" "oag" {
         "kms:GenerateDataKey*",
         "kms:DescribeKey"
         ],
-        "Resource": "${module.data_ingest.data_landing_bucket_key_arn}"
+        "Resource": [
+          "${module.data_ingest.data_landing_bucket_key_arn}",
+          "${aws_kms_key.bucket_key.arn}"
+        ]
     }
   ]
 }
