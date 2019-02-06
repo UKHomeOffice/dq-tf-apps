@@ -131,6 +131,9 @@ module "rds_deploy" {
   rds_internal_tableau_address     = "${module.internal_tableau.rds_internal_tableau_address}"
   naming_suffix                    = "${local.naming_suffix}"
   namespace                        = "${var.naming_suffix}"
+  providers                        = { 
+    aws = "aws"
+  }
 }
 
 resource "aws_vpc" "appsvpc" {
