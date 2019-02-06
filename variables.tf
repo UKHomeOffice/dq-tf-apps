@@ -43,3 +43,5 @@ variable "rds_db_name" {
   description = "Supplies the database name for a Postgres deployment"
   default     = "internal_tableau"
 }
+
+variable "namespace" {}
