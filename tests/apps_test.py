@@ -161,5 +161,17 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_oag_transform(self):
         self.assertEqual(self.result['apps']['aws_s3_bucket.oag_transform_bucket']["tags.Name"], "s3-dq-oag-transform-apps-preprod-dq")
 
+    def test_name_oag_iam_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.oag"]["name"], "iam-group-oag-apps-preprod-dq")
+
+    def test_name_oag_iam_group_membership(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_membership.oag"]["name"], "iam-group-membership-oag-apps-preprod-dq")
+
+    def test_name_oag_iam_group_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.oag"]["name"], "group-policy-oag-apps-preprod-dq")
+
+    def test_name_oag_iam_user(self):
+        self.assertEqual(self.result['apps']["aws_iam_user.oag"]["name"], "iam-user-oag-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
