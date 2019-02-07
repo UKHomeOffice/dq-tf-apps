@@ -112,43 +112,43 @@ module "gpdb-secondary" {
 }
 
 module "lambda" {
-  source                           = "github.com/ukhomeoffice/dq-tf-lambda"
-  appsvpc_id                       = "${aws_vpc.appsvpc.id}"
-  dq_lambda_subnet_cidr            = "10.1.42.0/24"
-  dq_lambda_subnet_cidr_az2        = "10.1.43.0/24"
-  az                               = "${var.az}"
-  az2                              = "${var.az2}"
-  naming_suffix                    = "${local.naming_suffix}"
-  route_table_id                   = "${aws_route_table.apps_route_table.id}"
+  source                    = "github.com/ukhomeoffice/dq-tf-lambda"
+  appsvpc_id                = "${aws_vpc.appsvpc.id}"
+  dq_lambda_subnet_cidr     = "10.1.42.0/24"
+  dq_lambda_subnet_cidr_az2 = "10.1.43.0/24"
+  az                        = "${var.az}"
+  az2                       = "${var.az2}"
+  naming_suffix             = "${local.naming_suffix}"
+  route_table_id            = "${aws_route_table.apps_route_table.id}"
 }
 
 module "airports_pipeline" {
-  source                             = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-pipeline.git"
-  kms_key_s3                         = "${aws_kms_key.bucket_key.arn}"
-  lambda_subnet                      = "${module.lambda.lambda_subnet}"
-  lambda_subnet_az2                  = "${module.lambda.lambda_subnet_az2}"
-  lambda_sgrp                        = "${module.lambda.lambda_sgrp}"
-  rds_db_name                        = "${var.rds_db_name}"
-  rds_internal_tableau_address       = "${module.internal_tableau.rds_internal_tableau_address}"
-  naming_suffix                      = "${local.naming_suffix}"
-  namespace                          = "${var.namespace}"
+  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-pipeline.git"
+  kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
+  lambda_subnet                = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
+  rds_db_name                  = "${var.rds_db_name}"
+  rds_internal_tableau_address = "${module.internal_tableau.rds_internal_tableau_address}"
+  naming_suffix                = "${local.naming_suffix}"
+  namespace                    = "${var.namespace}"
 }
 
 module "airports_input_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-input.git"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-input.git"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "rds_deploy" {
-  source                           = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git"
-  lambda_subnet                    = "${module.lambda.lambda_subnet}"
-  lambda_subnet_az2                = "${module.lambda.lambda_subnet_az2}"
-  lambda_sgrp                      = "${module.lambda.lambda_sgrp}"
-  rds_db_name                      = "${var.rds_db_name}"
-  rds_internal_tableau_address     = "${module.internal_tableau.rds_internal_tableau_address}"
-  naming_suffix                    = "${local.naming_suffix}"
-  namespace                        = "${var.naming_suffix}"
+  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git"
+  lambda_subnet                = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
+  rds_db_name                  = "${var.rds_db_name}"
+  rds_internal_tableau_address = "${module.internal_tableau.rds_internal_tableau_address}"
+  naming_suffix                = "${local.naming_suffix}"
+  namespace                    = "${var.naming_suffix}"
 }
 
 resource "aws_vpc" "appsvpc" {
