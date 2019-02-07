@@ -184,5 +184,17 @@ class TestE2E(unittest.TestCase):
     def test_name_acl_internal_bucket(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.acl_internal_bucket"]["tags.Name"], "s3-dq-acl-internal-apps-preprod-dq")
 
+    def test_name_acl_iam_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.acl"]["name"], "iam-group-acl-apps-preprod-dq")
+
+    def test_name_acl_iam_group_membership(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_membership.acl"]["name"], "iam-group-membership-acl-apps-preprod-dq")
+
+    def test_name_acl_iam_group_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.acl"]["name"], "group-policy-acl-apps-preprod-dq")
+
+    def test_name_acl_iam_user(self):
+        self.assertEqual(self.result['apps']["aws_iam_user.acl"]["name"], "iam-user-acl-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
