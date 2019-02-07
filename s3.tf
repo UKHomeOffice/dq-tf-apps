@@ -299,6 +299,62 @@ resource "aws_s3_bucket" "oag_transform_bucket" {
   }
 }
 
+resource "aws_s3_bucket" "acl_archive_bucket" {
+  bucket = "${var.s3_bucket_name["acl_archive"]}"
+  acl    = "${var.s3_bucket_acl["acl_archive"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "acl_archive_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-acl-archive-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket" "acl_internal_bucket" {
+  bucket = "${var.s3_bucket_name["acl_internal"]}"
+  acl    = "${var.s3_bucket_acl["acl_internal"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "acl_internal_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-acl-internal-${local.naming_suffix}"
+  }
+}
+
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = "${aws_vpc.appsvpc.id}"
   route_table_ids = ["${aws_route_table.apps_route_table.id}"]

@@ -174,6 +174,11 @@ class TestE2E(unittest.TestCase):
     def test_name_oag_iam_user(self):
         self.assertEqual(self.result['apps']["aws_iam_user.oag"]["name"], "iam-user-oag-apps-preprod-dq")
 
+    def test_name_acl_archive_bucket(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.acl_archive_bucket"]["tags.Name"], "s3-dq-acl-archive-apps-preprod-dq")
+
+    def test_name_acl_internal_bucket(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.acl_internal_bucket"]["tags.Name"], "s3-dq-acl-internal-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
