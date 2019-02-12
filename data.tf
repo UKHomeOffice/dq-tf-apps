@@ -33,3 +33,7 @@ data "aws_ami" "rhel" {
 }
 
 data "aws_caller_identity" "current" {}
+
+data "aws_kms_key" "glue" {
+  key_id = "alias/aws/glue"
+}
