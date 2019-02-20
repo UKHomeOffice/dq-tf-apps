@@ -164,6 +164,14 @@ module "acl_input_pipeline" {
   namespace      = "${var.namespace}"
 }
 
+module "reference_data_pipeline" {
+  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-reference-data-pipeline.git"
+  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
+  pipeline_count = "${var.pipeline_count}"
+  naming_suffix  = "${local.naming_suffix}"
+  namespace      = "${var.namespace}"
+}
+
 module "rds_deploy" {
   source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git"
   lambda_subnet                = "${module.lambda.lambda_subnet}"
