@@ -286,5 +286,26 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_reference_data_pipeline_log_lambda_athena(self):
         self.assertEqual(self.result['apps']['reference_data_pipeline']["aws_cloudwatch_log_group.lambda_log_group_athena"]["tags.Name"], "lambda-log-group-athena-reference-data-apps-preprod-dq")
 
+    def test_name_suffix_consolidated_schedule_pipeline_iam_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['consolidated_schedule_pipeline']["aws_iam_role.lambda_role_trigger"]["tags.Name"], "iam-lambda-trigger-consolidated-schedule-apps-preprod-dq")
+
+    def test_name_suffix_consolidated_schedule_pipeline_ssm_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['consolidated_schedule_pipeline']["aws_ssm_parameter.lambda_trigger_enabled"]["tags.Name"], "ssm-lambda-trigger-enabled-consolidated-schedule-apps-preprod-dq")
+
+    def test_name_suffix_consolidated_schedule_pipeline_sfn_state_machine(self):
+        self.assertEqual(self.result['apps']['consolidated_schedule_pipeline']["aws_sfn_state_machine.sfn_state_machine"]["tags.Name"], "sfn-state-machine-consolidated-schedule-apps-preprod-dq")
+
+    def test_name_suffix_consolidated_schedule_pipeline_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['consolidated_schedule_pipeline']["aws_lambda_function.lambda_trigger"]["tags.Name"], "lambda-trigger-consolidated-schedule-apps-preprod-dq")
+
+    def test_name_suffix_consolidated_schedule_pipeline_log_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['consolidated_schedule_pipeline']["aws_cloudwatch_log_group.lambda_log_group_trigger"]["tags.Name"], "lambda-log-group-trigger-consolidated-schedule-apps-preprod-dq")
+
+    def test_name_suffix_consolidated_schedule_pipeline_lambda_acl_trigger(self):
+        self.assertEqual(self.result['apps']['consolidated_schedule_pipeline']["aws_lambda_function.lambda_trigger"]["tags.Name"], "lambda-trigger-consolidated-schedule-apps-preprod-dq")
+
+    def test_name_suffix_consolidated_schedule_pipeline_log_lambda_athena(self):
+        self.assertEqual(self.result['apps']['consolidated_schedule_pipeline']["aws_cloudwatch_log_group.lambda_log_group_athena"]["tags.Name"], "lambda-log-group-athena-consolidated-schedule-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
