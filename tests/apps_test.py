@@ -244,6 +244,7 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_oag_transform_pipeline_log_lambda_athena(self):
         self.assertEqual(self.result['apps']['oag_transform_pipeline']["aws_cloudwatch_log_group.lambda_log_group_athena"]["tags.Name"], "lambda-log-group-athena-oag-transform-apps-preprod-dq")
 
+<<<<<<< HEAD
     def test_name_suffix_acl_input_pipeline_iam_lambda_trigger(self):
         self.assertEqual(self.result['apps']['acl_input_pipeline']["aws_iam_role.lambda_role_trigger"]["tags.Name"], "iam-lambda-trigger-acl-input-apps-preprod-dq")
 
@@ -265,5 +266,7 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_acl_input_pipeline_log_lambda_athena(self):
         self.assertEqual(self.result['apps']['acl_input_pipeline']["aws_cloudwatch_log_group.lambda_log_group_athena"]["tags.Name"], "lambda-log-group-athena-acl-input-apps-preprod-dq")
 
+=======
+>>>>>>> master
 if __name__ == '__main__':
     unittest.main()
