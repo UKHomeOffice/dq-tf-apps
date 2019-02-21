@@ -47,6 +47,9 @@ class TestE2E(unittest.TestCase):
                 oag_transform = "abcd"
                 acl_archive = "abcd"
                 acl_internal = "abcd"
+                reference_data_archive = "abcd"
+                reference_data_internal = "abcd"
+                consolidated_schedule = "abcd"
               }
 
               s3_bucket_acl = {
@@ -62,6 +65,9 @@ class TestE2E(unittest.TestCase):
                 oag_transform = "abcd"
                 acl_archive = "abcd"
                 acl_internal = "abcd"
+                reference_data_archive = "abcd"
+                reference_data_internal = "abcd"
+                consolidated_schedule = "abcd"
               }
 
               route_table_cidr_blocks     = {
