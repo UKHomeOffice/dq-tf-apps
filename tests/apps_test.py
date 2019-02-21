@@ -50,6 +50,9 @@ class TestE2E(unittest.TestCase):
                 reference_data_archive = "abcd"
                 reference_data_internal = "abcd"
                 consolidated_schedule = "abcd"
+                api_archive = "abcd"
+                api_internal = "abcd"
+                api_record_level_scoring = "abcd"
               }
 
               s3_bucket_acl = {
@@ -68,6 +71,9 @@ class TestE2E(unittest.TestCase):
                 reference_data_archive = "abcd"
                 reference_data_internal = "abcd"
                 consolidated_schedule = "abcd"
+                api_archive              = "private"
+                api_internal             = "private"
+                api_record_level_scoring = "private"
               }
 
               route_table_cidr_blocks     = {
