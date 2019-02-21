@@ -726,6 +726,110 @@ resource "aws_s3_bucket_policy" "consolidated_schedule_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket" "api_archive_bucket" {
+  bucket = "${var.s3_bucket_name["api_archive"]}"
+  acl    = "${var.s3_bucket_acl["api_archive"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "api_archive_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-api-archive-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "api_archive_policy" {
+  bucket = "${var.s3_bucket_name["api_archive"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["api_archive"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_s3_bucket" "api_internal_bucket" {
+  bucket = "${var.s3_bucket_name["api_internal"]}"
+  acl    = "${var.s3_bucket_acl["api_internal"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "api_internal_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-api-internal-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "api_internal_policy" {
+  bucket = "${var.s3_bucket_name["api_internal"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["api_internal"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = "${aws_vpc.appsvpc.id}"
   route_table_ids = ["${aws_route_table.apps_route_table.id}"]
