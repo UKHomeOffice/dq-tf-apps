@@ -144,52 +144,59 @@ module "airports_input_pipeline" {
 }
 
 module "oag_input_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-oag-input-pipeline.git"
-  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-oag-input-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "oag_transform_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-oag-transform-pipeline.git"
-  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-oag-transform-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "acl_input_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-acl-input-pipeline.git"
-  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-acl-input-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "reference_data_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-reference-data-pipeline.git"
-  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-reference-data-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "consolidated_schedule_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-consolidated-schedule-pipeline.git"
-  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-consolidated-schedule-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "api_input_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-input-pipeline.git"
-  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-input-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "api_record_level_score_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-record-level-score-pipeline.git"
-  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-record-level-score-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
+}
+
+module "gait_pipeline" {
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-gait-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "rds_deploy" {

@@ -355,5 +355,17 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_api_record_level_score_pipeline_lambda_acl_trigger(self):
         self.assertEqual(self.result['apps']['api_record_level_score_pipeline']["aws_lambda_function.lambda_trigger"]["tags.Name"], "lambda-trigger-api-record-level-score-apps-preprod-dq")
 
+    def test_name_suffix_gait_pipeline_step_function_exec(self):
+        self.assertEqual(self.result['apps']['gait_pipeline']["aws_iam_role.step_function_exec"]["tags.Name"], "step-function-exec-gait-apps-preprod-dq")
+
+    def test_name_suffix_gait_pipeline_sfn_state_machine(self):
+        self.assertEqual(self.result['apps']['gait_pipeline']["aws_sfn_state_machine.sfn_state_machine"]["tags.Name"], "sfn-state-machine-gait-apps-preprod-dq")
+
+    def test_name_suffix_gait_pipeline_lambda_gait(self):
+        self.assertEqual(self.result['apps']['gait_pipeline']["aws_lambda_function.lambda_gait"]["tags.Name"], "lambda-gait-apps-preprod-dq")
+
+    def test_name_suffix_gait_pipeline_log_lambda_gait(self):
+        self.assertEqual(self.result['apps']['gait_pipeline']["aws_cloudwatch_log_group.lambda_log_group_gait"]["tags.Name"], "lambda-log-group-gait-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
