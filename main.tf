@@ -192,6 +192,13 @@ module "api_record_level_score_pipeline" {
   namespace     = "${var.namespace}"
 }
 
+module "api_cross_record_scored_pipeline" {
+  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-cross-record-score-pipeline.git"
+  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix  = "${local.naming_suffix}"
+  namespace      = "${var.namespace}"
+}
+
 module "gait_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-gait-pipeline.git"
   kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
