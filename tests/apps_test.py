@@ -370,7 +370,7 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']['gait_pipeline']["aws_cloudwatch_log_group.lambda_log_group_gait"]["tags.Name"], "lambda-log-group-gait-apps-preprod-dq")
 
     def test_name_suffix_fms_postgres(self):
-        self.assertEqual(self.result['apps']['fms']["aws_db_instance.postgres"]["tags.Name"], "fms-postgres-apps-preprod-dq")
+        self.assertEqual(self.result['apps']['fms']["aws_db_instance.postgres"]["tags.Name"], "postgres-fms-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
