@@ -215,9 +215,6 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_oag_input_pipeline_lambda_trigger(self):
         self.assertEqual(self.result['apps']['oag_input_pipeline']["aws_lambda_function.lambda_trigger"]["tags.Name"], "lambda-trigger-oag-input-apps-preprod-dq")
 
-    def test_name_suffix_oag_input_pipeline_log_lambda_trigger(self):
-        self.assertEqual(self.result['apps']['oag_input_pipeline']["aws_cloudwatch_log_group.lambda_trigger"]["tags.Name"], "log-lambda-trigger-oag-input-apps-preprod-dq")
-
     def test_name_suffix_oag_input_pipeline_iam_lambda_trigger(self):
         self.assertEqual(self.result['apps']['oag_input_pipeline']["aws_iam_role.lambda_trigger"]["tags.Name"], "iam-lambda-trigger-oag-input-apps-preprod-dq")
 
@@ -226,9 +223,6 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_oag_input_pipeline_sfn_state_machine(self):
         self.assertEqual(self.result['apps']['oag_input_pipeline']["aws_sfn_state_machine.sfn_state_machine"]["tags.Name"], "sfn-state-machine-oag-input-apps-preprod-dq")
-
-    def test_name_suffix_oag_input_pipeline_lambda_trigger(self):
-        self.assertEqual(self.result['apps']['oag_input_pipeline']["aws_lambda_function.lambda_trigger"]["tags.Name"], "lambda-trigger-oag-input-apps-preprod-dq")
 
     def test_name_suffix_oag_input_pipeline_log_lambda_trigger(self):
         self.assertEqual(self.result['apps']['oag_input_pipeline']["aws_cloudwatch_log_group.lambda_trigger"]["tags.Name"], "log-lambda-trigger-oag-input-apps-preprod-dq")
