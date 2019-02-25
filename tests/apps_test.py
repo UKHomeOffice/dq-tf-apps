@@ -374,7 +374,7 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_fms_postgres(self):
         self.assertEqual(self.result['apps']['fms']["aws_db_instance.postgres"]["tags.Name"], "postgres-fms-apps-preprod-dq")
 
-def test_name_suffix_cross_record_scored_pipeline_iam_lambda_trigger(self):
+    def test_name_suffix_cross_record_scored_pipeline_iam_lambda_trigger(self):
         self.assertEqual(self.result['apps']['api_cross_record_scored_pipeline']["aws_iam_role.lambda_role_trigger"]["tags.Name"], "iam-lambda-trigger-api-cross-record-scored-apps-preprod-dq")
 
     def test_name_suffix_cross_record_scored_pipeline_ssm_lambda_trigger(self):
