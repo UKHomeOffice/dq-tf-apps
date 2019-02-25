@@ -883,6 +883,57 @@ resource "aws_s3_bucket_policy" "api_record_level_scoring_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket" "cross_record_scored_bucket" {
+  bucket = "${var.s3_bucket_name["cross_record_scored"]}"
+  acl    = "${var.s3_bucket_acl["cross_record_scored"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "cross_record_scored_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-cross-record-scored-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "cross_record_scored_policy" {
+  bucket = "${var.s3_bucket_name["cross_record_scored"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["cross_record_scored"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
 resource "aws_s3_bucket" "gait_internal_bucket" {
   bucket = "${var.s3_bucket_name["gait_internal"]}"
   acl    = "${var.s3_bucket_acl["gait_internal"]}"
