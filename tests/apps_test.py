@@ -54,6 +54,7 @@ class TestE2E(unittest.TestCase):
                 api_internal = "abcd"
                 api_record_level_scoring = "abcd"
                 gait_internal = "abcd"
+                cross_record_scored = "abcd"
               }
 
               s3_bucket_acl = {
@@ -76,6 +77,7 @@ class TestE2E(unittest.TestCase):
                 api_internal             = "private"
                 api_record_level_scoring = "private"
                 gait_internal = "private"
+                cross_record_scored = "abcd"
               }
 
               route_table_cidr_blocks     = {
@@ -371,6 +373,25 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_fms_postgres(self):
         self.assertEqual(self.result['apps']['fms']["aws_db_instance.postgres"]["tags.Name"], "postgres-fms-apps-preprod-dq")
+
+def test_name_suffix_cross_record_scored_pipeline_iam_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['api_cross_record_scored_pipeline']["aws_iam_role.lambda_role_trigger"]["tags.Name"], "iam-lambda-trigger-api-cross-record-scored-apps-preprod-dq")
+
+    def test_name_suffix_cross_record_scored_pipeline_ssm_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['api_cross_record_scored_pipeline']["aws_ssm_parameter.lambda_trigger_enabled"]["tags.Name"], "ssm-lambda-trigger-enabled-api-cross-record-scored-apps-preprod-dq")
+
+    def test_name_suffix_cross_record_scored_pipeline_sfn_state_machine(self):
+        self.assertEqual(self.result['apps']['api_cross_record_scored_pipeline']["aws_sfn_state_machine.sfn_state_machine"]["tags.Name"], "sfn-state-machine-api-cross-record-scored-apps-preprod-dq")
+
+    def test_name_suffix_cross_record_scored_pipeline_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['api_cross_record_scored_pipeline']["aws_lambda_function.lambda_trigger"]["tags.Name"], "lambda-trigger-api-cross-record-scored-apps-preprod-dq")
+
+    def test_name_suffix_cross_record_scored_pipeline_log_lambda_trigger(self):
+        self.assertEqual(self.result['apps']['api_cross_record_scored_pipeline']["aws_cloudwatch_log_group.lambda_log_group_trigger"]["tags.Name"], "lambda-log-group-trigger-api-cross-record-scored-apps-preprod-dq")
+
+    def test_name_suffix_cross_record_scored_pipeline_lambda_acl_trigger(self):
+        self.assertEqual(self.result['apps']['api_cross_record_scored_pipeline']["aws_lambda_function.lambda_trigger"]["tags.Name"], "lambda-trigger-api-cross-record-scored-apps-preprod-dq")
+
 
 if __name__ == '__main__':
     unittest.main()
