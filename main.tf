@@ -206,6 +206,14 @@ module "gait_pipeline" {
   namespace     = "${var.namespace}"
 }
 
+module "internal_reporting_pipeline" {
+  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-internal-reporting-pipeline.git"
+  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
+  pipeline_count = "${var.pipeline_count}"
+  naming_suffix  = "${local.naming_suffix}"
+  namespace      = "${var.namespace}"
+}
+
 module "rds_deploy" {
   source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git"
   lambda_subnet                = "${module.lambda.lambda_subnet}"
