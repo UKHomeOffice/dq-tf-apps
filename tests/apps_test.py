@@ -55,6 +55,7 @@ class TestE2E(unittest.TestCase):
                 api_record_level_scoring      = "abcd"
                 gait_internal                 = "abcd"
                 cross_record_scored           = "abcd"
+                reporting_internal_working    = "abcd"
               }
 
               s3_bucket_acl = {
@@ -78,6 +79,7 @@ class TestE2E(unittest.TestCase):
                 api_record_level_scoring      = "private"
                 gait_internal                 = "private"
                 cross_record_scored           = "private"
+                reporting_internal_working    = "private"
               }
 
               route_table_cidr_blocks     = {
