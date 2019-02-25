@@ -193,10 +193,10 @@ module "api_record_level_score_pipeline" {
 }
 
 module "api_cross_record_scored_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-cross-record-score-pipeline.git"
-  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-cross-record-score-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "gait_pipeline" {
@@ -207,10 +207,10 @@ module "gait_pipeline" {
 }
 
 module "internal_reporting_pipeline" {
-  source         = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-internal-reporting-pipeline.git"
-  kms_key_s3     = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix  = "${local.naming_suffix}"
-  namespace      = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-internal-reporting-pipeline.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "rds_deploy" {
