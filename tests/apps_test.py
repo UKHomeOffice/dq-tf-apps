@@ -418,5 +418,11 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_internal_reporting_pipeline_log_lambda_rds(self):
         self.assertEqual(self.result['apps']['internal_reporting_pipeline']["aws_cloudwatch_log_group.lambda_rds"]["tags.Name"], "log-lambda-rds-internal-reporting-apps-preprod-dq")
 
+    def test_name_suffix_dq_pipeline_ops_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.dq_pipeline_ops_group"]["name"], "dq-pipeline-ops-preprod")
+
+    def test_name_suffix_dq_pipeline_ops_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_policy.dq_pipeline_ops_policy"]["name"], "dq-pipeline-ops-policy-preprod")
+
 if __name__ == '__main__':
     unittest.main()
