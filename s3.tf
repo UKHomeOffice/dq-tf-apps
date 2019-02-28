@@ -1038,6 +1038,58 @@ resource "aws_s3_bucket_policy" "reporting_internal_working_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket" "mds_extract_bucket" {
+  bucket = "${var.s3_bucket_name["mds_extract"]}"
+  acl    = "${var.s3_bucket_acl["mds_extract"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "mds_extract_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-mds-extract-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "mds_extract_policy" {
+  bucket = "${var.s3_bucket_name["mds_extract"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["mds_extract"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = "${aws_vpc.appsvpc.id}"
   route_table_ids = ["${aws_route_table.apps_route_table.id}"]
