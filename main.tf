@@ -236,7 +236,6 @@ module "mds_extractor" {
   lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
   server                       = "${module.data_ingest.rds_mds_address}"
   kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
-  pipeline_count               = "${var.pipeline_count}"
   naming_suffix                = "${local.naming_suffix}"
   namespace                    = "${var.namespace}"
 }
