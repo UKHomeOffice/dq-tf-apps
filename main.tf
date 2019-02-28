@@ -229,6 +229,18 @@ module "rds_deploy" {
   namespace                    = "${var.naming_suffix}"
 }
 
+module "mds_extractor" {
+  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-mds-extractor.git"
+  lambda_subnet                = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
+  server                       = "${module.data_ingest.rds_mds_address}"
+  kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
+  pipeline_count               = "${var.pipeline_count}"
+  naming_suffix                = "${local.naming_suffix}"
+  namespace                    = "${var.namespace}"
+}
+
 module "fms" {
   source     = "github.com/ukhomeoffice/dq-tf-fms"
   appsvpc_id = "${aws_vpc.appsvpc.id}"

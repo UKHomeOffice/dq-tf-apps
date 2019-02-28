@@ -56,6 +56,7 @@ class TestE2E(unittest.TestCase):
                 gait_internal                 = "abcd"
                 cross_record_scored           = "abcd"
                 reporting_internal_working    = "abcd"
+                mds_extract                   = "abcd"
               }
 
               s3_bucket_acl = {
@@ -80,6 +81,7 @@ class TestE2E(unittest.TestCase):
                 gait_internal                 = "private"
                 cross_record_scored           = "private"
                 reporting_internal_working    = "private"
+                mds_extract                   = "private"
               }
 
               route_table_cidr_blocks     = {
@@ -423,6 +425,15 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_dq_pipeline_ops_policy(self):
         self.assertEqual(self.result['apps']["aws_iam_policy.dq_pipeline_ops_policy"]["name"], "dq-pipeline-ops-policy-preprod")
+
+    def test_name_suffix_mds_extractor_lambda_mds_extractor(self):
+        self.assertEqual(self.result['apps']['mds_extractor']["aws_lambda_function.lambda_mds_extractor"]["tags.Name"], "lambda-mds-extractor-apps-preprod-dq")
+
+    def test_name_suffix_mds_extractor_lambda_role_mds_extractor(self):
+        self.assertEqual(self.result['apps']['mds_extractor']["aws_iam_role.lambda_role_mds_extractor"]["tags.Name"], "lambda-role-mds-extractor-apps-preprod-dq")
+
+    def test_name_suffix_mds_extractor_lambda_log_group_mds_extractor(self):
+        self.assertEqual(self.result['apps']['mds_extractor']["aws_cloudwatch_log_group.lambda_log_group_mds_extractor"]["tags.Name"], "lambda-log-group-mds-extractor-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
