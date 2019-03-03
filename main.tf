@@ -236,7 +236,6 @@ module "fms_pipeline" {
   lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
   rds_address                  = "${module.fms.rds_address}"
   kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
-  pipeline_count               = "${var.pipeline_count}"
   naming_suffix                = "${local.naming_suffix}"
   namespace                    = "${var.namespace}"
 }
@@ -248,7 +247,6 @@ module "drt_pipeline" {
   lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
   rds_address                  = "${module.data_feeds.rds_address}"
   kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
-  pipeline_count               = "${var.pipeline_count}"
   naming_suffix                = "${local.naming_suffix}"
   namespace                    = "${var.namespace}"
 }
@@ -260,7 +258,6 @@ module "carrier_portal_pipeline" {
   lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
   rds_address                  = "${module.external_tableau.rds_address}"
   kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
-  pipeline_count               = "${var.pipeline_count}"
   naming_suffix                = "${local.naming_suffix}"
   namespace                    = "${var.namespace}"
 }
