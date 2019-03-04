@@ -273,6 +273,13 @@ module "mds_extractor" {
   namespace                    = "${var.namespace}"
 }
 
+module "raw_file_index" {
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-raw-file-index.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
+}
+
 module "fms" {
   source     = "github.com/ukhomeoffice/dq-tf-fms"
   appsvpc_id = "${aws_vpc.appsvpc.id}"
