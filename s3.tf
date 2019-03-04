@@ -896,6 +896,7 @@ resource "aws_s3_bucket" "cross_record_scored_bucket" {
       }
     }
   }
+
   versioning {
     enabled = true
   }
@@ -1079,6 +1080,58 @@ resource "aws_s3_bucket_policy" "mds_extract_policy" {
       "Principal": "*",
       "Action": "*",
       "Resource": "arn:aws:s3:::${var.s3_bucket_name["mds_extract"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_s3_bucket" "raw_file_index_internal_bucket" {
+  bucket = "${var.s3_bucket_name["raw_file_index_internal"]}"
+  acl    = "${var.s3_bucket_acl["raw_file_index_internal"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "raw_file_index_internal_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-raw-file-retrieval-index-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "raw_file_index_internal_policy" {
+  bucket = "${var.s3_bucket_name["raw_file_index_internal"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["raw_file_index_internal"]}/*",
       "Condition": {
         "Bool": {
           "aws:SecureTransport": "false"
