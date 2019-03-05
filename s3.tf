@@ -1164,6 +1164,7 @@ resource "aws_s3_bucket" "fms_working_bucket" {
   logging {
     target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
     target_prefix = "fms_working_bucket/"
+  }
 
   tags = {
     Name = "s3-dq-fms-working-${local.naming_suffix}"
