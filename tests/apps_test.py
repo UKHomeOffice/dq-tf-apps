@@ -58,6 +58,7 @@ class TestE2E(unittest.TestCase):
                 reporting_internal_working    = "abcd"
                 mds_extract                   = "abcd"
                 raw_file_index_internal       = "abcd"
+                fms_working                   = "abcd"
               }
 
               s3_bucket_acl = {
@@ -84,6 +85,7 @@ class TestE2E(unittest.TestCase):
                 reporting_internal_working    = "private"
                 mds_extract                   = "private"
                 raw_file_index_internal       = "private"
+                fms_working                   = "private"
               }
 
               route_table_cidr_blocks     = {
