@@ -439,5 +439,17 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_mds_extractor_lambda_log_group_mds_extractor(self):
         self.assertEqual(self.result['apps']['mds_extractor']["aws_cloudwatch_log_group.lambda_log_group_mds_extractor"]["tags.Name"], "lambda-log-group-mds-extractor-apps-preprod-dq")
 
+    def test_name_suffix_api_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.api"]["name"], "iam-group-api-apps-preprod-dq")
+
+    def test_name_suffix_api_group_membership(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_membership.api"]["name"], "iam-group-membership-api-apps-preprod-dq")
+
+    def test_name_suffix_api_group_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.api"]["name"], "iam-group-policy-api-apps-preprod-dq")
+
+    def test_name_suffix_api_user(self):
+        self.assertEqual(self.result['apps']["aws_iam_user.api"]["name"], "iam-user-api-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
