@@ -59,6 +59,7 @@ class TestE2E(unittest.TestCase):
                 mds_extract                   = "abcd"
                 raw_file_index_internal       = "abcd"
                 fms_working                   = "abcd"
+                athena_log                    = "abcd"
               }
 
               s3_bucket_acl = {
@@ -86,6 +87,7 @@ class TestE2E(unittest.TestCase):
                 mds_extract                   = "private"
                 raw_file_index_internal       = "private"
                 fms_working                   = "private"
+                athena_log                    = "private"
               }
 
               route_table_cidr_blocks     = {

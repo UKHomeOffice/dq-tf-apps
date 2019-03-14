@@ -1039,6 +1039,58 @@ resource "aws_s3_bucket_policy" "reporting_internal_working_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket" "athena_log_bucket" {
+  bucket = "${var.s3_bucket_name["athena_log"]}"
+  acl    = "${var.s3_bucket_acl["athena_log"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "athena_log_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-athena-log-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "athena_log_policy" {
+  bucket = "${var.s3_bucket_name["athena_log"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["athena_log"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
 resource "aws_s3_bucket" "mds_extract_bucket" {
   bucket = "${var.s3_bucket_name["mds_extract"]}"
   acl    = "${var.s3_bucket_acl["mds_extract"]}"
