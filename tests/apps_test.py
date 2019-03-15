@@ -454,7 +454,7 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_iam_user.api"]["name"], "iam-user-api-apps-preprod-dq")
 
     def test_name_suffix_athena_log(self):
-        self.assertEqual(self.result['apps']["aws_s3_bucket.athena_log_bucket"]["tags.Name"], "s3-athena-log-bucket-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_s3_bucket.athena_log_bucket"]["tags.Name"], "s3-athena-log-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
