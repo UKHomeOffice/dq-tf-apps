@@ -33,6 +33,7 @@ class TestE2E(unittest.TestCase):
               namespace                       = "preprod"
               haproxy_private_ip              = "1.2.3.3"
               haproxy_private_ip2             = "1.2.3.4"
+              rds_count_notprod               = "1"
 
               s3_bucket_name = {
                 archive_log                   = "abcd"
