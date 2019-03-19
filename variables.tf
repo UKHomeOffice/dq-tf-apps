@@ -69,7 +69,8 @@ variable "dq_pipeline_ops_readwrite_bucket_list" {
              "s3-dq-api-record-level-scoring",
              "s3-dq-api-internal",
              "s3-dq-cross-record-scored",
-             "s3-dq-raw-file-index-internal"]
+             "s3-dq-raw-file-index-internal",
+             "s3-dq-athena-log"]
 }
 
 variable "dq_pipeline_ops_readonly_bucket_list" {
