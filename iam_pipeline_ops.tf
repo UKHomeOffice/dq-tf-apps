@@ -105,7 +105,16 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
       ],
       "Effect": "Allow",
       "Resource": "${data.aws_kms_key.glue.arn}"
-    }
+    },
+    {
+      "Action": [
+        "states:List*",
+        "states:Describe*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+
   ]
 }
 EOF
