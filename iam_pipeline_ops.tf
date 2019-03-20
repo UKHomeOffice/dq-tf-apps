@@ -23,6 +23,16 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
       ]
     },
     {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
+            "Resource": [
+                "*" 
+            ]
+        
+    },
+    {
       "Action": [
                 "s3:GetBucketLocation",
                 "s3:GetObject",
@@ -80,6 +90,7 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
       "Action": [
         "kms:Encrypt",
         "kms:Decrypt",
+        "kms:ReEncrypt*",
         "kms:GenerateDataKey*",
         "kms:DescribeKey"
       ],
