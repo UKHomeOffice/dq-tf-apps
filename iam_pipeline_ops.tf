@@ -113,8 +113,7 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
       ],
       "Effect": "Allow",
       "Resource": "*"
-    },
-
+    }
   ]
 }
 EOF
