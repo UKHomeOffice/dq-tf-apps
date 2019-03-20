@@ -122,6 +122,30 @@ resource "aws_s3_bucket_metric" "data_archive_bucket_logging" {
   name   = "data_archive_bucket_metric"
 }
 
+resource "aws_s3_bucket_policy" "data_archive_bucket" {
+  bucket = "${var.s3_bucket_name["archive_data"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["archive_data"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
 resource "aws_s3_bucket" "data_working_bucket" {
   bucket = "${var.s3_bucket_name["working_data"]}"
   acl    = "${var.s3_bucket_acl["working_data"]}"
@@ -153,6 +177,30 @@ resource "aws_s3_bucket" "data_working_bucket" {
 resource "aws_s3_bucket_metric" "data_working_bucket_logging" {
   bucket = "${var.s3_bucket_name["working_data"]}"
   name   = "data_working_bucket_metric"
+}
+
+resource "aws_s3_bucket_policy" "data_working_bucket" {
+  bucket = "${var.s3_bucket_name["working_data"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["working_data"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
 }
 
 resource "aws_s3_bucket" "airports_archive_bucket" {
