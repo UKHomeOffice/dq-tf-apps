@@ -98,7 +98,6 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
   ]
 }
 EOF
-
 }
 
 resource "aws_iam_group" "dq_pipeline_ops_group" {

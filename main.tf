@@ -231,47 +231,47 @@ module "rds_deploy" {
 }
 
 module "fms_pipeline" {
-  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fms-pipeline.git"
-  lambda_subnet                = "${module.lambda.lambda_subnet}"
-  lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
-  lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
-  rds_address                  = "${module.fms.rds_address}"
-  kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix                = "${local.naming_suffix}"
-  namespace                    = "${var.namespace}"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fms-pipeline.git"
+  lambda_subnet     = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2 = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp       = "${module.lambda.lambda_sgrp}"
+  rds_address       = "${module.fms.rds_address}"
+  kms_key_s3        = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix     = "${local.naming_suffix}"
+  namespace         = "${var.namespace}"
 }
 
 module "drt_pipeline" {
-  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-drt-pipeline.git"
-  lambda_subnet                = "${module.lambda.lambda_subnet}"
-  lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
-  lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
-  rds_address                  = "${module.data_feeds.rds_address}"
-  kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix                = "${local.naming_suffix}"
-  namespace                    = "${var.namespace}"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-drt-pipeline.git"
+  lambda_subnet     = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2 = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp       = "${module.lambda.lambda_sgrp}"
+  rds_address       = "${module.data_feeds.rds_address}"
+  kms_key_s3        = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix     = "${local.naming_suffix}"
+  namespace         = "${var.namespace}"
 }
 
 module "carrier_portal_pipeline" {
-  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-carrier-portal-pipeline.git"
-  lambda_subnet                = "${module.lambda.lambda_subnet}"
-  lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
-  lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
-  rds_address                  = "${module.external_tableau.rds_address}"
-  kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix                = "${local.naming_suffix}"
-  namespace                    = "${var.namespace}"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-carrier-portal-pipeline.git"
+  lambda_subnet     = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2 = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp       = "${module.lambda.lambda_sgrp}"
+  rds_address       = "${module.external_tableau.rds_address}"
+  kms_key_s3        = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix     = "${local.naming_suffix}"
+  namespace         = "${var.namespace}"
 }
 
 module "mds_extractor" {
-  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-mds-extractor.git"
-  lambda_subnet                = "${module.lambda.lambda_subnet}"
-  lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
-  lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
-  server                       = "${module.data_ingest.rds_mds_address}"
-  kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
-  naming_suffix                = "${local.naming_suffix}"
-  namespace                    = "${var.namespace}"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-mds-extractor.git"
+  lambda_subnet     = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2 = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp       = "${module.lambda.lambda_sgrp}"
+  server            = "${module.data_ingest.rds_mds_address}"
+  kms_key_s3        = "${aws_kms_key.bucket_key.arn}"
+  naming_suffix     = "${local.naming_suffix}"
+  namespace         = "${var.namespace}"
 }
 
 module "raw_file_index" {

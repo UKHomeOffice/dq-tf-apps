@@ -1,6 +1,7 @@
 resource "aws_kms_key" "bucket_key" {
   description             = "This key is used to encrypt APPS buckets"
   deletion_window_in_days = 7
+  enable_key_rotation     = true
 
   policy = <<EOF
 {
