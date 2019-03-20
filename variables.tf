@@ -47,13 +47,14 @@ variable "rds_db_name" {
 
 variable "dq_pipeline_ops_readwrite_database_name_list" {
   default = ["reference_data",
-             "acl",
-             "consolidated_schedule",
-             "api_record_level_score",
-             "api_cross_record_scored",
-             "api_input",
-             "oag_transform",
-             "internal_reporting"]
+    "acl",
+    "consolidated_schedule",
+    "api_record_level_score",
+    "api_cross_record_scored",
+    "api_input",
+    "oag_transform",
+    "internal_reporting",
+  ]
 }
 
 variable "dq_pipeline_ops_readonly_database_name_list" {
@@ -62,15 +63,16 @@ variable "dq_pipeline_ops_readonly_database_name_list" {
 
 variable "dq_pipeline_ops_readwrite_bucket_list" {
   default = ["s3-dq-reference-data-internal",
-             "s3-dq-acl-internal",
-             "s3-dq-oag-internal",
-             "s3-dq-oag-transform",
-             "s3-dq-consolidated-schedule",
-             "s3-dq-api-record-level-scoring",
-             "s3-dq-api-internal",
-             "s3-dq-cross-record-scored",
-             "s3-dq-raw-file-index-internal",
-             "s3-dq-athena-log"]
+    "s3-dq-acl-internal",
+    "s3-dq-oag-internal",
+    "s3-dq-oag-transform",
+    "s3-dq-consolidated-schedule",
+    "s3-dq-api-record-level-scoring",
+    "s3-dq-api-internal",
+    "s3-dq-cross-record-scored",
+    "s3-dq-raw-file-index-internal",
+    "s3-dq-athena-log",
+  ]
 }
 
 variable "dq_pipeline_ops_readonly_bucket_list" {
