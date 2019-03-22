@@ -456,5 +456,14 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_athena_log(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.athena_log_bucket"]["tags.Name"], "s3-dq-athena-log-apps-preprod-dq")
 
+    def test_name_suffix_ops_pipeline_iam_lambda_reconcile(self):
+        self.assertEqual(self.result['apps']['ops_pipeline']["aws_lambda_function.lambda_reconcile"]["tags.Name"], "lambda-reconcile-apps-preprod-dq")
+
+    def test_name_suffix_ops_pipeline_iam_lambda_role_reconcile(self):
+        self.assertEqual(self.result['apps']['ops_pipeline']["aws_iam_role.lambda_role_reconcile"]["tags.Name"], "lambda-role-reconcile-apps-preprod-dq")
+
+    def test_name_suffix_ops_pipeline_lambda_log_group_reconcile(self):
+        self.assertEqual(self.result['apps']['ops_pipeline']["aws_cloudwatch_log_group.lambda_log_group_reconcile"]["tags.Name"], "lambda-log-group-reconcile-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
