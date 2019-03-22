@@ -296,7 +296,7 @@ module "fms" {
   route_table_id = "${aws_route_table.apps_route_table.id}"
 }
 
-module "pipeline_ops" {
+module "ops_pipeline" {
   source = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git"
   namespace     = "${var.namespace}"
 }
