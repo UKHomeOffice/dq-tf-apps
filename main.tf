@@ -297,8 +297,9 @@ module "fms" {
 }
 
 module "ops_pipeline" {
-  source = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git"
   namespace     = "${var.namespace}"
+  naming_suffix = "${local.naming_suffix}"
 }
 
 resource "aws_vpc" "appsvpc" {
