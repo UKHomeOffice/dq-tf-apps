@@ -60,6 +60,7 @@ class TestE2E(unittest.TestCase):
                 raw_file_index_internal       = "abcd"
                 fms_working                   = "abcd"
                 athena_log                    = "abcd"
+                ops_test                      = "abcd"
               }
 
               s3_bucket_acl = {
@@ -88,6 +89,7 @@ class TestE2E(unittest.TestCase):
                 raw_file_index_internal       = "private"
                 fms_working                   = "private"
                 athena_log                    = "private"
+                ops_test                      = "private"
               }
 
               route_table_cidr_blocks     = {
