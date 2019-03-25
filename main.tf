@@ -37,6 +37,7 @@ module "internal_tableau" {
   s3_archive_bucket_key                 = "${aws_kms_key.bucket_key.arn}"
   haproxy_private_ip                    = "${var.haproxy_private_ip}"
   rds_count_notprod                     = "${var.namespace == "prod" ? "0" : "1"}"
+  apply_immediately                     = "${var.namespace == "prod" ? "false" : "true"}"
 }
 
 module "data_feeds" {
