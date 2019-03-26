@@ -57,6 +57,7 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
     {
       "Action": [
         "glue:GetDatabase",
+        "glue:GetDatabases",
         "glue:CreateTable",
         "glue:DeleteTable",
         "glue:GetTable",
