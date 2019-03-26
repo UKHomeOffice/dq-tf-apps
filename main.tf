@@ -36,9 +36,7 @@ module "internal_tableau" {
   s3_archive_bucket                     = "${aws_s3_bucket.data_archive_bucket.arn}"
   s3_archive_bucket_key                 = "${aws_kms_key.bucket_key.arn}"
   haproxy_private_ip                    = "${var.haproxy_private_ip}"
-  rds_count_notprod                     = "${var.namespace == "prod" ? "0" : "1"}"
-  apply_immediately                     = "${var.namespace == "prod" ? "false" : "true"}"
-  postgres_allocated_storage            = "${var.namespace == "prod" ? "900" : "300"}"
+  environment                           = "${var.namespace}"
 }
 
 module "data_feeds" {
