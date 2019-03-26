@@ -298,6 +298,7 @@ module "fms" {
 
 module "ops_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
   namespace     = "${var.namespace}"
   naming_suffix = "${local.naming_suffix}"
 }
