@@ -955,7 +955,7 @@ POLICY
 }
 
 resource "aws_s3_bucket_metric" "api_record_level_scoring_logging" {
-  bucket = "${var.s3_bucket_name["api_record_level_scoring]}"
+  bucket = "${var.s3_bucket_name["api_record_level_scoring"]}"
   name   = "api_record_level_scoring_bucket_metric"
 }
 
@@ -1012,7 +1012,7 @@ POLICY
 }
 
 resource "aws_s3_bucket_metric" "cross_record_scored_logging" {
-  bucket = "${var.s3_bucket_name["cross_record_scored]}"
+  bucket = "${var.s3_bucket_name["cross_record_scored"]}"
   name   = "api_cross_record_scored_bucket_metric"
 }
 
