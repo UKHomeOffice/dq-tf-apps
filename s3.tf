@@ -897,7 +897,7 @@ POLICY
 
 
 resource "aws_s3_bucket_metric" "api_internal_bucket_logging" {
-  bucket = "${var.s3_bucket_name["api_internal]}"
+  bucket = "${var.s3_bucket_name["api_internal"]}"
   name   = "api_internal_bucket_metric"
 }
 
