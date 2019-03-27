@@ -421,7 +421,7 @@ resource "aws_s3_bucket" "oag_internal_bucket" {
     rule {
       apply_server_side_encryption_by_default {
         kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
-        sse_algorithm     = "aws:kms"
+        sse_algorithm     = "AES256"
       }
     }
   }
@@ -473,7 +473,7 @@ resource "aws_s3_bucket" "oag_transform_bucket" {
     rule {
       apply_server_side_encryption_by_default {
         kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
-        sse_algorithm     = "aws:kms"
+        sse_algorithm     = "AES256"
       }
     }
   }
@@ -738,7 +738,7 @@ resource "aws_s3_bucket" "consolidated_schedule_bucket" {
     rule {
       apply_server_side_encryption_by_default {
         kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
-        sse_algorithm     = "aws:kms"
+        sse_algorithm     = "AES256"
       }
     }
   }
@@ -895,12 +895,10 @@ resource "aws_s3_bucket_policy" "api_internal_policy" {
 POLICY
 }
 
-
 resource "aws_s3_bucket_metric" "api_internal_bucket_logging" {
   bucket = "${var.s3_bucket_name["api_internal"]}"
   name   = "api_internal_bucket_metric"
 }
-
 
 resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
   bucket = "${var.s3_bucket_name["api_record_level_scoring"]}"
@@ -911,7 +909,7 @@ resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
     rule {
       apply_server_side_encryption_by_default {
         kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
-        sse_algorithm     = "aws:kms"
+        sse_algorithm     = "AES256"
       }
     }
   }
@@ -968,7 +966,7 @@ resource "aws_s3_bucket" "cross_record_scored_bucket" {
     rule {
       apply_server_side_encryption_by_default {
         kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
-        sse_algorithm     = "aws:kms"
+        sse_algorithm     = "AES256"
       }
     }
   }
@@ -1077,7 +1075,7 @@ resource "aws_s3_bucket" "reporting_internal_working_bucket" {
     rule {
       apply_server_side_encryption_by_default {
         kms_master_key_id = "${aws_kms_key.bucket_key.arn}"
-        sse_algorithm     = "aws:kms"
+        sse_algorithm     = "AES256"
       }
     }
   }
