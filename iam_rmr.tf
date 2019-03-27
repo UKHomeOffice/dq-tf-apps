@@ -55,3 +55,7 @@ resource "aws_iam_user" "rmr" {
 resource "aws_iam_access_key" "rmr" {
   user = "${aws_iam_user.rmr.name}"
 }
+
+resource "aws_iam_access_key" "rmr_v2" {
+  user = "${aws_iam_user.rmr.name}"
+}
