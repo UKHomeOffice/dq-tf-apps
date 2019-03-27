@@ -516,6 +516,11 @@ resource "aws_s3_bucket_policy" "oag_transform_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket_metric" "oag_transform_bucket_logging" {
+  bucket = "${var.s3_bucket_name["oag_transform"]}"
+  name   = "oag_transform_bucket_metric"
+}
+
 resource "aws_s3_bucket" "acl_archive_bucket" {
   bucket = "${var.s3_bucket_name["acl_archive"]}"
   acl    = "${var.s3_bucket_acl["acl_archive"]}"
@@ -776,6 +781,11 @@ resource "aws_s3_bucket_policy" "consolidated_schedule_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket_metric" "consolidated_schedule_bucket_logging" {
+  bucket = "${var.s3_bucket_name["consolidated_schedule"]}"
+  name   = "consolidated_schedule_bucket_metric"
+}
+
 resource "aws_s3_bucket" "api_archive_bucket" {
   bucket = "${var.s3_bucket_name["api_archive"]}"
   acl    = "${var.s3_bucket_acl["api_archive"]}"
@@ -826,6 +836,11 @@ resource "aws_s3_bucket_policy" "api_archive_policy" {
   ]
 }
 POLICY
+}
+
+resource "aws_s3_bucket_metric" "api_archive_bucket_logging" {
+  bucket = "${var.s3_bucket_name["api_archive"]}"
+  name   = "api_archive_bucket_metric"
 }
 
 resource "aws_s3_bucket" "api_internal_bucket" {
@@ -880,6 +895,13 @@ resource "aws_s3_bucket_policy" "api_internal_policy" {
 POLICY
 }
 
+
+resource "aws_s3_bucket_metric" "api_internal_bucket_logging" {
+  bucket = "${var.s3_bucket_name["api_internal]}"
+  name   = "api_internal_bucket_metric"
+}
+
+
 resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
   bucket = "${var.s3_bucket_name["api_record_level_scoring"]}"
   acl    = "${var.s3_bucket_acl["api_record_level_scoring"]}"
@@ -932,6 +954,11 @@ resource "aws_s3_bucket_policy" "api_record_level_scoring_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket_metric" "api_record_level_scoring_logging" {
+  bucket = "${var.s3_bucket_name["api_record_level_scoring]}"
+  name   = "api_record_level_scoring_bucket_metric"
+}
+
 resource "aws_s3_bucket" "cross_record_scored_bucket" {
   bucket = "${var.s3_bucket_name["cross_record_scored"]}"
   acl    = "${var.s3_bucket_acl["cross_record_scored"]}"
@@ -982,6 +1009,11 @@ resource "aws_s3_bucket_policy" "cross_record_scored_policy" {
   ]
 }
 POLICY
+}
+
+resource "aws_s3_bucket_metric" "cross_record_scored_logging" {
+  bucket = "${var.s3_bucket_name["cross_record_scored]}"
+  name   = "api_cross_record_scored_bucket_metric"
 }
 
 resource "aws_s3_bucket" "gait_internal_bucket" {
@@ -1086,6 +1118,11 @@ resource "aws_s3_bucket_policy" "reporting_internal_working_policy" {
   ]
 }
 POLICY
+}
+
+resource "aws_s3_bucket_metric" "reporting_internal_working_logging" {
+  bucket = "${var.s3_bucket_name["reporting_internal_working"]}"
+  name   = "reporting_internal_working_bucket_metric"
 }
 
 resource "aws_s3_bucket" "athena_log_bucket" {
