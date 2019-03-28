@@ -61,6 +61,7 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
         "glue:CreateTable",
         "glue:DeleteTable",
         "glue:GetTable",
+        "glue:GetTables",
         "glue:GetPartition",
         "glue:GetPartitions",
         "glue:BatchCreatePartition",
@@ -77,6 +78,7 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
       "Action": [
         "glue:GetDatabase",
         "glue:GetTable",
+        "glue:GetTables",
         "glue:GetPartition",
         "glue:GetPartitions"
       ],
