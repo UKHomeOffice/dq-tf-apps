@@ -420,7 +420,7 @@ resource "aws_s3_bucket" "oag_internal_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
@@ -471,7 +471,7 @@ resource "aws_s3_bucket" "oag_transform_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
@@ -579,7 +579,7 @@ resource "aws_s3_bucket" "acl_internal_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
@@ -734,7 +734,7 @@ resource "aws_s3_bucket" "consolidated_schedule_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
@@ -847,7 +847,7 @@ resource "aws_s3_bucket" "api_internal_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
@@ -903,7 +903,7 @@ resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
@@ -959,7 +959,7 @@ resource "aws_s3_bucket" "cross_record_scored_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
@@ -1067,7 +1067,7 @@ resource "aws_s3_bucket" "reporting_internal_working_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
