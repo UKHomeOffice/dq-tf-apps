@@ -459,13 +459,22 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_s3_bucket.athena_log_bucket"]["tags.Name"], "s3-dq-athena-log-apps-preprod-dq")
 
     def test_name_suffix_ops_pipeline_iam_lambda_reconcile(self):
-        self.assertEqual(self.result['apps']['ops_pipeline']["aws_lambda_function.lambda_reconcile"]["tags.Name"], "lambda-reconcile-apps-preprod-dq")
+        self.assertEqual(self.result['apps']['ops_pipeline']["aws_lambda_function.lambda_reconcile"]["tags.Name"], "lambda-reconcile-ops-apps-preprod-dq")
 
     def test_name_suffix_ops_pipeline_iam_lambda_role_reconcile(self):
-        self.assertEqual(self.result['apps']['ops_pipeline']["aws_iam_role.lambda_role_reconcile"]["tags.Name"], "lambda-role-reconcile-apps-preprod-dq")
+        self.assertEqual(self.result['apps']['ops_pipeline']["aws_iam_role.lambda_role_reconcile"]["tags.Name"], "lambda-role-reconcile-ops-apps-preprod-dq")
 
     def test_name_suffix_ops_pipeline_lambda_log_group_reconcile(self):
-        self.assertEqual(self.result['apps']['ops_pipeline']["aws_cloudwatch_log_group.lambda_log_group_reconcile"]["tags.Name"], "lambda-log-group-reconcile-apps-preprod-dq")
+        self.assertEqual(self.result['apps']['ops_pipeline']["aws_cloudwatch_log_group.lambda_log_group_reconcile"]["tags.Name"], "lambda-log-group-reconcile-ops-apps-preprod-dq")
+
+    def test_name_suffix_ops_pipeline_iam_lambda_cleaner(self):
+        self.assertEqual(self.result['apps']['ops_pipeline']["aws_lambda_function.lambda_cleaner"]["tags.Name"], "lambda-cleaner-ops-apps-preprod-dq")
+
+    def test_name_suffix_ops_pipeline_iam_lambda_role_cleaner(self):
+        self.assertEqual(self.result['apps']['ops_pipeline']["aws_iam_role.lambda_role_cleaner"]["tags.Name"], "lambda-role-cleaner-ops-apps-preprod-dq")
+
+    def test_name_suffix_ops_pipeline_lambda_log_group_cleaner(self):
+        self.assertEqual(self.result['apps']['ops_pipeline']["aws_cloudwatch_log_group.lambda_log_group_cleaner"]["tags.Name"], "lambda-log-group-cleaner-ops-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
