@@ -35,7 +35,7 @@ resource "aws_iam_group_policy" "rmr" {
       "Effect": "Allow",
       "Resource": [
         "${aws_s3_bucket.data_archive_bucket.arn}/*",
-        "${aws_s3_bucket.api_archive_bucket.arn}"
+        "${aws_s3_bucket.api_archive_bucket.arn}/*"
       ]
     },
     {
