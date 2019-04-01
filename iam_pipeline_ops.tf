@@ -49,7 +49,9 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
         "athena:StartQueryExecution",
         "athena:GetQueryExecution",
         "athena:GetQueryResults",
-        "athena:GetQueryResultsStream"
+        "athena:GetQueryResultsStream",
+        "athena:UpdateWorkGroup",
+        "athena:GetWorkGroup"
       ],
       "Effect": "Allow",
       "Resource": "*"
