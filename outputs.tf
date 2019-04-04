@@ -37,5 +37,5 @@ output "iam_roles" {
 }
 
 output "athena_log_bucket" {
-  value = "${aws_s3_bucket.athena_log_bucket.arn}"
+  value = "${aws_s3_bucket.athena_log_bucket.id}"
 }
