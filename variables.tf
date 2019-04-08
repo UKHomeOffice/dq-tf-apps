@@ -78,3 +78,11 @@ variable "dq_pipeline_ops_readwrite_bucket_list" {
 variable "dq_pipeline_ops_readonly_bucket_list" {
   default = ["s3-dq-api-internal"]
 }
+
+variable "s3_haproxy_config_bucket" {
+  description = "Haproxy config bucket ID"
+}
+
+variable "s3_haproxy_config_bucket_key" {
+  description = "Haproxy config bucket KMS Key ARN"
+}
