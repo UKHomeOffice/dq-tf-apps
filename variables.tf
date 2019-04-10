@@ -93,7 +93,7 @@ variable "s3_haproxy_config_bucket_key" {
 
 variable "db_instance_id" {
   description = "The instance ID of the RDS database instance that you want to monitor."
-  type        = "string"
+  type        = "list(string)"
 }
 
 variable "cpu_utilization_threshold" {
