@@ -22,7 +22,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
   ok_actions          = ["${aws_sns_topic.default.arn}"]
 
   dimensions {
-    DBInstanceIdentifier = "${concat({var.db_instance_id})}"
+    DBInstanceIdentifier = "${var.db_instance_id}"
   }
 }
 
@@ -40,7 +40,7 @@ resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_too_high" {
   ok_actions          = ["${aws_sns_topic.default.arn}"]
 
   dimensions {
-    DBInstanceIdentifier = "${concat({var.db_instance_id})}"
+    DBInstanceIdentifier = "${var.db_instance_id}"
   }
 }
 
@@ -58,7 +58,7 @@ resource "aws_cloudwatch_metric_alarm" "freeable_memory_too_low" {
   ok_actions          = ["${aws_sns_topic.default.arn}"]
 
   dimensions {
-    DBInstanceIdentifier = "${concat({var.db_instance_id})}"
+    DBInstanceIdentifier = "${var.db_instance_id}"
   }
 }
 
@@ -76,7 +76,7 @@ resource "aws_cloudwatch_metric_alarm" "free_storage_space_too_low" {
   ok_actions          = ["${aws_sns_topic.default.arn}"]
 
   dimensions {
-    DBInstanceIdentifier = "${concat({var.db_instance_id})}"
+    DBInstanceIdentifier = "${var.db_instance_id}"
   }
 }
 
@@ -94,6 +94,6 @@ resource "aws_cloudwatch_metric_alarm" "swap_usage_too_high" {
   ok_actions          = ["${aws_sns_topic.default.arn}"]
 
   dimensions {
-    DBInstanceIdentifier = "${concat({var.db_instance_id})}"
+    DBInstanceIdentifier = "${var.db_instance_id}"
   }
 }
