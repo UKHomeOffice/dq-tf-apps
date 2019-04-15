@@ -18,6 +18,7 @@ module "external_tableau" {
   s3_archive_bucket            = "${aws_s3_bucket.data_archive_bucket.arn}"
   s3_archive_bucket_key        = "${aws_kms_key.bucket_key.arn}"
   haproxy_private_ip2          = "${var.haproxy_private_ip2}"
+  environment                  = "${var.namespace}"
 }
 
 module "internal_tableau" {
