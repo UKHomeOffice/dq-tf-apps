@@ -229,6 +229,7 @@ module "rds_deploy" {
   lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
   rds_internal_tableau_address = "${module.internal_tableau.rds_internal_tableau_address}"
   rds_fms_address              = "${module.fms.rds_address}"
+  rds_datafeed_address         = "${module.data_feeds.rds_address}"
   naming_suffix                = "${local.naming_suffix}"
   namespace                    = "${var.naming_suffix}"
 }
