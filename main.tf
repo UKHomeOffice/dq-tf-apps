@@ -54,6 +54,9 @@ module "data_feeds" {
   key_name                         = "test_instance"
   az                               = "${var.az}"
   az2                              = "${var.az2}"
+  lambda_subnet                    = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2                = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp                      = "${module.lambda.lambda_sgrp}"
   naming_suffix                    = "${local.naming_suffix}"
   route_table_id                   = "${aws_route_table.apps_route_table.id}"
 }
