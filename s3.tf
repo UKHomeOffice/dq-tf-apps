@@ -1115,7 +1115,6 @@ resource "aws_s3_bucket_metric" "reporting_internal_working_logging" {
   name   = "reporting_internal_working_bucket_metric"
 }
 
-
 resource "aws_s3_bucket" "carrier_portal_working_bucket" {
   bucket = "${var.s3_bucket_name["carrier_portal_working"]}"
   acl    = "${var.s3_bucket_acl["carrier_portal_working"]}"
@@ -1124,7 +1123,7 @@ resource "aws_s3_bucket" "carrier_portal_working_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
+        sse_algorithm = "AES256"
       }
     }
   }
@@ -1166,7 +1165,6 @@ resource "aws_s3_bucket_policy" "carrier_portal_working_policy" {
 }
 POLICY
 }
-
 
 resource "aws_s3_bucket" "athena_log_bucket" {
   bucket = "${var.s3_bucket_name["athena_log"]}"
