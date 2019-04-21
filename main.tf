@@ -309,15 +309,16 @@ module "fms" {
 }
 
 module "ops_pipeline" {
-  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git"
-  kms_key_s3        = "${aws_kms_key.bucket_key.arn}"
-  lambda_subnet     = "${module.lambda.lambda_subnet}"
-  lambda_subnet_az2 = "${module.lambda.lambda_subnet_az2}"
-  lambda_sgrp       = "${module.lambda.lambda_sgrp}"
-  rds_db_name       = "${var.rds_db_name}"
-  rds_address       = "${module.internal_tableau.rds_internal_tableau_address}"
-  naming_suffix     = "${local.naming_suffix}"
-  namespace         = "${var.namespace}"
+  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git"
+  kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
+  lambda_subnet                = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
+  rds_internal_tableau_address = "${module.internal_tableau.rds_internal_tableau_address}"
+  rds_fms_address              = "${module.fms.rds_address}"
+  rds_datafeed_address         = "${module.data_feeds.rds_address}"
+  naming_suffix                = "${local.naming_suffix}"
+  namespace                    = "${var.namespace}"
 }
 
 resource "aws_vpc" "appsvpc" {
