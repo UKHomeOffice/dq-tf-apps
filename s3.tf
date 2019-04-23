@@ -1374,6 +1374,30 @@ resource "aws_s3_bucket_policy" "fms_working_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket_policy" "drt_working_policy" {
+  bucket = "${var.s3_bucket_name["drt_working"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["drt_working"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = "${aws_vpc.appsvpc.id}"
   route_table_ids = ["${aws_route_table.apps_route_table.id}"]
