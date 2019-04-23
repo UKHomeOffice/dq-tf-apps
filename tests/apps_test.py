@@ -62,6 +62,7 @@ class TestE2E(unittest.TestCase):
                 mds_extract                   = "abcd"
                 raw_file_index_internal       = "abcd"
                 fms_working                   = "abcd"
+                drt_working                   = "abcd"
                 athena_log                    = "abcd"
                 ops_pipeline                  = "abcd"
               }
@@ -92,6 +93,7 @@ class TestE2E(unittest.TestCase):
                 mds_extract                   = "private"
                 raw_file_index_internal       = "private"
                 fms_working                   = "private"
+                drt_working                   = "private"
                 athena_log                    = "private"
                 ops_pipeline                  = "private"
               }
