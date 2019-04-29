@@ -43,3 +43,19 @@ output "athena_log_bucket" {
 output "aws_bucket_key" {
   value = "${aws_kms_key.bucket_key.arn}"
 }
+
+output "dq_pipeline_ops_readwrite_database_name_list" {
+  value = "${var.dq_pipeline_ops_readwrite_database_name_list}"
+}
+
+output "dq_pipeline_ops_readonly_database_name_list" {
+  value = "${var.dq_pipeline_ops_readonly_database_name_list}"
+}
+
+output "dq_pipeline_ops_readwrite_bucket_list" {
+  value = "${var.dq_pipeline_ops_readwrite_bucket_list}"
+}
+
+output "dq_pipeline_ops_readonly_bucket_list" {
+  value = "${var.dq_pipeline_ops_readonly_bucket_list}"
+}
