@@ -88,3 +88,11 @@ variable "s3_httpd_config_bucket" {
 variable "s3_httpd_config_bucket_key" {
   description = "HTTPD config bucket KMS Key ARN"
 }
+
+variable "haproxy_config_bucket" {
+  description = "HAPROXY config bucket ID"
+}
+
+variable "haproxy_config_bucket_key" {
+  description = "HAPROXY config bucket KMS key"
+}
