@@ -66,14 +66,10 @@ module "data_feeds" {
 module "data_ingest" {
   source                           = "github.com/ukhomeoffice/dq-tf-dataingest"
   appsvpc_id                       = "${aws_vpc.appsvpc.id}"
-  data_pipe_apps_cidr_block        = "10.1.8.0/24"
   opssubnet_cidr_block             = "${var.route_table_cidr_blocks["ops_cidr"]}"
   data_ingest_cidr_block           = "10.1.6.0/24"
   data_ingest_rds_cidr_block       = "10.1.7.0/24"
   peering_cidr_block               = "10.3.0.0/16"
-  dq_database_cidr_block_secondary = ["${module.gpdb-secondary.dq_database_cidr_block_secondary}"]
-  dp_web_private_ip                = "10.1.6.100"
-  key_name                         = "test_instance"
   az                               = "${var.az}"
   az2                              = "${var.az2}"
   naming_suffix                    = "${local.naming_suffix}"
