@@ -119,12 +119,12 @@ module "airports_pipeline" {
 }
 
 module "airports_input_pipeline" {
-  source           = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-input.git"
-  kms_key_s3       = "${aws_kms_key.bucket_key.arn}"
-  kms_key_glue     = "${data.aws_kms_key.glue.arn}"
-  lambda_slack_arn = "${module.ops_pipeline.lamba_slack}"
-  naming_suffix    = "${local.naming_suffix}"
-  namespace        = "${var.namespace}"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-input.git"
+  kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  kms_key_glue  = "${data.aws_kms_key.glue.arn}"
+  lambda_slack  = "${module.ops_pipeline.lamba_slack}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
 }
 
 module "oag_input_pipeline" {
