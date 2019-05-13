@@ -96,3 +96,7 @@ variable "haproxy_config_bucket" {
 variable "haproxy_config_bucket_key" {
   description = "HAPROXY config bucket KMS key"
 }
+
+variable "lambda_slack" {
+  description = "The ARN of the Lambda function that sends Slack alerts"
+}
