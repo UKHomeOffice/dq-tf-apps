@@ -54,7 +54,7 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "api_input",
     "oag_transform",
     "internal_reporting",
-    "drt"
+    "drt",
   ]
 }
 
@@ -73,7 +73,7 @@ variable "dq_pipeline_ops_readwrite_bucket_list" {
     "s3-dq-cross-record-scored",
     "s3-dq-raw-file-index-internal",
     "s3-dq-athena-log",
-    "s3-dq-drt-working"
+    "s3-dq-drt-working",
   ]
 }
 
