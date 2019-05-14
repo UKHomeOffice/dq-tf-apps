@@ -97,6 +97,7 @@ module "airports_pipeline" {
   lambda_sgrp       = "${module.lambda.lambda_sgrp}"
   rds_db_name       = "${var.rds_db_name}"
   rds_address       = "${module.internal_tableau.rds_internal_tableau_address}"
+  lambda_slack      = "${module.ops_pipeline.lambda_slack}"
   naming_suffix     = "${local.naming_suffix}"
   namespace         = "${var.namespace}"
 }
@@ -215,6 +216,7 @@ module "drt_pipeline" {
   lambda_sgrp       = "${module.lambda.lambda_sgrp}"
   rds_address       = "${module.data_feeds.rds_address}"
   kms_key_s3        = "${aws_kms_key.bucket_key.arn}"
+  lambda_slack      = "${module.ops_pipeline.lambda_slack}"
   naming_suffix     = "${local.naming_suffix}"
   namespace         = "${var.namespace}"
 }
