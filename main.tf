@@ -77,23 +77,6 @@ module "data_ingest" {
   apps_buckets_kms_key       = "${aws_kms_key.bucket_key.arn}"
 }
 
-module "gpdb-secondary" {
-  source                        = "github.com/UKHomeOffice/dq-tf-gpdb-secondary"
-  appsvpc_id                    = "${aws_vpc.appsvpc.id}"
-  internal_dashboard_cidr_block = "10.1.12.0/24"
-  external_dashboard_cidr_block = "10.1.14.0/24"
-  data_ingest_cidr_block        = "10.1.6.0/24"
-  data_pipe_apps_cidr_block     = "10.1.8.0/24"
-  data_feeds_cidr_block         = "10.1.4.0/24"
-  opssubnet_cidr_block          = "${var.route_table_cidr_blocks["ops_cidr"]}"
-  peering_cidr_block            = "10.3.0.0/16"
-  az                            = "${var.az}"
-  naming_suffix                 = "${local.naming_suffix}"
-  route_table_id                = "${aws_route_table.apps_route_table.id}"
-  archive_bucket                = "${aws_s3_bucket.data_archive_bucket.arn}"
-  apps_buckets_kms_key          = "${aws_kms_key.bucket_key.arn}"
-}
-
 module "lambda" {
   source                    = "github.com/ukhomeoffice/dq-tf-lambda"
   appsvpc_id                = "${aws_vpc.appsvpc.id}"
