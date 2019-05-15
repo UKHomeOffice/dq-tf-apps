@@ -137,6 +137,7 @@ module "acl_input_pipeline" {
 module "reference_data_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-reference-data-pipeline.git"
   kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  lambda_slack  = "${module.ops_pipeline.lambda_slack}"
   naming_suffix = "${local.naming_suffix}"
   namespace     = "${var.namespace}"
 }
@@ -176,6 +177,7 @@ module "api_cross_record_scored_pipeline" {
 module "gait_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-gait-pipeline.git"
   kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  lambda_slack  = "${module.ops_pipeline.lambda_slack}"
   naming_suffix = "${local.naming_suffix}"
   namespace     = "${var.namespace}"
 }
@@ -211,6 +213,7 @@ module "fms_pipeline" {
   lambda_sgrp       = "${module.lambda.lambda_sgrp}"
   rds_address       = "${module.fms.rds_address}"
   kms_key_s3        = "${aws_kms_key.bucket_key.arn}"
+  lambda_slack      = "${module.ops_pipeline.lambda_slack}"
   naming_suffix     = "${local.naming_suffix}"
   namespace         = "${var.namespace}"
 }
@@ -257,6 +260,7 @@ module "raw_file_index" {
   lambda_sgrp       = "${module.lambda.lambda_sgrp}"
   rds_db_name       = "${var.rds_db_name}"
   rds_address       = "${module.internal_tableau.rds_internal_tableau_address}"
+  lambda_slack      = "${module.ops_pipeline.lambda_slack}"
   naming_suffix     = "${local.naming_suffix}"
   namespace         = "${var.namespace}"
 }
