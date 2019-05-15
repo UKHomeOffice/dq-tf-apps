@@ -144,6 +144,7 @@ module "reference_data_pipeline" {
 module "consolidated_schedule_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-consolidated-schedule-pipeline.git"
   kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  lambda_slack  = "${module.ops_pipeline.lambda_slack}"
   naming_suffix = "${local.naming_suffix}"
   namespace     = "${var.namespace}"
 }
@@ -151,6 +152,7 @@ module "consolidated_schedule_pipeline" {
 module "api_input_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-input-pipeline.git"
   kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  lambda_slack  = "${module.ops_pipeline.lambda_slack}"
   naming_suffix = "${local.naming_suffix}"
   namespace     = "${var.namespace}"
 }
@@ -158,6 +160,7 @@ module "api_input_pipeline" {
 module "api_record_level_score_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-record-level-score-pipeline.git"
   kms_key_s3    = "${aws_kms_key.bucket_key.arn}"
+  lambda_slack  = "${module.ops_pipeline.lambda_slack}"
   naming_suffix = "${local.naming_suffix}"
   namespace     = "${var.namespace}"
 }
