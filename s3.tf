@@ -1166,6 +1166,11 @@ resource "aws_s3_bucket_policy" "carrier_portal_working_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket_metric" "carrier_portal_working_logging" {
+  bucket = "${var.s3_bucket_name["carrier_portal_working"]}"
+  name   = "carrier_portal_working_bucket_metric"
+}
+
 resource "aws_s3_bucket" "athena_log_bucket" {
   bucket = "${var.s3_bucket_name["athena_log"]}"
   acl    = "${var.s3_bucket_acl["athena_log"]}"
@@ -1423,6 +1428,11 @@ resource "aws_s3_bucket_policy" "drt_working_policy" {
   ]
 }
 POLICY
+}
+
+resource "aws_s3_bucket_metric" "drt_working_logging" {
+  bucket = "${var.s3_bucket_name["drt_working"]}"
+  name   = "drt_working_bucket_metric"
 }
 
 resource "aws_vpc_endpoint" "s3_endpoint" {
