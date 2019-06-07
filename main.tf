@@ -42,6 +42,7 @@ module "internal_tableau" {
   environment                           = "${var.namespace}"
   s3_httpd_config_bucket                = "${var.s3_httpd_config_bucket}"
   s3_httpd_config_bucket_key            = "${var.s3_httpd_config_bucket_key}"
+  security_group_ids                    = "${module.lambda.lambda_sgrp}"
 }
 
 module "data_feeds" {
