@@ -43,6 +43,8 @@ module "internal_tableau" {
   s3_httpd_config_bucket                = "${var.s3_httpd_config_bucket}"
   s3_httpd_config_bucket_key            = "${var.s3_httpd_config_bucket_key}"
   security_group_ids                    = "${module.lambda.lambda_sgrp}"
+  lambda_subnet                         = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2                     = "${module.lambda.lambda_subnet_az2}"
 }
 
 module "data_feeds" {
