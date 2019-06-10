@@ -24,7 +24,10 @@ resource "aws_iam_group_policy" "s3count" {
       "Sid": "ListS3Bucket",
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
+      "Resource": [
+        "${aws_s3_bucket.data_archive_bucket.arn}",
+        "${aws_s3_bucket.api_archive_bucket.arn}"
+      ]
     },
     {
       "Sid": "GetS3Bucket",
@@ -32,7 +35,10 @@ resource "aws_iam_group_policy" "s3count" {
       "Action": [
         "s3:GetObject"
       ],
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
+      "Resource": [
+        "${aws_s3_bucket.data_archive_bucket.arn}/*",
+        "${aws_s3_bucket.api_archive_bucket.arn}"
+      ]
     },
     {
       "Sid": "UseKMSKey",
