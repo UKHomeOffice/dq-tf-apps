@@ -487,5 +487,17 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_ops_pipeline_lambda_log_group_cleaner(self):
         self.assertEqual(self.result['apps']['ops_pipeline']["aws_cloudwatch_log_group.lambda_log_group_cleaner"]["tags.Name"], "lambda-log-group-cleaner-ops-apps-preprod-dq")
 
+    def test_name_suffix_s3count_iam_group(self):
+        self.assertEqual(self.result['apps']['apps']["aws_iam_group.s3count"]["name"], "iam-group-s3count-apps-preprod-dq")
+
+    def test_name_suffix_s3count_iam_group_membership(self):
+        self.assertEqual(self.result['apps']['apps']["aws_iam_group_membership.s3count"]["name"], "iam-group-membership-s3count-apps-preprod-dq")
+
+    def test_name_suffix_s3count_iam_group_policy(self):
+        self.assertEqual(self.result['apps']['apps']["aws_iam_group_policy.s3count"]["name"], "iam-group-policy-s3count-apps-preprod-dq")
+
+    def test_name_suffix_s3count_iam_user(self):
+        self.assertEqual(self.result['apps']['apps']["aws_iam_user.s3count"]["name"], "iam-user-s3count-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
