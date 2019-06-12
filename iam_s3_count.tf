@@ -37,7 +37,7 @@ resource "aws_iam_group_policy" "s3count" {
       ],
       "Resource": [
         "${aws_s3_bucket.data_archive_bucket.arn}/*",
-        "${aws_s3_bucket.api_archive_bucket.arn}"
+        "${aws_s3_bucket.api_archive_bucket.arn}/*"
       ]
     },
     {
