@@ -72,7 +72,10 @@ resource "aws_iam_group_policy" "cdp-s4-data" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Action": "s3:ListBucket",
+      "Action": [
+        "s3:ListBucket",
+        "s3:ListObject"
+      ],
       "Effect": "Allow",
       "Resource": "${aws_s3_bucket.data_archive_bucket.arn}",
       "Condition":{"StringEquals":{"s3:prefix":[
