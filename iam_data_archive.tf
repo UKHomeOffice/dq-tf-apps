@@ -80,13 +80,13 @@ resource "aws_iam_group_policy" "cdp-s4-data" {
       "Resource": "${aws_s3_bucket.api_archive_bucket.arn}",
       "Condition":{"StringEquals":{"s3:prefix":[
         "",
-        "parsed/2019-06-08/",
-        "parsed/2019-06-09/",
-        "parsed/2019-06-10/",
-        "parsed/2019-06-11/",
-        "parsed/2019-06-12/",
-        "parsed/2019-06-13/",
-        "parsed/2019-06-14/"],
+        "parsed/2019-06-08/*",
+        "parsed/2019-06-09/*",
+        "parsed/2019-06-10/*",
+        "parsed/2019-06-11/*",
+        "parsed/2019-06-12/*",
+        "parsed/2019-06-13/*",
+        "parsed/2019-06-14/*"],
         "s3:delimiter":["/"]}}
     },
     {
