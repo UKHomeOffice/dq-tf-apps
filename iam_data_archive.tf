@@ -111,7 +111,7 @@ resource "aws_iam_group_policy" "cdp-s4-data" {
         "kms:GenerateDataKey*",
         "kms:DescribeKey"
         ],
-        "Resource": "${aws_kms_key.api_archive_bucket.arn}"
+        "Resource": "${aws_kms_key.bucket_key.arn}"
       }
   ]
 }
