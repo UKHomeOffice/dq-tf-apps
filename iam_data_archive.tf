@@ -78,7 +78,7 @@ resource "aws_iam_group_policy" "cdp-s4-data" {
       ],
       "Effect": "Allow",
       "Resource": "${aws_s3_bucket.api_archive_bucket.arn}",
-      "Condition":{"StringEquals":{"s3:prefix":[
+      "Condition":{"StringLike":{"s3:prefix":[
         "",
         "parsed/2019-06-08/*",
         "parsed/2019-06-09/*",
@@ -111,7 +111,7 @@ resource "aws_iam_group_policy" "cdp-s4-data" {
         "kms:GenerateDataKey*",
         "kms:DescribeKey"
         ],
-        "Resource": "${aws_kms_key.bucket_key.arn}"
+        "Resource": "${aws_kms_key.api_archive_bucket.arn}"
       }
   ]
 }
