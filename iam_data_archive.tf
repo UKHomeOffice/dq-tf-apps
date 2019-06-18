@@ -92,14 +92,13 @@ resource "aws_iam_group_policy" "cdp-s4-data" {
     {
       "Action": "s3:GetObject",
       "Effect": "Allow",
-      "Resource": ["${aws_s3_bucket.api_archive_bucket.arn}/s4/parsed/2018/06/16/*",
-        "${aws_s3_bucket.api_archive_bucket.arn}parsed/2019-06-08/*",
-        "${aws_s3_bucket.api_archive_bucket.arn}parsed/2019-06-09/*",
-        "${aws_s3_bucket.api_archive_bucket.arn}parsed/2019-06-10/*",
-        "${aws_s3_bucket.api_archive_bucket.arn}parsed/2019-06-11/*",
-        "${aws_s3_bucket.api_archive_bucket.arn}parsed/2019-06-12/*",
-        "${aws_s3_bucket.api_archive_bucket.arn}parsed/2019-06-13/*",
-        "${aws_s3_bucket.api_archive_bucket.arn}parsed/2019-06-14/*"
+      "Resource": ["${aws_s3_bucket.api_archive_bucket.arn}/parsed/2019-06-08/*",
+        "${aws_s3_bucket.api_archive_bucket.arn}/parsed/2019-06-09/*",
+        "${aws_s3_bucket.api_archive_bucket.arn}/parsed/2019-06-10/*",
+        "${aws_s3_bucket.api_archive_bucket.arn}/parsed/2019-06-11/*",
+        "${aws_s3_bucket.api_archive_bucket.arn}/parsed/2019-06-12/*",
+        "${aws_s3_bucket.api_archive_bucket.arn}/parsed/2019-06-13/*",
+        "${aws_s3_bucket.api_archive_bucket.arn}/parsed/2019-06-14/*"
       ]
     },
     {
