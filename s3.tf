@@ -543,6 +543,7 @@ resource "aws_s3_bucket" "acl_archive_bucket" {
   }
 
   lifecycle_rule {
+    enabled = true
     transition {
       days          = 7
       storage_class = "STANDARD_IA"
