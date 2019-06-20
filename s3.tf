@@ -56,6 +56,14 @@ resource "aws_s3_bucket" "log_archive_bucket" {
     enabled = true
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 7
+      storage_class = "STANDARD_IA"
+    }
+  }
+
   tags = {
     Name = "s3-log-archive-bucket-${local.naming_suffix}"
   }
@@ -111,6 +119,14 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   logging {
     target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
     target_prefix = "data_archive_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 7
+      storage_class = "STANDARD_IA"
+    }
   }
 
   tags = {
