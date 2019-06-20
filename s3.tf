@@ -62,6 +62,10 @@ resource "aws_s3_bucket" "log_archive_bucket" {
       days          = 28
       storage_class = "STANDARD_IA"
     }
+    noncurrent_version_transition {
+      days          = 28
+      storage_class = "STANDARD_IA"
+    }
   }
 
   tags = {
