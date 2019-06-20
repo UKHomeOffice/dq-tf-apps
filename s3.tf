@@ -542,6 +542,13 @@ resource "aws_s3_bucket" "acl_archive_bucket" {
     target_prefix = "acl_archive_bucket/"
   }
 
+  lifecycle_rule {
+    transition {
+      days          = 7
+      storage_class = "STANDARD_IA"
+    }
+  }
+
   tags = {
     Name = "s3-dq-acl-archive-${local.naming_suffix}"
   }
