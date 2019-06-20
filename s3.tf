@@ -227,6 +227,14 @@ resource "aws_s3_bucket" "airports_archive_bucket" {
     target_prefix = "airports_archive_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 7
+      storage_class = "STANDARD_IA"
+    }
+  }
+
   tags = {
     Name = "s3-dq-airports-archive-${local.naming_suffix}"
   }
@@ -381,6 +389,14 @@ resource "aws_s3_bucket" "oag_archive_bucket" {
   logging {
     target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
     target_prefix = "oag_archive_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 7
+      storage_class = "STANDARD_IA"
+    }
   }
 
   tags = {
@@ -653,6 +669,14 @@ resource "aws_s3_bucket" "reference_data_archive_bucket" {
     target_prefix = "reference_data_archive_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 7
+      storage_class = "STANDARD_IA"
+    }
+  }
+
   tags = {
     Name = "s3-dq-reference-data-archive-${local.naming_suffix}"
   }
@@ -811,6 +835,14 @@ resource "aws_s3_bucket" "api_archive_bucket" {
   logging {
     target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
     target_prefix = "api_archive_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 7
+      storage_class = "STANDARD_IA"
+    }
   }
 
   tags = {
