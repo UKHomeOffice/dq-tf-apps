@@ -59,11 +59,11 @@ resource "aws_s3_bucket" "log_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
     noncurrent_version_transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
   }
@@ -128,11 +128,11 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
     noncurrent_version_transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
   }
@@ -254,11 +254,11 @@ resource "aws_s3_bucket" "airports_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
     noncurrent_version_transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
   }
@@ -422,11 +422,11 @@ resource "aws_s3_bucket" "oag_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
     noncurrent_version_transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
   }
@@ -593,11 +593,11 @@ resource "aws_s3_bucket" "acl_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
     noncurrent_version_transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
   }
@@ -708,11 +708,11 @@ resource "aws_s3_bucket" "reference_data_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
     noncurrent_version_transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
   }
@@ -880,11 +880,11 @@ resource "aws_s3_bucket" "api_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
     noncurrent_version_transition {
-      days          = 14
+      days          = 30
       storage_class = "STANDARD_IA"
     }
   }
