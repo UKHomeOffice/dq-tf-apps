@@ -78,6 +78,7 @@ module "data_ingest" {
   archive_bucket             = "${aws_s3_bucket.data_archive_bucket.arn}"
   archive_bucket_name        = "${aws_s3_bucket.data_archive_bucket.id}"
   apps_buckets_kms_key       = "${aws_kms_key.bucket_key.arn}"
+  environment                = "${var.namespace}"
 }
 
 module "lambda" {
