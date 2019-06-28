@@ -67,6 +67,7 @@ class TestE2E(unittest.TestCase):
                 drt_working                   = "abcd"
                 athena_log                    = "abcd"
                 ops_pipeline                  = "abcd"
+                freight_archive               = "abcd"
               }
 
               s3_bucket_acl = {
@@ -98,6 +99,7 @@ class TestE2E(unittest.TestCase):
                 drt_working                   = "private"
                 athena_log                    = "private"
                 ops_pipeline                  = "private"
+                freight_archive               = "private"
               }
 
               route_table_cidr_blocks     = {
