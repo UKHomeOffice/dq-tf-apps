@@ -175,6 +175,9 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_carrier_portal_working(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.carrier_portal_working_bucket"]["tags.Name"], "s3-dq-carrier-portal-working-apps-preprod-dq")
 
+    def test_name_suffix_carrier_portal_working(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.freight_archive_bucket"]["tags.Name"], "s3-dq-cfreight-archive-apps-preprod-dq")
+
     def test_name_suffix_nats_iam_group(self):
         self.assertEqual(self.result['apps']["aws_iam_group.nats"]["name"], "iam-group-nats-apps-preprod-dq")
 
