@@ -205,12 +205,12 @@ module "rds_deploy" {
   lambda_subnet                        = "${module.lambda.lambda_subnet}"
   lambda_subnet_az2                    = "${module.lambda.lambda_subnet_az2}"
   lambda_sgrp                          = "${module.lambda.lambda_sgrp}"
-  rds_internal_tableau_address         = "${module.internal_tableau.rds_internal_tableau_address[0]}"
+  rds_internal_tableau_address         = "${module.internal_tableau.rds_internal_tableau_address}"
   rds_fms_address                      = "${module.fms.rds_address}"
   rds_datafeed_address                 = "${module.data_feeds.rds_address}"
   naming_suffix                        = "${local.naming_suffix}"
   namespace                            = "${var.naming_suffix}"
-  rds_internal_tableau_staging_address = "${module.internal_tableau.rds_internal_tableau_staging_endpoint}"
+  rds_internal_tableau_staging_address = "${module.internal_tableau.rds_internal_tableau_staging_endpoint[0]}"
 }
 
 module "fms_pipeline" {
