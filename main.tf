@@ -300,6 +300,12 @@ module "ops_pipeline" {
   namespace                    = "${var.namespace}"
 }
 
+module "freight-glue" {
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-freight-glue.git"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
+}
+
 resource "aws_vpc" "appsvpc" {
   cidr_block           = "${var.cidr_block}"
   enable_dns_hostnames = true
