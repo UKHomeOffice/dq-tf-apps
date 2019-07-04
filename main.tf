@@ -300,7 +300,7 @@ module "ops_pipeline" {
   namespace                    = "${var.namespace}"
 }
 
-module "freight-glue" {
+module "freight_glue" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-freight-glue.git"
   naming_suffix = "${local.naming_suffix}"
   namespace     = "${var.namespace}"
