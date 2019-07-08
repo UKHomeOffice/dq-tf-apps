@@ -65,5 +65,5 @@ output "dq_pipeline_ops_freight_readwrite_bucket_list" {
 }
 
 output "dq_pipeline_ops_freight_readwrite_database_name_list" {
-  value = "${dq_pipeline_ops_freight_readwrite_database_name_list}"
+  value = "${var.dq_pipeline_ops_freight_readwrite_database_name_list}"
 }
