@@ -38,6 +38,9 @@ class TestE2E(unittest.TestCase):
               haproxy_config_bucket           = "s3-bucket-name"
               haproxy_config_bucket_key       = "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 
+              dq_pipeline_ops_freight_readwrite_bucket_list        = ["s3-bucket-name"]
+              dq_pipeline_ops_freight_readwrite_database_name_list = ["a-database-name"]
+
               s3_bucket_name = {
                 archive_log                   = "abcd"
                 archive_data                  = "abcd"
