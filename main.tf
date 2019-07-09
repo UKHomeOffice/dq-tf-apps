@@ -306,6 +306,12 @@ module "freight_glue" {
   namespace     = "${var.namespace}"
 }
 
+module "dailytasks" {
+  source        = "git@github.com:UKHomeOffice/dq-tf-apps.git"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
+}
+
 resource "aws_vpc" "appsvpc" {
   cidr_block           = "${var.cidr_block}"
   enable_dns_hostnames = true
