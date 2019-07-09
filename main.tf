@@ -307,7 +307,7 @@ module "freight_glue" {
 }
 
 module "dailytasks" {
-  source        = "github.com/ukhomeoffice/dq-tf-apps"
+  source        = "github.com/ukhomeoffice/dailytasks"
   naming_suffix = "${local.naming_suffix}"
   namespace     = "${var.namespace}"
 }
