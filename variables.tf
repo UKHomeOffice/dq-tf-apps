@@ -55,6 +55,8 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "oag_transform",
     "internal_reporting",
     "drt",
+    "airports_working",
+    "airports_input",
   ]
 }
 
@@ -75,6 +77,8 @@ variable "dq_pipeline_ops_readwrite_bucket_list" {
     "s3-dq-athena-log",
     "s3-dq-drt-working",
     "s3-dq-reporting-internal-working",
+    "s3-dq-airports-working",
+    "s3-dq-airports-internal",
   ]
 }
 
