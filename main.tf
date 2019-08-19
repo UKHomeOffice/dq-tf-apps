@@ -299,6 +299,7 @@ module "ops_pipeline" {
   rds_datafeed_address         = "${module.data_feeds.rds_address}"
   naming_suffix                = "${local.naming_suffix}"
   namespace                    = "${var.namespace}"
+  athena_maintenance_bucket    = "${var.athena_maintenance_bucket}"
 }
 
 module "freight_glue" {
