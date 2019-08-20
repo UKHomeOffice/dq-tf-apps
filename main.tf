@@ -289,17 +289,18 @@ module "fms" {
 }
 
 module "ops_pipeline" {
-  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git"
-  kms_key_s3                   = "${aws_kms_key.bucket_key.arn}"
-  lambda_subnet                = "${module.lambda.lambda_subnet}"
-  lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
-  lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
-  rds_internal_tableau_address = "${module.internal_tableau.rds_internal_tableau_address}"
-  rds_fms_address              = "${module.fms.rds_address}"
-  rds_datafeed_address         = "${module.data_feeds.rds_address}"
-  naming_suffix                = "${local.naming_suffix}"
-  namespace                    = "${var.namespace}"
-  athena_maintenance_bucket    = "${var.athena_maintenance_bucket}"
+  source                                = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git"
+  kms_key_s3                            = "${aws_kms_key.bucket_key.arn}"
+  lambda_subnet                         = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2                     = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp                           = "${module.lambda.lambda_sgrp}"
+  rds_internal_tableau_address          = "${module.internal_tableau.rds_internal_tableau_address}"
+  rds_fms_address                       = "${module.fms.rds_address}"
+  rds_datafeed_address                  = "${module.data_feeds.rds_address}"
+  naming_suffix                         = "${local.naming_suffix}"
+  namespace                             = "${var.namespace}"
+  athena_maintenance_bucket             = "${var.athena_maintenance_bucket}"
+  dq_pipeline_ops_readwrite_bucket_list = "${var.dq_pipeline_ops_readwrite_bucket_list}"
 }
 
 module "freight_glue" {
