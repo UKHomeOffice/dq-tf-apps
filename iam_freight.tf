@@ -7,6 +7,7 @@ resource "aws_iam_group_membership" "freight_external" {
 
   users = [
     "${aws_iam_user.freight_external.name}",
+    "${aws_iam_user.freight_external_2.name}",
   ]
 
   group = "${aws_iam_group.freight_external.name}"
@@ -57,4 +58,12 @@ resource "aws_iam_user" "freight_external" {
 
 resource "aws_iam_access_key" "freight_external" {
   user = "${aws_iam_user.freight_external.name}"
+}
+
+resource "aws_iam_user" "freight_external_2" {
+  name = "rm-iam-user-freight_external-${local.naming_suffix}"
+}
+
+resource "aws_iam_access_key" "freight_external_2" {
+  user = "${aws_iam_user.freight_external_2.name}"
 }
