@@ -92,14 +92,12 @@ variable "dq_pipeline_ops_readonly_bucket_list" {
 
 variable "dq_pipeline_ops_freight_readwrite_bucket_list" {
   default = ["s3-dq-freight-archive",
-    "s3-dq-api-internal",
     "s3-dq-athena-log",
   ]
 }
 
 variable "dq_pipeline_ops_freight_readwrite_database_name_list" {
   default = ["freight",
-    "api_input",
   ]
 }
 
