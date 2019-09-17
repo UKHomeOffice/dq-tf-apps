@@ -58,7 +58,7 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "airports_working",
     "airports_input",
     "carrier_portal",
-    "fms"
+    "fms",
   ]
 }
 
@@ -82,7 +82,7 @@ variable "dq_pipeline_ops_readwrite_bucket_list" {
     "s3-dq-airports-working",
     "s3-dq-airports-internal",
     "s3-dq-carrier-portal-working"
-    "s3-dq-fms-working"
+    "s3-dq-fms-working",
   ]
 }
 
