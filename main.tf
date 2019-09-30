@@ -315,7 +315,7 @@ module "dailytasks" {
   namespace     = "${var.namespace}"
 }
 
-module "freight_glue" {
+module "virus_scanner" {
   source        = "github.com/UKHomeOffice/dq-tf-lambda-virus-scanner"
   naming_suffix = "${local.naming_suffix}"
   namespace     = "${var.namespace}"
