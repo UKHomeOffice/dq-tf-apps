@@ -1667,6 +1667,58 @@ resource "aws_s3_bucket_policy" "bfid_virus_scan_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket" "bfid_virus_definition_bucket" {
+  bucket = "${var.s3_bucket_name["bfid_virus_definitions"]}"
+  acl    = "${var.s3_bucket_acl["bfid_virus_definitions"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "bfid_virus_definitions_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-bfid-virus-definitions-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "bfid_virus_definitions_policy" {
+  bucket = "${var.s3_bucket_name["bfid_virus_definitions"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["bfid_virus_definitions"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
+
 resource "aws_s3_bucket_metric" "drt_working_logging" {
   bucket = "${var.s3_bucket_name["drt_working"]}"
   name   = "drt_working_bucket_metric"
