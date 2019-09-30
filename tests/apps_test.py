@@ -72,6 +72,7 @@ class TestE2E(unittest.TestCase):
                 ops_pipeline                  = "abcd"
                 freight_archive               = "abcd"
                 bfid_virus_free_archive       = "abcd"
+                bfid_virus_scan               = "abcd"
               }
 
               s3_bucket_acl = {
@@ -105,6 +106,7 @@ class TestE2E(unittest.TestCase):
                 ops_pipeline                  = "private"
                 freight_archive               = "private"
                 bfid_virus_free_archive       = "private"
+                bfid_virus_scan               = "private"
               }
 
               route_table_cidr_blocks     = {

@@ -315,6 +315,12 @@ module "dailytasks" {
   namespace     = "${var.namespace}"
 }
 
+module "freight_glue" {
+  source        = "github.com/UKHomeOffice/dq-tf-lambda-virus-scanner"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
+}
+
 resource "aws_vpc" "appsvpc" {
   cidr_block           = "${var.cidr_block}"
   enable_dns_hostnames = true
