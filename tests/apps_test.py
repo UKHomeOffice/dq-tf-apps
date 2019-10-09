@@ -356,6 +356,24 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_consolidated_schedule_pipeline_log_lambda_athena(self):
         self.assertEqual(self.result['apps']['consolidated_schedule_pipeline']["aws_cloudwatch_log_group.lambda_log_group_athena"]["tags.Name"], "lambda-log-group-athena-consolidated-schedule-apps-preprod-dq")
 
+    def test_name_suffix_cdlz_iam_lambda(self):
+        self.assertEqual(self.result['apps']['cdlz']["aws_iam_role.lambda_acquire"]["tags.Name"],
+                         "iam-lambda-cdlz-apps-preprod-dq")
+
+    def test_name_suffix_cdlz_ssm_lambda(self):
+        self.assertEqual(
+            self.result['apps']['cdlz']["aws_ssm_parameter.lambda_enabled"]["tags.Name"],
+            "ssm-lambda-enabled-cdlz-apps-preprod-dq")
+
+    def test_name_suffix_cdlz_lambda(self):
+        self.assertEqual(self.result['apps']['cdlz']["aws_lambda_function.lambda_acquire"]["tags.Name"],
+                         "lambda-cdlz-apps-preprod-dq")
+
+    def test_name_suffix_cdlz_log_lambda(self):
+        self.assertEqual(
+            self.result['apps']['cdlz']["aws_cloudwatch_log_group.lambda_acquire"]["tags.Name"],
+            "log-lambda-cdlz-apps-preprod-dq")
+
     def test_name_suffix_api_input_pipeline_iam_lambda_trigger(self):
         self.assertEqual(self.result['apps']['api_input_pipeline']["aws_iam_role.lambda_role_trigger"]["tags.Name"], "iam-lambda-trigger-api-input-apps-preprod-dq")
 
