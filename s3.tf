@@ -923,6 +923,74 @@ resource "aws_s3_bucket_metric" "api_archive_bucket_logging" {
   name   = "api_archive_bucket_metric"
 }
 
+resource "aws_s3_bucket" "cdl_pre_cutover_bucket" {
+  bucket = "${var.s3_bucket_name["cdl_pre_cutover"]}"
+  acl    = "${var.s3_bucket_acl["cdl_pre_cutover"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "cdl_pre_cutover_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 30
+      storage_class = "STANDARD_IA"
+    }
+    noncurrent_version_transition {
+      days          = 30
+      storage_class = "STANDARD_IA"
+    }
+  }
+
+  tags = {
+    Name = "s3-dq-cdl-pre-cutover-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "cdl_pre_cutover_policy" {
+  bucket = "${var.s3_bucket_name["cdl_pre_cutover"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["cdl_pre_cutover"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_s3_bucket_metric" "cdl_pre_cutover_bucket_logging" {
+  bucket = "${var.s3_bucket_name["cdl_pre_cutover"]}"
+  name   = "cdl_pre_cutover_bucket_metric"
+}
+
 resource "aws_s3_bucket" "api_internal_bucket" {
   bucket = "${var.s3_bucket_name["api_internal"]}"
   acl    = "${var.s3_bucket_acl["api_internal"]}"
