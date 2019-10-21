@@ -40,7 +40,6 @@ resource "aws_iam_group_policy" "nats" {
         "${aws_s3_bucket.nats_archive_bucket.arn}/*"
         ]
     },
-    },
     {
       "Sid": "UseKMSKey",
       "Effect": "Allow",
