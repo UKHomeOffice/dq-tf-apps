@@ -24,7 +24,10 @@ resource "aws_iam_group_policy" "nats" {
       "Sid": "ListS3Bucket",
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
+      "Resource": [
+        "${aws_s3_bucket.data_archive_bucket.arn}",
+        "${aws_s3_bucket.nats_archive_bucket.arn}"
+        ]
     },
     {
       "Sid": "PutS3Bucket",
@@ -32,7 +35,11 @@ resource "aws_iam_group_policy" "nats" {
       "Action": [
         "s3:PutObject"
       ],
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
+      "Resource": [
+        "${aws_s3_bucket.data_archive_bucket.arn}/*",
+        "${aws_s3_bucket.nats_archive_bucket.arn}/*"
+        ]
+    },
     },
     {
       "Sid": "UseKMSKey",
