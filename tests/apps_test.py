@@ -76,6 +76,7 @@ class TestE2E(unittest.TestCase):
                 bfid_virus_scan               = "abcd"
                 bfid_virus_definitions        = "abcd"
                 nats_archive                  = "abcd"
+                nats_internal                 = "abcd"
               }
 
               s3_bucket_acl = {
@@ -113,6 +114,7 @@ class TestE2E(unittest.TestCase):
                 bfid_virus_scan               = "private"
                 bfid_virus_definitions        = "private"
                 nats_archive                  = "private"
+                nats_internal                 = "private"
               }
 
               route_table_cidr_blocks     = {
