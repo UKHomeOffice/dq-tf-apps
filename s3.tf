@@ -1849,6 +1849,56 @@ resource "aws_s3_bucket_policy" "nats_archive_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket" "nats_internal_bucket" {
+  bucket = "${var.s3_bucket_name["nats_internal"]}"
+  acl    = "${var.s3_bucket_acl["nats_internal"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "nats_internal/"
+  }
+
+  tags = {
+    Name = "nats-internal-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "nats_internal_policy" {
+  bucket = "${var.s3_bucket_name["nats_internal"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["nats_internal"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
 
 resource "aws_s3_bucket_metric" "drt_working_logging" {
   bucket = "${var.s3_bucket_name["drt_working"]}"
