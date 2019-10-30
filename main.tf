@@ -45,6 +45,7 @@ module "internal_tableau" {
   security_group_ids                    = "${module.lambda.lambda_sgrp}"
   lambda_subnet                         = "${module.lambda.lambda_subnet}"
   lambda_subnet_az2                     = "${module.lambda.lambda_subnet_az2}"
+  rds_enhanced_monitoring_role          = "${aws_iam_role.rds_enhanced_monitoring_role.arn}"
 }
 
 module "data_feeds" {
