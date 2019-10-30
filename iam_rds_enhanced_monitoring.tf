@@ -6,7 +6,7 @@ resource "aws_iam_role" "rds_enhanced_monitoring_role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": "monitoring.amazonaws.com"
+        "Service": "monitoring.rds.amazonaws.com"
       },
       "Action": "sts:AssumeRole"
     }
