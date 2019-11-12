@@ -67,3 +67,11 @@ resource "aws_iam_user" "freight_external_2" {
 resource "aws_iam_access_key" "freight_external_2" {
   user = "${aws_iam_user.freight_external_2.name}"
 }
+
+resource "aws_iam_user" "freight_external_3" {
+  name = "gk-iam-user-freight_external-${local.naming_suffix}"
+}
+
+resource "aws_iam_access_key" "freight_external_3" {
+  user = "${aws_iam_user.freight_external_3.name}"
+}
