@@ -8,6 +8,7 @@ resource "aws_iam_group_membership" "freight_external" {
   users = [
     "${aws_iam_user.freight_external.name}",
     "${aws_iam_user.freight_external_2.name}",
+    "${aws_iam_user.freight_external_3.name}"
   ]
 
   group = "${aws_iam_group.freight_external.name}"
