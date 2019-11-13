@@ -7,6 +7,7 @@ resource "aws_iam_group_membership" "api" {
 
   users = [
     "${aws_iam_user.api.name}",
+    "${aws_iam_user.api_2.name}"
   ]
 
   group = "${aws_iam_group.api.name}"
@@ -57,4 +58,12 @@ resource "aws_iam_user" "api" {
 
 resource "aws_iam_access_key" "api" {
   user = "${aws_iam_user.api.name}"
+}
+
+resource "aws_iam_user" "api_2" {
+  name = "cdlz-iam-user-api-${local.naming_suffix}"
+}
+
+resource "aws_iam_access_key" "api_2" {
+  user = "${aws_iam_user.api_2.name}"
 }
