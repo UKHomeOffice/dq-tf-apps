@@ -24,7 +24,7 @@ resource "aws_iam_group_policy" "cdlz" {
             "Sid": "ListS3Bucket",
             "Effect": "Allow",
             "Action": "s3:ListBucket",
-            "Resource": "arn:aws:s3:::s3-dq-freight-archive-prod"
+            "Resource": "${aws_s3_bucket.freight_archive_bucket.arn}"
         },
         {
             "Sid": "PutS3Bucket",
@@ -34,7 +34,7 @@ resource "aws_iam_group_policy" "cdlz" {
                 "s3:PutObject",
                 "s3:DeleteObject"
             ],
-            "Resource": "arn:aws:s3:::s3-dq-freight-archive-prod/archive/*"
+            "Resource": "${aws_s3_bucket.freight_archive_bucket.arn}/archive/*"
         },
         {
             "Sid": "UseKMSKey",
@@ -46,7 +46,34 @@ resource "aws_iam_group_policy" "cdlz" {
                 "kms:GenerateDataKey*",
                 "kms:DescribeKey"
             ],
-            "Resource": "arn:aws:kms:eu-west-2:337779336338:key/ae75113d-f4f6-49c6-a15e-e8493fda0453"
+            "Resource": "${aws_kms_key.bucket_key.arn}"
+        }
+
+        {
+          "Sid": "ListS3Bucket",
+          "Effect": "Allow",
+          "Action": "s3:ListBucket",
+          "Resource": "${aws_s3_bucket.api_archive_bucket.arn}"
+        },
+        {
+          "Sid": "PutS3Bucket",
+          "Effect": "Allow",
+          "Action": [
+            "s3:PutObject"
+          ],
+          "Resource": "${aws_s3_bucket.api_archive_bucket.arn}/*"
+        },
+        {
+          "Sid": "UseKMSKey",
+          "Effect": "Allow",
+          "Action": [
+            "kms:Encrypt",
+            "kms:Decrypt",
+            "kms:ReEncrypt*",
+            "kms:GenerateDataKey*",
+            "kms:DescribeKey"
+            ],
+            "Resource": "${aws_kms_key.bucket_key.arn}"
         }
     ]
 }
