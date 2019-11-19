@@ -12,7 +12,7 @@ resource "aws_iam_group_membership" "cdlz" {
   group = "${aws_iam_group.cdlz.name}"
 }
 
-resource "aws_iam_group_policy" "freight" {
+resource "aws_iam_group_policy" "cdlz_freight" {
   name  = "group-policy-cdlz-${local.naming_suffix}"
   group = "${aws_iam_group.cdlz.id}"
 
@@ -53,7 +53,7 @@ resource "aws_iam_group_policy" "freight" {
 EOF
 }
 
-resource "aws_iam_group_policy" "api" {
+resource "aws_iam_group_policy" "cdlz_api" {
   name  = "group-policy-cdlz-${local.naming_suffix}"
   group = "${aws_iam_group.cdlz.id}"
 
