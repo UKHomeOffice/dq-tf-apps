@@ -119,5 +119,5 @@ variable "haproxy_config_bucket_key" {
 
 variable "athena_maintenance_bucket" {
   description = "Athena Maintenance Bucket Name"
-  default = "s3-dq-athena-maintenance-bucket"
+  default     = "s3-dq-athena-maintenance-bucket"
 }

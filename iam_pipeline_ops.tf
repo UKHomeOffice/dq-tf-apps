@@ -18,8 +18,8 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${join("\",\"",formatlist("arn:aws:s3:::%s-%s", var.dq_pipeline_ops_readwrite_bucket_list, var.namespace))}",
-        "${join("\",\"",formatlist("arn:aws:s3:::%s-%s/*", var.dq_pipeline_ops_readwrite_bucket_list, var.namespace))}"
+        "${join("\",\"", formatlist("arn:aws:s3:::%s-%s", var.dq_pipeline_ops_readwrite_bucket_list, var.namespace))}",
+        "${join("\",\"", formatlist("arn:aws:s3:::%s-%s/*", var.dq_pipeline_ops_readwrite_bucket_list, var.namespace))}"
       ]
     },
     {
@@ -40,8 +40,8 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${join("\",\"",formatlist("arn:aws:s3:::%s-%s", var.dq_pipeline_ops_readonly_bucket_list, var.namespace))}",
-        "${join("\",\"",formatlist("arn:aws:s3:::%s-%s/*", var.dq_pipeline_ops_readonly_bucket_list, var.namespace))}"
+        "${join("\",\"", formatlist("arn:aws:s3:::%s-%s", var.dq_pipeline_ops_readonly_bucket_list, var.namespace))}",
+        "${join("\",\"", formatlist("arn:aws:s3:::%s-%s/*", var.dq_pipeline_ops_readonly_bucket_list, var.namespace))}"
       ]
     },
     {
@@ -72,8 +72,8 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
       "Effect": "Allow",
       "Resource": [
         "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
-        "${join("\",\"",formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.dq_pipeline_ops_readwrite_database_name_list, var.namespace))}",
-        "${join("\",\"",formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*", var.dq_pipeline_ops_readwrite_database_name_list, var.namespace))}"
+        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.dq_pipeline_ops_readwrite_database_name_list, var.namespace))}",
+        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*", var.dq_pipeline_ops_readwrite_database_name_list, var.namespace))}"
       ]
     },
     {
@@ -87,8 +87,8 @@ resource "aws_iam_policy" "dq_pipeline_ops_policy" {
       "Effect": "Allow",
       "Resource": [
         "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/default",
-        "${join("\",\"",formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.dq_pipeline_ops_readonly_database_name_list, var.namespace))}",
-        "${join("\",\"",formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*", var.dq_pipeline_ops_readonly_database_name_list, var.namespace))}"
+        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.dq_pipeline_ops_readonly_database_name_list, var.namespace))}",
+        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*", var.dq_pipeline_ops_readonly_database_name_list, var.namespace))}"
       ]
     },
     {
