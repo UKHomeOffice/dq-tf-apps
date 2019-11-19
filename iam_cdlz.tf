@@ -31,24 +31,10 @@ resource "aws_iam_group_policy" "cdlz" {
             "Effect": "Allow",
             "Action": [
                 "s3:GetObject",
-                "s3:PutObject",
-                "s3:DeleteObject"
+                "s3:PutObject"
             ],
             "Resource": "${aws_s3_bucket.freight_archive_bucket.arn}/archive/*"
         },
-        {
-            "Sid": "UseKMSKey",
-            "Effect": "Allow",
-            "Action": [
-                "kms:Encrypt",
-                "kms:Decrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*",
-                "kms:DescribeKey"
-            ],
-            "Resource": "${aws_kms_key.bucket_key.arn}"
-        }
-
         {
           "Sid": "ListS3Bucket",
           "Effect": "Allow",
@@ -59,6 +45,7 @@ resource "aws_iam_group_policy" "cdlz" {
           "Sid": "PutS3Bucket",
           "Effect": "Allow",
           "Action": [
+            "s3:GetObject",
             "s3:PutObject"
           ],
           "Resource": "${aws_s3_bucket.api_archive_bucket.arn}/*"
