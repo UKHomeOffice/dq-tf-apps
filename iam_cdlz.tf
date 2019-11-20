@@ -30,9 +30,9 @@ resource "aws_iam_group_policy" "cdlz" {
       ]
     },
     {
-      "Sid": "PutS3Bucket",
+      "Sid": "GetS3Bucket",
       "Effect": "Allow",
-      "Action": "s3:PutObject",
+      "Action": "s3:GetObject",
       "Resource": [
         "${aws_s3_bucket.freight_archive_bucket.arn}/archive/*",
         "${aws_s3_bucket.api_archive_bucket.arn}/*"
