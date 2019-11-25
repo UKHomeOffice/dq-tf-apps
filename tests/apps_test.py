@@ -537,5 +537,17 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_s3count_iam_user(self):
         self.assertEqual(self.result['apps']["aws_iam_user.s3count"]["name"], "iam-user-s3count-apps-preprod-dq")
 
+    def test_name_crt_iam_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.crt"]["name"], "iam-group-crt-apps-preprod-dq")
+
+    def test_name_crt_iam_group_membership(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_membership.crt"]["name"], "iam-group-membership-crt-apps-preprod-dq")
+
+    def test_name_crt_iam_group_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.crt"]["name"], "group-policy-crt-apps-preprod-dq")
+
+    def test_name_crt_iam_user(self):
+        self.assertEqual(self.result['apps']["aws_iam_user.crt"]["name"], "iam-user-crt-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
