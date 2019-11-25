@@ -544,7 +544,7 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_iam_group_membership.crt"]["name"], "iam-group-membership-crt-apps-preprod-dq")
 
     def test_name_crt_iam_group_policy(self):
-        self.assertEqual(self.result['apps']["aws_iam_group_policy.crt"]["name"], "group-policy-crt-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.crt"]["name"], "iam-group-policy-crt-apps-preprod-dq")
 
     def test_name_crt_iam_user(self):
         self.assertEqual(self.result['apps']["aws_iam_user.crt"]["name"], "iam-user-crt-apps-preprod-dq")
