@@ -13,7 +13,7 @@ resource "aws_iam_group_membership" "athena" {
 }
 
 resource "aws_iam_group_policy" "athena" {
-  name  = "athena-group-policy-${local.naming_suffix}"
+  name  = "iam-group-policy-athena-${local.naming_suffix}"
   group = "${aws_iam_group.athena.id}"
 
   policy = <<EOF
