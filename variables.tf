@@ -121,3 +121,8 @@ variable "athena_maintenance_bucket" {
   description = "Athena Maintenance Bucket Name"
   default     = "s3-dq-athena-maintenance-bucket"
 }
+
+variable "athena_keyprefix" {
+  description = "Keyprefix for Athena maintenance task"
+  default     = "APP"
+}

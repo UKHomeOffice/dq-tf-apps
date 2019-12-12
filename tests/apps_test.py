@@ -549,5 +549,17 @@ class TestE2E(unittest.TestCase):
     def test_name_crt_iam_user(self):
         self.assertEqual(self.result['apps']["aws_iam_user.crt"]["name"], "iam-user-crt-apps-preprod-dq")
 
+    def test_name_athena_iam_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.athena"]["name"], "iam-group-athena-apps-preprod-dq")
+
+    def test_name_athena_iam_group_membership(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_membership.athena"]["name"], "iam-group-membership-athena-apps-preprod-dq")
+
+    def test_name_athena_iam_group_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.athena"]["name"], "iam-group-policy-athena-apps-preprod-dq")
+
+    def test_name_athena_iam_user(self):
+        self.assertEqual(self.result['apps']["aws_iam_user.athena"]["name"], "iam-user-athena-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
