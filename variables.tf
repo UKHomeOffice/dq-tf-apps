@@ -124,5 +124,5 @@ variable "athena_maintenance_bucket" {
 
 variable "athena_keyprefix" {
   description = "Keyprefix for Athena maintenance task"
-  default     = "APP"
+  default     = "app"
 }
