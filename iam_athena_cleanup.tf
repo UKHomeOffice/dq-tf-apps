@@ -64,7 +64,7 @@ resource "aws_iam_group_policy" "athena" {
       "Resource": "${aws_kms_key.bucket_key.arn}"
     },
     {
-      "Effect": "Allow"
+      "Effect": "Allow",
       "Action": [
           "logs:CreateLogStream",
           "logs:PutLogEvents"
