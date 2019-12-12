@@ -88,7 +88,8 @@ resource "aws_iam_group_policy" "athena" {
                 "glue:GetDatabase*",
                 "glue:GetTable*",
                 "glue:GetPartitions",
-                "glue:DeleteTable"
+                "glue:DeleteTable",
+                "glue:BatchDeletePartition"
       ],
       "Resource": "*"
     },
