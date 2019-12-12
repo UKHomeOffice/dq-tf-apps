@@ -75,22 +75,31 @@ resource "aws_iam_group_policy" "athena" {
       ]
     },
     {
+      "Effect": "Allow",
       "Action": [
                 "athena:StartQueryExecution",
                 "athena:GetQueryExecution"
       ],
-      "Effect": "Allow",
       "Resource": "*"
     },
     {
+      "Effect": "Allow",
       "Action": [
                 "glue:GetDatabase*",
                 "glue:GetTable*",
                 "glue:GetPartitions",
                 "glue:DeleteTable"
       ],
-      "Effect": "Allow",
       "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+                 "ssm:GetParameter"
+      ],
+      "Resource": [
+      "arn:aws:ssm:eu-west-2:*:parameter/slack_notification_webhook"
+      ]
     }
   ]
 }
