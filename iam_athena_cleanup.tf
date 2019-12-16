@@ -109,13 +109,13 @@ resource "aws_iam_access_key" "athena" {
 }
 
 resource "aws_ssm_parameter" "athena_id" {
-  name  = "kubernetes-athena-user-id-${var.athena_keyprefix}-${local.naming_suffix}"
+  name  = "kubernetes-athena-user-id-${var.athena_log_prefix}-${local.naming_suffix}"
   type  = "SecureString"
   value = "${aws_iam_access_key.athena.id}"
 }
 
 resource "aws_ssm_parameter" "athena_key" {
-  name  = "kubernetes-athena-user-key-${var.athena_keyprefix}-${local.naming_suffix}"
+  name  = "kubernetes-athena-user-key-${var.athena_log_prefix}-${local.naming_suffix}"
   type  = "SecureString"
   value = "${aws_iam_access_key.athena.secret}"
 }
