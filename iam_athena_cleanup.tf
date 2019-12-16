@@ -31,7 +31,7 @@ resource "aws_iam_group_policy" "athena" {
       ],
       "Resource": [
         "${aws_s3_bucket.athena_log_bucket.arn}",
-        "${aws_s3_bucket.athena_log_bucket.arn}/${var.athena_keyprefix}/*"
+        "${aws_s3_bucket.athena_log_bucket.arn}/${var.athena_log_prefix}/*"
       ]
     },
     {
@@ -49,7 +49,7 @@ resource "aws_iam_group_policy" "athena" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${aws_s3_bucket.athena_log_bucket.arn}/${var.athena_keyprefix}/*"
+        "${aws_s3_bucket.athena_log_bucket.arn}/${var.athena_log_prefix}/*"
       ]
     },
     {
@@ -62,17 +62,6 @@ resource "aws_iam_group_policy" "athena" {
         "kms:DescribeKey"
         ],
       "Resource": "${aws_kms_key.bucket_key.arn}"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-          "logs:CreateLogStream",
-          "logs:PutLogEvents"
-          ],
-      "Resource": [
-        "${aws_cloudwatch_log_group.athena_cleanup.arn}",
-        "${aws_cloudwatch_log_group.athena_cleanup.arn}/*"
-      ]
     },
     {
       "Effect": "Allow",
@@ -91,7 +80,11 @@ resource "aws_iam_group_policy" "athena" {
                 "glue:DeleteTable",
                 "glue:BatchDeletePartition"
       ],
-      "Resource": "*"
+      "Resource": [
+        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
+        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.athena_adhoc_maintenance_database, var.namespace))}",
+        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/var.${athena_adhoc_maintenance_table}"
+      ]
     },
     {
       "Effect": "Allow",
@@ -105,15 +98,6 @@ resource "aws_iam_group_policy" "athena" {
   ]
 }
 EOF
-}
-
-resource "aws_cloudwatch_log_group" "athena_cleanup" {
-  name              = "/kubernetes/athena/${var.athena_keyprefix}"
-  retention_in_days = 14
-
-  tags = {
-    Name = "kubernetes-log-group-athena-${var.athena_keyprefix}-${local.naming_suffix}"
-  }
 }
 
 resource "aws_iam_user" "athena" {

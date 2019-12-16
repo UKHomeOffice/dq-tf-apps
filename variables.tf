@@ -122,7 +122,17 @@ variable "athena_maintenance_bucket" {
   default     = "s3-dq-athena-maintenance-bucket"
 }
 
-variable "athena_keyprefix" {
+variable "athena_adhoc_maintenance_database" {
+  description = "Athena maintenance database name"
+  default     = ["api_input"]
+}
+
+variable "athena_adhoc_maintenance_table" {
+  description = "Athena maintenance table name"
+  default     = ["input_file_api"]
+}
+
+variable "athena_log_prefix" {
   description = "Keyprefix for Athena maintenance task"
   default     = "app"
 }
