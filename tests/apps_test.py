@@ -561,14 +561,11 @@ class TestE2E(unittest.TestCase):
     def test_name_athena_iam_user(self):
         self.assertEqual(self.result['apps']["aws_iam_user.athena"]["name"], "iam-user-athena-apps-preprod-dq")
 
-    def test_name_kubernetes_athena_log_group(self):
-        self.assertEqual(self.result['apps']["aws_cloudwatch_log_group.athena_cleanup"]["tags.Name"], "kubernetes-log-group-athena-app-apps-preprod-dq")
-
     def test_name_ssm_athena_id(self):
         self.assertEqual(self.result['apps']["aws_ssm_parameter.athena_id"]["name"], "kubernetes-athena-user-id-app-apps-preprod-dq")
 
     def test_name_ssm_athena_key(self):
-        self.assertEqual(self.result['apps']["aws_ssm_parameter.athena_key"]["name"], "kubernetes-athena-user-key-app-apps-preprod-dq")     
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.athena_key"]["name"], "kubernetes-athena-user-key-app-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
