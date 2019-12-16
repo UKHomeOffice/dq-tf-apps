@@ -124,11 +124,13 @@ variable "athena_maintenance_bucket" {
 
 variable "athena_adhoc_maintenance_database" {
   description = "Athena maintenance database name"
+  type        = "list"
   default     = ["api_input"]
 }
 
 variable "athena_adhoc_maintenance_table" {
   description = "Athena maintenance table name"
+  type        = "list"
   default     = ["input_file_api"]
 }
 
