@@ -83,7 +83,7 @@ resource "aws_iam_group_policy" "athena" {
       "Resource": [
         "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
         "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.athena_adhoc_maintenance_database, var.namespace))}",
-        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/var.${athena_adhoc_maintenance_table}"
+        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/${var.athena_adhoc_maintenance_table}"
       ]
     },
     {
