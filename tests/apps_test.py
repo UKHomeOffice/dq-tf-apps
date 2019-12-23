@@ -567,5 +567,23 @@ class TestE2E(unittest.TestCase):
     def test_name_ssm_athena_key(self):
         self.assertEqual(self.result['apps']["aws_ssm_parameter.athena_key"]["name"], "kubernetes-athena-user-key-app-apps-preprod-dq")
 
+    def test_name_nats_history_iam_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.nats_history"]["name"], "iam-group-nats-history-apps-preprod-dq")
+
+    def test_name_nats_historyiam_group_membership(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_membership.nats_history"]["name"], "iam-group-membership-nats-history-apps-preprod-dq")
+
+    def test_name_nats_history_iam_group_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.nats_history"]["name"], "iam-group-policy-nats-history-apps-preprod-dq")
+
+    def test_name_nats_history_iam_user(self):
+        self.assertEqual(self.result['apps']["aws_iam_user.nats_history"]["name"], "iam-user-nats-history-apps-preprod-dq")
+
+    def test_name_ssm_nats_history_id(self):
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.nats_history_id"]["name"], "kubernetes-nats-history-user-id-app-apps-preprod-dq")
+
+    def test_name_ssm_nats_history_key(self):
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.nats_history_key"]["name"], "kubernetes-nats-history-user-key-app-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
