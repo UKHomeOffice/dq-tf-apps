@@ -68,13 +68,13 @@ resource "aws_iam_access_key" "nats_history" {
 }
 
 resource "aws_ssm_parameter" "nats_history_id" {
-  name  = "kubernetes-nats-history-user-id-${local.naming_suffix}"
+  name  = "nats-history-user-id-${local.naming_suffix}"
   type  = "SecureString"
   value = "${aws_iam_access_key.nats_history.id}"
 }
 
 resource "aws_ssm_parameter" "nats_history_key" {
-  name  = "kubernetes-nats-history-user-key-${local.naming_suffix}"
+  name  = "nats-history-user-key-${local.naming_suffix}"
   type  = "SecureString"
   value = "${aws_iam_access_key.nats_history.secret}"
 }
