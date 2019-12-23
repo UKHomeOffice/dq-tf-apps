@@ -580,10 +580,10 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_iam_user.nats_history"]["name"], "iam-user-nats-history-apps-preprod-dq")
 
     def test_name_ssm_nats_history_id(self):
-        self.assertEqual(self.result['apps']["aws_ssm_parameter.nats_history_id"]["name"], "kubernetes-nats-history-user-id-app-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.nats_history_id"]["name"], "nats-history-user-id-apps-preprod-dq")
 
     def test_name_ssm_nats_history_key(self):
-        self.assertEqual(self.result['apps']["aws_ssm_parameter.nats_history_key"]["name"], "kubernetes-nats-history-user-key-app-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.nats_history_key"]["name"], "nats-history-user-key-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
