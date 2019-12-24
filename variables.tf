@@ -136,8 +136,3 @@ variable "athena_log_prefix" {
   description = "Keyprefix for Athena maintenance task"
   default     = "app"
 }
-
-variable "nats_history_keyprefix" {
-  description = "NATS historic keyprefix"
-  default     = "history"
-}
