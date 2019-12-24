@@ -40,7 +40,7 @@ resource "aws_iam_group_policy" "nats_history" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${aws_s3_bucket.nats_internal_bucket.arn}/${var.namespace == "prod" ? "newprocessed" : "processed"}}/fpl/*"
+        "${aws_s3_bucket.nats_internal_bucket.arn}/${var.namespace == "prod" ? "newprocessed" : "processed"}/fpl/*"
       ]
     },
     {
