@@ -585,17 +585,5 @@ class TestE2E(unittest.TestCase):
     def test_name_ssm_nats_history_key(self):
         self.assertEqual(self.result['apps']["aws_ssm_parameter.nats_history_key"]["name"], "nats-history-user-key-apps-preprod-dq")
 
-    def test_lifecycle_rule_tag_int_tab_green(self):
-        self.assertEqual(self.result['apps']["aws_s3_bucket.data_archive_bucket"]["lifecycle_rule"] ["tags.rule"], "s3-data-archive-bucket-internal-tableau-green-cleanup-apps-preprod-dq")
-
-    def test_lifecycle_rule_tag_int_tab_blue(self):
-        self.assertEqual(self.result['apps']["aws_s3_bucket.data_archive_bucket"]["lifecycle_rule"] ["tags.rule"], "s3-data-archive-bucket-internal-tableau-blue-cleanup-apps-preprod-dq")
-
-    def test_lifecycle_rule_tag_ext_tab_green(self):
-        self.assertEqual(self.result['apps']["aws_s3_bucket.data_archive_bucket"]["lifecycle_rule"] ["tags.rule"], "s3-data-archive-bucket-external-tableau-green-cleanup-apps-preprod-dq")
-
-    def test_lifecycle_rule_tag_int_tab_blue(self):
-        self.assertEqual(self.result['apps']["aws_s3_bucket.data_archive_bucket"]["lifecycle_rule"] ["tags.rule"], "s3-data-archive-bucket-internal-tableau-blue-cleanup-apps-preprod-dq")
-
 if __name__ == '__main__':
     unittest.main()
