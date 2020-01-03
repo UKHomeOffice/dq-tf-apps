@@ -137,6 +137,70 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     }
   }
 
+  lifecycle_rule {
+    id      = "internal_tableau"
+    enabled = true
+
+    prefix = "tableau_int/green"
+
+    tags = {
+      rule      = "s3-data-archive-bucket-internal-tableau-green-cleanup-${local.naming_suffix}"
+      autoclean = "true"
+    }
+
+    expiration {
+      days = 15
+    }
+  }
+
+  lifecycle_rule {
+    id      = "internal_tableau"
+    enabled = true
+
+    prefix = "tableau_int/blue"
+
+    tags = {
+      rule      = "s3-data-archive-bucket-internal-tableau-blue-cleanup-${local.naming_suffix}"
+      autoclean = "true"
+    }
+
+    expiration {
+      days = 15
+    }
+  }
+
+  lifecycle_rule {
+    id      = "external_tableau"
+    enabled = true
+
+    prefix = "tableau_ext/green"
+
+    tags = {
+      rule      = "s3-data-archive-bucket-external-tableau-green-cleanup-${local.naming_suffix}"
+      autoclean = "true"
+    }
+
+    expiration {
+      days = 15
+    }
+  }
+
+  lifecycle_rule {
+    id      = "external_tableau"
+    enabled = true
+
+    prefix = "tableau_ext/blue"
+
+    tags = {
+      rule      = "s3-data-archive-bucket-external-tableau-blue-cleanup-${local.naming_suffix}"
+      autoclean = "true"
+    }
+
+    expiration {
+      days = 15
+    }
+  }
+
   tags = {
     Name = "s3-data-archive-bucket-${local.naming_suffix}"
   }
