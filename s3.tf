@@ -141,7 +141,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     id      = "internal_tableau_green"
     enabled = true
 
-    prefix = "tableau_int/green"
+    prefix = "tableau-int/green"
 
     tags = {
       rule      = "s3-data-archive-bucket-internal-tableau-green-cleanup-${local.naming_suffix}"
@@ -157,7 +157,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     id      = "internal_tableau_blue"
     enabled = true
 
-    prefix = "tableau_int/blue"
+    prefix = "tableau-int/blue"
 
     tags = {
       rule      = "s3-data-archive-bucket-internal-tableau-blue-cleanup-${local.naming_suffix}"
@@ -173,7 +173,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     id      = "external_tableau_green"
     enabled = true
 
-    prefix = "tableau_ext/green"
+    prefix = "tableau-ext/green"
 
     tags = {
       rule      = "s3-data-archive-bucket-external-tableau-green-cleanup-${local.naming_suffix}"
@@ -189,7 +189,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     id      = "external_tableau_blue"
     enabled = true
 
-    prefix = "tableau_ext/blue"
+    prefix = "tableau-ext/blue"
 
     tags = {
       rule      = "s3-data-archive-bucket-external-tableau-blue-cleanup-${local.naming_suffix}"
