@@ -138,7 +138,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 
   lifecycle_rule {
-    id      = "internal_tableau"
+    id      = "internal_tableau_green"
     enabled = true
 
     prefix = "tableau_int/green"
@@ -154,7 +154,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 
   lifecycle_rule {
-    id      = "internal_tableau"
+    id      = "internal_tableau_blue"
     enabled = true
 
     prefix = "tableau_int/blue"
@@ -170,7 +170,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 
   lifecycle_rule {
-    id      = "external_tableau"
+    id      = "external_tableau_green"
     enabled = true
 
     prefix = "tableau_ext/green"
@@ -186,7 +186,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 
   lifecycle_rule {
-    id      = "external_tableau"
+    id      = "external_tableau_blue"
     enabled = true
 
     prefix = "tableau_ext/blue"
