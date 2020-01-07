@@ -141,7 +141,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     id      = "internal_tableau_green"
     enabled = true
 
-    prefix = "tableau-int/green"
+    prefix = "tableau-int/green/"
 
     expiration {
       days = 15
@@ -152,7 +152,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     id      = "internal_tableau_blue"
     enabled = true
 
-    prefix = "tableau-int/blue"
+    prefix = "tableau-int/blue/"
 
     expiration {
       days = 15
@@ -163,7 +163,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     id      = "external_tableau_green"
     enabled = true
 
-    prefix = "tableau-ext/green"
+    prefix = "tableau-ext/green/"
 
     expiration {
       days = 15
@@ -174,7 +174,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     id      = "external_tableau_blue"
     enabled = true
 
-    prefix = "tableau-ext/blue"
+    prefix = "tableau-ext/blue/"
 
     expiration {
       days = 15
