@@ -143,11 +143,6 @@ resource "aws_s3_bucket" "data_archive_bucket" {
 
     prefix = "tableau-int/green"
 
-    tags = {
-      rule      = "s3-data-archive-bucket-internal-tableau-green-cleanup-${local.naming_suffix}"
-      autoclean = "true"
-    }
-
     expiration {
       days = 15
     }
@@ -158,11 +153,6 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     enabled = true
 
     prefix = "tableau-int/blue"
-
-    tags = {
-      rule      = "s3-data-archive-bucket-internal-tableau-blue-cleanup-${local.naming_suffix}"
-      autoclean = "true"
-    }
 
     expiration {
       days = 15
@@ -175,11 +165,6 @@ resource "aws_s3_bucket" "data_archive_bucket" {
 
     prefix = "tableau-ext/green"
 
-    tags = {
-      rule      = "s3-data-archive-bucket-external-tableau-green-cleanup-${local.naming_suffix}"
-      autoclean = "true"
-    }
-
     expiration {
       days = 15
     }
@@ -190,11 +175,6 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     enabled = true
 
     prefix = "tableau-ext/blue"
-
-    tags = {
-      rule      = "s3-data-archive-bucket-external-tableau-blue-cleanup-${local.naming_suffix}"
-      autoclean = "true"
-    }
 
     expiration {
       days = 15
