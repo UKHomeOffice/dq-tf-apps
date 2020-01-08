@@ -146,6 +146,10 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     expiration {
       days = 15
     }
+
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   lifecycle_rule {
@@ -156,6 +160,10 @@ resource "aws_s3_bucket" "data_archive_bucket" {
 
     expiration {
       days = 15
+    }
+
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -168,6 +176,10 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     expiration {
       days = 15
     }
+
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   lifecycle_rule {
@@ -178,6 +190,10 @@ resource "aws_s3_bucket" "data_archive_bucket" {
 
     expiration {
       days = 15
+    }
+
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
