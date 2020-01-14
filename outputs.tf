@@ -14,12 +14,6 @@ output "apps_natgw_id" {
   value = "${aws_nat_gateway.appsnatgw.id}"
 }
 
-output "outputs" {
-  value = {
-    windows = "${aws_instance.win.*.public_dns}"
-  }
-}
-
 output "ad_subnet_id" {
   value = "${aws_subnet.ad_subnet.id}"
 }
