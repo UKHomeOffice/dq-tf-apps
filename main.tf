@@ -64,6 +64,7 @@ module "data_feeds" {
   naming_suffix                = "${local.naming_suffix}"
   route_table_id               = "${aws_route_table.apps_route_table.id}"
   rds_enhanced_monitoring_role = "${aws_iam_role.rds_enhanced_monitoring_role.arn}"
+  environment                  = "${var.namespace}"
 }
 
 module "data_ingest" {
