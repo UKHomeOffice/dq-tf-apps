@@ -38,6 +38,9 @@ class TestE2E(unittest.TestCase):
               haproxy_config_bucket           = "s3-bucket-name"
               haproxy_config_bucket_key       = "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 
+              dq_pipeline_ops_freight_readwrite_bucket_list        = ["s3-bucket-name"]
+              dq_pipeline_ops_freight_readwrite_database_name_list = ["a-database-name"]
+
               s3_bucket_name = {
                 archive_log                   = "abcd"
                 archive_data                  = "abcd"
@@ -67,6 +70,10 @@ class TestE2E(unittest.TestCase):
                 drt_working                   = "abcd"
                 athena_log                    = "abcd"
                 ops_pipeline                  = "abcd"
+                freight_archive               = "abcd"
+                bfid_virus_free_archive       = "abcd"
+                bfid_virus_scan               = "abcd"
+                bfid_virus_definitions        = "abcd"
                 nats_archive                  = "abcd"
                 nats_internal                 = "abcd"
               }
@@ -100,6 +107,10 @@ class TestE2E(unittest.TestCase):
                 drt_working                   = "private"
                 athena_log                    = "private"
                 ops_pipeline                  = "private"
+                freight_archive               = "private"
+                bfid_virus_free_archive       = "private"
+                bfid_virus_scan               = "private"
+                bfid_virus_definitions        = "private"
                 nats_archive                  = "private"
                 nats_internal                 = "private"
               }
@@ -178,6 +189,9 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_carrier_portal_working(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.carrier_portal_working_bucket"]["tags.Name"], "s3-dq-carrier-portal-working-apps-preprod-dq")
+
+    def test_name_suffix_carrier_portal_working(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.freight_archive_bucket"]["tags.Name"], "s3-dq-freight-archive-apps-preprod-dq")
 
     def test_name_suffix_nats_iam_group(self):
         self.assertEqual(self.result['apps']["aws_iam_group.nats"]["name"], "iam-group-nats-apps-preprod-dq")
