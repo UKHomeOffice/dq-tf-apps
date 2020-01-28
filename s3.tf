@@ -1574,6 +1574,210 @@ resource "aws_s3_bucket_policy" "drt_working_policy" {
 POLICY
 }
 
+resource "aws_s3_bucket" "freight_archive_bucket" {
+  bucket = "${var.s3_bucket_name["freight_archive"]}"
+  acl    = "${var.s3_bucket_acl["freight_archive"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "freight_archive_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-freight-archive-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "freight_archive_policy" {
+  bucket = "${var.s3_bucket_name["freight_archive"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["freight_archive"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_s3_bucket" "bfid_virus_scanned_bucket" {
+  bucket = "${var.s3_bucket_name["bfid_virus_free_archive"]}"
+  acl    = "${var.s3_bucket_acl["bfid_virus_free_archive"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "bfid_virus_free_archive_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-bfid-virus-scanned-archive-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "bfid_virus_scanned_policy" {
+  bucket = "${var.s3_bucket_name["bfid_virus_free_archive"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["bfid_virus_free_archive"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_s3_bucket" "bfid_virus_scan_bucket" {
+  bucket = "${var.s3_bucket_name["bfid_virus_scan"]}"
+  acl    = "${var.s3_bucket_acl["bfid_virus_scan"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "bfid_virus_scan_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-bfid-virus-scan-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "bfid_virus_scan_policy" {
+  bucket = "${var.s3_bucket_name["bfid_virus_scan"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["bfid_virus_scan"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_s3_bucket" "bfid_virus_definition_bucket" {
+  bucket = "${var.s3_bucket_name["bfid_virus_definitions"]}"
+  acl    = "${var.s3_bucket_acl["bfid_virus_definitions"]}"
+  region = "${var.region}"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "bfid_virus_definitions_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-bfid-virus-definitions-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "bfid_virus_definitions_policy" {
+  bucket = "${var.s3_bucket_name["bfid_virus_definitions"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["bfid_virus_definitions"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
 resource "aws_s3_bucket" "nats_archive_bucket" {
   bucket = "${var.s3_bucket_name["nats_archive"]}"
   acl    = "${var.s3_bucket_acl["nats_archive"]}"

@@ -318,6 +318,12 @@ module "ops_pipeline" {
   dq_pipeline_ops_readwrite_bucket_list = "${var.dq_pipeline_ops_readwrite_bucket_list}"
 }
 
+module "freight_glue" {
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-freight-glue.git"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
+}
+
 module "dailytasks" {
   source        = "github.com/UKHomeOffice/dq-tf-dailytasks"
   naming_suffix = "${local.naming_suffix}"
