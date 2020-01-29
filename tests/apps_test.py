@@ -596,10 +596,10 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_iam_user.rds_maintenance"]["name"], "iam-user-rds-maintenance-apps-preprod-dq")
 
     def test_name_ssm_rds_maintenance_id(self):
-        self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance_id"]["name"], "rds-maintenance-user-id-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance_id"]["name"], "kubernetes-rds-maintenance-user-id-apps-preprod-dq")
 
     def test_name_ssm_rds_maintenance_key(self):
-        self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance_key"]["name"], "rds-maintenance-user-key-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance_key"]["name"], "kubernetes-rds-maintenance-user-key-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
