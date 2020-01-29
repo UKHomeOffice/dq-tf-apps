@@ -590,16 +590,16 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_iam_group_membership.rds_maintenance"]["name"], "iam-group-membership-rds-maintenance-apps-preprod-dq")
 
     def test_name_rds_maintenance_iam_group_policy(self):
-        self.assertEqual(self.result['apps']["aws_iam_group_policy.rds_maintenance"]["name"], "iam-group-policy-rds-maintenance-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.lambda_policy_rds_maintenance"]["name"], "iam-group-policy-rds-maintenance-apps-preprod-dq")
 
     def test_name_rds_maintenance_iam_user(self):
         self.assertEqual(self.result['apps']["aws_iam_user.rds_maintenance"]["name"], "iam-user-rds-maintenance-apps-preprod-dq")
 
     def test_name_ssm_rds_maintenance_id(self):
-        self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance"]["name"], "rds-maintenance-user-id-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance_id"]["name"], "rds-maintenance-user-id-apps-preprod-dq")
 
     def test_name_ssm_rds_maintenance_key(self):
-        self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance"]["name"], "rds-maintenance-user-key-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance_key"]["name"], "rds-maintenance-user-key-apps-preprod-dq")
 
 if __name__ == '__main__':
     unittest.main()
