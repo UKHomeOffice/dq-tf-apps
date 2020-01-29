@@ -1596,6 +1596,36 @@ resource "aws_s3_bucket" "freight_archive_bucket" {
     target_prefix = "freight_archive_bucket/"
   }
 
+  lifecycle_rule {
+    id      = "archive_prefix_cleanup"
+    enabled = true
+
+    prefix = "archive/"
+
+    expiration {
+      days = 1
+    }
+
+    noncurrent_version_expiration {
+      days = 1
+    }
+  }
+
+  lifecycle_rule {
+    id      = "data_prod_prefix_cleanup"
+    enabled = true
+
+    prefix = "data_prod/"
+
+    expiration {
+      days = 1
+    }
+
+    noncurrent_version_expiration {
+      days = 1
+    }
+  }
+
   tags = {
     Name = "s3-dq-freight-archive-${local.naming_suffix}"
   }
