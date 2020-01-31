@@ -71,9 +71,6 @@ class TestE2E(unittest.TestCase):
                 athena_log                    = "abcd"
                 ops_pipeline                  = "abcd"
                 freight_archive               = "abcd"
-                bfid_virus_free_archive       = "abcd"
-                bfid_virus_scan               = "abcd"
-                bfid_virus_definitions        = "abcd"
                 nats_archive                  = "abcd"
                 nats_internal                 = "abcd"
               }
@@ -108,9 +105,6 @@ class TestE2E(unittest.TestCase):
                 athena_log                    = "private"
                 ops_pipeline                  = "private"
                 freight_archive               = "private"
-                bfid_virus_free_archive       = "private"
-                bfid_virus_scan               = "private"
-                bfid_virus_definitions        = "private"
                 nats_archive                  = "private"
                 nats_internal                 = "private"
               }
