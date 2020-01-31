@@ -330,12 +330,6 @@ module "dailytasks" {
   namespace     = "${var.namespace}"
 }
 
-module "virus_scanner" {
-  source        = "github.com/UKHomeOffice/dq-tf-lambda-virus-scanner"
-  naming_suffix = "${local.naming_suffix}"
-  namespace     = "${var.namespace}"
-}
-
 module "nats_internal_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fpl-pipeline.git"
   naming_suffix = "${local.naming_suffix}"
