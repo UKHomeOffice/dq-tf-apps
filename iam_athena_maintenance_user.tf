@@ -126,13 +126,13 @@ resource "aws_iam_access_key" "athena_maintenance" {
 }
 
 resource "aws_ssm_parameter" "athena_maintenance_id" {
-  name  = "kubernetes-athena-maintenance-user-id-${var.athena_log_prefix}-${local.naming_suffix}"
+  name  = "kubernetes-athena-maintenance-user-id-${local.naming_suffix}"
   type  = "SecureString"
   value = "${aws_iam_access_key.athena_maintenance.id}"
 }
 
 resource "aws_ssm_parameter" "athena_maintenance_key" {
-  name  = "kubernetes-athena-maintenance-user-key-${var.athena_log_prefix}-${local.naming_suffix}"
+  name  = "kubernetes-athena-maintenance-user-key-${local.naming_suffix}"
   type  = "SecureString"
   value = "${aws_iam_access_key.athena_maintenance.secret}"
 }
