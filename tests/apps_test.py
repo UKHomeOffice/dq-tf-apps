@@ -563,5 +563,23 @@ class TestE2E(unittest.TestCase):
     def test_name_ssm_rds_maintenance_key(self):
         self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance_key"]["name"], "kubernetes-rds-maintenance-user-key-apps-preprod-dq")
 
+    def test_name_athena_maintenance_iam_group(self):
+        self.assertEqual(self.result['apps']["aws_iam_group.athena_adhoc_maintenance_database"]["name"], "iam-group-athena-maintenance-apps-preprod-dq")
+
+    def test_name_athena_maintenance_iam_group_membership(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_membership.athena_maintenance"]["name"], "iam-group-membership-athena-maintenance-apps-preprod-dq")
+
+    def test_name_athena_maintenance_iam_group_policy(self):
+        self.assertEqual(self.result['apps']["aws_iam_group_policy.athena_maintenance"]["name"], "iam-group-policy-athena-maintenance-apps-preprod-dq")
+
+    def test_name_athena_maintenance_iam_user(self):
+        self.assertEqual(self.result['apps']["aws_iam_user.athena_maintenance"]["name"], "iam-user-athena-maintenance-apps-preprod-dq")
+
+    def test_name_ssm_athena_maintenance_id(self):
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.athena_maintenance_id"]["name"], "kubernetes-athena-maintenance-user-id-apps-preprod-dq")
+
+    def test_name_ssm_athena_maintenance_key(self):
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.athena_maintenance_key"]["name"], "kubernetes-athena-maintenance-user-key-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
