@@ -476,18 +476,6 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_mds_extractor_lambda_log_group_mds_extractor(self):
         self.assertEqual(self.result['apps']['mds_extractor']["aws_cloudwatch_log_group.lambda_log_group_mds_extractor"]["tags.Name"], "lambda-log-group-mds-extractor-apps-preprod-dq")
 
-    def test_name_suffix_api_group(self):
-        self.assertEqual(self.result['apps']["aws_iam_group.api"]["name"], "iam-group-api-apps-preprod-dq")
-
-    def test_name_suffix_api_group_membership(self):
-        self.assertEqual(self.result['apps']["aws_iam_group_membership.api"]["name"], "iam-group-membership-api-apps-preprod-dq")
-
-    def test_name_suffix_api_group_policy(self):
-        self.assertEqual(self.result['apps']["aws_iam_group_policy.api"]["name"], "iam-group-policy-api-apps-preprod-dq")
-
-    def test_name_suffix_api_user(self):
-        self.assertEqual(self.result['apps']["aws_iam_user.api"]["name"], "iam-user-api-apps-preprod-dq")
-
     def test_name_suffix_athena_log(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.athena_log_bucket"]["tags.Name"], "s3-dq-athena-log-apps-preprod-dq")
 
@@ -508,18 +496,6 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_ops_pipeline_lambda_log_group_cleaner(self):
         self.assertEqual(self.result['apps']['ops_pipeline']["aws_cloudwatch_log_group.lambda_log_group_cleaner"]["tags.Name"], "lambda-log-group-cleaner-ops-apps-preprod-dq")
-
-    def test_name_suffix_s3count_iam_group(self):
-        self.assertEqual(self.result['apps']["aws_iam_group.s3count"]["name"], "iam-group-s3count-apps-preprod-dq")
-
-    def test_name_suffix_s3count_iam_group_membership(self):
-        self.assertEqual(self.result['apps']["aws_iam_group_membership.s3count"]["name"], "iam-group-membership-s3count-apps-preprod-dq")
-
-    def test_name_suffix_s3count_iam_group_policy(self):
-        self.assertEqual(self.result['apps']["aws_iam_group_policy.s3count"]["name"], "iam-group-policy-s3count-apps-preprod-dq")
-
-    def test_name_suffix_s3count_iam_user(self):
-        self.assertEqual(self.result['apps']["aws_iam_user.s3count"]["name"], "iam-user-s3count-apps-preprod-dq")
 
     def test_name_crt_iam_group(self):
         self.assertEqual(self.result['apps']["aws_iam_group.crt"]["name"], "iam-group-crt-apps-preprod-dq")
