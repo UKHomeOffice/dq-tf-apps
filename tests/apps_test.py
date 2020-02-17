@@ -564,7 +564,7 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_ssm_parameter.rds_maintenance_key"]["name"], "kubernetes-rds-maintenance-user-key-apps-preprod-dq")
 
     def test_name_athena_maintenance_iam_group(self):
-        self.assertEqual(self.result['apps']["aws_iam_group.athena_adhoc_maintenance_database"]["name"], "iam-group-athena-maintenance-apps-preprod-dq")
+        self.assertEqual(self.result['apps']["aws_iam_group.athena_maintenance"]["name"], "iam-group-athena-maintenance-apps-preprod-dq")
 
     def test_name_athena_maintenance_iam_group_membership(self):
         self.assertEqual(self.result['apps']["aws_iam_group_membership.athena_maintenance"]["name"], "iam-group-membership-athena-maintenance-apps-preprod-dq")
