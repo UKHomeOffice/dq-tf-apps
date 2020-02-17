@@ -6,6 +6,10 @@ resource "aws_iam_access_key" "data_archive_bucket" {
   user = "${aws_iam_user.data_archive_bucket.name}"
 }
 
+resource "aws_iam_access_key" "data_archive_bucket_v2" {
+  user = "${aws_iam_user.data_archive_bucket.name}"
+}
+
 resource "aws_iam_group" "data_archive_bucket" {
   name = "data_archive_bucket"
 }
