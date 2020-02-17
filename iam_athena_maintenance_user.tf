@@ -1,4 +1,4 @@
-resource "aws_iam_group" "athena_adhoc_maintenance_database" {
+resource "aws_iam_group" "athena_maintenance" {
   name = "iam-group-athena-maintenance-${local.naming_suffix}"
 }
 
