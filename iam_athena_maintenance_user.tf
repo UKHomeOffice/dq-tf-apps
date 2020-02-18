@@ -29,8 +29,8 @@ resource "aws_iam_group_policy" "athena_maintenance" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${var.athena_maintenance_bucket}",
-        "${var.athena_maintenance_bucket}/*"
+        "${join("\",\"", formatlist("arn:aws:s3:::%s-%s", var.athena_maintenance_bucket, var.namespace))}",
+        "${join("\",\"", formatlist("arn:aws:s3:::%s-%s/*", var.athena_maintenance_bucket, var.namespace))}"
       ]
     },
     {
