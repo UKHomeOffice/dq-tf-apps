@@ -62,6 +62,26 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
   ]
 }
 
+variable "dq_pipeline_athena_readwrite_database_name_list" {
+  default = ["reference_data",
+    "acl",
+    "consolidated_schedule",
+    "api_record_level_score",
+    "api_cross_record_scored",
+    "api_input",
+    "oag_transform",
+    "internal_reporting",
+    "drt",
+    "airports_working",
+    "airports_input",
+    "carrier_portal",
+    "fms",
+    "nats_internal",
+    "freight",
+    "gait_working",
+  ]
+}
+
 variable "dq_pipeline_ops_readonly_database_name_list" {
   default = ["api_input"]
 }
