@@ -75,25 +75,6 @@ resource "aws_iam_group_policy" "athena_maintenance" {
       "Resource": "*"
     },
     {
-      "Action": [
-        "glue:GetDatabase",
-        "glue:GetTable",
-        "glue:GetTables",
-        "glue:GetPartition",
-        "glue:GetPartitions",
-        "glue:CreatePartition",
-        "glue:DeletePartition",
-        "glue:BatchDeletePartition",
-        "glue:BatchCreatePartition"
-      ],
-      "Effect": "Allow",
-      "Resource": [
-        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
-        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.dq_pipeline_athena_readwrite_database_name_list, var.namespace))}",
-        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*", var.dq_pipeline_athena_readwrite_database_name_list, var.namespace))}"
-      ]
-    },
-    {
       "Effect": "Allow",
       "Action": [
         "ssm:GetParameter"
@@ -115,6 +96,41 @@ resource "aws_iam_group_policy" "athena_maintenance" {
   ]
 }
 EOF
+}
+
+resource "aws_iam_policy" "athena_maintenance" {
+  name = "iam-policy-athena-maintenance-${local.naming_suffix}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+      "Action": [
+        "glue:GetDatabase",
+        "glue:GetTable",
+        "glue:GetTables",
+        "glue:GetPartition",
+        "glue:GetPartitions",
+        "glue:CreatePartition",
+        "glue:DeletePartition",
+        "glue:BatchDeletePartition",
+        "glue:BatchCreatePartition"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
+        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.dq_pipeline_athena_readwrite_database_name_list, var.namespace))}",
+        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*", var.dq_pipeline_athena_readwrite_database_name_list, var.namespace))}"
+        ]
+     }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_group_policy_attachment" "athena_maintenance" {
+  group      = "${aws_iam_group.athena_maintenance.name}"
+  policy_arn = "${aws_iam_policy.athena_maintenance.arn}"
 }
 
 resource "aws_iam_user" "athena_maintenance" {
