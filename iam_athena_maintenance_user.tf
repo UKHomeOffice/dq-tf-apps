@@ -89,8 +89,8 @@ resource "aws_iam_group_policy" "athena_maintenance" {
       "Effect": "Allow",
       "Resource": [
         "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
-        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.dq_pipeline_ops_readwrite_database_name_list, var.namespace))}",
-        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*", var.dq_pipeline_ops_readwrite_database_name_list, var.namespace))}"
+        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.dq_pipeline_athena_readwrite_database_name_list, var.namespace))}",
+        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*", var.dq_pipeline_athena_readwrite_database_name_list, var.namespace))}"
       ]
     },
     {
