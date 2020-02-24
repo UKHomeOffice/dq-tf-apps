@@ -55,10 +55,6 @@ resource "aws_iam_user" "crt" {
   name = "iam-user-crt-${local.naming_suffix}"
 }
 
-resource "aws_iam_access_key" "crt" {
-  user = "${aws_iam_user.crt.name}"
-}
-
 resource "aws_iam_access_key" "crt_v2" {
   user = "${aws_iam_user.crt.name}"
 }
