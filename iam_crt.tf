@@ -58,3 +58,19 @@ resource "aws_iam_user" "crt" {
 resource "aws_iam_access_key" "crt" {
   user = "${aws_iam_user.crt.name}"
 }
+
+resource "aws_iam_access_key" "crt_v2" {
+  user = "${aws_iam_user.crt.name}"
+}
+
+resource "aws_ssm_parameter" "crt_id" {
+  name  = "kubernetes-crt-user-id-${local.naming_suffix}"
+  type  = "SecureString"
+  value = "${aws_iam_access_key.crt_v2.id}"
+}
+
+resource "aws_ssm_parameter" "crt_key" {
+  name  = "kubernetes-crt-user-key-${local.naming_suffix}"
+  type  = "SecureString"
+  value = "${aws_iam_access_key.crt_v2.secret}"
+}
