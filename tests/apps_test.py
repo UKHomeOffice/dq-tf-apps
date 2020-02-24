@@ -509,6 +509,12 @@ class TestE2E(unittest.TestCase):
     def test_name_crt_iam_user(self):
         self.assertEqual(self.result['apps']["aws_iam_user.crt"]["name"], "iam-user-crt-apps-preprod-dq")
 
+    def test_name_crt_ssm_iam_user_id(self):
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.crt_id"]["name"], "kubernetes-crt-user-id-apps-preprod-dq")
+
+    def test_name_crt_ssm_iam_user_key(self):
+        self.assertEqual(self.result['apps']["aws_ssm_parameter.crt_key"]["name"], "kubernetes-crt-user-key-apps-preprod-dq")
+
     def test_name_athena_iam_group(self):
         self.assertEqual(self.result['apps']["aws_iam_group.athena"]["name"], "iam-group-athena-apps-preprod-dq")
 
