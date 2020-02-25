@@ -54,3 +54,15 @@ resource "aws_iam_group_membership" "data_archive_bucket" {
 
   group = "${aws_iam_group.data_archive_bucket.name}"
 }
+
+resource "aws_ssm_parameter" "jira_id" {
+  name  = "kubernetes-jira-backup-user-id-${local.naming_suffix}"
+  type  = "SecureString"
+  value = "${aws_iam_access_key.data_archive_bucket_v2.id}"
+}
+
+resource "aws_ssm_parameter" "jira_key" {
+  name  = "kubernetes-jira-backup-user-key-${local.naming_suffix}"
+  type  = "SecureString"
+  value = "${aws_iam_access_key.data_archive_bucket_v2.secret}"
+}
