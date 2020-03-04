@@ -997,9 +997,7 @@ resource "aws_s3_bucket" "api_internal_bucket" {
   }
 
   versioning {
-    enabled    = true
-    mfa_delete = true
-
+    enabled = true
   }
 
   logging {
