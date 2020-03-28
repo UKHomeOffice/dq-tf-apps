@@ -69,6 +69,7 @@ class TestE2E(unittest.TestCase):
                 ops_pipeline                  = "abcd"
                 nats_archive                  = "abcd"
                 nats_internal                 = "abcd"
+                cdlz-bitd-input               = "abcd"
               }
 
               s3_bucket_acl = {
@@ -102,6 +103,7 @@ class TestE2E(unittest.TestCase):
                 ops_pipeline                  = "private"
                 nats_archive                  = "private"
                 nats_internal                 = "private"
+                cdlz-bitd-input               = "private"
               }
 
               route_table_cidr_blocks     = {
