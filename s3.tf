@@ -1693,6 +1693,32 @@ resource "aws_s3_bucket_metric" "drt_working_logging" {
   name   = "drt_working_bucket_metric"
 }
 
+resource "aws_s3_bucket" "s3-dq-cdlz-bitd-input" {
+  bucket = "${var.s3_bucket_name["cdlz-bitd-input"]}"
+  acl    = "${var.s3_bucket_acl["cdlz-bitd-input"]}"
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "cdlz-bitd-input/"
+  }
+
+  tags = {
+    Name = "cdlz-bitd-input-${local.naming_suffix}"
+  }
+}
+
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = "${aws_vpc.appsvpc.id}"
   route_table_ids = ["${aws_route_table.apps_route_table.id}"]
