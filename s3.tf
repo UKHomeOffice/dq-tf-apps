@@ -1715,7 +1715,7 @@ resource "aws_s3_bucket" "cdlz_bitd_input" {
   }
 
   tags = {
-    Name = "cdlz-bitd-input-${local.naming_suffix}"
+    Name = "s3-dq-cdlz-bitd-input-${local.naming_suffix}"
   }
 }
 
