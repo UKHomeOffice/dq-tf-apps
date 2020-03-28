@@ -1693,9 +1693,9 @@ resource "aws_s3_bucket_metric" "drt_working_logging" {
   name   = "drt_working_bucket_metric"
 }
 
-resource "aws_s3_bucket" "s3-dq-cdlz-bitd-input" {
-  bucket = "${var.s3_bucket_name["cdlz-bitd-input"]}"
-  acl    = "${var.s3_bucket_acl["cdlz-bitd-input"]}"
+resource "aws_s3_bucket" "cdlz_bitd_input" {
+  bucket = "${var.s3_bucket_name["cdlz_bitd_input"]}"
+  acl    = "${var.s3_bucket_acl["cdlz_bitd_input"]}"
 
   versioning {
     enabled = true
@@ -1711,12 +1711,41 @@ resource "aws_s3_bucket" "s3-dq-cdlz-bitd-input" {
 
   logging {
     target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
-    target_prefix = "cdlz-bitd-input/"
+    target_prefix = "cdlz_bitd_input/"
   }
 
   tags = {
     Name = "cdlz-bitd-input-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_policy" "cdlz_bitd_input_policy" {
+  bucket = "${var.s3_bucket_name["cdlz_bitd_input"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["cdlz_bitd_input"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_s3_bucket_metric" "cdlz_bitd_input_logging" {
+  bucket = "${var.s3_bucket_name["cdlz_bitd_input"]}"
+  name   = "cdlz_bitd_input_bucket_metric"
 }
 
 resource "aws_vpc_endpoint" "s3_endpoint" {
