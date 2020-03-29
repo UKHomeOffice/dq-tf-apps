@@ -338,7 +338,7 @@ module "cdlz_bitd_input" {
 }
 
 module "kpi_accuracy_scoring" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dq-tf-kpi-accuracy-scoring-pipeline.git"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-kpi-accuracy-scoring-pipeline.git"
   lambda_slack  = "${module.ops_pipeline.lambda_slack}"
   naming_suffix = "${local.naming_suffix}"
   namespace     = "${var.namespace}"
