@@ -330,6 +330,17 @@ module "nats_internal_pipeline" {
   namespace     = "${var.namespace}"
 }
 
+module "cdlz_bitd_input" {
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-btid-cdlz-pipeline.git"
+  lambda_subnet     = "${module.lambda.lambda_subnet}"
+  lambda_subnet_az2 = "${module.lambda.lambda_subnet_az2}"
+  lambda_sgrp       = "${module.lambda.lambda_sgrp}"
+  kms_key_s3        = "${aws_kms_key.bucket_key.arn}"
+  lambda_slack      = "${module.ops_pipeline.lambda_slack}"
+  naming_suffix     = "${local.naming_suffix}"
+  namespace         = "${var.namespace}"
+}
+
 resource "aws_vpc" "appsvpc" {
   cidr_block           = "${var.cidr_block}"
   enable_dns_hostnames = true
