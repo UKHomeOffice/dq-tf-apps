@@ -1748,6 +1748,61 @@ resource "aws_s3_bucket_metric" "cdlz_bitd_input_logging" {
   name   = "cdlz_bitd_input_bucket_metric"
 }
 
+resource "aws_s3_bucket" "api_arrivals_bucket" {
+  bucket = "${var.s3_bucket_name["api_arrivals"]}"
+  acl    = "${var.s3_bucket_acl["api_arrivals"]}"
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.log_archive_bucket.id}"
+    target_prefix = "api_arrivals/"
+  }
+
+  tags = {
+    Name = "s3-dq-api-arrivals-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "api_arrivals_policy" {
+  bucket = "${var.s3_bucket_name["api_arrivals"]}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["api_arrivals"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_s3_bucket_metric" "api_arrivals_logging" {
+  bucket = "${var.s3_bucket_name["api_arrivals"]}"
+  name   = "api_arrivals_bucket_metric"
+}
+
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = "${aws_vpc.appsvpc.id}"
   route_table_ids = ["${aws_route_table.apps_route_table.id}"]
