@@ -603,6 +603,9 @@ class TestE2E(unittest.TestCase):
     def test_name_ssm_jira_backup_key(self):
         self.assertEqual(self.result['apps']["aws_ssm_parameter.jira_key"]["name"], "kubernetes-jira-backup-user-key-apps-preprod-dq")
 
+    def test_name_suffix_cdlz_bitd_input(self):
+        self.assertEqual(self.result['apps']["aws_s3_bucket.cdlz_bitd_input"]["tags.Name"], "s3-dq-cdlz-bitd-input-apps-preprod-dq")
+
     def test_name_suffix_api_arrivals(self):
         self.assertEqual(self.result['apps']["aws_s3_bucket.api_arrivals_bucket"]["tags.Name"], "s3-dq-api-arrivals-apps-preprod-dq")
 
