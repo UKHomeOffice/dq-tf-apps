@@ -337,6 +337,13 @@ module "cdlz_bitd_input" {
   namespace     = "${var.namespace}"
 }
 
+module "kpi_accuracy_scoring" {
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dq-tf-kpi-accuracy-scoring-pipeline.git"
+  lambda_slack  = "${module.ops_pipeline.lambda_slack}"
+  naming_suffix = "${local.naming_suffix}"
+  namespace     = "${var.namespace}"
+}
+
 resource "aws_vpc" "appsvpc" {
   cidr_block           = "${var.cidr_block}"
   enable_dns_hostnames = true
