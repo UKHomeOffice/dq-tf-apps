@@ -601,5 +601,17 @@ class TestE2E(unittest.TestCase):
     def test_name_ssm_jira_backup_key(self):
         self.assertEqual(self.result['apps']["aws_ssm_parameter.jira_key"]["name"], "kubernetes-jira-backup-user-key-apps-preprod-dq")
 
+    def test_name_suffix_cdlz_bitd_input_pipeline_iam_bitd_input(self):
+        self.assertEqual(self.result['apps']["aws_iam_role.bitd_role"]["tags.Name"], "iam-bitd-input-apps-preprod-dq")
+
+    def test_name_suffix_cdlz_bitd_input_pipeline_sfn_state_machine(self):
+        self.assertEqual(self.result['apps']["aws_sfn_state_machine.sfn_state_machine"]["tags.Name"], "sfn-state-machine-bitd-input-apps-preprod-dq")
+
+    def test_name_suffix_cdlz_bitd_input_pipeline_lambda_bitd_input(self):
+        self.assertEqual(self.result['apps']["aws_lambda_function.bitd_input"]["tags.Name"], "bitd-input-apps-preprod-dq")
+
+    def test_name_suffix_cdlz_bitd_input_pipeline_lambda_createdb_resources(self):
+        self.assertEqual(self.result['apps']["aws_lambda_function.createdb_resources"]["tags.Name"], "createdb-resources-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
