@@ -602,16 +602,16 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.result['apps']["aws_ssm_parameter.jira_key"]["name"], "kubernetes-jira-backup-user-key-apps-preprod-dq")
 
     def test_name_suffix_cdlz_bitd_input_pipeline_iam_bitd_input(self):
-        self.assertEqual(self.result['apps']['cdlz_bitd_input']["aws_iam_role.bitd_role"]["name"], "iam-bitd-input-apps-preprod-dq")
+        self.assertEqual(self.result['apps']['cdlz_bitd_input']["aws_iam_role.bitd_role"]["tags.name"], "iam-bitd-input-apps-test-dq")
 
     def test_name_suffix_cdlz_bitd_input_pipeline_sfn_state_machine(self):
-        self.assertEqual(self.result['apps']['cdlz_bitd_input']["aws_sfn_state_machine.sfn_state_machine"]["tags.Name"], "sfn-state-machine-bitd-input-apps-preprod-dq")
+        self.assertEqual(self.result['apps']['cdlz_bitd_input']["aws_sfn_state_machine.sfn_state_machine"]["tags.Name"], "sfn-state-machine-bitd-input-apps-test-dq")
 
     def test_name_suffix_cdlz_bitd_input_pipeline_lambda_bitd_input(self):
-        self.assertEqual(self.result['apps']['cdlz_bitd_input']["aws_lambda_function.bitd_input"]["name"], "bitd-input-apps-preprod-dq")
+        self.assertEqual(self.result['apps']['cdlz_bitd_input']["aws_lambda_function.bitd_input"]["tags.name"], "bitd-input-apps-test-dq")
 
     def test_name_suffix_cdlz_bitd_input_pipeline_lambda_createdb_resources(self):
-        self.assertEqual(self.result['apps']['cdlz_bitd_input']["aws_lambda_function.createdb_resources"]["name"], "createdb-resources-apps-preprod-dq")
+        self.assertEqual(self.result['apps']['cdlz_bitd_input']["aws_lambda_function.createdb_resources"]["tags.name"], "createdb-resources-apps-test-dq")
 
 if __name__ == '__main__':
     unittest.main()
