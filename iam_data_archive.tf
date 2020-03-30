@@ -23,7 +23,10 @@ resource "aws_iam_group_policy" "data_archive_bucket" {
       "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
     },
     {
-      "Action": "s3:PutObject",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject"
+      ],
       "Effect": "Allow",
       "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/*"
     },
