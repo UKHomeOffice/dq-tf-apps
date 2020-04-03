@@ -201,7 +201,7 @@ module "gait_pipeline" {
 }
 
 module "internal_reporting_pipeline" {
-  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-internal-reporting-pipeline.git?ref=v1.0.0"
+  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-internal-reporting-pipeline.git"
   lambda_subnet                = "${module.lambda.lambda_subnet}"
   lambda_subnet_az2            = "${module.lambda.lambda_subnet_az2}"
   lambda_sgrp                  = "${module.lambda.lambda_sgrp}"
