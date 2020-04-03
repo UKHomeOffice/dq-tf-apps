@@ -1774,6 +1774,11 @@ resource "aws_s3_bucket" "api_arrivals_bucket" {
   }
 }
 
+resource "aws_s3_bucket_object" "s3-dq-api-arrivals-test" {
+  bucket = "${var.s3_bucket_name["api_arrivals"]}"
+  key    = "reference/"
+}
+
 resource "aws_s3_bucket_policy" "api_arrivals_policy" {
   bucket = "${var.s3_bucket_name["api_arrivals"]}"
 
