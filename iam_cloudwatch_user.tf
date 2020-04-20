@@ -3,7 +3,7 @@ resource "aws_iam_user" "cloud_watch_log_user" {
 }
 
 resource "aws_iam_access_key" "cloud_watch_log_key" {
-  user = "${aws_iam_user.cloud_watch.name}"
+  user = "${aws_iam_user.cloud_watch_log_user.name}"
 }
 
 resource "aws_iam_group" "cloud_watch_log_group" {
