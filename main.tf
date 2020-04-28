@@ -321,7 +321,6 @@ module "ops_pipeline" {
 module "dailytasks" {
   source        = "github.com/UKHomeOffice/dq-tf-dailytasks"
   naming_suffix = "${local.naming_suffix}"
-  namespace     = "${var.namespace}"
   environment   = "${var.namespace}"
 }
 
