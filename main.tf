@@ -254,7 +254,6 @@ module "carrier_portal_pipeline" {
   lambda_subnet     = "${module.lambda.lambda_subnet}"
   lambda_subnet_az2 = "${module.lambda.lambda_subnet_az2}"
   lambda_sgrp       = "${module.lambda.lambda_sgrp}"
-  rds_address       = "${module.external_tableau.rds_address}"
   kms_key_s3        = "${aws_kms_key.bucket_key.arn}"
   lambda_slack      = "${module.ops_pipeline.lambda_slack}"
   naming_suffix     = "${local.naming_suffix}"
