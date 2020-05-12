@@ -21,7 +21,6 @@ module "external_tableau" {
   environment                  = "${var.namespace}"
   haproxy_config_bucket        = "${var.haproxy_config_bucket}"
   haproxy_config_bucket_key    = "${var.haproxy_config_bucket_key}"
-  rds_enhanced_monitoring_role = "${aws_iam_role.rds_enhanced_monitoring_role.arn}"
 }
 
 module "internal_tableau" {
