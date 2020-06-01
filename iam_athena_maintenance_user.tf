@@ -6,15 +6,15 @@ resource "aws_iam_group_membership" "athena_maintenance" {
   name = "iam-group-membership-athena-maintenance-${local.naming_suffix}"
 
   users = [
-    "${aws_iam_user.athena_maintenance.name}",
+    aws_iam_user.athena_maintenance.name,
   ]
 
-  group = "${aws_iam_group.athena_maintenance.name}"
+  group = aws_iam_group.athena_maintenance.name
 }
 
 resource "aws_iam_group_policy" "athena_maintenance" {
   name  = "iam-group-policy-athena-maintenance-${local.naming_suffix}"
-  group = "${aws_iam_group.athena_maintenance.id}"
+  group = aws_iam_group.athena_maintenance.id
 
   policy = <<EOF
 {
@@ -58,8 +58,22 @@ resource "aws_iam_group_policy" "athena_maintenance" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${join("\",\"", formatlist("arn:aws:s3:::%s-%s", var.dq_pipeline_ops_readwrite_bucket_list, var.namespace))}",
-        "${join("\",\"", formatlist("arn:aws:s3:::%s-%s/*", var.dq_pipeline_ops_readwrite_bucket_list, var.namespace))}"
+        "${join(
+  "\",\"",
+  formatlist(
+    "arn:aws:s3:::%s-%s",
+    var.dq_pipeline_ops_readwrite_bucket_list,
+    var.namespace,
+  ),
+  )}",
+        "${join(
+  "\",\"",
+  formatlist(
+    "arn:aws:s3:::%s-%s/*",
+    var.dq_pipeline_ops_readwrite_bucket_list,
+    var.namespace,
+  ),
+)}"
       ]
     },
     {
@@ -96,6 +110,7 @@ resource "aws_iam_group_policy" "athena_maintenance" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_policy" "athena_maintenance" {
@@ -119,18 +134,33 @@ resource "aws_iam_policy" "athena_maintenance" {
       "Effect": "Allow",
       "Resource": [
         "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
-        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s", var.dq_pipeline_athena_readwrite_database_name_list, var.namespace))}",
-        "${join("\",\"", formatlist("arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*", var.dq_pipeline_athena_readwrite_database_name_list, var.namespace))}"
+        "${join(
+  "\",\"",
+  formatlist(
+    "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s",
+    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.namespace,
+  ),
+  )}",
+        "${join(
+  "\",\"",
+  formatlist(
+    "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*",
+    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.namespace,
+  ),
+)}"
         ]
      }
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_group_policy_attachment" "athena_maintenance" {
-  group      = "${aws_iam_group.athena_maintenance.name}"
-  policy_arn = "${aws_iam_policy.athena_maintenance.arn}"
+  group      = aws_iam_group.athena_maintenance.name
+  policy_arn = aws_iam_policy.athena_maintenance.arn
 }
 
 resource "aws_iam_user" "athena_maintenance" {
@@ -138,17 +168,18 @@ resource "aws_iam_user" "athena_maintenance" {
 }
 
 resource "aws_iam_access_key" "athena_maintenance" {
-  user = "${aws_iam_user.athena_maintenance.name}"
+  user = aws_iam_user.athena_maintenance.name
 }
 
 resource "aws_ssm_parameter" "athena_maintenance_id" {
   name  = "kubernetes-athena-maintenance-user-id-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.athena_maintenance.id}"
+  value = aws_iam_access_key.athena_maintenance.id
 }
 
 resource "aws_ssm_parameter" "athena_maintenance_key" {
   name  = "kubernetes-athena-maintenance-user-key-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.athena_maintenance.secret}"
+  value = aws_iam_access_key.athena_maintenance.secret
 }
+

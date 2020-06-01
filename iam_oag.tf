@@ -6,15 +6,15 @@ resource "aws_iam_group_membership" "oag" {
   name = "iam-group-membership-oag-${local.naming_suffix}"
 
   users = [
-    "${aws_iam_user.oag.name}",
+    aws_iam_user.oag.name,
   ]
 
-  group = "${aws_iam_group.oag.name}"
+  group = aws_iam_group.oag.name
 }
 
 resource "aws_iam_group_policy" "oag" {
   name  = "group-policy-oag-${local.naming_suffix}"
-  group = "${aws_iam_group.oag.id}"
+  group = aws_iam_group.oag.id
 
   policy = <<EOF
 {
@@ -58,6 +58,7 @@ resource "aws_iam_group_policy" "oag" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_user" "oag" {
@@ -65,5 +66,6 @@ resource "aws_iam_user" "oag" {
 }
 
 resource "aws_iam_access_key" "oag" {
-  user = "${aws_iam_user.oag.name}"
+  user = aws_iam_user.oag.name
 }
+

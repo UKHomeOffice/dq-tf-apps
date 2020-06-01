@@ -4,7 +4,7 @@ resource "aws_iam_group" "airports" {
 
 resource "aws_iam_group_policy" "airports" {
   name  = "iam-group-policy-airports-${local.naming_suffix}"
-  group = "${aws_iam_group.airports.id}"
+  group = aws_iam_group.airports.id
 
   policy = <<EOF
 {
@@ -39,4 +39,6 @@ resource "aws_iam_group_policy" "airports" {
   ]
 }
 EOF
+
 }
+

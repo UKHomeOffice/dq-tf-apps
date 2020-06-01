@@ -6,15 +6,15 @@ resource "aws_iam_group_membership" "nats_history" {
   name = "iam-group-membership-nats-history-${local.naming_suffix}"
 
   users = [
-    "${aws_iam_user.nats_history.name}",
+    aws_iam_user.nats_history.name,
   ]
 
-  group = "${aws_iam_group.nats_history.name}"
+  group = aws_iam_group.nats_history.name
 }
 
 resource "aws_iam_group_policy" "nats_history" {
   name  = "iam-group-policy-nats-history-${local.naming_suffix}"
-  group = "${aws_iam_group.nats_history.id}"
+  group = aws_iam_group.nats_history.id
 
   policy = <<EOF
 {
@@ -57,6 +57,7 @@ resource "aws_iam_group_policy" "nats_history" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_user" "nats_history" {
@@ -64,17 +65,18 @@ resource "aws_iam_user" "nats_history" {
 }
 
 resource "aws_iam_access_key" "nats_history" {
-  user = "${aws_iam_user.nats_history.name}"
+  user = aws_iam_user.nats_history.name
 }
 
 resource "aws_ssm_parameter" "nats_history_id" {
   name  = "nats-history-user-id-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.nats_history.id}"
+  value = aws_iam_access_key.nats_history.id
 }
 
 resource "aws_ssm_parameter" "nats_history_key" {
   name  = "nats-history-user-key-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.nats_history.secret}"
+  value = aws_iam_access_key.nats_history.secret
 }
+

@@ -1,19 +1,42 @@
-variable "cidr_block" {}
-variable "public_subnet_cidr_block" {}
-variable "ad_subnet_cidr_block" {}
-variable "az" {}
-variable "az2" {}
-variable "adminpassword" {}
-variable "ad_aws_ssm_document_name" {}
-variable "ad_writer_instance_profile_name" {}
-variable "naming_suffix" {}
-variable "haproxy_private_ip" {}
-variable "haproxy_private_ip2" {}
-variable "namespace" {}
+variable "cidr_block" {
+}
+
+variable "public_subnet_cidr_block" {
+}
+
+variable "ad_subnet_cidr_block" {
+}
+
+variable "az" {
+}
+
+variable "az2" {
+}
+
+variable "adminpassword" {
+}
+
+variable "ad_aws_ssm_document_name" {
+}
+
+variable "ad_writer_instance_profile_name" {
+}
+
+variable "naming_suffix" {
+}
+
+variable "haproxy_private_ip" {
+}
+
+variable "haproxy_private_ip2" {
+}
+
+variable "namespace" {
+}
 
 variable "ad_sg_cidr_ingress" {
   description = "List of CIDR block ingress to AD machines SG"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "region" {
@@ -22,22 +45,22 @@ variable "region" {
 
 variable "vpc_peering_connection_ids" {
   description = "List of peering VPC connection ids."
-  type        = "map"
+  type        = map(string)
 }
 
 variable "route_table_cidr_blocks" {
   description = "Map of CIDR blocks for the Apps private route table."
-  type        = "map"
+  type        = map(string)
 }
 
 variable "s3_bucket_name" {
   description = "Map of the S3 bucket names"
-  type        = "map"
+  type        = map(string)
 }
 
 variable "s3_bucket_acl" {
   description = "Map of the S3 bucket canned ACLs"
-  type        = "map"
+  type        = map(string)
 }
 
 variable "rds_db_name" {
@@ -46,7 +69,8 @@ variable "rds_db_name" {
 }
 
 variable "dq_pipeline_ops_readwrite_database_name_list" {
-  default = ["reference_data",
+  default = [
+    "reference_data",
     "acl",
     "consolidated_schedule",
     "api_record_level_score",
@@ -63,7 +87,8 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
 }
 
 variable "dq_pipeline_athena_readwrite_database_name_list" {
-  default = ["reference_data",
+  default = [
+    "reference_data",
     "acl",
     "consolidated_schedule",
     "api_record_level_score",
@@ -87,7 +112,8 @@ variable "dq_pipeline_ops_readonly_database_name_list" {
 }
 
 variable "dq_pipeline_ops_readwrite_bucket_list" {
-  default = ["s3-dq-reference-data-internal",
+  default = [
+    "s3-dq-reference-data-internal",
     "s3-dq-acl-internal",
     "s3-dq-oag-internal",
     "s3-dq-oag-transform",
@@ -145,3 +171,4 @@ variable "athena_log_prefix" {
   description = "Keyprefix for Athena maintenance task"
   default     = "app"
 }
+

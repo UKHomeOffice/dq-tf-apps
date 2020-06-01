@@ -6,15 +6,15 @@ resource "aws_iam_group_membership" "acl" {
   name = "iam-group-membership-acl-${local.naming_suffix}"
 
   users = [
-    "${aws_iam_user.acl.name}",
+    aws_iam_user.acl.name,
   ]
 
-  group = "${aws_iam_group.acl.name}"
+  group = aws_iam_group.acl.name
 }
 
 resource "aws_iam_group_policy" "acl" {
   name  = "group-policy-acl-${local.naming_suffix}"
-  group = "${aws_iam_group.acl.id}"
+  group = aws_iam_group.acl.id
 
   policy = <<EOF
 {
@@ -58,6 +58,7 @@ resource "aws_iam_group_policy" "acl" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_user" "acl" {
@@ -65,5 +66,6 @@ resource "aws_iam_user" "acl" {
 }
 
 resource "aws_iam_access_key" "acl" {
-  user = "${aws_iam_user.acl.name}"
+  user = aws_iam_user.acl.name
 }
+

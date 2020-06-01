@@ -6,15 +6,15 @@ resource "aws_iam_group_membership" "nats" {
   name = "iam-group-membership-nats-${local.naming_suffix}"
 
   users = [
-    "${aws_iam_user.nats.name}",
+    aws_iam_user.nats.name,
   ]
 
-  group = "${aws_iam_group.nats.name}"
+  group = aws_iam_group.nats.name
 }
 
 resource "aws_iam_group_policy" "nats" {
   name  = "group-policy-nats-${local.naming_suffix}"
-  group = "${aws_iam_group.nats.id}"
+  group = aws_iam_group.nats.id
 
   policy = <<EOF
 {
@@ -55,6 +55,7 @@ resource "aws_iam_group_policy" "nats" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_user" "nats" {
@@ -62,5 +63,6 @@ resource "aws_iam_user" "nats" {
 }
 
 resource "aws_iam_access_key" "nats" {
-  user = "${aws_iam_user.nats.name}"
+  user = aws_iam_user.nats.name
 }
+

@@ -13,9 +13,11 @@ resource "aws_iam_role" "rds_enhanced_monitoring_role" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_role_policy_attachment" "rds_enhanced_monitoring_role" {
-  role       = "${aws_iam_role.rds_enhanced_monitoring_role.id}"
+  role       = aws_iam_role.rds_enhanced_monitoring_role.id
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
 }
+
