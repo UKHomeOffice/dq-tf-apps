@@ -7,22 +7,22 @@ resource "aws_iam_user" "rds_maintenance" {
 }
 
 resource "aws_iam_access_key" "rds_maintenance" {
-  user = "${aws_iam_user.rds_maintenance.name}"
+  user = aws_iam_user.rds_maintenance.name
 }
 
 resource "aws_iam_group_membership" "rds_maintenance" {
   name = "iam-group-membership-rds-maintenance-${local.naming_suffix}"
 
   users = [
-    "${aws_iam_user.rds_maintenance.name}",
+    aws_iam_user.rds_maintenance.name,
   ]
 
-  group = "${aws_iam_group.rds_maintenance.name}"
+  group = aws_iam_group.rds_maintenance.name
 }
 
 resource "aws_iam_group_policy" "lambda_policy_rds_maintenance" {
   name  = "iam-group-policy-rds-maintenance-${local.naming_suffix}"
-  group = "${aws_iam_group.rds_maintenance.id}"
+  group = aws_iam_group.rds_maintenance.id
 
   policy = <<EOF
 {
@@ -46,16 +46,18 @@ resource "aws_iam_group_policy" "lambda_policy_rds_maintenance" {
   ]
 }
 EOF
+
 }
 
 resource "aws_ssm_parameter" "rds_maintenance_id" {
   name  = "kubernetes-rds-maintenance-user-id-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.rds_maintenance.id}"
+  value = aws_iam_access_key.rds_maintenance.id
 }
 
 resource "aws_ssm_parameter" "rds_maintenance_key" {
   name  = "kubernetes-rds-maintenance-user-key-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.rds_maintenance.secret}"
+  value = aws_iam_access_key.rds_maintenance.secret
 }
+

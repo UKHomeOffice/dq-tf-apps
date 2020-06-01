@@ -6,15 +6,15 @@ resource "aws_iam_group_membership" "rmr" {
   name = "iam-group-membership-rmr-${local.naming_suffix}"
 
   users = [
-    "${aws_iam_user.rmr.name}",
+    aws_iam_user.rmr.name,
   ]
 
-  group = "${aws_iam_group.rmr.name}"
+  group = aws_iam_group.rmr.name
 }
 
 resource "aws_iam_group_policy" "rmr" {
   name  = "rmr-group-policy-${local.naming_suffix}"
-  group = "${aws_iam_group.rmr.id}"
+  group = aws_iam_group.rmr.id
 
   policy = <<EOF
 {
@@ -52,6 +52,7 @@ resource "aws_iam_group_policy" "rmr" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_user" "rmr" {
@@ -59,5 +60,6 @@ resource "aws_iam_user" "rmr" {
 }
 
 resource "aws_iam_access_key" "rmr_v2" {
-  user = "${aws_iam_user.rmr.name}"
+  user = aws_iam_user.rmr.name
 }
+

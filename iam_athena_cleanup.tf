@@ -6,15 +6,15 @@ resource "aws_iam_group_membership" "athena" {
   name = "iam-group-membership-athena-${local.naming_suffix}"
 
   users = [
-    "${aws_iam_user.athena.name}",
+    aws_iam_user.athena.name,
   ]
 
-  group = "${aws_iam_group.athena.name}"
+  group = aws_iam_group.athena.name
 }
 
 resource "aws_iam_group_policy" "athena" {
   name  = "iam-group-policy-athena-${local.naming_suffix}"
-  group = "${aws_iam_group.athena.id}"
+  group = aws_iam_group.athena.id
 
   policy = <<EOF
 {
@@ -98,6 +98,7 @@ resource "aws_iam_group_policy" "athena" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_user" "athena" {
@@ -105,17 +106,18 @@ resource "aws_iam_user" "athena" {
 }
 
 resource "aws_iam_access_key" "athena" {
-  user = "${aws_iam_user.athena.name}"
+  user = aws_iam_user.athena.name
 }
 
 resource "aws_ssm_parameter" "athena_id" {
   name  = "kubernetes-athena-user-id-${var.athena_log_prefix}-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.athena.id}"
+  value = aws_iam_access_key.athena.id
 }
 
 resource "aws_ssm_parameter" "athena_key" {
   name  = "kubernetes-athena-user-key-${var.athena_log_prefix}-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.athena.secret}"
+  value = aws_iam_access_key.athena.secret
 }
+

@@ -6,15 +6,15 @@ resource "aws_iam_group_membership" "crt" {
   name = "iam-group-membership-crt-${local.naming_suffix}"
 
   users = [
-    "${aws_iam_user.crt.name}"
+    aws_iam_user.crt.name,
   ]
 
-  group = "${aws_iam_group.crt.name}"
+  group = aws_iam_group.crt.name
 }
 
 resource "aws_iam_group_policy" "crt" {
   name  = "iam-group-policy-crt-${local.naming_suffix}"
-  group = "${aws_iam_group.crt.id}"
+  group = aws_iam_group.crt.id
 
   policy = <<EOF
 {
@@ -49,6 +49,7 @@ resource "aws_iam_group_policy" "crt" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_user" "crt" {
@@ -56,17 +57,18 @@ resource "aws_iam_user" "crt" {
 }
 
 resource "aws_iam_access_key" "crt_v2" {
-  user = "${aws_iam_user.crt.name}"
+  user = aws_iam_user.crt.name
 }
 
 resource "aws_ssm_parameter" "crt_id" {
   name  = "kubernetes-crt-user-id-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.crt_v2.id}"
+  value = aws_iam_access_key.crt_v2.id
 }
 
 resource "aws_ssm_parameter" "crt_key" {
   name  = "kubernetes-crt-user-key-${local.naming_suffix}"
   type  = "SecureString"
-  value = "${aws_iam_access_key.crt_v2.secret}"
+  value = aws_iam_access_key.crt_v2.secret
 }
+
