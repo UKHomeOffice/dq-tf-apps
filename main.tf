@@ -6,7 +6,7 @@ locals {
 }
 
 module "external_tableau" {
-  source                       = "git::https://github.com/ukhomeoffice/dq-tf-external-tableau.git?ref=TF12-upgrade"
+  source                       = "github.com/UKHomeOffice/dq-tf-external-tableau"
   acp_prod_ingress_cidr        = "10.5.0.0/16"
   dq_ops_ingress_cidr          = var.route_table_cidr_blocks["ops_cidr"]
   dq_external_dashboard_subnet = "10.1.14.0/24"
@@ -25,7 +25,7 @@ module "external_tableau" {
 }
 
 module "internal_tableau" {
-  source                                = "git::https://github.com/ukhomeoffice/dq-tf-internal-tableau.git?ref=TF12-upgrade"
+  source                                = "github.com/UKHomeOffice/dq-tf-internal-tableau"
   acp_prod_ingress_cidr                 = "10.5.0.0/16"
   dq_ops_ingress_cidr                   = var.route_table_cidr_blocks["ops_cidr"]
   dq_internal_dashboard_subnet_cidr     = "10.1.12.0/24"
@@ -50,7 +50,7 @@ module "internal_tableau" {
 }
 
 module "data_feeds" {
-  source                       = "git::https://github.com/ukhomeoffice/dq-tf-datafeeds.git?ref=TF12-upgrade"
+  source                       = "github.com/UKHomeOffice/dq-tf-datafeeds"
   appsvpc_id                   = aws_vpc.appsvpc.id
   opssubnet_cidr_block         = var.route_table_cidr_blocks["ops_cidr"]
   data_feeds_cidr_block        = "10.1.4.0/24"
@@ -68,7 +68,7 @@ module "data_feeds" {
 }
 
 module "data_ingest" {
-  source                       = "git::https://github.com/ukhomeoffice/dq-tf-dataingest.git?ref=TF12-upgrade"
+  source                       = "github.com/UKHomeOffice/dq-tf-dataingest"
   appsvpc_id                   = aws_vpc.appsvpc.id
   opssubnet_cidr_block         = var.route_table_cidr_blocks["ops_cidr"]
   data_ingest_cidr_block       = "10.1.6.0/24"
@@ -87,7 +87,7 @@ module "data_ingest" {
 }
 
 module "lambda" {
-  source                    = "git::https://github.com/ukhomeoffice/dq-tf-lambda.git?ref=TF12-upgrade"
+  source                    = "github.com/UKHomeOffice/dq-tf-lambda"
   appsvpc_id                = aws_vpc.appsvpc.id
   dq_lambda_subnet_cidr     = "10.1.42.0/24"
   dq_lambda_subnet_cidr_az2 = "10.1.43.0/24"
@@ -98,7 +98,7 @@ module "lambda" {
 }
 
 module "airports_pipeline" {
-  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-pipeline.git?ref=TF12-upgrade"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-pipeline.git"
   kms_key_s3        = aws_kms_key.bucket_key.arn
   kms_key_glue      = data.aws_kms_key.glue.arn
   lambda_subnet     = module.lambda.lambda_subnet
@@ -112,7 +112,7 @@ module "airports_pipeline" {
 }
 
 module "airports_input_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-input.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-input.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   kms_key_glue  = data.aws_kms_key.glue.arn
   lambda_slack  = module.ops_pipeline.lambda_slack
@@ -121,7 +121,7 @@ module "airports_input_pipeline" {
 }
 
 module "oag_input_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-oag-input-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-oag-input-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
@@ -129,7 +129,7 @@ module "oag_input_pipeline" {
 }
 
 module "oag_transform_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-oag-transform-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-oag-transform-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   naming_suffix = local.naming_suffix
   lambda_slack  = module.ops_pipeline.lambda_slack
@@ -137,7 +137,7 @@ module "oag_transform_pipeline" {
 }
 
 module "acl_input_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-acl-input-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-acl-input-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   naming_suffix = local.naming_suffix
   lambda_slack  = module.ops_pipeline.lambda_slack
@@ -145,7 +145,7 @@ module "acl_input_pipeline" {
 }
 
 module "reference_data_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-reference-data-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-reference-data-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
@@ -153,7 +153,7 @@ module "reference_data_pipeline" {
 }
 
 module "consolidated_schedule_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-consolidated-schedule-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-consolidated-schedule-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
@@ -161,7 +161,7 @@ module "consolidated_schedule_pipeline" {
 }
 
 module "cdlz" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-cdlz.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-cdlz.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
@@ -169,7 +169,7 @@ module "cdlz" {
 }
 
 module "api_input_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-input-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-input-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
@@ -177,7 +177,7 @@ module "api_input_pipeline" {
 }
 
 module "api_record_level_score_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-record-level-score-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-record-level-score-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
@@ -185,7 +185,7 @@ module "api_record_level_score_pipeline" {
 }
 
 module "api_cross_record_scored_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-cross-record-score-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-api-cross-record-score-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
@@ -193,7 +193,7 @@ module "api_cross_record_scored_pipeline" {
 }
 
 module "gait_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-gait-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-gait-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
@@ -201,7 +201,7 @@ module "gait_pipeline" {
 }
 
 module "internal_reporting_pipeline" {
-  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-internal-reporting-pipeline.git?ref=TF12-upgrade"
+  source                       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-internal-reporting-pipeline.git"
   lambda_subnet                = module.lambda.lambda_subnet
   lambda_subnet_az2            = module.lambda.lambda_subnet_az2
   lambda_sgrp                  = module.lambda.lambda_sgrp
@@ -214,7 +214,7 @@ module "internal_reporting_pipeline" {
 }
 
 module "rds_deploy" {
-  source                               = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git?ref=TF12-upgrade"
+  source                               = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-rds-deploy.git"
   lambda_subnet                        = module.lambda.lambda_subnet
   lambda_subnet_az2                    = module.lambda.lambda_subnet_az2
   lambda_sgrp                          = module.lambda.lambda_sgrp
@@ -227,7 +227,7 @@ module "rds_deploy" {
 }
 
 module "fms_pipeline" {
-  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fms-pipeline.git?ref=TF12-upgrade"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fms-pipeline.git"
   lambda_subnet     = module.lambda.lambda_subnet
   lambda_subnet_az2 = module.lambda.lambda_subnet_az2
   lambda_sgrp       = module.lambda.lambda_sgrp
@@ -239,7 +239,7 @@ module "fms_pipeline" {
 }
 
 module "drt_pipeline" {
-  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-drt-pipeline.git?ref=TF12-upgrade"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-drt-pipeline.git"
   lambda_subnet     = module.lambda.lambda_subnet
   lambda_subnet_az2 = module.lambda.lambda_subnet_az2
   lambda_sgrp       = module.lambda.lambda_sgrp
@@ -251,7 +251,7 @@ module "drt_pipeline" {
 }
 
 module "carrier_portal_pipeline" {
-  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-carrier-portal-pipeline.git?ref=TF12-upgrade"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-carrier-portal-pipeline.git"
   lambda_subnet     = module.lambda.lambda_subnet
   lambda_subnet_az2 = module.lambda.lambda_subnet_az2
   lambda_sgrp       = module.lambda.lambda_sgrp
@@ -262,7 +262,7 @@ module "carrier_portal_pipeline" {
 }
 
 module "mds_extractor" {
-  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-mds-extractor.git?ref=TF12-upgrade"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-mds-extractor.git"
   lambda_subnet     = module.lambda.lambda_subnet
   lambda_subnet_az2 = module.lambda.lambda_subnet_az2
   lambda_sgrp       = module.lambda.lambda_sgrp
@@ -273,7 +273,7 @@ module "mds_extractor" {
 }
 
 module "raw_file_index" {
-  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-raw-file-index.git?ref=TF12-upgrade"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-raw-file-index.git"
   kms_key_s3        = aws_kms_key.bucket_key.arn
   lambda_subnet     = module.lambda.lambda_subnet
   lambda_subnet_az2 = module.lambda.lambda_subnet_az2
@@ -286,7 +286,7 @@ module "raw_file_index" {
 }
 
 module "fms" {
-  source     = "git::https://github.com/ukhomeoffice/dq-tf-fms.git?ref=TF12-upgrade"
+  source     = "github.com/UKHomeOffice/dq-tf-fms"
   appsvpc_id = aws_vpc.appsvpc.id
 
   opssubnet_cidr_block = var.route_table_cidr_blocks["ops_cidr"]
@@ -303,7 +303,7 @@ module "fms" {
 }
 
 module "ops_pipeline" {
-  source                                = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git?ref=TF12-upgrade"
+  source                                = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-pipeline-ops.git"
   kms_key_s3                            = aws_kms_key.bucket_key.arn
   lambda_subnet                         = module.lambda.lambda_subnet
   lambda_subnet_az2                     = module.lambda.lambda_subnet_az2
@@ -318,26 +318,26 @@ module "ops_pipeline" {
 }
 
 module "dailytasks" {
-  source        = "git::https://github.com/ukhomeoffice/dq-tf-dailytasks.git?ref=TF12-upgrade"
+  source        = "github.com/UKHomeOffice/dq-tf-dailytasks"
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
 
 module "nats_internal_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fpl-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fpl-pipeline.git"
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
 
 module "cdlz_bitd_input" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-btid-cdlz-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-btid-cdlz-pipeline.git"
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
 
 module "kpi_accuracy_scoring" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-kpi-accuracy-scoring-pipeline.git?ref=TF12-upgrade"
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-kpi-accuracy-scoring-pipeline.git"
   lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
