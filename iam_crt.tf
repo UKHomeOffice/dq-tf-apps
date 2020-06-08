@@ -72,3 +72,30 @@ resource "aws_ssm_parameter" "crt_key" {
   value = aws_iam_access_key.crt_v2.secret
 }
 
+esource "aws_ssm_parameter" "dimension_data_user" {
+  name  = "Dimension_data_user"
+  type  = "String"
+  value = "${random_string.dimension_data_user_random.result}"
+}
+
+resource "random_string" "dimension_data_user_random" {
+  length      = 16
+  min_upper   = 1
+  min_lower   = 1
+  min_numeric = 1
+  min_special = 1
+}
+
+resource "aws_ssm_parameter" "dimension_data_password_random" {
+  name  = "Dimension_data_password"
+  value = "${random_string.dimension_data_password_random.result}"
+  type  = "SecureString"
+}
+
+resource "random_string" "dimension_data_password_random" {
+  length      = 16
+  min_upper   = 1
+  min_lower   = 1
+  min_numeric = 1
+  min_special = 1
+}
