@@ -604,5 +604,14 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_accuracy_score(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_s3_bucket.accuracy_score_bucket", "tags"), {"Name": "s3-dq-accuracy-score-apps-preprod-dq"})
 
+        def test_name_suffix_api_cdlz_msk(self):
+         self.assertEqual(self.runner.get_value("module.apps.aws_s3_bucket.api_cdlz_msk_bucket", "tags"), {'Name': "s3-dq-api-cdlz-msk-apps-preprod-dq"})
+
+    def test_api_cdlz_msk_bucket_iam_grouo(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.api_cdlz_msk_bucket", "name"), "api_cdlz_msk_bucket")
+
+    def test_api_cdlz_msk_bucket_iam_user(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.api_cdlz_msk_bucket", "name"), "api_cdlz_msk_bucket_user")
+
 if __name__ == '__main__':
     unittest.main()
