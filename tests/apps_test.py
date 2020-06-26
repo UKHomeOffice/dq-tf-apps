@@ -72,6 +72,8 @@ class TestE2E(unittest.TestCase):
                 cdlz_bitd_input               = "abcd"
                 api_arrivals                  = "abcd"
                 accuracy_score                = "abcd"
+                api_cdlz_msk                  = "abcd"
+
               }
 
               s3_bucket_acl = {
@@ -108,6 +110,7 @@ class TestE2E(unittest.TestCase):
                 cdlz_bitd_input               = "private"
                 api_arrivals                  = "private"
                 accuracy_score                = "private"
+                api_cdlz_msk                  = "private" 
               }
 
               route_table_cidr_blocks     = {
