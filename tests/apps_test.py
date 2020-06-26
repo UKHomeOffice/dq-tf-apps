@@ -601,7 +601,7 @@ class TestE2E(unittest.TestCase):
           self.assertEqual(self.runner.get_value("module.apps.aws_s3_bucket.cdlz_bitd_input", "tags"), {"Name": "s3-dq-cdlz-bitd-input-apps-preprod-dq"})
 
     def test_name_suffix_api_cdlz_msk(self):
-         self.assertEqual(self.runner.get_value("module.apps.aws_s3_bucket.api_cdlz_msk", "tags"), {"Name": "s3-dq-api-cdlz-msk-apps-preprod-dq"})
+         self.assertEqual(self.runner.get_value("module.apps.aws_s3_bucket.api_cdlz_msk_bucket", "tags"), {'Name': "s3-dq-api-cdlz-msk-apps-preprod-dq"})
 
 
 
