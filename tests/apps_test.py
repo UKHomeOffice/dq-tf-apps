@@ -110,7 +110,7 @@ class TestE2E(unittest.TestCase):
                 cdlz_bitd_input               = "private"
                 api_arrivals                  = "private"
                 accuracy_score                = "private"
-                api_cdlz_msk                  = "private" 
+                api_cdlz_msk                  = "private"
               }
 
               route_table_cidr_blocks     = {
@@ -610,8 +610,8 @@ class TestE2E(unittest.TestCase):
         def test_name_suffix_api_cdlz_msk(self):
          self.assertEqual(self.runner.get_value("module.apps.aws_s3_bucket.api_cdlz_msk_bucket", "tags"), {'Name': "s3-dq-api-cdlz-msk-apps-preprod-dq"})
 
-    def test_api_cdlz_msk_bucket_iam_grouo(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.api_cdlz_msk_bucket", "name"), "api_cdlz_msk_bucket")
+    def test_api_cdlz_msk_bucket_iam_group(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.api_cdlz_msk_bucket", "name"), "api_cdlz_msk_bucket")
 
     def test_api_cdlz_msk_bucket_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.api_cdlz_msk_bucket", "name"), "api_cdlz_msk_bucket_user")
