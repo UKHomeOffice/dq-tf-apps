@@ -21,6 +21,7 @@ resource "aws_iam_group_policy" "api_cdlz_msk_bucket_policy" {
   "Statement": [
     {
       "Action": [
+        "s3:GetBucketLocation",
         "s3:ListBucket",
         "s3:ListBucketMultipartUploads",
         "s3:ListMultipartUploadParts"
@@ -32,7 +33,7 @@ resource "aws_iam_group_policy" "api_cdlz_msk_bucket_policy" {
     },
     {
       "Action": [
-        "s3:PutBucket"
+        "s3:PutObject"
       ],
       "Effect": "Allow",
       "Resource": [
