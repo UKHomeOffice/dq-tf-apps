@@ -1549,6 +1549,74 @@ POLICY
 
 }
 
+resource "aws_s3_bucket" "drt_export" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  bucket = var.s3_bucket_name["drt_export"]
+  acl    = var.s3_bucket_acl["drt_export"]
+  region = var.region
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = aws_kms_key.bucket_key.arn
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "drt_export_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-drt-extra-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "drt_export_policy" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  bucket = var.s3_bucket_name["drt_export"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["drt_export"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
+
+resource "aws_s3_bucket_metric" "drt_export_logging" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  bucket = var.s3_bucket_name["drt_export"]
+  name   = "drt_export_bucket_metric"
+}
+
+resource "aws_ssm_parameter" "drt_export_S3_kms" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  name  = "DRT_S3_KMS_KEY_ID"
+  type  = "SecureString"
+  value = aws_kms_key.bucket_key.key_id
+}
+
 resource "aws_s3_bucket" "drt_working_bucket" {
   bucket = var.s3_bucket_name["drt_working"]
   acl    = var.s3_bucket_acl["drt_working"]
@@ -1599,6 +1667,11 @@ resource "aws_s3_bucket_policy" "drt_working_policy" {
 }
 POLICY
 
+}
+
+resource "aws_s3_bucket_metric" "drt_working_logging" {
+  bucket = var.s3_bucket_name["drt_working"]
+  name   = "drt_working_bucket_metric"
 }
 
 resource "aws_s3_bucket" "nats_archive_bucket" {
@@ -1715,11 +1788,6 @@ resource "aws_s3_bucket_policy" "nats_internal_policy" {
 }
 POLICY
 
-}
-
-resource "aws_s3_bucket_metric" "drt_working_logging" {
-  bucket = var.s3_bucket_name["drt_working"]
-  name   = "drt_working_bucket_metric"
 }
 
 resource "aws_s3_bucket" "cdlz_bitd_input" {
