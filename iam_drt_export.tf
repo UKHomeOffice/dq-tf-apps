@@ -5,7 +5,7 @@ resource "aws_iam_group" "drt_export" {
 
 resource "aws_iam_group_membership" "drt_export" {
   count  = var.namespace == "notprod" ? 1 : 0
-  name = "iam-group-membership-drt_export-${local.naming_suffix}"
+  name = "iam-group-membership-drt-export-${local.naming_suffix}"
 
   users = [
     aws_iam_user.drt_export.name,
