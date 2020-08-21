@@ -32,6 +32,7 @@ variable "haproxy_private_ip2" {
 }
 
 variable "namespace" {
+  default = "test"
 }
 
 variable "ad_sg_cidr_ingress" {
@@ -171,4 +172,3 @@ variable "athena_log_prefix" {
   description = "Keyprefix for Athena maintenance task"
   default     = "app"
 }
-
