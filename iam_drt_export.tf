@@ -27,7 +27,7 @@ resource "aws_iam_group_policy" "drt_export" {
       "Sid": "ListS3Bucket",
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.drt_export.arn}"
+      "Resource": "${aws_s3_bucket.drt_export[count.index].arn}"
     },
     {
       "Sid": "PutS3Bucket",
@@ -35,7 +35,7 @@ resource "aws_iam_group_policy" "drt_export" {
       "Action": [
         "s3:PutObject"
       ],
-      "Resource": "${aws_s3_bucket.drt_export.arn}/*"
+      "Resource": "${aws_s3_bucket.drt_export[count.index].arn}/*"
     },
     {
       "Sid": "UseKMSKey",
