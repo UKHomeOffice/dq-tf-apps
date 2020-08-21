@@ -1,0 +1,80 @@
+resource "aws_iam_group" "drt_export" {
+  count = var.namespace == "notprod" ? 1 : 0
+  name  = "iam-group-drt-export-${local.naming_suffix}"
+}
+
+resource "aws_iam_group_membership" "drt_export" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  name = "iam-group-membership-drt_export-${local.naming_suffix}"
+
+  users = [
+    aws_iam_user.drt_export.name,
+  ]
+
+  group = aws_iam_group.drt_export.name
+}
+
+resource "aws_iam_group_policy" "drt_export" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  name  = "iam-group-policy-drt-export-${local.naming_suffix}"
+  group = aws_iam_group.drt_export.id
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ListS3Bucket",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "${aws_s3_bucket.drt_export.arn}"
+    },
+    {
+      "Sid": "PutS3Bucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Resource": "${aws_s3_bucket.drt_export.arn}/*"
+    },
+    {
+      "Sid": "UseKMSKey",
+      "Effect": "Allow",
+      "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*",
+        "kms:DescribeKey"
+        ],
+        "Resource": "${aws_kms_key.bucket_key.arn}"
+    }
+  ]
+}
+EOF
+
+}
+
+resource "aws_iam_user" "drt_export" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  name = "iam-user-drt-export-${local.naming_suffix}"
+}
+
+resource "aws_iam_access_key" "drt_export" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  user = aws_iam_user.drt_export.name
+}
+
+resource "aws_ssm_parameter" "drt_export_id" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  name  = "DRT_AWS_ACCESS_KEY_ID"
+  type  = "SecureString"
+  value = aws_iam_access_key.drt_export.id
+}
+
+resource "aws_ssm_parameter" "drt_export_key" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  name  = "DRT_AWS_SECRET_ACCESS_KEY"
+  type  = "SecureString"
+  value = aws_iam_access_key.drt_export.secret
+}
