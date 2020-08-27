@@ -1611,7 +1611,7 @@ resource "aws_s3_bucket_metric" "drt_export_logging" {
 }
 
 resource "aws_ssm_parameter" "drt_export_S3_kms" {
-  count  = var.namespace == "notprod" ? 1 : 0
+  count = var.namespace == "notprod" ? 1 : 0
   name  = "DRT_S3_KMS_KEY_ID"
   type  = "SecureString"
   value = aws_kms_key.bucket_key.key_id
@@ -2017,6 +2017,62 @@ POLICY
 resource "aws_s3_bucket_metric" "api_cdlz_msk_bucket_logging" {
   bucket = var.s3_bucket_name["api_cdlz_msk"]
   name   = "api_cdlz_msk_metric"
+}
+
+resource "aws_s3_bucket" "api_rls_xrs_reconciliation" {
+  bucket = var.s3_bucket_name["api_rls_xrs_reconciliation"]
+  acl    = var.s3_bucket_acl["api_rls_xrs_reconciliation"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "api_rls_xrs_reconciliation/"
+  }
+
+  tags = {
+    Name = "s3-dq-rls-xrs-reconciliation-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "api_rls_xrs_reconciliation_bucket_policy" {
+  bucket = var.s3_bucket_name["api_rls_xrs_reconciliation"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["api_rls_xrs_reconciliation"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
+
+resource "aws_s3_bucket_metric" "api_rls_xrs_reconciliation_bucket_logging" {
+  bucket = var.s3_bucket_name["api_rls_xrs_reconciliation"]
+  name   = "api_rls_xrs_reconciliation_metric"
 }
 
 resource "aws_vpc_endpoint" "s3_endpoint" {

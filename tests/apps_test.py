@@ -74,6 +74,7 @@ class TestE2E(unittest.TestCase):
                 accuracy_score                = "abcd"
                 api_cdlz_msk                  = "abcd"
                 drt_export                    = "abcd"
+                api_rls_xrs_reconciliation    = "abcd"
 
               }
 
@@ -113,6 +114,7 @@ class TestE2E(unittest.TestCase):
                 accuracy_score                = "private"
                 api_cdlz_msk                  = "private"
                 drt_export                    = "private"
+                api_rls_xrs_reconciliation    = "private"
               }
 
               route_table_cidr_blocks     = {
