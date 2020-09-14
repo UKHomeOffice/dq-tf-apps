@@ -97,6 +97,12 @@ module "lambda" {
   route_table_id            = aws_route_table.apps_route_table.id
 }
 
+module "acl_data_ingest_monitor" {
+  source        = "github.com/UKHomeOffice/dq-tf-acl-data-ingest-monitor"
+  naming_suffix = local.naming_suffix
+  namespace     = var.namespace
+}
+
 module "airports_pipeline" {
   source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-pipeline.git"
   kms_key_s3        = aws_kms_key.bucket_key.arn
