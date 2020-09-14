@@ -97,8 +97,8 @@ module "lambda" {
   route_table_id            = aws_route_table.apps_route_table.id
 }
 
-module "kube_data_ingest_monitor" {
-  source        = "github.com/UKHomeOffice/dq-tf-kube-data-ingest-monitor"
+module "acl_oag_nats_data_ingest_monitor" {
+  source        = "github.com/UKHomeOffice/dq-tf-acl-oag-nats-data-ingest-monitor"
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
