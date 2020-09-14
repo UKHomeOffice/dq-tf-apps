@@ -98,7 +98,7 @@ module "lambda" {
 }
 
 module "acl_oag_nats_ingest_monitor" {
-  source        = "github.com/UKHomeOffice/dq-tf-acl-oag-nats-ingest-monitor "
+  source        = "github.com/UKHomeOffice/dq-tf-acl-oag-nats-ingest-monitor"
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
