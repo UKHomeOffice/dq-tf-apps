@@ -75,6 +75,8 @@ class TestE2E(unittest.TestCase):
                 api_cdlz_msk                  = "abcd"
                 drt_export                    = "abcd"
                 api_rls_xrs_reconciliation    = "abcd"
+                dq_fs_archive                 = "abcd"
+                dq_fs_internal                = "abcd"
 
               }
 
@@ -115,6 +117,8 @@ class TestE2E(unittest.TestCase):
                 api_cdlz_msk                  = "private"
                 drt_export                    = "private"
                 api_rls_xrs_reconciliation    = "private"
+                dq_fs_archive                 = "private"
+                dq_fs_internal                = "private"
               }
 
               route_table_cidr_blocks     = {
