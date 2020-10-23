@@ -2075,6 +2075,118 @@ resource "aws_s3_bucket_metric" "api_rls_xrs_reconciliation_bucket_logging" {
   name   = "api_rls_xrs_reconciliation_metric"
 }
 
+resource "aws_s3_bucket" "dq_fs_archive" {
+  bucket = var.s3_bucket_name["dq_fs_archive"]
+  acl    = var.s3_bucket_acl["dq_fs_archive"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "dq_fs_archive/"
+  }
+
+  tags = {
+    Name = "s3-dq-fs-archive-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "dq_fs_archive_bucket_policy" {
+  bucket = var.s3_bucket_name["dq_fs_archive"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["dq_fs_archive"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
+
+resource "aws_s3_bucket_metric" "dq_fs_archive_bucket_logging" {
+  bucket = var.s3_bucket_name["dq_fs_archive"]
+  name   = "dq_fs_archive_metric"
+}
+
+resource "aws_s3_bucket" "dq_fs_internal" {
+  bucket = var.s3_bucket_name["dq_fs_internal"]
+  acl    = var.s3_bucket_acl["dq_fs_internal"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "dq_fs_internal/"
+  }
+
+  tags = {
+    Name = "s3-dq-fs-internal-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "dq_fs_internal_bucket_policy" {
+  bucket = var.s3_bucket_name["dq_fs_internal"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["dq_fs_internal"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
+
+resource "aws_s3_bucket_metric" "dq_fs_internal_bucket_logging" {
+  bucket = var.s3_bucket_name["dq_fs_internal"]
+  name   = "dq_fs_internal_metric"
+}
+
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = aws_vpc.appsvpc.id
   route_table_ids = [aws_route_table.apps_route_table.id]
