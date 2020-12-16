@@ -1,5 +1,5 @@
 resource "aws_iam_group" "athena_tableau" {
-  name = "iam-group-athena-tableau${local.naming_suffix}"
+  name = "iam-group-athena-tableau-${local.naming_suffix}"
 }
 
 resource "aws_iam_group_membership" "athena_tableau" {
@@ -90,7 +90,7 @@ EOF
 }
 
 resource "aws_iam_user" "athena_tableau" {
-  name = "iam-user-athena-tableau${local.naming_suffix}"
+  name = "iam-user-athena-tableau-${local.naming_suffix}"
 }
 
 resource "aws_iam_access_key" "athena_tableau" {
