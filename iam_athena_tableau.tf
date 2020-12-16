@@ -19,14 +19,15 @@ resource "aws_iam_group_policy" "athena_tableau" {
   policy = <<EOF
 {
   "Version": "2012-10-17",
-  "Statement": [{
+  "Statement": [
+  {
       "Action": [
         "s3:GetBucketLocation",
         "s3:GetObject",
         "s3:ListBucket",
         "s3:ListBucketMultipartUploads",
         "s3:ListMultipartUploadParts",
-        "s3:AbortMultipartUpload",
+        "s3:AbortMultipartUpload"
       ],
       "Effect": "Allow",
       "Resource": [
