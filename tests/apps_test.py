@@ -624,5 +624,23 @@ class TestE2E(unittest.TestCase):
     def test_api_cdlz_msk_bucket_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.api_cdlz_msk_bucket", "name"), "api_cdlz_msk_bucket_user")
 
+    def test_name_athena_tableau_iam_group(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.athena_tableau", "name"), "iam-group-athena-tableau-apps-preprod-dq")
+
+    def test_name_athena_tableau_iam_group_membership(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.athena_tableau", "name"), "iam-group-membership-athena-tableau-apps-preprod-dq")
+
+    def test_name_athena_tableau_iam_group_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.athena_tableau", "name"), "iam-group-policy-athena-tableau-apps-preprod-dq")
+
+    def test_name_athena_tableau_iam_user(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.athena_tableau", "name"), "iam-user-athena-tableau-apps-preprod-dq")
+
+    def test_name_ssm_athena_tableau_id(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.athena_tableau_id", "name"), "tableau-athena-user-id-apps-preprod-dq")
+
+    def test_name_ssm_athena_tableau_key(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.athena_tableau_key", "name"), "tableau-athena-user-key-apps-preprod-dq")
+
 if __name__ == '__main__':
     unittest.main()
