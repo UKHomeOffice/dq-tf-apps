@@ -20,7 +20,6 @@ resource "aws_iam_group_policy" "athena_tableau" {
 {
   "Version": "2012-10-17",
   "Statement": [{
-    {
       "Action": [
         "s3:GetBucketLocation",
         "s3:GetObject",
