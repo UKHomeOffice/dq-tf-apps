@@ -27,7 +27,9 @@ resource "aws_iam_group_policy" "athena_tableau" {
         "s3:ListBucket",
         "s3:ListBucketMultipartUploads",
         "s3:ListMultipartUploadParts",
-        "s3:AbortMultipartUpload"
+        "s3:AbortMultipartUpload",
+        "s3:PutObject",
+        "s3:DeleteObject"
       ],
       "Effect": "Allow",
       "Resource": [
@@ -87,6 +89,56 @@ resource "aws_iam_group_policy" "athena_tableau" {
 }
 EOF
 
+}
+
+resource "aws_iam_policy" "athena_tableau" {
+  name = "iam-policy-athena-tableau-${local.naming_suffix}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+      "Action": [
+        "glue:GetDatabase",
+        "glue:GetTable",
+        "glue:GetTables",
+        "glue:GetPartition",
+        "glue:GetPartitions",
+        "glue:CreatePartition",
+        "glue:DeletePartition",
+        "glue:BatchDeletePartition",
+        "glue:BatchCreatePartition"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
+        "${join(
+  "\",\"",
+  formatlist(
+    "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s",
+    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.namespace,
+  ),
+  )}",
+        "${join(
+  "\",\"",
+  formatlist(
+    "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*",
+    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.namespace,
+  ),
+)}"
+        ]
+     }
+  ]
+}
+EOF
+
+}
+
+resource "aws_iam_group_policy_attachment" "athena_tableau" {
+  group      = aws_iam_group.athena_tableau.name
+  policy_arn = aws_iam_policy.athena_tableau.arn
 }
 
 resource "aws_iam_user" "athena_tableau" {
