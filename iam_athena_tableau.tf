@@ -100,14 +100,12 @@ resource "aws_iam_policy" "athena_tableau" {
   "Statement": [{
       "Action": [
         "glue:GetDatabase",
+        "glue:GetDatabases",
         "glue:GetTable",
         "glue:GetTables",
         "glue:GetPartition",
         "glue:GetPartitions",
-        "glue:CreatePartition",
-        "glue:DeletePartition",
-        "glue:BatchDeletePartition",
-        "glue:BatchCreatePartition"
+        "glue:BatchGetPartition"
       ],
       "Effect": "Allow",
       "Resource": [
