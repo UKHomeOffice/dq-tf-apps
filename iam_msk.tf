@@ -13,7 +13,7 @@ resource "aws_iam_group" "api_cdlz_msk_bucket" {
 
 resource "aws_iam_group_policy" "api_cdlz_msk_bucket_policy" {
   name  = "api_cdlz_msk_bucket_policy"
-  group = "${aws_iam_group.api_cdlz_msk_bucket.id}"
+  group = aws_iam_group.api_cdlz_msk_bucket.id
 
   policy = <<EOF
 {
