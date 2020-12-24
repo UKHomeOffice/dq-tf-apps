@@ -75,7 +75,7 @@ resource "aws_ssm_parameter" "crt_key" {
 resource "aws_ssm_parameter" "dimension_data_user" {
   name  = "Dimension_data_user-crt-${local.naming_suffix}"
   type  = "String"
-  value = "${random_string.dimension_data_user_random.result}"
+  value = random_string.dimension_data_user_random.result
 }
 
 resource "random_string" "dimension_data_user_random" {
@@ -88,7 +88,7 @@ resource "random_string" "dimension_data_user_random" {
 
 resource "aws_ssm_parameter" "dimension_data_password_random" {
   name  = "Dimension_data_password-crt-${local.naming_suffix}"
-  value = "${random_string.dimension_data_password_random.result}"
+  value = random_string.dimension_data_password_random.result
   type  = "SecureString"
 }
 
