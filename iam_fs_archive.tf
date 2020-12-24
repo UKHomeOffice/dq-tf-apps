@@ -13,7 +13,7 @@ resource "aws_iam_group" "dq_fs_archive_bucket" {
 
 resource "aws_iam_group_policy" "dq_fs_archive_bucket_policy" {
   name  = "dq_fs_archive_bucket_policy"
-  group = "${aws_iam_group.dq_fs_archive_bucket.id}"
+  group = aws_iam_group.dq_fs_archive_bucket.id
 
   policy = <<EOF
 {
