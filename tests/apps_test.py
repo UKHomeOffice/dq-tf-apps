@@ -77,6 +77,7 @@ class TestE2E(unittest.TestCase):
                 api_rls_xrs_reconciliation    = "abcd"
                 dq_fs_archive                 = "abcd"
                 dq_fs_internal                = "abcd"
+                dq_aws_config                 = "abcd"
 
               }
 
@@ -119,6 +120,7 @@ class TestE2E(unittest.TestCase):
                 api_rls_xrs_reconciliation    = "private"
                 dq_fs_archive                 = "private"
                 dq_fs_internal                = "private"
+                dq_aws_config                 = "private"
               }
 
               route_table_cidr_blocks     = {
