@@ -62,15 +62,3 @@ resource "aws_iam_user" "rmr" {
 resource "aws_iam_access_key" "rmr_v2" {
   user = aws_iam_user.rmr.name
 }
-
-resource "aws_ssm_parameter" "rmr_id" {
-  name  = "rmr-user-id-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.rmr.id
-}
-
-resource "aws_ssm_parameter" "rmr_key" {
-  name  = "rmr-user-key-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.rmr.secret
-}
