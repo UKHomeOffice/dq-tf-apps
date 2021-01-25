@@ -69,3 +69,8 @@ resource "aws_iam_access_key" "acl" {
   user = aws_iam_user.acl.name
 }
 
+resource "aws_ssm_parameter" "acl_key" {
+  name  = "kubernetes-acl-user-key-${local.naming_suffix}"
+  type  = "SecureString"
+  value = aws_iam_access_key.acl.secret
+}
