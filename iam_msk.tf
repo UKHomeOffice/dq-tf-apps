@@ -69,7 +69,7 @@ resource "aws_iam_group_membership" "api_cdlz_msk_bucket" {
 resource "aws_ssm_parameter" "msk_id" {
   name  = "API_CDLZ_MSK_AWS_ACCESS_KEY_ID}"
   type  = "SecureString"
-  value = aws_iam_access_key.acl.id
+  value = aws_iam_access_key.msk.id
 }
 
 resource "aws_ssm_parameter" "msk_key" {
