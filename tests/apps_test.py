@@ -78,6 +78,10 @@ class TestE2E(unittest.TestCase):
                 dq_fs_archive                 = "abcd"
                 dq_fs_internal                = "abcd"
                 dq_aws_config                 = "abcd"
+                dq_asn_archive                = "abcd"
+                dq_asn_internal               = "abcd"
+                dq_snsgb_archive              = "abcd"
+                dq_snsgb_internal             = "abcd"
 
               }
 
@@ -121,6 +125,10 @@ class TestE2E(unittest.TestCase):
                 dq_fs_archive                 = "private"
                 dq_fs_internal                = "private"
                 dq_aws_config                 = "private"
+                dq_asn_archive                = "private"
+                dq_asn_internal               = "private"
+                dq_snsgb_archive              = "private"
+                dq_snsgb_internal             = "private"
               }
 
               route_table_cidr_blocks     = {
