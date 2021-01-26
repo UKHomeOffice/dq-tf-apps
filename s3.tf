@@ -2243,6 +2243,229 @@ resource "aws_s3_bucket_metric" "dq_aws_config_bucket_logging" {
   name   = "dq_aws_config_metric"
 }
 
+resource "aws_s3_bucket" "dq_asn_archive_bucket" {
+  bucket = var.s3_bucket_name["dq_asn_archive"]
+  acl    = var.s3_bucket_acl["dq_asn_archive"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "dq_asn_archive/"
+  }
+
+  tags = {
+    Name = "s3-dq-asn-archive-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "dq_asn_archive_bucket_policy" {
+  bucket = var.s3_bucket_name["dq_asn_archive"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["dq_asn_archive"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
+
+resource "aws_s3_bucket_metric" "dq_asn_archive_bucket_logging" {
+  bucket = var.s3_bucket_name["dq_asn_archive"]
+  name   = "dq_asn_archive_metric"
+}
+
+resource "aws_s3_bucket" "dq_asn_internal_bucket" {
+  bucket = var.s3_bucket_name["dq_asn_internal"]
+  acl    = var.s3_bucket_acl["dq_asn_internal"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "dq_asn_internal/"
+  }
+
+  tags = {
+    Name = "s3-dq-asn-internal-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "dq_asn_internal_bucket_policy" {
+  bucket = var.s3_bucket_name["dq_asn_internal"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["dq_asn_internal"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
+
+resource "aws_s3_bucket_metric" "dq_asn_internal_bucket_logging" {
+  bucket = var.s3_bucket_name["dq_asn_internal"]
+  name   = "dq_asn_internal_metric"
+}
+
+resource "aws_s3_bucket" "dq_snsgb_archive_bucket" {
+  bucket = var.s3_bucket_name["dq_snsgb_archive"]
+  acl    = var.s3_bucket_acl["dq_snsgb_archive"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "dq_snsgb_archive/"
+  }
+
+  tags = {
+    Name = "s3-dq-snsgb-archive-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "dq_snsgb_archive_bucket_policy" {
+  bucket = var.s3_bucket_name["dq_snsgb_archive"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["dq_snsgb_archive"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
+
+resource "aws_s3_bucket_metric" "dq_snsgb_archive_bucket_logging" {
+  bucket = var.s3_bucket_name["dq_snsgb_archive"]
+  name   = "dq_snsgb_archive_metric"
+}
+
+resource "aws_s3_bucket" "dq_snsgb_internal_bucket" {
+  bucket = var.s3_bucket_name["dq_snsgb_internal"]
+  acl    = var.s3_bucket_acl["dq_snsgb_internal"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "dq_snsgb_internal/"
+  }
+
+  tags = {
+    Name = "s3-dq-snsgb-internal-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "dq_snsgb_internal_bucket_policy" {
+  bucket = var.s3_bucket_name["dq_snsgb_internal"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["dq_snsgb_internal"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
+
+resource "aws_s3_bucket_metric" "dq_snsgb_internal_bucket_logging" {
+  bucket = var.s3_bucket_name["dq_snsgb_internal"]
+  name   = "dq_snsgb_internal_metric"
+}
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = aws_vpc.appsvpc.id
   route_table_ids = [aws_route_table.apps_route_table.id]
