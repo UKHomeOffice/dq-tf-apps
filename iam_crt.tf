@@ -30,9 +30,10 @@ resource "aws_iam_group_policy" "crt" {
       "Sid": "GetS3Bucket",
       "Effect": "Allow",
       "Action": [
+        "s3:PutObject",
         "s3:GetObject"
       ],
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/crt/*"
+      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/crt-backup/*"
     },
     {
       "Sid": "UseKMSKey",
