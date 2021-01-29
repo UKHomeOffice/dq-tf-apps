@@ -83,6 +83,7 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "airports_input",
     "carrier_portal",
     "fms",
+    "snsgb",
   ]
 }
 
@@ -104,6 +105,7 @@ variable "dq_pipeline_athena_readwrite_database_name_list" {
     "nats_internal",
     "freight",
     "gait_working",
+    "snsgb",
   ]
 }
 
