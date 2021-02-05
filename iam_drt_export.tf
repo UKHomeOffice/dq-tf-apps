@@ -4,8 +4,8 @@ resource "aws_iam_group" "drt_export" {
 }
 
 resource "aws_iam_group_membership" "drt_export" {
-  count  = var.namespace == "notprod" ? 1 : 0
-  name   = "iam-group-membership-drt-export-${local.naming_suffix}"
+  count = var.namespace == "notprod" ? 1 : 0
+  name  = "iam-group-membership-drt-export-${local.naming_suffix}"
 
   users = [
     aws_iam_user.drt_export[count.index].name,
@@ -15,9 +15,9 @@ resource "aws_iam_group_membership" "drt_export" {
 }
 
 resource "aws_iam_group_policy" "drt_export" {
-  count  = var.namespace == "notprod" ? 1 : 0
-  name   = "iam-group-policy-drt-export-${local.naming_suffix}"
-  group  = aws_iam_group.drt_export[count.index].id
+  count = var.namespace == "notprod" ? 1 : 0
+  name  = "iam-group-policy-drt-export-${local.naming_suffix}"
+  group = aws_iam_group.drt_export[count.index].id
 
   policy = <<EOF
 {
@@ -56,25 +56,25 @@ EOF
 }
 
 resource "aws_iam_user" "drt_export" {
-  count  = var.namespace == "notprod" ? 1 : 0
-  name   = "iam-user-drt-export-${local.naming_suffix}"
+  count = var.namespace == "notprod" ? 1 : 0
+  name  = "iam-user-drt-export-${local.naming_suffix}"
 }
 
 resource "aws_iam_access_key" "drt_export" {
-  count  = var.namespace == "notprod" ? 1 : 0
-  user   = aws_iam_user.drt_export[count.index].name
+  count = var.namespace == "notprod" ? 1 : 0
+  user  = aws_iam_user.drt_export[count.index].name
 }
 
 resource "aws_ssm_parameter" "drt_export_id" {
-  count  = var.namespace == "notprod" ? 1 : 0
-  name   = "DRT_AWS_ACCESS_KEY_ID"
-  type   = "SecureString"
-  value  = aws_iam_access_key.drt_export[count.index].id
+  count = var.namespace == "notprod" ? 1 : 0
+  name  = "DRT_AWS_ACCESS_KEY_ID"
+  type  = "SecureString"
+  value = aws_iam_access_key.drt_export[count.index].id
 }
 
 resource "aws_ssm_parameter" "drt_export_key" {
-  count  = var.namespace == "notprod" ? 1 : 0
-  name   = "DRT_AWS_SECRET_ACCESS_KEY"
-  type   = "SecureString"
-  value  = aws_iam_access_key.drt_export[count.index].secret
+  count = var.namespace == "notprod" ? 1 : 0
+  name  = "DRT_AWS_SECRET_ACCESS_KEY"
+  type  = "SecureString"
+  value = aws_iam_access_key.drt_export[count.index].secret
 }
