@@ -72,7 +72,7 @@ resource "aws_ssm_parameter" "aftc_sc_msk_bucket" {
   value = aws_iam_access_key.aftc_sc_msk_bucket.id
 }
 
-resource "aws_ssm_parameter" "athena_key" {
+resource "aws_ssm_parameter" "aftc_sc_msk_bucket" {
   name  = "aftc-sc-msk-bucket-user-key-${local.naming_suffix}"
   type  = "SecureString"
   value = aws_iam_access_key.aftc_sc_msk_bucket.secret
