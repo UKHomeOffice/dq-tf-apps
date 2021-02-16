@@ -2516,6 +2516,7 @@ resource "aws_s3_bucket_policy" "aftc_sc_msk_bucket_policy" {
 }
 POLICY
 
+  depends_on = ["aws_s3_bucket.aftc_sc_msk_bucket"]
 }
 
 resource "aws_s3_bucket_metric" "aftc_sc_msk_bucket_logging" {
