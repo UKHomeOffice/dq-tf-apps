@@ -66,13 +66,13 @@ resource "aws_iam_group_membership" "aftc_sc_msk_bucket" {
   group = aws_iam_group.aftc_sc_msk_bucket.name
 }
 
-resource "aws_ssm_parameter" "aftc_sc_msk_bucket" {
+resource "aws_ssm_parameter" "aftc_sc_msk_bucket_id" {
   name  = "aftc-sc-msk-bucket-user-id-${local.naming_suffix}"
   type  = "SecureString"
   value = aws_iam_access_key.aftc_sc_msk_bucket.id
 }
 
-resource "aws_ssm_parameter" "aftc_sc_msk_bucket" {
+resource "aws_ssm_parameter" "aftc_sc_msk_bucket_key" {
   name  = "aftc-sc-msk-bucket-user-key-${local.naming_suffix}"
   type  = "SecureString"
   value = aws_iam_access_key.aftc_sc_msk_bucket.secret
