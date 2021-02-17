@@ -486,9 +486,6 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_dq_pipeline_ops_policy(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.dq_pipeline_ops_policy", "name"), "dq-pipeline-ops-policy-preprod")
 
-    def test_name_suffix_athena_tableau_fedat_iam_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.athena_tableau_fedat", "name"), "iam-policy-athena-tableau-fedat-apps-preprod-dq")
-
     def test_name_suffix_mds_extractor_lambda_mds_extractor(self):
         self.assertEqual(self.runner.get_value("module.apps.module.mds_extractor.aws_lambda_function.lambda_mds_extractor[0]", "tags"), {"Name": "lambda-mds-extractor-apps-preprod-dq"})
 
