@@ -639,6 +639,9 @@ class TestE2E(unittest.TestCase):
     def test_name_athena_tableau_iam_group(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.athena_tableau", "name"), "iam-group-athena-tableau-apps-preprod-dq")
 
+    def test_name_athena_tableau_fedat_iam_group(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.athena_tableau_fedat", "name"), "iam-group-athena-tableau-fedat-apps-preprod-dq")
+
     def test_name_athena_tableau_iam_group_membership(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.athena_tableau", "name"), "iam-group-membership-athena-tableau-apps-preprod-dq")
 
