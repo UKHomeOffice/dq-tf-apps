@@ -88,6 +88,12 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
   ]
 }
 
+variable "dq_pipeline_ops_readwrite_database_name_list_fedat" {
+  default = [
+    "fedat_reporting",
+  ]
+}
+
 variable "dq_pipeline_athena_readwrite_database_name_list" {
   default = [
     "reference_data",
@@ -107,6 +113,11 @@ variable "dq_pipeline_athena_readwrite_database_name_list" {
     "freight",
     "gait_working",
     "snsgb",
+  ]
+}
+
+variable "dq_pipeline_athena_readwrite_database_name_list_fedat" {
+  default = [
     "fedat_reporting",
   ]
 }
