@@ -12,58 +12,58 @@ resource "aws_iam_group_membership" "athena_tableau_fedat" {
   group = aws_iam_group.athena_tableau_fedat.name
 }
 
-# resource "aws_iam_group_policy" "athena_tableau_fedat" {
-#   name  = "iam-group-policy-athena-tableau-fedat-${local.naming_suffix}"
-#   group = aws_iam_group.athena_tableau_fedat.id
-#
-#   policy = <<EOF
-# {
-#   "Version": "2012-10-17",
-#   "Statement": [
-#   {
-#       "Action": [
-#         "s3:GetBucketLocation",
-#         "s3:GetObject",
-#         "s3:ListBucket",
-#         "s3:ListBucketMultipartUploads",
-#         "s3:ListMultipartUploadParts",
-#         "s3:AbortMultipartUpload",
-#         "s3:PutObject",
-#         "s3:DeleteObject"
-#       ],
-#       "Effect": "Allow",
-#       "Resource": [
-#         "${aws_s3_bucket.athena_log_bucket.arn}",
-#         "${aws_s3_bucket.athena_log_bucket.arn}/*"
-#       ]
-#     },
-#     {
-#       "Action": [
-#         "athena:StartQueryExecution",
-#         "athena:GetQueryExecution",
-#         "athena:GetQueryResults",
-#         "athena:GetQueryResultsStream",
-#         "athena:UpdateWorkGroup",
-#         "athena:GetWorkGroup"
-#       ],
-#       "Effect": "Allow",
-#       "Resource": "*"
-#     },
-#     {
-#       "Action": [
-#         "kms:Encrypt",
-#         "kms:Decrypt",
-#         "kms:GenerateDataKey*",
-#         "kms:DescribeKey"
-#       ],
-#       "Effect": "Allow",
-#       "Resource": "${aws_kms_key.bucket_key.arn}"
-#     }
-#   ]
-# }
-# EOF
-#
-# }
+resource "aws_iam_group_policy" "athena_tableau_fedat" {
+  name  = "iam-group-policy-athena-tableau-fedat-${local.naming_suffix}"
+  group = aws_iam_group.athena_tableau_fedat.id
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+  {
+      "Action": [
+        "s3:GetBucketLocation",
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:ListBucketMultipartUploads",
+        "s3:ListMultipartUploadParts",
+        "s3:AbortMultipartUpload",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "${aws_s3_bucket.athena_log_bucket.arn}",
+        "${aws_s3_bucket.athena_log_bucket.arn}/*"
+      ]
+    },
+    {
+      "Action": [
+        "athena:StartQueryExecution",
+        "athena:GetQueryExecution",
+        "athena:GetQueryResults",
+        "athena:GetQueryResultsStream",
+        "athena:UpdateWorkGroup",
+        "athena:GetWorkGroup"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:GenerateDataKey*",
+        "kms:DescribeKey"
+      ],
+      "Effect": "Allow",
+      "Resource": "${aws_kms_key.bucket_key.arn}"
+    }
+  ]
+}
+EOF
+
+}
 
 # resource "aws_iam_policy" "athena_tableau_fedat" {
 #   name = "iam-policy-athena-tableau-fedat-${local.naming_suffix}"
