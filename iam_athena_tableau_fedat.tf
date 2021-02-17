@@ -106,10 +106,10 @@ EOF
 
 }
 
-# resource "aws_iam_group_policy_attachment" "athena_tableau_fedat" {
-#   group      = aws_iam_group.athena_tableau_fedat.name
-#   policy_arn = aws_iam_policy.athena_tableau_fedat.arn
-# }
+resource "aws_iam_group_policy_attachment" "athena_tableau_fedat" {
+  group      = aws_iam_group.athena_tableau_fedat.name
+  policy_arn = aws_iam_policy.athena_tableau_fedat.arn
+}
 
 resource "aws_iam_user" "athena_tableau_fedat" {
   name = "iam-user-athena-tableau-fedat-${local.naming_suffix}"
