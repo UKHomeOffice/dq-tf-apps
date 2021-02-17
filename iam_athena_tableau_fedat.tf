@@ -88,14 +88,14 @@ resource "aws_iam_policy" "athena_tableau_fedat" {
   "\",\"",
   formatlist(
     "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s",
-    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.dq_pipeline_athena_readwrite_database_name_list
   ),
   )}",
         "${join(
   "\",\"",
   formatlist(
     "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*",
-    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.dq_pipeline_athena_readwrite_database_name_list
   ),
 )}"
         ]
