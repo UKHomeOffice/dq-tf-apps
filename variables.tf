@@ -84,13 +84,14 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "carrier_portal",
     "fms",
     "snsgb",
-    "fedat_reporting",
   ]
 }
 
-variable "dq_pipeline_ops_readwrite_database_name_list_fedat" {
+variable "dq_pipeline_ops_unscoped_readwrite_database_name_list" {
   default = [
     "fedat_reporting",
+    "pnr_reporting",
+    "consolidated_schedule_reporting",
   ]
 }
 
@@ -116,9 +117,11 @@ variable "dq_pipeline_athena_readwrite_database_name_list" {
   ]
 }
 
-variable "dq_pipeline_athena_readwrite_database_name_list_fedat" {
+variable "dq_pipeline_athena_unscoped_readwrite_database_name_list" {
   default = [
     "fedat_reporting",
+    "pnr_reporting",
+    "consolidated_schedule_reporting",
   ]
 }
 
