@@ -83,6 +83,7 @@ class TestE2E(unittest.TestCase):
                 dq_snsgb_archive              = "abcd"
                 dq_snsgb_internal             = "abcd"
                 aftc_sc_msk                   = "abcd"
+                dq_asn_marine_archive         = "abcd"
 
               }
 
@@ -131,6 +132,7 @@ class TestE2E(unittest.TestCase):
                 dq_snsgb_archive              = "private"
                 dq_snsgb_internal             = "private"
                 aftc_sc_msk                   = "private"
+                dq_asn_marine_archive         = "private"
               }
 
               route_table_cidr_blocks     = {
