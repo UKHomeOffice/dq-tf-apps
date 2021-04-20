@@ -32,8 +32,6 @@ variable "haproxy_private_ip2" {
 }
 
 variable "namespace" {
-  default     = "notprod"
-  description = "Switch between environments"
 }
 
 variable "ad_sg_cidr_ingress" {

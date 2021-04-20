@@ -2757,7 +2757,7 @@ resource "aws_s3_bucket_metric" "dq_rm_internal_bucket_logging" {
 }
 
 resource "aws_s3_bucket" "dq_data_generator_bucket" {
-  count  = var.namespace == "prod" ? "0" : "1"
+  count  = var.namespace == "notprod" ? 1 : 0
   bucket = var.s3_bucket_name["dq_data_generator"]
   acl    = var.s3_bucket_acl["dq_data_generator"]
 
@@ -2784,7 +2784,7 @@ resource "aws_s3_bucket" "dq_data_generator_bucket" {
 }
 
 resource "aws_s3_bucket_policy" "dq_data_generator_bucket_policy" {
-  count  = var.namespace == "prod" ? "0" : "1"
+  count  = var.namespace == "notprod" ? 1 : 0
   bucket = var.s3_bucket_name["dq_data_generator"]
 
   policy = <<POLICY
@@ -2812,7 +2812,7 @@ POLICY
 }
 
 resource "aws_s3_bucket_metric" "dq_data_generator_bucket_logging" {
-  count  = var.namespace == "prod" ? "0" : "1"
+  count  = var.namespace == "notprod" ? 1 : 0
   bucket = var.s3_bucket_name["dq_data_generator"]
   name   = "dq_data_generator_metric"
 }
