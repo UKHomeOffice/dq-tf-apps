@@ -2757,6 +2757,7 @@ resource "aws_s3_bucket_metric" "dq_rm_internal_bucket_logging" {
 }
 
 resource "aws_s3_bucket" "dq_data_generator_bucket" {
+  count  = var.namespace == "prod" ? "0" : "1"
   bucket = var.s3_bucket_name["dq_data_generator"]
   acl    = var.s3_bucket_acl["dq_data_generator"]
 
