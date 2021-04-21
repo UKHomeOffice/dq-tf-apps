@@ -30,7 +30,7 @@ class TestE2E(unittest.TestCase):
               ad_aws_ssm_document_name        = "1234"
               ad_writer_instance_profile_name = "1234"
               naming_suffix                   = "preprod-dq"
-              namespace                       = "notprod"
+              namespace                       = "preprod"
               haproxy_private_ip              = "1.2.3.3"
               haproxy_private_ip2             = "1.2.3.4"
               s3_httpd_config_bucket          = "s3-bucket-name"
@@ -87,7 +87,7 @@ class TestE2E(unittest.TestCase):
                 dq_asn_marine_internal        = "abcd"
                 dq_rm_archive                 = "abcd"
                 dq_rm_internal                = "abcd"
-                dq_data_generator             = "abcd"
+                # dq_data_generator             = "abcd"
 
               }
 
@@ -140,7 +140,7 @@ class TestE2E(unittest.TestCase):
                 dq_asn_marine_internal        = "private"
                 dq_rm_archive                 = "private"
                 dq_rm_internal                = "private"
-                dq_data_generator             = "private"
+                # dq_data_generator             = "private"
               }
 
               route_table_cidr_blocks     = {
