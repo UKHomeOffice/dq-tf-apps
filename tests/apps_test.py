@@ -87,7 +87,7 @@ class TestE2E(unittest.TestCase):
                 dq_asn_marine_internal        = "abcd"
                 dq_rm_archive                 = "abcd"
                 dq_rm_internal                = "abcd"
-                # dq_data_generator             = "abcd"
+                dq_data_generator             = "abcd"
 
               }
 
@@ -140,7 +140,7 @@ class TestE2E(unittest.TestCase):
                 dq_asn_marine_internal        = "private"
                 dq_rm_archive                 = "private"
                 dq_rm_internal                = "private"
-                # dq_data_generator             = "private"
+                dq_data_generator             = "private"
               }
 
               route_table_cidr_blocks     = {
