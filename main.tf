@@ -24,13 +24,13 @@ module "external_tableau" {
   haproxy_config_bucket_key    = var.haproxy_config_bucket_key
 }
 
-module "ec2_alarms_ext_tableau" {
-  source          = "github.com/UKHomeOffice/dq-tf-cloudwatch-ec2"
-  naming_suffix   = local.naming_suffix
-  environment     = var.namespace
-  pipeline_name   = "ext-tableau"
-  ec2_instance_id = module.external_tableau.ext_tab_inst_id
-}
+# module "ec2_alarms_ext_tableau" {
+#   source          = "github.com/UKHomeOffice/dq-tf-cloudwatch-ec2"
+#   naming_suffix   = local.naming_suffix
+#   environment     = var.namespace
+#   pipeline_name   = "ext-tableau"
+#   ec2_instance_id = module.external_tableau.ext_tab_inst_id
+# }
 
 module "internal_tableau" {
   source                                = "github.com/UKHomeOffice/dq-tf-internal-tableau"
