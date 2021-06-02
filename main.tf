@@ -111,6 +111,12 @@ module "acl_oag_nats_ingest_monitor" {
   namespace     = var.namespace
 }
 
+module "tableau_backup_monitor" {
+  source        = "github.com/UKHomeOffice/dq-tf-tableau-backup-monitor"
+  naming_suffix = local.naming_suffix
+  namespace     = var.namespace
+}
+
 module "airports_pipeline" {
   source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-airports-pipeline.git"
   kms_key_s3        = aws_kms_key.bucket_key.arn
