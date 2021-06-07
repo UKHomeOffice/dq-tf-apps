@@ -12,7 +12,8 @@ resource "aws_iam_group_policy" "dq_data_generator_bucket_policy" {
         "s3:GetBucketLocation",
         "s3:ListBucket",
         "s3:ListBucketMultipartUploads",
-        "s3:ListMultipartUploadParts"
+        "s3:ListMultipartUploadParts",
+        "s3:GetObject"
       ],
       "Effect": "Allow",
       "Resource": [
