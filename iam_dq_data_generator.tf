@@ -24,6 +24,7 @@ resource "aws_iam_group_policy" "dq_data_generator_bucket_policy" {
     {
       "Action": [
         "s3:PutObject"
+        "s3:GetObject"
       ],
       "Effect": "Allow",
       "Resource": [
