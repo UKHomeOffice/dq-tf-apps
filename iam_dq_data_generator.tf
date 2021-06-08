@@ -18,7 +18,9 @@ resource "aws_iam_group_policy" "dq_data_generator_bucket_policy" {
       "Effect": "Allow",
       "Resource": [
         "${aws_s3_bucket.dq_data_generator_bucket[0].arn}",
-        "${aws_s3_bucket.api_cdlz_msk_bucket.arn}"
+        "${aws_s3_bucket.dq_data_generator_bucket[0].arn}/*",
+        "${aws_s3_bucket.api_cdlz_msk_bucket.arn}",
+        "${aws_s3_bucket.api_cdlz_msk_bucket.arn}/*"
       ]
     },
     {
