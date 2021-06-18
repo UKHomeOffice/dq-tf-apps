@@ -73,7 +73,7 @@ resource "aws_ssm_parameter" "api_archive_cdlz_bucket_id" {
 }
 
 resource "aws_ssm_parameter" "api_archive_cdlz_bucketkey" {
-  name  = "kubernetes-jira-backup-user-key-${local.naming_suffix}"
+  name  = "api-archive-cdlz-user-key-${local.naming_suffix}"
   type  = "SecureString"
   value = aws_iam_access_key.api_archive_cdlz_bucket.secret
 }
