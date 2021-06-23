@@ -29,7 +29,8 @@ resource "aws_iam_group_policy" "api_archive_cdlz_bucket_policy" {
       "Effect": "Allow",
       "Resource": [
         "${aws_s3_bucket.api_archive_bucket.arn}",
-        "${aws_s3_bucket.data_archive_bucket.arn}"
+        "${aws_s3_bucket.data_archive_bucket.arn}",
+        "arn:aws:s3:::dsa-cdl-s3-deposit-s4-prod"
       ]
     },
     {
@@ -40,6 +41,16 @@ resource "aws_iam_group_policy" "api_archive_cdlz_bucket_policy" {
       "Resource": [
         "${aws_s3_bucket.api_archive_bucket.arn}/*",
         "${aws_s3_bucket.data_archive_bucket.arn}/s4/parsed/*"
+      ]
+    },
+    {
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:s3:::dsa-cdl-s3-deposit-s4-prod/*"
       ]
     },
     {
