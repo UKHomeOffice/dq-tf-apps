@@ -65,7 +65,7 @@ resource "aws_iam_group_policy" "api_archive_cdlz_bucket_policy" {
         "kms:DescribeKey"
         ],
         "Resource": [
-          "${aws_s3_bucket.api_archive_bucket.arn}"
+          "${aws_kms_key.bucket_key.arn}"
         ]
       }
   ]
