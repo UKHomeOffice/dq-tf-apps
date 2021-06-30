@@ -2,8 +2,8 @@ provider "aws" {
 }
 
 locals {
-  naming_suffix = "apps-${var.naming_suffix}"
-}
+  naming_suffix       = "apps-${var.naming_suffix}"
+  alarm_naming_suffix =   "apps-${var.alarm_naming_suffix}"
 
 module "external_tableau" {
   source                       = "github.com/UKHomeOffice/dq-tf-external-tableau"
