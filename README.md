@@ -1,4 +1,4 @@
-# DQ Terraform Apps module
+# DQ - Terraform Apps module
 
 [![Build Status](https://drone.digital.homeoffice.gov.uk/api/badges/UKHomeOffice/dq-tf-apps/status.svg)](https://drone.digital.homeoffice.gov.uk/UKHomeOffice/dq-tf-apps)
 
