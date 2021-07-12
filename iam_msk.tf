@@ -65,3 +65,15 @@ resource "aws_iam_group_membership" "api_cdlz_msk_bucket" {
 
   group = aws_iam_group.api_cdlz_msk_bucket.name
 }
+
+resource "aws_ssm_parameter" "api_cdlz_msk_bucket_id" {
+  name  = "api-cdlz-msk-bucket-user-id-${local.naming_suffix}"
+  type  = "SecureString"
+  value = aws_iam_access_key.api_cdlz_msk_bucket.id
+}
+
+resource "aws_ssm_parameter" "api_cdlz_msk_bucket_key" {
+  name  = "api-cdlz-msk-bucket-user-key-${local.naming_suffix}"
+  type  = "SecureString"
+  value = aws_iam_access_key.api_cdlz_msk_bucket.secret
+}
