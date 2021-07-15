@@ -34,7 +34,8 @@ resource "aws_iam_group_policy" "dq_fs_archive_bucket_policy" {
     {
       "Action": [
         "s3:PutObject",
-        "s3:GetObject"
+        "s3:GetObject",
+        "s3:PutObjectAcl"
       ],
       "Effect": "Allow",
       "Resource": [
