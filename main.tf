@@ -350,8 +350,8 @@ module "nats_internal_pipeline" {
 }
 
 module "cdlz_bitd_input" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-btid-cdlz-pipeline.git"
-  lambda_slack  = module.ops_pipeline.lambda_slack
+  source = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-btid-cdlz-pipeline.git"
+  # lambda_slack  = module.ops_pipeline.lambda_slack
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
