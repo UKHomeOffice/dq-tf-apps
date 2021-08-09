@@ -69,13 +69,13 @@ resource "aws_iam_group_membership" "dq_mds_extractor_bucket" {
 }
 
 resource "aws_ssm_parameter" "dq_mds_extractor_bucket_user" {
-  name  = "FS_ARCHIVE_BUCKET_AWS_ACCESS_KEY_ID"
+  name  = "MDS_BUCKET_BUCKET_AWS_ACCESS_KEY_ID"
   type  = "SecureString"
   value = aws_iam_access_key.dq_mds_extractor_bucket.id
 }
 
 resource "aws_ssm_parameter" "dq_mds_extractor_bucket_secret" {
-  name  = "FS_ARCHIVE_BUCKET_AWS_SECRET_ACCESS_KEY"
+  name  = "MDS_BUCKET_BUCKET_AWS_SECRET_ACCESS_KEY"
   type  = "SecureString"
   value = aws_iam_access_key.dq_mds_extractor_bucket.secret
 }
