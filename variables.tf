@@ -84,6 +84,7 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "carrier_portal",
     "fms",
     "snsgb",
+    "asn_maritime",
   ]
 }
 
@@ -114,6 +115,7 @@ variable "dq_pipeline_athena_readwrite_database_name_list" {
     "freight",
     "gait_working",
     "snsgb",
+    "asn_maritime",
   ]
 }
 
