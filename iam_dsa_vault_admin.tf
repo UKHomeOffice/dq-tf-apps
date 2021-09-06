@@ -56,17 +56,17 @@ resource "aws_iam_user" "vault_admin" {
 }
 
 resource "aws_iam_access_key" "vault_admin" {
-  user = aws_iam_user.vault-admin.name
+  user = aws_iam_user.vault_admin.name
 }
 
 resource "aws_ssm_parameter" "vault_admin_id" {
   name  = "vault-admin-user-id-${local.naming_suffix}"
   type  = "SecureString"
-  value = aws_iam_access_key.vault-admin.id
+  value = aws_iam_access_key.vault_admin.id
 }
 
 resource "aws_ssm_parameter" "vault_admin_key" {
   name  = "vault-admin-user-key-${local.naming_suffix}"
   type  = "SecureString"
-  value = aws_iam_access_key.vault-admin.secret
+  value = aws_iam_access_key.vault_admin.secret
 }
