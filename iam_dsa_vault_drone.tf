@@ -13,7 +13,7 @@ resource "aws_iam_group_membership" "vault_drone" {
 }
 
 variable "vault_drone_managed_policies" {
-  type = list
+  type = list(string)
   default = [
     "arn:aws:iam::aws:policy/AmazonS3FullAccess",
     "arn:aws:iam::aws:policy/AmazonEC2FullAccess",
