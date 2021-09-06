@@ -1,9 +1,9 @@
 resource "aws_iam_group" "vault_drone" {
-  name = "iam-group-vault-admin-${local.naming_suffix}"
+  name = "iam-group-vault-drone-${local.naming_suffix}"
 }
 
 resource "aws_iam_group_membership" "vault_drone" {
-  name = "iam-group-membership-vault-admin-${local.naming_suffix}"
+  name = "iam-group-membership-vault-drone-${local.naming_suffix}"
 
   users = [
     aws_iam_user.vault_drone.name,
@@ -36,21 +36,21 @@ resource "aws_iam_group_policy_attachment" "vault_drone" {
 }
 
 resource "aws_iam_user" "vault_drone" {
-  name = "iam-user-vault-admin-${local.naming_suffix}"
+  name = "iam-user-vault-drone-${local.naming_suffix}"
 }
 
 resource "aws_iam_access_key" "vault_drone" {
-  user = aws_iam_user.vault-admin.name
+  user = aws_iam_user.vault-drone.name
 }
 
 resource "aws_ssm_parameter" "vault_drone_id" {
-  name  = "vault-admin-user-id-${local.naming_suffix}"
+  name  = "vault-drone-user-id-${local.naming_suffix}"
   type  = "SecureString"
-  value = aws_iam_access_key.vault-admin.id
+  value = aws_iam_access_key.vault_drone.id
 }
 
 resource "aws_ssm_parameter" "vault_drone_key" {
-  name  = "vault-admin-user-key-${local.naming_suffix}"
+  name  = "vault-drone-user-key-${local.naming_suffix}"
   type  = "SecureString"
-  value = aws_iam_access_key.vault-admin.secret
+  value = aws_iam_access_key.vault_drone.secret
 }
