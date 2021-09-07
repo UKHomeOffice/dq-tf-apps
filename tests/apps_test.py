@@ -669,7 +669,7 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.vault_admin", "name"), "iam-group-membership-vault-admin-apps-preprod-dq")
 
     def test_name_vault_admin_iam_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.vault_admin", "name"), "iam-group-policy-vault-admin-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.vault_admin", "name"), "iam-policy-vault-admin-apps-preprod-dq")
 
     def test_name_vault_admin_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.vault_admin", "name"), "iam-user-vault-admin-apps-preprod-dq")
