@@ -12,9 +12,8 @@ resource "aws_iam_group_membership" "nats" {
   group = aws_iam_group.nats.name
 }
 
-resource "aws_iam_group_policy" "nats" {
-  name  = "group-policy-nats-${local.naming_suffix}"
-  group = aws_iam_group.nats.id
+resource "aws_iam_policy" "nats" {
+  name = "iam-policy-nats-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -56,6 +55,11 @@ resource "aws_iam_group_policy" "nats" {
 }
 EOF
 
+}
+
+resource "aws_iam_group_policy_attachment" "nats" {
+  group      = aws_iam_group.nats.name
+  policy_arn = aws_iam_policy.nats.arn
 }
 
 resource "aws_iam_user" "nats" {

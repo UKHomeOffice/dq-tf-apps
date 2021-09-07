@@ -216,8 +216,8 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_nats_iam_group_membership(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.nats", "name"), "iam-group-membership-nats-apps-preprod-dq")
 
-    def test_name_suffix_nats_iam_group_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.nats", "name"), "group-policy-nats-apps-preprod-dq")
+    def test_name_suffix_nats_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.nats", "name"), "iam-policy-nats-apps-preprod-dq")
 
     def test_name_suffix_nats_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.nats", "name"), "iam-user-nats-apps-preprod-dq")
