@@ -663,37 +663,37 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.athena_tableau_key", "name"), "tableau-athena-user-key-apps-preprod-dq")
 
     def test_name_vault_admin_iam_group(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.vault_admin", "name"), "iam-group-vault-admin-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.vault_admin", "name"), "iam-group-vault-admin")
 
     def test_name_vault_admin_iam_group_membership(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.vault_admin", "name"), "iam-group-membership-vault-admin-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.vault_admin", "name"), "iam-group-membership-vault-admin")
 
     def test_name_vault_admin_iam_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.vault_admin", "name"), "iam-policy-vault-admin-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.vault_admin", "name"), "iam-policy-vault-admin")
 
     def test_name_vault_admin_iam_user(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.vault_admin", "name"), "iam-user-vault-admin-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.vault_admin", "name"), "iam-user-vault-admin")
 
     def test_name_ssm_vault_admin_id(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_admin_id", "name"), "vault-admin-user-id-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_admin_id", "name"), "vault-admin-user-id")
 
     def test_name_ssm_vault_admin_key(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_admin_key", "name"), "vault-admin-user-key-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_admin_key", "name"), "vault-admin-user-key")
 
     def test_name_vault_drone_iam_group(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.vault_drone", "name"), "iam-group-vault-drone-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.vault_drone", "name"), "iam-group-vault-drone")
 
     def test_name_vault_drone_iam_group_membership(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.vault_drone", "name"), "iam-group-membership-vault-drone-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.vault_drone", "name"), "iam-group-membership-vault-drone")
 
     def test_name_vault_drone_iam_user(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.vault_drone", "name"), "iam-user-vault-drone-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.vault_drone", "name"), "iam-user-vault-drone")
 
     def test_name_ssm_vault_drone_id(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_drone_id", "name"), "vault-drone-user-id-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_drone_id", "name"), "vault-drone-user-id")
 
     def test_name_ssm_vault_drone_key(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_drone_key", "name"), "vault-drone-user-key-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_drone_key", "name"), "vault-drone-user-key")
 
 if __name__ == '__main__':
     unittest.main()
