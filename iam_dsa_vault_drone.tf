@@ -1,16 +1,16 @@
 resource "aws_iam_group" "vault_drone" {
-  name = "iam-group-vault-drone-${local.naming_suffix}"
+  name = "iam-group-vault-drone"
 }
 
-resource "aws_iam_group_membership" "vault_drone" {
-  name = "iam-group-membership-vault-drone-${local.naming_suffix}"
-
-  users = [
-    aws_iam_user.vault_drone.name,
-  ]
-
-  group = aws_iam_group.vault_drone.name
-}
+# resource "aws_iam_group_membership" "vault_drone" {
+#   name = "iam-group-membership-vault-drone"
+#
+#   users = [
+#     aws_iam_user.vault_drone.name,
+#   ]
+#
+#   group = aws_iam_group.vault_drone.name
+# }
 
 variable "vault_drone_managed_policies" {
   type = list(string)
@@ -35,22 +35,22 @@ resource "aws_iam_group_policy_attachment" "vault_drone" {
   policy_arn = var.vault_drone_managed_policies[count.index]
 }
 
-resource "aws_iam_user" "vault_drone" {
-  name = "iam-user-vault-drone-${local.naming_suffix}"
-}
-
-resource "aws_iam_access_key" "vault_drone" {
-  user = aws_iam_user.vault_drone.name
-}
-
-resource "aws_ssm_parameter" "vault_drone_id" {
-  name  = "vault-drone-user-id-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.vault_drone.id
-}
-
-resource "aws_ssm_parameter" "vault_drone_key" {
-  name  = "vault-drone-user-key-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.vault_drone.secret
-}
+# resource "aws_iam_user" "vault_drone" {
+#   name = "iam-user-vault-drone"
+# }
+#
+# resource "aws_iam_access_key" "vault_drone" {
+#   user = aws_iam_user.vault_drone.name
+# }
+#
+# resource "aws_ssm_parameter" "vault_drone_id" {
+#   name  = "vault-drone-user-id"
+#   type  = "SecureString"
+#   value = aws_iam_access_key.vault_drone.id
+# }
+#
+# resource "aws_ssm_parameter" "vault_drone_key" {
+#   name  = "vault-drone-user-key"
+#   type  = "SecureString"
+#   value = aws_iam_access_key.vault_drone.secret
+# }

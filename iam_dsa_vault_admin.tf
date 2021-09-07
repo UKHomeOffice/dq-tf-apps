@@ -1,9 +1,9 @@
 resource "aws_iam_group" "vault_admin" {
-  name = "iam-group-vault-admin-${local.naming_suffix}"
+  name = "iam-group-vault-admin"
 }
 
 resource "aws_iam_group_membership" "vault_admin" {
-  name = "iam-group-membership-vault-admin-${local.naming_suffix}"
+  name = "iam-group-membership-vault-admin"
 
   users = [
     aws_iam_user.vault_admin.name,
@@ -13,7 +13,7 @@ resource "aws_iam_group_membership" "vault_admin" {
 }
 
 resource "aws_iam_policy" "vault_admin" {
-  name = "iam-policy-vault-admin-${local.naming_suffix}"
+  name = "iam-policy-vault-admin"
 
   policy = <<EOF
 {
@@ -51,7 +51,7 @@ resource "aws_iam_group_policy_attachment" "vault_admin" {
 }
 
 resource "aws_iam_user" "vault_admin" {
-  name = "iam-user-vault-admin-${local.naming_suffix}"
+  name = "iam-user-vault-admin"
 }
 
 resource "aws_iam_access_key" "vault_admin" {
@@ -59,13 +59,13 @@ resource "aws_iam_access_key" "vault_admin" {
 }
 
 resource "aws_ssm_parameter" "vault_admin_id" {
-  name  = "vault-admin-user-id-${local.naming_suffix}"
+  name  = "vault-admin-user-id"
   type  = "SecureString"
   value = aws_iam_access_key.vault_admin.id
 }
 
 resource "aws_ssm_parameter" "vault_admin_key" {
-  name  = "vault-admin-user-key-${local.naming_suffix}"
+  name  = "vault-admin-user-key"
   type  = "SecureString"
   value = aws_iam_access_key.vault_admin.secret
 }
