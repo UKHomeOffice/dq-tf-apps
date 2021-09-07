@@ -40,7 +40,7 @@ resource "aws_iam_user" "vault_drone" {
 }
 
 resource "aws_iam_access_key" "vault_drone" {
-  user = aws_iam_user.vault-drone.name
+  user = aws_iam_user.vault_drone.name
 }
 
 resource "aws_ssm_parameter" "vault_drone_id" {

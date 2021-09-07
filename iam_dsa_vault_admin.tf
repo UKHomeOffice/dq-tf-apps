@@ -16,34 +16,33 @@ resource "aws_iam_policy" "vault_admin" {
   name = "iam-policy-vault-admin-${local.naming_suffix}"
 
   policy = <<EOF
-  {
-      "Version": "2012-10-17",
-      "Statement": [
-          {
-              "Effect": "Allow",
-              "Action": [
-                  "iam:AttachUserPolicy",
-                  "iam:CreateAccessKey",
-                  "iam:CreateUser",
-                  "iam:DeleteAccessKey",
-                  "iam:DeleteUser",
-                  "iam:DeleteUserPolicy",
-                  "iam:DetachUserPolicy",
-                  "iam:ListAccessKeys",
-                  "iam:ListAttachedUserPolicies",
-                  "iam:ListGroupsForUser",
-                  "iam:ListUserPolicies",
-                  "iam:PutUserPolicy",
-                  "iam:AddUserToGroup",
-                  "iam:RemoveUserFromGroup",
-                  "iam:GetUser"
-              ],
-              "Resource": "*"
-          }
-      ]
-  }
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "iam:AttachUserPolicy",
+          "iam:CreateAccessKey",
+          "iam:CreateUser",
+          "iam:DeleteAccessKey",
+          "iam:DeleteUser",
+          "iam:DeleteUserPolicy",
+          "iam:DetachUserPolicy",
+          "iam:ListAccessKeys",
+          "iam:ListAttachedUserPolicies",
+          "iam:ListGroupsForUser",
+          "iam:ListUserPolicies",
+          "iam:PutUserPolicy",
+          "iam:AddUserToGroup",
+          "iam:RemoveUserFromGroup",
+          "iam:GetUser"
+        ],
+      "Resource": "*"
+    }
+  ]
+}
 EOF
-
 }
 
 resource "aws_iam_group_policy_attachment" "vault_admin" {
