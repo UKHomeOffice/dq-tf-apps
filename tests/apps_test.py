@@ -683,17 +683,5 @@ class TestE2E(unittest.TestCase):
     def test_name_vault_drone_iam_group(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.vault_drone", "name"), "iam-group-vault-drone")
 
-    def test_name_vault_drone_iam_group_membership(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.vault_drone", "name"), "iam-group-membership-vault-drone")
-
-    def test_name_vault_drone_iam_user(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.vault_drone", "name"), "iam-user-vault-drone")
-
-    def test_name_ssm_vault_drone_id(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_drone_id", "name"), "vault-drone-user-id")
-
-    def test_name_ssm_vault_drone_key(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_drone_key", "name"), "vault-drone-user-key")
-
 if __name__ == '__main__':
     unittest.main()
