@@ -12,9 +12,8 @@ resource "aws_iam_group_membership" "acl" {
   group = aws_iam_group.acl.name
 }
 
-resource "aws_iam_group_policy" "acl" {
-  name  = "group-policy-acl-${local.naming_suffix}"
-  group = aws_iam_group.acl.id
+resource "aws_iam_policy" "acl" {
+  name = "iam-policy-acl-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -59,6 +58,11 @@ resource "aws_iam_group_policy" "acl" {
 }
 EOF
 
+}
+
+resource "aws_iam_group_policy_attachment" "acl" {
+  group      = aws_iam_group.acl.name
+  policy_arn = aws_iam_policy.acl.arn
 }
 
 resource "aws_iam_user" "acl" {
