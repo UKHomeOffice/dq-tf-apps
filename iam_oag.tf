@@ -13,8 +13,7 @@ resource "aws_iam_group_membership" "oag" {
 }
 
 resource "aws_iam_policy" "oag" {
-  name  = "policy-oag-${local.naming_suffix}"
-  group = aws_iam_group.oag.id
+  name = "iam-policy-oag-${local.naming_suffix}"
 
   policy = <<EOF
 {
