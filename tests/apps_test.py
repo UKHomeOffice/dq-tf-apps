@@ -264,8 +264,8 @@ class TestE2E(unittest.TestCase):
     def test_name_acl_iam_group_membership(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.acl", "name"), "iam-group-membership-acl-apps-preprod-dq")
 
-    def test_name_acl_iam_group_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.acl", "name"), "group-policy-acl-apps-preprod-dq")
+    def test_name_acl_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.acl", "name"), "iam-policy-acl-apps-preprod-dq")
 
     def test_name_acl_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.acl", "name"), "iam-user-acl-apps-preprod-dq")
