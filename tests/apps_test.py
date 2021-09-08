@@ -246,8 +246,8 @@ class TestE2E(unittest.TestCase):
     def test_name_oag_iam_group_membership(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.oag", "name"), "iam-group-membership-oag-apps-preprod-dq")
 
-    def test_name_oag_iam_group_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.oag", "name"), "group-policy-oag-apps-preprod-dq")
+    def test_name_oag_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.oag", "name"), "policy-oag-apps-preprod-dq")
 
     def test_name_oag_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.oag", "name"), "iam-user-oag-apps-preprod-dq")

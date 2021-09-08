@@ -12,8 +12,8 @@ resource "aws_iam_group_membership" "oag" {
   group = aws_iam_group.oag.name
 }
 
-resource "aws_iam_group_policy" "oag" {
-  name  = "group-policy-oag-${local.naming_suffix}"
+resource "aws_iam_policy" "oag" {
+  name  = "policy-oag-${local.naming_suffix}"
   group = aws_iam_group.oag.id
 
   policy = <<EOF
@@ -59,6 +59,11 @@ resource "aws_iam_group_policy" "oag" {
 }
 EOF
 
+}
+
+resource "aws_iam_group_policy_attachment" "oag" {
+  group      = aws_iam_group.oag.name
+  policy_arn = aws_iam_policy.oag.arn
 }
 
 resource "aws_iam_user" "oag" {
