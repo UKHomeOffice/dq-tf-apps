@@ -1,7 +1,7 @@
 #This User allows the certificate expiry script to access slack_notification_webhook on ssm
 
-resource "aws_iam_policy" "airports" {
-  name   = "airports"
+resource "aws_iam_policy" "analysis_proxy_user" {
+  name   = "analysis_proxy_user"
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -20,9 +20,9 @@ resource "aws_iam_policy" "airports" {
 EOF
 }
 
-resource "aws_iam_group_policy_attachment" "nats" {
-  group      = aws_iam_group.nats.name
-  policy_arn = aws_iam_policy.nats.arn
+resource "aws_iam_group_policy_attachment" "analysis_proxy_user" {
+  group      = aws_iam_group.analysis_proxy_user.name
+  policy_arn = aws_iam_policy.analysis_proxy_user.arn
 }
 
 resource "aws_iam_user" "analysis_proxy_user" {
