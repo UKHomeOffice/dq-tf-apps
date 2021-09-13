@@ -2,9 +2,8 @@ resource "aws_iam_group" "airports" {
   name = "iam-group-airports-${local.naming_suffix}"
 }
 
-resource "aws_iam_group_policy" "airports" {
-  name  = "iam-group-policy-airports-${local.naming_suffix}"
-  group = aws_iam_group.airports.id
+resource "aws_iam_policy" "airports" {
+  name = "iam-group-policy-airports-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -42,3 +41,7 @@ EOF
 
 }
 
+resource "aws_iam_group_policy_attachment" "airports" {
+  group      = aws_iam_group.airports.name
+  policy_arn = aws_iam_policy.airports.arn
+}
