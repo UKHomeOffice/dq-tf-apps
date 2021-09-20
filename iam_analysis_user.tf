@@ -4,64 +4,64 @@ resource "aws_iam_policy" "analysis_proxy_user" {
   name = "analysis_proxy_user_policy"
 
   policy = <<EOF
-  {
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Action": [
-          "s3:GetBucketLocation",
-          "s3:ListBucket",
-          "s3:ListBucketMultipartUploads",
-          "s3:ListMultipartUploadParts"
-        ],
-        "Effect": "Allow",
-        "Resource": [
-          "${aws_s3_bucket.data_archive_bucket.arn}"
-        ]
-      },
-      {
-        "Action": [
-          "s3:GetObject"
-        ],
-        "Effect": "Allow",
-        "Resource": [
-          "${aws_s3_bucket.data_archive_bucket.arn}/analysis/*"
-        ]
-      },
-      {
-        "Action": [
-          "s3:PutObject"
-        ],
-        "Effect": "Allow",
-        "Resource": [
-          "${aws_s3_bucket.data_archive_bucket.arn}",
-          "${aws_s3_bucket.data_archive_bucket.arn}/analysis/*"
-        ]
-      },
-      {
-        "Effect": "Allow",
-        "Action": [
-          "kms:Encrypt",
-          "kms:Decrypt",
-          "kms:ReEncrypt*",
-          "kms:GenerateDataKey*",
-          "kms:DescribeKey"
-          ],
-          "Resource": [
-            "${aws_kms_key.bucket_key.arn}"
-          ]
-      },
-      {
-        "Effect": "Allow",
-        "Action": [
-                   "ssm:GetParameter"
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:GetBucketLocation",
+        "s3:ListBucket",
+        "s3:ListBucketMultipartUploads",
+        "s3:ListMultipartUploadParts"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "${aws_s3_bucket.data_archive_bucket.arn}"
+      ]
+    },
+    {
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "${aws_s3_bucket.data_archive_bucket.arn}/analysis/*"
+      ]
+    },
+    {
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "${aws_s3_bucket.data_archive_bucket.arn}",
+        "${aws_s3_bucket.data_archive_bucket.arn}/analysis/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*",
+        "kms:DescribeKey"
         ],
         "Resource": [
-        "arn:aws:ssm:eu-west-2:*:parameter/slack_notification_webhook"
+          "${aws_kms_key.bucket_key.arn}"
         ]
-      }
-    ]
-  }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+                 "ssm:GetParameter"
+      ],
+      "Resource": [
+      "arn:aws:ssm:eu-west-2:*:parameter/slack_notification_webhook"
+      ]
+    }
+  ]
+}
 EOF
 }
 
