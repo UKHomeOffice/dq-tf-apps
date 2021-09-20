@@ -50,16 +50,16 @@ resource "aws_iam_policy" "analysis_proxy_user" {
           "Resource": [
             "${aws_kms_key.bucket_key.arn}"
           ]
-        },
-        {
-          "Effect": "Allow",
-          "Action": [
-                     "ssm:GetParameter"
-          ],
-          "Resource": [
-          "arn:aws:ssm:eu-west-2:*:parameter/slack_notification_webhook"
-          ]
-        }
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+                   "ssm:GetParameter"
+        ],
+        "Resource": [
+        "arn:aws:ssm:eu-west-2:*:parameter/slack_notification_webhook"
+        ]
+      }
     ]
   }
 EOF
