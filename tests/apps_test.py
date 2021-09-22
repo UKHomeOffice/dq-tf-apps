@@ -548,8 +548,8 @@ class TestE2E(unittest.TestCase):
     def test_name_athena_iam_group_membership(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.athena", "name"), "iam-group-membership-athena-apps-preprod-dq")
 
-    def test_name_athena_iam_group_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.athena", "name"), "iam-group-policy-athena-apps-preprod-dq")
+    def test_name_athena_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.athena", "name"), "iam-policy-athena-apps-preprod-dq")
 
     def test_name_athena_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.athena", "name"), "iam-user-athena-apps-preprod-dq")
