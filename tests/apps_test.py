@@ -602,8 +602,8 @@ class TestE2E(unittest.TestCase):
     def test_name_athena_maintenance_iam_group_membership(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.athena_maintenance", "name"), "iam-group-membership-athena-maintenance-apps-preprod-dq")
 
-    def test_name_athena_maintenance_iam_group_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.athena_maintenance", "name"), "iam-group-policy-athena-maintenance-apps-preprod-dq")
+    def test_name_athena_maintenance_glue_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.athena_maintenance_glue", "name"), "iam-policy-athena-maintenance-glue-apps-preprod-dq")
 
     def test_name_athena_maintenance_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.athena_maintenance", "name"), "iam-user-athena-maintenance-apps-preprod-dq")
