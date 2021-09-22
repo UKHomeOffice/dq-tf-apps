@@ -47,7 +47,7 @@ EOF
 }
 
 resource "aws_iam_group_policy_attachment" "cloud_watch_log_policy" {
-  group      = aws_iam_group.cloud_watch_log.name
+  group      = aws_iam_group.cloud_watch_log_group.name
   policy_arn = aws_iam_policy.cloud_watch_log_policy.arn
 }
 
