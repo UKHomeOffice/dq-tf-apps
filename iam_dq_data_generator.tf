@@ -1,7 +1,6 @@
-resource "aws_iam_group_policy" "dq_data_generator_bucket_policy" {
+resource "aws_iam_policy" "dq_data_generator_bucket_policy" {
   count = var.namespace == "notprod" ? 1 : 0
   name  = "dq_data_generator_bucket_policy"
-  group = aws_iam_group.dq_data_generator_bucket[count.index].id
 
   policy = <<EOF
 {
@@ -50,6 +49,12 @@ resource "aws_iam_group_policy" "dq_data_generator_bucket_policy" {
   ]
 }
 EOF
+}
+
+resource "aws_iam_group_policy_attachment" "dq_data_generator_bucket_policy" {
+  count      = var.namespace == "notprod" ? 1 : 0
+  group      = aws_iam_group.dq_data_generator_bucket.name
+  policy_arn = aws_iam_policy.dq_data_generator_bucket_policy.arn
 }
 
 resource "aws_iam_user" "dq_data_generator_bucket" {
