@@ -11,9 +11,8 @@ resource "aws_iam_group" "api_archive_cdlz_bucket" {
   name = "api-archive-cdlz-bucket"
 }
 
-resource "aws_iam_group_policy" "api_archive_cdlz_bucket_policy" {
-  name  = "api-archive-cdlz-bucket-policy"
-  group = aws_iam_group.api_archive_cdlz_bucket.id
+resource "aws_iam_policy" "api_archive_cdlz_bucket_policy" {
+  name = "api-archive-cdlz-bucket-policy"
 
   policy = <<EOF
 {
@@ -72,6 +71,11 @@ resource "aws_iam_group_policy" "api_archive_cdlz_bucket_policy" {
   ]
 }
 EOF
+}
+
+resource "aws_iam_group_policy_attachment" "api_archive_cdlz_bucket_policy" {
+  group      = aws_iam_group.api_archive_cdlz_bucket.name
+  policy_arn = aws_iam_policy.api_archive_cdlz_bucket_policy.arn
 }
 
 resource "aws_iam_group_membership" "api_archive_cdlz_bucket" {
