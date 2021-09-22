@@ -13,8 +13,7 @@ resource "aws_iam_group_membership" "crt" {
 }
 
 resource "aws_iam_policy" "crt" {
-  name  = "iam-group-policy-crt-${local.naming_suffix}"
-  group = aws_iam_group.crt.id
+  name = "iam-group-policy-crt-${local.naming_suffix}"
 
   policy = <<EOF
 {
