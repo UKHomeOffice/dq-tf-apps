@@ -163,7 +163,7 @@ EOF
 }
 
 resource "aws_iam_group_policy_attachment" "athena_maintenance_glue" {
-  group      = aws_iam_group.athena_maintenance_glue.name
+  group      = aws_iam_group.athena_maintenance.name
   policy_arn = aws_iam_policy.athena_maintenance_glue.arn
 }
 
