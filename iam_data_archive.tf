@@ -10,7 +10,7 @@ resource "aws_iam_group" "data_archive_bucket" {
   name = "data_archive_bucket"
 }
 
-resource "aws_iam_group_policy" "data_archive_bucket" {
+resource "aws_iam_policy" "data_archive_bucket" {
   group = aws_iam_group.data_archive_bucket.id
 
   policy = <<EOF
@@ -47,6 +47,11 @@ EOF
 
 }
 
+resource "aws_iam_group_policy_attachment" "data_archive_bucket" {
+  group      = aws_iam_group.data_archive_bucket.name
+  policy_arn = aws_iam_policy.data_archive_bucket.arn
+}
+
 resource "aws_iam_group_membership" "data_archive_bucket" {
   name = "data_archive_bucket"
 
@@ -66,4 +71,3 @@ resource "aws_ssm_parameter" "jira_key" {
   type  = "SecureString"
   value = aws_iam_access_key.data_archive_bucket_v2.secret
 }
-
