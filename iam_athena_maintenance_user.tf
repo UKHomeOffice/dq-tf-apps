@@ -12,9 +12,8 @@ resource "aws_iam_group_membership" "athena_maintenance" {
   group = aws_iam_group.athena_maintenance.name
 }
 
-resource "aws_iam_group_policy" "athena_maintenance" {
-  name  = "iam-group-policy-athena-maintenance-${local.naming_suffix}"
-  group = aws_iam_group.athena_maintenance.id
+resource "aws_iam_policy" "athena_maintenance" {
+  name = "iam-policy-athena-maintenance-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -113,8 +112,13 @@ EOF
 
 }
 
-resource "aws_iam_policy" "athena_maintenance" {
-  name = "iam-policy-athena-maintenance-${local.naming_suffix}"
+resource "aws_iam_group_policy_attachment" "athena_maintenance" {
+  group      = aws_iam_group.athena_maintenance.name
+  policy_arn = aws_iam_policy.athena_maintenance.arn
+}
+
+resource "aws_iam_policy" "athena_maintenance_glue" {
+  name = "iam-policy-athena-maintenance-glue-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -158,9 +162,9 @@ EOF
 
 }
 
-resource "aws_iam_group_policy_attachment" "athena_maintenance" {
-  group      = aws_iam_group.athena_maintenance.name
-  policy_arn = aws_iam_policy.athena_maintenance.arn
+resource "aws_iam_group_policy_attachment" "athena_maintenance_glue" {
+  group      = aws_iam_group.athena_maintenance_glue.name
+  policy_arn = aws_iam_policy.athena_maintenance_glue.arn
 }
 
 resource "aws_iam_user" "athena_maintenance" {
@@ -182,4 +186,3 @@ resource "aws_ssm_parameter" "athena_maintenance_key" {
   type  = "SecureString"
   value = aws_iam_access_key.athena_maintenance.secret
 }
-
