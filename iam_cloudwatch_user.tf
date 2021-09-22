@@ -10,9 +10,8 @@ resource "aws_iam_group" "cloud_watch_log_group" {
   name = "iam-cloud-watch-log-group-${local.naming_suffix}"
 }
 
-resource "aws_iam_group_policy" "cloud_watch_log_policy" {
-  name  = "iam-group-policy-cloud-watch-${local.naming_suffix}"
-  group = aws_iam_group.cloud_watch_log_group.id
+resource "aws_iam_policy" "cloud_watch_log_policy" {
+  name = "iam-policy-cloud-watch-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -47,6 +46,11 @@ EOF
 
 }
 
+resource "aws_iam_group_policy_attachment" "cloud_watch_log_policy" {
+  group      = aws_iam_group.cloud_watch_log.name
+  policy_arn = aws_iam_policy.cloud_watch_log_policy.arn
+}
+
 resource "aws_iam_group_membership" "cloud_watch_log" {
   name  = "iam-group-membership-cloud-watch-log-${local.naming_suffix}"
   users = [aws_iam_user.cloud_watch_log_user.name]
@@ -64,4 +68,3 @@ resource "aws_ssm_parameter" "cloud_watch" {
   type  = "SecureString"
   value = aws_iam_access_key.cloud_watch_log_key.secret
 }
-
