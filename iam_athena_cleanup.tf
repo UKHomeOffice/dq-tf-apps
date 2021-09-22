@@ -12,9 +12,8 @@ resource "aws_iam_group_membership" "athena" {
   group = aws_iam_group.athena.name
 }
 
-resource "aws_iam_group_policy" "athena" {
-  name  = "iam-group-policy-athena-${local.naming_suffix}"
-  group = aws_iam_group.athena.id
+resource "aws_iam_policy" "athena" {
+  name = "iam-policy-athena-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -101,6 +100,11 @@ EOF
 
 }
 
+resource "aws_iam_group_policy_attachment" "athena" {
+  group      = aws_iam_group.athena.name
+  policy_arn = aws_iam_policy.athena.arn
+}
+
 resource "aws_iam_user" "athena" {
   name = "iam-user-athena-${local.naming_suffix}"
 }
@@ -120,4 +124,3 @@ resource "aws_ssm_parameter" "athena_key" {
   type  = "SecureString"
   value = aws_iam_access_key.athena.secret
 }
-
