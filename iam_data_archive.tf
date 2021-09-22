@@ -11,6 +11,7 @@ resource "aws_iam_group" "data_archive_bucket" {
 }
 
 resource "aws_iam_policy" "data_archive_bucket" {
+  name  = "iam-group-policy-data-archive-bucket-${local.naming_suffix}"
   group = aws_iam_group.data_archive_bucket.id
 
   policy = <<EOF
