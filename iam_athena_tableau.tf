@@ -12,10 +12,8 @@ resource "aws_iam_group_membership" "athena_tableau" {
   group = aws_iam_group.athena_tableau.name
 }
 
-resource "aws_iam_group_policy" "athena_tableau" {
-  name  = "iam-group-policy-athena-tableau-${local.naming_suffix}"
-  group = aws_iam_group.athena_tableau.id
-
+resource "aws_iam_policy" "athena_tableau" {
+  name = "iam-policy-athena-tableau-${local.naming_suffix}"
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -91,8 +89,13 @@ EOF
 
 }
 
-resource "aws_iam_policy" "athena_tableau" {
-  name = "iam-policy-athena-tableau-${local.naming_suffix}"
+resource "aws_iam_group_policy_attachment" "athena_tableau" {
+  group      = aws_iam_group.athena_tableau.name
+  policy_arn = aws_iam_policy.athena_tableau.arn
+}
+
+resource "aws_iam_policy" "athena_tableau_glue" {
+  name = "iam-policy-athena-tableau-glue-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -140,9 +143,9 @@ EOF
 
 }
 
-resource "aws_iam_group_policy_attachment" "athena_tableau" {
+resource "aws_iam_group_policy_attachment" "athena_tableau_glue" {
   group      = aws_iam_group.athena_tableau.name
-  policy_arn = aws_iam_policy.athena_tableau.arn
+  policy_arn = aws_iam_policy.athena_tableau_glue.arn
 }
 
 resource "aws_iam_user" "athena_tableau" {
