@@ -686,5 +686,9 @@ class TestE2E(unittest.TestCase):
     def test_name_vault_drone_iam_group(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.vault_drone", "name"), "iam-group-vault-drone")
 
+    def test_name_cloud_watch_log_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.cloud_watch_log_policy", "name"), "iam-policy-cloud-watch-apps-preprod-dq")
+
+
 if __name__ == '__main__':
     unittest.main()
