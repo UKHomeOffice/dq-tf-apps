@@ -10,8 +10,7 @@ resource "aws_iam_group" "data_archive_bucket" {
   name = "data_archive_bucket"
 }
 
-resource "aws_iam_policy" "data_archive_bucket" {
-  name  = "iam-group-policy-data-archive-bucket-${local.naming_suffix}"
+resource "aws_iam_group_policy" "data_archive_bucket" {
   group = aws_iam_group.data_archive_bucket.id
 
   policy = <<EOF
@@ -46,11 +45,6 @@ resource "aws_iam_policy" "data_archive_bucket" {
 }
 EOF
 
-}
-
-resource "aws_iam_group_policy_attachment" "data_archive_bucket" {
-  group      = aws_iam_group.data_archive_bucket.name
-  policy_arn = aws_iam_policy.data_archive_bucket.arn
 }
 
 resource "aws_iam_group_membership" "data_archive_bucket" {

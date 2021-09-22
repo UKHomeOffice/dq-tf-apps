@@ -689,11 +689,11 @@ class TestE2E(unittest.TestCase):
     def test_name_cloud_watch_log_iam_policy(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.cloud_watch_log_policy", "name"), "iam-policy-cloud-watch-apps-preprod-dq")
 
-    def test_name_crt_iam_policy(self):
-       self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.crt", "name"), "iam-policy-crt-apps-preprod-dq")
-
-    def test_name_data_archive_bucket_iam_policy(self):
-       self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.data_archive_bucket", "name"), "iam-policy-data-archive-bucket-apps-preprod-dq")
+    # def test_name_crt_iam_policy(self):
+    #    self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.crt", "name"), "iam-policy-crt-apps-preprod-dq")
+    #
+    # def test_name_data_archive_bucket_iam_policy(self):
+    #    self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.data_archive_bucket", "name"), "iam-policy-data-archive-bucket-apps-preprod-dq")
 
 
 
