@@ -12,9 +12,8 @@ resource "aws_iam_group_membership" "rmr" {
   group = aws_iam_group.rmr.name
 }
 
-resource "aws_iam_group_policy" "rmr" {
-  name  = "rmr-group-policy-${local.naming_suffix}"
-  group = aws_iam_group.rmr.id
+resource "aws_iam_policy" "rmr" {
+  name = "rmr-policy-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -53,6 +52,11 @@ resource "aws_iam_group_policy" "rmr" {
 }
 EOF
 
+}
+
+resource "aws_iam_group_policy_attachment" "rmr" {
+  group      = aws_iam_group.rmr.name
+  policy_arn = aws_iam_policy.rmr.arn
 }
 
 resource "aws_iam_user" "rmr" {
