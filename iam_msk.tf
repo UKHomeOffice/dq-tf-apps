@@ -12,8 +12,7 @@ resource "aws_iam_group" "api_cdlz_msk_bucket" {
 }
 
 resource "aws_iam_policy" "api_cdlz_msk_bucket_policy" {
-  name  = "api_cdlz_msk_bucket_policy"
-  group = aws_iam_group.api_cdlz_msk_bucket.id
+  name = "api_cdlz_msk_bucket_policy"
 
   policy = <<EOF
 {
