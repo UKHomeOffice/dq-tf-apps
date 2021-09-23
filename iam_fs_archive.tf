@@ -11,9 +11,8 @@ resource "aws_iam_group" "dq_fs_archive_bucket" {
   name = "dq_fs_archive_bucket"
 }
 
-resource "aws_iam_group_policy" "dq_fs_archive_bucket_policy" {
-  name  = "dq_fs_archive_bucket_policy"
-  group = aws_iam_group.dq_fs_archive_bucket.id
+resource "aws_iam_policy" "dq_fs_archive_bucket_policy" {
+  name = "dq_fs_archive_bucket_policy"
 
   policy = <<EOF
 {
@@ -58,6 +57,11 @@ resource "aws_iam_group_policy" "dq_fs_archive_bucket_policy" {
   ]
 }
 EOF
+}
+
+resource "aws_iam_group_policy_attachment" "dq_fs_archive_bucket" {
+  group      = aws_iam_group.dq_fs_archive_bucket.name
+  policy_arn = aws_iam_policy.dq_fs_archive_bucket_policy.arn
 }
 
 resource "aws_iam_group_membership" "dq_fs_archive_bucket" {
