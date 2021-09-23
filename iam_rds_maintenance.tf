@@ -20,9 +20,8 @@ resource "aws_iam_group_membership" "rds_maintenance" {
   group = aws_iam_group.rds_maintenance.name
 }
 
-resource "aws_iam_group_policy" "lambda_policy_rds_maintenance" {
-  name  = "iam-group-policy-rds-maintenance-${local.naming_suffix}"
-  group = aws_iam_group.rds_maintenance.id
+resource "aws_iam_policy" "lambda_policy_rds_maintenance" {
+  name = "iam-policy-rds-maintenance-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -49,6 +48,11 @@ EOF
 
 }
 
+resource "aws_iam_group_policy_attachment" "rds_maintenance" {
+  group      = aws_iam_group.rds_maintenance.name
+  policy_arn = aws_iam_policy.lambda_policy_rds_maintenance.arn
+}
+
 resource "aws_ssm_parameter" "rds_maintenance_id" {
   name  = "kubernetes-rds-maintenance-user-id-${local.naming_suffix}"
   type  = "SecureString"
@@ -60,4 +64,3 @@ resource "aws_ssm_parameter" "rds_maintenance_key" {
   type  = "SecureString"
   value = aws_iam_access_key.rds_maintenance.secret
 }
-

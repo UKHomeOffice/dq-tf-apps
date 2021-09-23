@@ -584,8 +584,8 @@ class TestE2E(unittest.TestCase):
     def test_name_rds_maintenance_iam_group_membership(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.rds_maintenance", "name"), "iam-group-membership-rds-maintenance-apps-preprod-dq")
 
-    def test_name_rds_maintenance_iam_group_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.lambda_policy_rds_maintenance", "name"), "iam-group-policy-rds-maintenance-apps-preprod-dq")
+    def test_name_rds_maintenance_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.lambda_policy_rds_maintenance", "name"), "iam-policy-rds-maintenance-apps-preprod-dq")
 
     def test_name_rds_maintenance_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.rds_maintenance", "name"), "iam-user-rds-maintenance-apps-preprod-dq")
