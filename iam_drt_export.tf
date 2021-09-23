@@ -14,9 +14,9 @@ resource "aws_iam_group_membership" "drt_export" {
   group = aws_iam_group.drt_export[count.index].name
 }
 
-resource "aws_iam_group_policy" "drt_export" {
+resource "aws_iam_policy" "drt_export" {
   count = var.namespace == "notprod" ? 1 : 0
-  name  = "iam-group-policy-drt-export-${local.naming_suffix}"
+  name  = "iam-policy-drt-export-${local.naming_suffix}"
   group = aws_iam_group.drt_export[count.index].id
 
   policy = <<EOF
@@ -53,6 +53,12 @@ resource "aws_iam_group_policy" "drt_export" {
 }
 EOF
 
+}
+
+resource "aws_iam_group_policy_attachment" "drt_export" {
+  count      = var.namespace == "notprod" ? 1 : 0
+  group      = aws_iam_group.drt_export[count.index].id
+  policy_arn = aws_iam_policy.drt_export[count.index].arn
 }
 
 resource "aws_iam_user" "drt_export" {
