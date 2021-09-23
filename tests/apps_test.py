@@ -692,10 +692,6 @@ class TestE2E(unittest.TestCase):
     def test_name_data_archive_bucket_iam_policy(self):
        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.data_archive_bucket", "name"), "iam-policy-data-archive-bucket-apps-preprod-dq")
 
-    def test_name_dq_data_generator_bucket_iam_policy(self):
-       self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.dq_data_generator_bucket_policy", "name"), "dq_data_generator_bucket_policy")
-
-
 
 
 if __name__ == '__main__':
