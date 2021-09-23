@@ -11,7 +11,7 @@ resource "aws_iam_group" "api_cdlz_msk_bucket" {
   name = "api_cdlz_msk_bucket"
 }
 
-resource "aws_iam_group_policy" "api_cdlz_msk_bucket_policy" {
+resource "aws_iam_policy" "api_cdlz_msk_bucket_policy" {
   name  = "api_cdlz_msk_bucket_policy"
   group = aws_iam_group.api_cdlz_msk_bucket.id
 
@@ -56,6 +56,11 @@ resource "aws_iam_group_policy" "api_cdlz_msk_bucket_policy" {
   ]
 }
 EOF
+}
+
+resource "aws_iam_group_policy_attachment" "api_cdlz_msk_bucket" {
+  group      = aws_iam_group.api_cdlz_msk_bucket.name
+  policy_arn = aws_iam_policy.api_cdlz_msk_bucket_policy.arn
 }
 
 resource "aws_iam_group_membership" "api_cdlz_msk_bucket" {
