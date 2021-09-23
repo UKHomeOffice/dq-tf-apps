@@ -20,9 +20,8 @@ resource "aws_iam_group_membership" "rds_crt" {
   group = aws_iam_group.rds_crt.name
 }
 
-resource "aws_iam_group_policy" "dimensiondata_policy_rds_crt" {
-  name  = "iam-group-policy-rds-crt-${local.naming_suffix}"
-  group = aws_iam_group.rds_crt.id
+resource "aws_iam_policy" "dimensiondata_policy_rds_crt" {
+  name = "iam-policy-rds-crt-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -47,6 +46,11 @@ resource "aws_iam_group_policy" "dimensiondata_policy_rds_crt" {
 }
 EOF
 
+}
+
+resource "aws_iam_group_policy_attachment" "rds_crt" {
+  group      = aws_iam_group.rds_crt.name
+  policy_arn = aws_iam_policy.dimensiondata_policy_rds_crt.arn
 }
 
 resource "aws_ssm_parameter" "rds_crt_id" {
