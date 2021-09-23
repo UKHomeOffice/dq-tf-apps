@@ -12,9 +12,8 @@ resource "aws_iam_group_membership" "nats_history" {
   group = aws_iam_group.nats_history.name
 }
 
-resource "aws_iam_group_policy" "nats_history" {
-  name  = "iam-group-policy-nats-history-${local.naming_suffix}"
-  group = aws_iam_group.nats_history.id
+resource "aws_iam_policy" "nats_history" {
+  name = "iam-policy-nats-history-${local.naming_suffix}"
 
   policy = <<EOF
 {
@@ -60,6 +59,11 @@ EOF
 
 }
 
+resource "aws_iam_group_policy_attachment" "nats_history" {
+  group      = aws_iam_group.nats_history.name
+  policy_arn = aws_iam_policy.nats_history.arn
+}
+
 resource "aws_iam_user" "nats_history" {
   name = "iam-user-nats-history-${local.naming_suffix}"
 }
@@ -79,4 +83,3 @@ resource "aws_ssm_parameter" "nats_history_key" {
   type  = "SecureString"
   value = aws_iam_access_key.nats_history.secret
 }
-

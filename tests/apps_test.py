@@ -566,8 +566,8 @@ class TestE2E(unittest.TestCase):
     def test_name_nats_historyiam_group_membership(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.nats_history", "name"), "iam-group-membership-nats-history-apps-preprod-dq")
 
-    def test_name_nats_history_iam_group_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_policy.nats_history", "name"), "iam-group-policy-nats-history-apps-preprod-dq")
+    def test_name_nats_history_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.nats_history", "name"), "iam-policy-nats-history-apps-preprod-dq")
 
     def test_name_nats_history_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.nats_history", "name"), "iam-user-nats-history-apps-preprod-dq")
