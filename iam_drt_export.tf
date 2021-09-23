@@ -17,7 +17,6 @@ resource "aws_iam_group_membership" "drt_export" {
 resource "aws_iam_policy" "drt_export" {
   count = var.namespace == "notprod" ? 1 : 0
   name  = "iam-policy-drt-export-${local.naming_suffix}"
-  group = aws_iam_group.drt_export[count.index].id
 
   policy = <<EOF
 {
