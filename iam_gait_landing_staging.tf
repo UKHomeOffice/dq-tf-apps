@@ -71,7 +71,7 @@ EOF
 }
 
 resource "aws_iam_group_policy_attachment" "dq_gait_landing_staging_bucket_policy" {
-  group      = aws_iam_group.dq_gait_landing_staging_bucket.id
+  group      = aws_iam_group.dq_gait_landing_staging_bucket[count.index].id
   policy_arn = aws_iam_policy.dq_gait_landing_staging_bucket_policy.arn
 }
 
