@@ -57,7 +57,7 @@ resource "aws_iam_policy" "dq_ais_archive_bucket_policy" {
 EOF
 }
 
-resource "aws_iam_group_policy_attachment" "api_archive_cdlz_bucket_policy" {
+resource "aws_iam_group_policy_attachment" "dq_ais_archive_bucket_policy" {
   group      = aws_iam_group.dq_ais_archive_bucket.id
   policy_arn = aws_iam_policy.dq_ais_archive_bucket_policy.arn
 }
