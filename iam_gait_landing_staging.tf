@@ -14,10 +14,9 @@ resource "aws_iam_group" "dq_gait_landing_staging_bucket" {
   name  = "dq_gait_landing_staging_bucket"
 }
 
-resource "aws_iam_group_policy" "dq_gait_landing_staging_bucket_policy" {
+resource "aws_iam_policy" "dq_gait_landing_staging_bucket_policy" {
   count = var.namespace == "notprod" ? 0 : 1
   name  = "dq_gait_landing_staging_bucket_policy"
-  group = aws_iam_group.dq_gait_landing_staging_bucket[count.index].id
 
   policy = <<EOF
 {
@@ -69,6 +68,11 @@ resource "aws_iam_group_policy" "dq_gait_landing_staging_bucket_policy" {
   ]
 }
 EOF
+}
+
+resource "aws_iam_group_policy_attachment" "api_archive_cdlz_bucket_policy" {
+  group      = aws_iam_group.dq_gait_landing_staging_bucket[count.index].id
+  policy_arn = aws_iam_policy.dq_gait_landing_staging_bucket_policy[count.index].arn
 }
 
 resource "aws_iam_group_membership" "dq_gait_landing_staging_bucket" {
