@@ -70,7 +70,7 @@ resource "aws_iam_policy" "dq_gait_landing_staging_bucket_policy" {
 EOF
 }
 
-resource "aws_iam_group_policy_attachment" "api_archive_cdlz_bucket_policy" {
+resource "aws_iam_group_policy_attachment" "dq_gait_landing_staging_bucket_policy" {
   group      = aws_iam_group.dq_gait_landing_staging_bucket[count.index].id
   policy_arn = aws_iam_policy.dq_gait_landing_staging_bucket_policy[count.index].arn
 }
