@@ -2816,6 +2816,67 @@ resource "aws_s3_bucket_metric" "dq_ais_archive_bucket_logging" {
   name   = "dq_ais_archive_metric"
 }
 
+resource "aws_s3_bucket" "dq_gait_landing_staging_bucket" {
+  count  = var.namespace == "notprod" ? 0 : 1
+  bucket = var.s3_bucket_name["dq_gait_landing_staging"]
+  acl    = var.s3_bucket_acl["dq_gait_landing_staging"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "dq_gait_landing_staging/"
+  }
+
+  tags = {
+    Name = "s3-dq-gait-landing-staging"
+  }
+}
+
+resource "aws_s3_bucket_policy" "dq_gait_landing_staging_bucket_policy" {
+  count  = var.namespace == "notprod" ? 0 : 1
+  bucket = var.s3_bucket_name["dq_gait_landing_staging"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["dq_gait_landing_staging"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+  depends_on = [aws_s3_bucket.dq_gait_landing_staging_bucket]
+
+}
+
+resource "aws_s3_bucket_metric" "dq_gait_landing_staging_bucket_logging" {
+  count  = var.namespace == "notprod" ? 0 : 1
+  bucket = var.s3_bucket_name["dq_gait_landing_staging"]
+  name   = "dq_gait_landing_staging_metric"
+}
+
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id          = aws_vpc.appsvpc.id
   route_table_ids = [aws_route_table.apps_route_table.id]
