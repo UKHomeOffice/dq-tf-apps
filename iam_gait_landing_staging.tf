@@ -32,7 +32,7 @@ resource "aws_iam_group_policy" "dq_gait_landing_staging_bucket_policy" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${aws_s3_bucket.dq_gait_landing_staging_bucket.arn}"
+        "${aws_s3_bucket.dq_gait_landing_staging_bucket[0].arn}"
       ]
     },
     {
@@ -41,7 +41,7 @@ resource "aws_iam_group_policy" "dq_gait_landing_staging_bucket_policy" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${aws_s3_bucket.dq_gait_landing_staging_bucket.arn}/*"
+        "${aws_s3_bucket.dq_gait_landing_staging_bucket[0].arn}/*"
       ]
     },
     {
@@ -50,7 +50,7 @@ resource "aws_iam_group_policy" "dq_gait_landing_staging_bucket_policy" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${aws_s3_bucket.dq_gait_landing_staging_bucket.arn}/*"
+        "${aws_s3_bucket.dq_gait_landing_staging_bucket[0].arn}/*"
       ]
     },
     {
@@ -63,7 +63,7 @@ resource "aws_iam_group_policy" "dq_gait_landing_staging_bucket_policy" {
         "kms:DescribeKey"
         ],
         "Resource": [
-          "${aws_s3_bucket.dq_gait_landing_staging_bucket.arn}"
+          "${aws_s3_bucket.dq_gait_landing_staging_bucket[0].arn}"
         ]
       }
   ]
