@@ -6,7 +6,7 @@ resource "aws_iam_user" "dq_gait_landing_staging_bucket" {
 
 resource "aws_iam_access_key" "dq_gait_landing_staging_bucket" {
   count = var.namespace == "notprod" ? 0 : 1
-  user  = aws_iam_user.dq_gait_landing_staging_bucket.name
+  user  = aws_iam_user.dq_gait_landing_staging_bucket[count.index].name
 }
 
 resource "aws_iam_group" "dq_gait_landing_staging_bucket" {
@@ -17,7 +17,7 @@ resource "aws_iam_group" "dq_gait_landing_staging_bucket" {
 resource "aws_iam_group_policy" "dq_gait_landing_staging_bucket_policy" {
   count = var.namespace == "notprod" ? 0 : 1
   name  = "dq_gait_landing_staging_bucket_policy"
-  group = aws_iam_group.dq_gait_landing_staging_bucket.id
+  group = aws_iam_group.dq_gait_landing_staging_bucket[count.index].id
 
   policy = <<EOF
 {
@@ -75,21 +75,21 @@ resource "aws_iam_group_membership" "dq_gait_landing_staging_bucket" {
   count = var.namespace == "notprod" ? 0 : 1
   name  = "dq_gait_landing_staging_bucket"
 
-  users = [aws_iam_user.dq_gait_landing_staging_bucket.name]
+  users = [aws_iam_user.dq_gait_landing_staging_bucket[count.index].name]
 
-  group = aws_iam_group.dq_gait_landing_staging_bucket.name
+  group = aws_iam_group.dq_gait_landing_staging_bucket[count.index].name
 }
 
 resource "aws_ssm_parameter" "dq_gait_landing_staging_bucket_id" {
   count = var.namespace == "notprod" ? 0 : 1
   name  = "dq-gait-landing-staging-bucket-user-id-${local.naming_suffix}"
   type  = "SecureString"
-  value = aws_iam_access_key.dq_gait_landing_staging_bucket.id
+  value = aws_iam_access_key.dq_gait_landing_staging_bucket[count.index].id
 }
 
 resource "aws_ssm_parameter" "dq_gait_landing_staging_bucket_key" {
   count = var.namespace == "notprod" ? 0 : 1
   name  = "dq-gait-landing-staging-bucket-user-key-${local.naming_suffix}"
   type  = "SecureString"
-  value = aws_iam_access_key.dq_gait_landing_staging_bucket.secret
+  value = aws_iam_access_key.dq_gait_landing_staging_bucket[count.index].secret
 }
