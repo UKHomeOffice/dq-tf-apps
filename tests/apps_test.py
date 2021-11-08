@@ -88,6 +88,7 @@ class TestE2E(unittest.TestCase):
                 dq_rm_internal                = "abcd"
                 dq_data_generator             = "abcd"
                 dq_ais_archive                = "abcd"
+                dq_gait_landing_staging       = "abcd"
 
               }
 
@@ -141,6 +142,7 @@ class TestE2E(unittest.TestCase):
                 dq_rm_internal                = "private"
                 dq_data_generator             = "private"
                 dq_ais_archive                = "private"
+                dq_gait_landing_staging       = "private"
               }
 
               route_table_cidr_blocks     = {
