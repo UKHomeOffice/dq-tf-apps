@@ -63,18 +63,18 @@ resource "aws_iam_user" "rmr" {
   name = "iam-user-rmr-${local.naming_suffix}"
 }
 
-resource "aws_iam_access_key" "rmr_v2" {
-  user = aws_iam_user.rmr.name
-}
-
-resource "aws_ssm_parameter" "rmr_id" {
-  name  = "kubernetes-rmr-user-id-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.rmr_v2.id
-}
-
-resource "aws_ssm_parameter" "rmr_key" {
-  name  = "kubernetes-rmr-user-key-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.rmr_v2.secret
-}
+# resource "aws_iam_access_key" "rmr_v2" {
+#   user = aws_iam_user.rmr.name
+# }
+#
+# resource "aws_ssm_parameter" "rmr_id" {
+#   name  = "kubernetes-rmr-user-id-${local.naming_suffix}"
+#   type  = "SecureString"
+#   value = aws_iam_access_key.rmr_v2.id
+# }
+#
+# resource "aws_ssm_parameter" "rmr_key" {
+#   name  = "kubernetes-rmr-user-key-${local.naming_suffix}"
+#   type  = "SecureString"
+#   value = aws_iam_access_key.rmr_v2.secret
+# }
