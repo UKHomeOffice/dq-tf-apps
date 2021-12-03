@@ -60,7 +60,6 @@ class TestE2E(unittest.TestCase):
                 gait_internal                 = "abcd"
                 cross_record_scored           = "abcd"
                 reporting_internal_working    = "abcd"
-                carrier_portal_working        = "abcd"
                 mds_extract                   = "abcd"
                 raw_file_index_internal       = "abcd"
                 fms_working                   = "abcd"
@@ -115,7 +114,6 @@ class TestE2E(unittest.TestCase):
                 gait_internal                 = "private"
                 cross_record_scored           = "private"
                 reporting_internal_working    = "private"
-                carrier_portal_working        = "private"
                 mds_extract                   = "private"
                 raw_file_index_internal       = "private"
                 fms_working                   = "private"
@@ -212,9 +210,6 @@ class TestE2E(unittest.TestCase):
 
     def test_name_suffix_airports_working(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_s3_bucket.airports_working_bucket", "tags"), {"Name": "s3-dq-airports-working-apps-preprod-dq"})
-
-    def test_name_suffix_carrier_portal_working(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_s3_bucket.carrier_portal_working_bucket", "tags"), {"Name": "s3-dq-carrier-portal-working-apps-preprod-dq"})
 
     def test_name_suffix_nats_iam_group(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.nats", "name"), "iam-group-nats-apps-preprod-dq")
