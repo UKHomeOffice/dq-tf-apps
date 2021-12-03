@@ -1280,6 +1280,34 @@ resource "aws_s3_bucket_metric" "reporting_internal_working_logging" {
   name   = "reporting_internal_working_bucket_metric"
 }
 
+resource "aws_s3_bucket" "athena_log_bucket" {
+  bucket = var.s3_bucket_name["athena_log"]
+  acl    = var.s3_bucket_acl["athena_log"]
+  region = var.region
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = aws_kms_key.bucket_key.arn
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "athena_log_bucket/"
+  }
+
+  tags = {
+    Name = "s3-dq-athena-log-${local.naming_suffix}"
+  }
+}
+
 resource "aws_s3_bucket_policy" "athena_log_policy" {
   bucket = var.s3_bucket_name["athena_log"]
 
