@@ -34,6 +34,10 @@ variable "haproxy_private_ip2" {
 variable "namespace" {
 }
 
+variable "account_id" {
+  type = map(string)
+}
+
 variable "ad_sg_cidr_ingress" {
   description = "List of CIDR block ingress to AD machines SG"
   type        = list(string)
