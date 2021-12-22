@@ -22,6 +22,7 @@ module "external_tableau" {
   environment                  = var.namespace
   haproxy_config_bucket        = var.haproxy_config_bucket
   haproxy_config_bucket_key    = var.haproxy_config_bucket_key
+  account_id                   = var.account_id
 }
 
 # module "ec2_alarms_ext_tableau" {
