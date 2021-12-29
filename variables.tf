@@ -89,7 +89,7 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "snsgb",
     "asn_maritime",
     "aftc_sc",
-    "pnr"
+    "pnr",
   ]
 }
 
@@ -121,7 +121,7 @@ variable "dq_pipeline_ops_unscoped_readwrite_database_name_list" {
     "snsgb",
     "asn_maritime",
     "aftc_sc",
-    "pnr"
+    "pnr",
   ]
 }
 
