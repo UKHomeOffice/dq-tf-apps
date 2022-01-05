@@ -21,7 +21,6 @@ variable "vault_drone_managed_policies" {
     "arn:aws:iam::aws:policy/IAMFullAccess",
     "arn:aws:iam::aws:policy/AWSDirectoryServiceFullAccess",
     "arn:aws:iam::aws:policy/AWSKeyManagementServicePowerUser",
-    "arn:aws:iam::aws:policy/AmazonSNSFullAccess",
     "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole",
     "arn:aws:iam::aws:policy/AmazonSSMFullAccess",
     "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess",
