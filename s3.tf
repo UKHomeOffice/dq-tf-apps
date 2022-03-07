@@ -1308,6 +1308,10 @@ resource "aws_s3_bucket" "athena_log_bucket" {
   }
 }
 
+locals {
+  dq_pub_ips = var.environment == "prod" ? var.dq_ips_prod : var.dq_ips_notprod
+}
+
 resource "aws_s3_bucket_policy" "athena_log_policy" {
   bucket = var.s3_bucket_name["athena_log"]
   policy = jsonencode({
@@ -1338,9 +1342,7 @@ resource "aws_s3_bucket_policy" "athena_log_policy" {
           ],
           Condition = {
              NotIpAddress = {
-              aws:SourceIp =
-              var.environment == "prod" ?
-              "${var.dq_ips_prod}"  : "${var.dq_ips_notprod}"
+              aws:SourceIp = local.dq_pub_ips
 
              },
              "Bool": {
