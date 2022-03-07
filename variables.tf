@@ -219,3 +219,15 @@ variable "dq_ips_prod" {
     "35.177.128.206/32"
   ]
 }
+
+locals {
+  dq_pub_ips = local.prod == 1 ?
+    var.dq_ips_prod : var.dq_ips_notprod
+}
+
+# locals {
+#   incoming_messages_queue = local.production == 1 ?
+# ["${aws_sqs_queue.my_queue1.arn}",
+#   "$"{aws_sqs_queue.my_queue2.arn}] :
+# ["${aws_sqs_queue.my_queue1.arn}]
+# }
