@@ -203,3 +203,19 @@ variable "athena_log_prefix" {
   description = "Keyprefix for Athena maintenance task"
   default     = "app"
 }
+
+variable "dq_ips_notprod" {
+  default = [
+    "35.177.179.157/32",
+    "35.177.132.243/32",
+    "35.177.100.236/32"
+  ]
+}
+
+variable "dq_ips_prod" {
+  default = [
+    "52.56.43.118/32",
+    "35.177.168.246/32",
+    "35.177.128.206/32"
+  ]
+}
