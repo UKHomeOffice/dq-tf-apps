@@ -22,6 +22,7 @@ module "external_tableau" {
   environment                  = var.namespace
   haproxy_config_bucket        = var.haproxy_config_bucket
   haproxy_config_bucket_key    = var.haproxy_config_bucket_key
+  account_id                   = var.account_id
 }
 
 # module "ec2_alarms_ext_tableau" {
@@ -56,6 +57,7 @@ module "internal_tableau" {
   lambda_subnet                         = module.lambda.lambda_subnet
   lambda_subnet_az2                     = module.lambda.lambda_subnet_az2
   rds_enhanced_monitoring_role          = aws_iam_role.rds_enhanced_monitoring_role.arn
+  account_id                            = var.account_id
 }
 
 module "data_feeds" {

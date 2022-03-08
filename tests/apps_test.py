@@ -37,6 +37,7 @@ class TestE2E(unittest.TestCase):
               s3_httpd_config_bucket_key      = "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
               haproxy_config_bucket           = "s3-bucket-name"
               haproxy_config_bucket_key       = "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+              account_id                      = {"preprod" = "235678"}
 
               s3_bucket_name = {
                 archive_log                   = "abcd"
@@ -87,8 +88,10 @@ class TestE2E(unittest.TestCase):
                 dq_rm_internal                = "abcd"
                 dq_data_generator             = "abcd"
                 dq_ais_archive                = "abcd"
+                dq_ais_internal               = "abcd"
                 dq_gait_landing_staging       = "abcd"
                 dq_pnr_archive                = "abcd"
+                dq_pnr_internal               = "abcd"
 
               }
 
@@ -141,8 +144,10 @@ class TestE2E(unittest.TestCase):
                 dq_rm_internal                = "private"
                 dq_data_generator             = "private"
                 dq_ais_archive                = "private"
+                dq_ais_internal               = "private"
                 dq_gait_landing_staging       = "private"
                 dq_pnr_archive                = "private"
+                dq_pnr_internal               = "private"
               }
 
               route_table_cidr_blocks     = {

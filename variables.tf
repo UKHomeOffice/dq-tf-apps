@@ -34,6 +34,10 @@ variable "haproxy_private_ip2" {
 variable "namespace" {
 }
 
+variable "account_id" {
+  type = map(string)
+}
+
 variable "ad_sg_cidr_ingress" {
   description = "List of CIDR block ingress to AD machines SG"
   type        = list(string)
@@ -85,6 +89,8 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "snsgb",
     "asn_maritime",
     "aftc_sc",
+    "pnr",
+    "accuracy_score",
   ]
 }
 
@@ -116,6 +122,8 @@ variable "dq_pipeline_athena_readwrite_database_name_list" {
     "snsgb",
     "asn_maritime",
     "aftc_sc",
+    "pnr",
+    "accuracy_score",
   ]
 }
 
@@ -151,6 +159,8 @@ variable "dq_pipeline_ops_readwrite_bucket_list" {
     "s3-dq-snsgb-internal",
     "s3-dq-asn-internal",
     "s3-dq-asn-marine-internal",
+    "s3-dq-pnr-internal",
+    "s3-dq-accuracy-score",
   ]
 }
 
