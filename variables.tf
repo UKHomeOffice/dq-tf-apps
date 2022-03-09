@@ -204,7 +204,31 @@ variable "athena_log_prefix" {
   default     = "app"
 }
 
-variable "dq_pub_ips" {
-  type    = list(string)
-  default = []
+variable "dq_ips_notprod" {
+  default = [
+    "35.177.179.157/32",
+    "35.177.132.243/32",
+    "35.177.100.236/32"
+  ]
 }
+
+variable "dq_ips_prod" {
+  default = [
+    "52.56.43.118/32",
+    "35.177.168.246/32",
+    "35.177.128.206/32"
+  ]
+}
+
+
+# locals {
+#   dq_pub_ips = local.prod == "prod" ?
+#     var.dq_ips_prod : var.dq_ips_notprod
+# }
+
+# locals {
+#   incoming_messages_queue = local.production == 1 ?
+# ["${aws_sqs_queue.my_queue1.arn}",
+#   "$"{aws_sqs_queue.my_queue2.arn}] :
+# ["${aws_sqs_queue.my_queue1.arn}]
+# }
