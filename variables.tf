@@ -220,7 +220,6 @@ variable "dq_ips_prod" {
   ]
 }
 
-
 # locals {
 #   dq_pub_ips = local.prod == "prod" ?
 #     var.dq_ips_prod : var.dq_ips_notprod
