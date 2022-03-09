@@ -1339,11 +1339,8 @@ resource "aws_s3_bucket_policy" "athena_log_policy" {
           Condition = {
              NotIpAddress = {
               aws:SourceIp = (
-              var.environment == "prod" ?
-              [ var.dq_ips_prod ] :
-              [ var.dq_ips_notprod ]
+              var.environment == "prod" ? var.dq_ips_prod : var.dq_ips_notprod
               )
-
              },
              "Bool": {
               "aws:ViaAWSService": "true"
