@@ -1310,44 +1310,28 @@ resource "aws_s3_bucket" "athena_log_bucket" {
 
 resource "aws_s3_bucket_policy" "athena_log_policy" {
   bucket = var.s3_bucket_name["athena_log"]
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid = "HTTP",
-        Effect = "Deny",
-        Principal = "*",
-        Action = "*",
-        Resource = [
-          "arn:aws:s3:::${var.s3_bucket_name["athena_log"]}/*",
-          "arn:aws:s3:::${var.s3_bucket_name["athena_log"]}"
-        ],
-        Condition = {
-          Bool = {
-            "aws:SecureTransport": "false"
-          }
-        },
-        {
-          Sid = "IPAllow",
-          Effect = "Deny",
-          Principal = "*",
-          Action = "s3:*",
-          Resource = [
-            "arn:aws:s3:::${var.s3_bucket_name["athena_log"]}/*",
-            "arn:aws:s3:::${var.s3_bucket_name["athena_log"]}"
-          ],
-          Condition = {
-             NotIpAddress = {
-              aws:SourceIp = var.environment == "prod" ? var.dq_ips_prod : var.dq_ips_notprod
-             },
-             "Bool": {
-              "aws:ViaAWSService": "true"
-            }
-         }
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["athena_log"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
       }
-    ]
-    })
-  }
+    }
+  ]
+}
+POLICY
+
+}
 
 resource "aws_s3_bucket" "mds_extract_bucket" {
   bucket = var.s3_bucket_name["mds_extract"]
