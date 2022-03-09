@@ -220,10 +220,10 @@ variable "dq_ips_prod" {
   ]
 }
 
-# locals {
-#   dq_pub_ips = local.prod == "prod" ?
-#     var.dq_ips_prod : var.dq_ips_notprod
-# }
+locals {
+  dq_pub_ips = local.prod == 1 ?
+    var.dq_ips_prod : var.dq_ips_notprod
+}
 
 # locals {
 #   incoming_messages_queue = local.production == 1 ?
