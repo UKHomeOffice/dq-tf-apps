@@ -90,7 +90,6 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "asn_maritime",
     "aftc_sc",
     "pnr",
-    "accuracy_score",
     "ais_internal",
   ]
 }
@@ -124,7 +123,6 @@ variable "dq_pipeline_athena_readwrite_database_name_list" {
     "asn_maritime",
     "aftc_sc",
     "pnr",
-    "accuracy_score",
     "ais_internal",
   ]
 }
@@ -162,7 +160,6 @@ variable "dq_pipeline_ops_readwrite_bucket_list" {
     "s3-dq-asn-internal",
     "s3-dq-asn-marine-internal",
     "s3-dq-pnr-internal",
-    "s3-dq-accuracy-score",
     "s3-dq-ais-internal",
   ]
 }
