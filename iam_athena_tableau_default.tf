@@ -117,7 +117,7 @@ resource "aws_iam_policy" "athena_tableau_glue_default" {
   "\",\"",
   formatlist(
     "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s",
-    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.default_athena,
     var.namespace,
     ), formatlist(
     "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s",
@@ -128,7 +128,7 @@ resource "aws_iam_policy" "athena_tableau_glue_default" {
   "\",\"",
   formatlist(
     "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*",
-    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.default_athena,
     var.namespace,
     ), formatlist(
     "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s/*",
