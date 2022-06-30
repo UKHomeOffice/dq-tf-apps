@@ -94,7 +94,7 @@ resource "aws_iam_group_policy_attachment" "athena_tableau_default" {
   policy_arn = aws_iam_policy.athena_tableau_default.arn
 }
 
-resource "aws_iam_policy" "athena_tableau_default_glue" {
+resource "aws_iam_policy" "athena_tableau_glue_default" {
   name = "iam-policy-athena-tableau-glue-default-${local.naming_suffix}"
 
   policy = <<EOF
@@ -138,9 +138,9 @@ EOF
 
 }
 
-resource "aws_iam_group_policy_attachment" "athena_tableau_default_glue" {
+resource "aws_iam_group_policy_attachment" "athena_tableau_glue_default" {
   group      = aws_iam_group.athena_tableau_default.name
-  policy_arn = aws_iam_policy.athena_tableau_default_glue.arn
+  policy_arn = aws_iam_policy.athena_tableau_glue_default.arn
 }
 
 resource "aws_iam_user" "athena_tableau_default" {
@@ -151,7 +151,7 @@ resource "aws_iam_access_key" "athena_tableau_default" {
   user = aws_iam_user.athena_tableau_default.name
 }
 
-resource "aws_ssm_parameter" "athena_tableau_default_id" {
+resource "aws_ssm_parameter" "athena_tableau_id_default" {
   name  = "tableau-athena-user-id-default-${local.naming_suffix}"
   type  = "SecureString"
   value = aws_iam_access_key.athena_tableau_default.id
