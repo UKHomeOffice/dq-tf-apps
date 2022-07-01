@@ -108,7 +108,7 @@ resource "aws_iam_policy" "athena_tableau_glue_default" {
         "glue:GetTables",
         "glue:GetPartition",
         "glue:GetPartitions",
-        "glue:BatchGetPartition"
+        "glue:BatchGetPartition",
         "glue:CreateTable",
         "glue:BatchCreatePartition",
         "glue:DeleteTable",
