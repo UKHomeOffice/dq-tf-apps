@@ -102,11 +102,6 @@ variable "dq_pipeline_ops_unscoped_readwrite_database_name_list" {
   ]
 }
 
-variable "default_athena" {
-  default = [
-    "default"
-  ]
-}
 variable "dq_pipeline_athena_readwrite_database_name_list" {
   default = [
     "reference_data",
