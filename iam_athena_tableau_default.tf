@@ -118,7 +118,7 @@ resource "aws_iam_policy" "athena_tableau_glue_default" {
       "Resource": [
         "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
         "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/default",
-        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/default"
+        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/default/*"
         ]
      }
   ]
