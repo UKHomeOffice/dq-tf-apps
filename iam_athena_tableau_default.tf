@@ -132,6 +132,60 @@ resource "aws_iam_group_policy_attachment" "athena_tableau_glue_default" {
   policy_arn = aws_iam_policy.athena_tableau_glue_default.arn
 }
 
+resource "aws_iam_policy" "athena_tableau_glue2_default" {
+  name = "iam-policy-athena-tableau-glue2-default-${local.naming_suffix}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+      "Action": [
+        "glue:GetDatabase",
+        "glue:GetDatabases",
+        "glue:GetTable",
+        "glue:GetTables",
+        "glue:GetPartition",
+        "glue:GetPartitions",
+        "glue:BatchGetPartition"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:catalog",
+        "${join(
+  "\",\"",
+  formatlist(
+    "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s_%s",
+    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.namespace,
+    ), formatlist(
+    "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:database/%s",
+    var.dq_pipeline_athena_unscoped_readwrite_database_name_list,
+  ),
+  )}",
+        "${join(
+  "\",\"",
+  formatlist(
+    "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s_%s/*",
+    var.dq_pipeline_athena_readwrite_database_name_list,
+    var.namespace,
+    ), formatlist(
+    "arn:aws:glue:eu-west-2:${data.aws_caller_identity.current.account_id}:table/%s/*",
+    var.dq_pipeline_athena_unscoped_readwrite_database_name_list,
+  ),
+)}"
+        ]
+     }
+  ]
+}
+EOF
+
+}
+
+resource "aws_iam_group_policy_attachment" "athena_tableau_glue2_default" {
+  group      = aws_iam_group.athena_tableau_glue2_default.name
+  policy_arn = aws_iam_policy.athena_tableau_glue2_default.arn
+}
+
 resource "aws_iam_user" "athena_tableau_default" {
   name = "iam-user-athena-tableau-default-${local.naming_suffix}"
 }
