@@ -182,7 +182,7 @@ EOF
 }
 
 resource "aws_iam_group_policy_attachment" "athena_tableau_glue2_default" {
-  group      = aws_iam_group.athena_tableau_glue2_default.name
+  group      = aws_iam_group.athena_tableau_default.name
   policy_arn = aws_iam_policy.athena_tableau_glue2_default.arn
 }
 
