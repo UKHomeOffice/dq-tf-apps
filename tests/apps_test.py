@@ -665,12 +665,6 @@ class TestE2E(unittest.TestCase):
     def test_name_athena_tableau_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.athena_tableau", "name"), "iam-user-athena-tableau-apps-preprod-dq")
 
-    def test_name_ssm_athena_tableau_id(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.athena_tableau_id", "name"), "tableau-athena-user-id-apps-preprod-dq")
-
-    def test_name_ssm_athena_tableau_key(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.athena_tableau_key", "name"), "tableau-athena-user-key-apps-preprod-dq")
-
     def test_name_vault_admin_iam_group(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.vault_admin", "name"), "iam-group-vault-admin")
 
