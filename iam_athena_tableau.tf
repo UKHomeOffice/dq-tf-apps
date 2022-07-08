@@ -151,19 +151,3 @@ resource "aws_iam_group_policy_attachment" "athena_tableau_glue" {
 resource "aws_iam_user" "athena_tableau" {
   name = "iam-user-athena-tableau-${local.naming_suffix}"
 }
-
-resource "aws_iam_access_key" "athena_tableau" {
-  user = aws_iam_user.athena_tableau.name
-}
-
-resource "aws_ssm_parameter" "athena_tableau_id" {
-  name  = "tableau-athena-user-id-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.athena_tableau.id
-}
-
-resource "aws_ssm_parameter" "athena_tableau_key" {
-  name  = "tableau-athena-user-key-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.athena_tableau.secret
-}
