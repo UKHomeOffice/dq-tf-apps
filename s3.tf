@@ -3072,5 +3072,10 @@ resource "aws_s3_bucket_policy" "carrier_portal_docs" {
 POLICY
 
   depends_on = [aws_s3_bucket.carrier_portal_docs]
-  
+
+}
+
+resource "aws_s3_bucket_metric" "carrier_portal_docs_logging" {
+  bucket = var.s3_bucket_name["carrier_portal_docs"]
+  name   = "dq_carrier_portal_docs_metric"
 }
