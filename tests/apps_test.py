@@ -36,6 +36,7 @@ class TestE2E(unittest.TestCase):
               s3_httpd_config_bucket          = "s3-bucket-name"
               s3_httpd_config_bucket_key      = "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
               haproxy_config_bucket           = "s3-bucket-name"
+              s3_carrier_portal_docs          = "s3-bucket-name"
               haproxy_config_bucket_key       = "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
               account_id                      = {"preprod" = "235678"}
 
