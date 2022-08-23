@@ -92,6 +92,7 @@ class TestE2E(unittest.TestCase):
                 dq_gait_landing_staging       = "abcd"
                 dq_pnr_archive                = "abcd"
                 dq_pnr_internal               = "abcd"
+                carrier_portal_docs           = "abcd"
 
               }
 
@@ -148,6 +149,7 @@ class TestE2E(unittest.TestCase):
                 dq_gait_landing_staging       = "private"
                 dq_pnr_archive                = "private"
                 dq_pnr_internal               = "private"
+                carrier_portal_docs           = "private"
               }
 
               route_table_cidr_blocks     = {
