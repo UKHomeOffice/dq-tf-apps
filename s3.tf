@@ -3008,7 +3008,7 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
   service_name    = "com.amazonaws.eu-west-2.s3"
 }
 
-esource "aws_s3_bucket" "carrier_portal_docs" {
+resource "aws_s3_bucket" "carrier_portal_docs" {
   bucket = var.s3_bucket_name["carrier_portal_docs"]
   acl    = var.s3_bucket_acl["carrier_portal_docs"]
   region = var.region
