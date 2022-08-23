@@ -17,6 +17,7 @@ module "external_tableau" {
   naming_suffix                = local.naming_suffix
   s3_archive_bucket_name       = aws_s3_bucket.data_archive_bucket.id
   s3_archive_bucket            = aws_s3_bucket.data_archive_bucket.arn
+  s3_carrier_portal_docs       = aws_s3_bucket.carrier_portal_docs.arn
   s3_archive_bucket_key        = aws_kms_key.bucket_key.arn
   haproxy_private_ip           = var.haproxy_private_ip
   haproxy_private_ip2          = var.haproxy_private_ip2
