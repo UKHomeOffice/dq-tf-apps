@@ -3007,3 +3007,68 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
   route_table_ids = [aws_route_table.apps_route_table.id]
   service_name    = "com.amazonaws.eu-west-2.s3"
 }
+
+esource "aws_s3_bucket" "carrier_portal_docs" {
+  bucket = var.s3_bucket_name["carrier_portal_docs"]
+  acl    = var.s3_bucket_acl["carrier_portal_docs"]
+  region = var.region
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = aws_kms_key.bucket_key.arn
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "carrier_portal_docs/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 30
+      storage_class = "STANDARD_IA"
+    }
+    noncurrent_version_transition {
+      days          = 30
+      storage_class = "STANDARD_IA"
+    }
+  }
+
+  tags = {
+    Name = "s3-dq-carrier-portal-docs-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_policy" "carrier_portal_docs" {
+  bucket = var.s3_bucket_name["carrier_portal_docs"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["carrier_portal_docs"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
