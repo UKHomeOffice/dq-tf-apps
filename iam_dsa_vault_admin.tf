@@ -54,18 +54,18 @@ resource "aws_iam_user" "vault_admin" {
   name = "iam-user-vault-admin"
 }
 
-resource "aws_iam_access_key" "vault_admin" {
-  user = aws_iam_user.vault_admin.name
-}
+// resource "aws_iam_access_key" "vault_admin" {
+//   user = aws_iam_user.vault_admin.name
+// }
 
-resource "aws_ssm_parameter" "vault_admin_id" {
-  name  = "vault-admin-user-id"
-  type  = "SecureString"
-  value = aws_iam_access_key.vault_admin.id
-}
+// resource "aws_ssm_parameter" "vault_admin_id" {
+//   name  = "vault-admin-user-id"
+//   type  = "SecureString"
+//   value = aws_iam_access_key.vault_admin.id
+// }
 
-resource "aws_ssm_parameter" "vault_admin_key" {
-  name  = "vault-admin-user-key"
-  type  = "SecureString"
-  value = aws_iam_access_key.vault_admin.secret
-}
+// resource "aws_ssm_parameter" "vault_admin_key" {
+//   name  = "vault-admin-user-key"
+//   type  = "SecureString"
+//   value = aws_iam_access_key.vault_admin.secret
+// }
