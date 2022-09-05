@@ -679,12 +679,6 @@ class TestE2E(unittest.TestCase):
     def test_name_vault_admin_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.vault_admin", "name"), "iam-user-vault-admin")
 
-    def test_name_ssm_vault_admin_id(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_admin_id", "name"), "vault-admin-user-id")
-
-    def test_name_ssm_vault_admin_key(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.vault_admin_key", "name"), "vault-admin-user-key")
-
     def test_name_vault_drone_iam_group(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.vault_drone", "name"), "iam-group-vault-drone")
 
