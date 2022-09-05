@@ -175,14 +175,14 @@ resource "aws_iam_user" "athena_maintenance" {
 //   user = aws_iam_user.athena_maintenance.name
 // }
 
-resource "aws_ssm_parameter" "athena_maintenance_id" {
-  name  = "kubernetes-athena-maintenance-user-id-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.athena_maintenance.id
-}
+// resource "aws_ssm_parameter" "athena_maintenance_id" {
+//   name  = "kubernetes-athena-maintenance-user-id-${local.naming_suffix}"
+//   type  = "SecureString"
+//   value = aws_iam_access_key.athena_maintenance.id
+// }
 
-resource "aws_ssm_parameter" "athena_maintenance_key" {
-  name  = "kubernetes-athena-maintenance-user-key-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.athena_maintenance.secret
+// resource "aws_ssm_parameter" "athena_maintenance_key" {
+//   name  = "kubernetes-athena-maintenance-user-key-${local.naming_suffix}"
+//   type  = "SecureString"
+//   value = aws_iam_access_key.athena_maintenance.secret
 }
