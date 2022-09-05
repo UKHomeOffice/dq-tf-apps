@@ -616,12 +616,6 @@ class TestE2E(unittest.TestCase):
     def test_name_athena_maintenance_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.athena_maintenance", "name"), "iam-user-athena-maintenance-apps-preprod-dq")
 
-    def test_name_ssm_athena_maintenance_id(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.athena_maintenance_id", "name"), "kubernetes-athena-maintenance-user-id-apps-preprod-dq")
-
-    def test_name_ssm_athena_maintenance_key(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_ssm_parameter.athena_maintenance_key", "name"), "kubernetes-athena-maintenance-user-key-apps-preprod-dq")
-
     def test_name_jira_backup_iam_group(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.data_archive_bucket", "name"), "data_archive_bucket")
 
