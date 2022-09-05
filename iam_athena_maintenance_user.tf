@@ -171,9 +171,9 @@ resource "aws_iam_user" "athena_maintenance" {
   name = "iam-user-athena-maintenance-${local.naming_suffix}"
 }
 
-resource "aws_iam_access_key" "athena_maintenance" {
-  user = aws_iam_user.athena_maintenance.name
-}
+// resource "aws_iam_access_key" "athena_maintenance" {
+//   user = aws_iam_user.athena_maintenance.name
+// }
 
 resource "aws_ssm_parameter" "athena_maintenance_id" {
   name  = "kubernetes-athena-maintenance-user-id-${local.naming_suffix}"
