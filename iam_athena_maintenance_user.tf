@@ -185,4 +185,4 @@ resource "aws_iam_user" "athena_maintenance" {
 //   name  = "kubernetes-athena-maintenance-user-key-${local.naming_suffix}"
 //   type  = "SecureString"
 //   value = aws_iam_access_key.athena_maintenance.secret
-}
+// }
