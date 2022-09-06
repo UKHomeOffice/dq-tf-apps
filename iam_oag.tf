@@ -69,18 +69,18 @@ resource "aws_iam_user" "oag" {
   name = "iam-user-oag-${local.naming_suffix}"
 }
 
-resource "aws_iam_access_key" "oag" {
-  user = aws_iam_user.oag.name
-}
+// resource "aws_iam_access_key" "oag" {
+//   user = aws_iam_user.oag.name
+// }
 
-resource "aws_ssm_parameter" "oag_id" {
-  name  = "kubernetes-oag-user-id-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.oag.id
-}
+// resource "aws_ssm_parameter" "oag_id" {
+//   name  = "kubernetes-oag-user-id-${local.naming_suffix}"
+//   type  = "SecureString"
+//   value = aws_iam_access_key.oag.id
+// }
 
-resource "aws_ssm_parameter" "oag_key" {
-  name  = "kubernetes-oag-user-key-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.oag.secret
-}
+// resource "aws_ssm_parameter" "oag_key" {
+//   name  = "kubernetes-oag-user-key-${local.naming_suffix}"
+//   type  = "SecureString"
+//   value = aws_iam_access_key.oag.secret
+// }
