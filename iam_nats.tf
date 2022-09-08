@@ -66,18 +66,3 @@ resource "aws_iam_user" "nats" {
   name = "iam-user-nats-${local.naming_suffix}"
 }
 
-resource "aws_iam_access_key" "nats" {
-  user = aws_iam_user.nats.name
-}
-
-resource "aws_ssm_parameter" "nats_id" {
-  name  = "kubernetes-nats-user-id-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.nats.id
-}
-
-resource "aws_ssm_parameter" "nats_key" {
-  name  = "kubernetes-nats-user-key-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.nats.secret
-}
