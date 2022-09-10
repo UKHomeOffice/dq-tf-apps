@@ -682,6 +682,23 @@ class TestE2E(unittest.TestCase):
     def test_name_data_archive_bucket_iam_policy(self):
        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.data_archive_bucket", "name"), "iam-policy-data-archive-bucket-apps-preprod-dq")
 
+    def test_name_suffix_monitor_iam_group(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group.monitor", "name"), "iam-group-monitor-apps-preprod-dq")
+
+    def test_name_suffix_monitor_iam_group_membership(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_group_membership.monitor", "name"), "iam-group-membership-monitor-apps-preprod-dq")
+
+    def test_name_suffix_monitor_glue_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.monitor_glue", "name"), "iam-policy-monitor-glue-apps-preprod-dq")
+
+    def test_name_suffix_monitor_ssm_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.monitor_ssm", "name"), "iam-policy-monitor-ssm-apps-preprod-dq")
+
+    def test_name_suffix_monitor_athena_iam_policy(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.monitor_athena", "name"), "iam-policy-monitor-athena-apps-preprod-dq")
+
+    def test_name_suffix_monitor_iam_user(self):
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.monitor", "name"), "iam-user-montior-apps-preprod-dq")
 
 
 if __name__ == '__main__':
