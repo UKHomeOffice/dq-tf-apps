@@ -89,6 +89,11 @@ EOF
 
 }
 
+resource "aws_iam_group_policy_attachment" "monitor_athena" {
+  group      = aws_iam_group.monitor.name
+  policy_arn = aws_iam_policy.monitor_athena.arn
+}
+
 resource "aws_iam_policy" "monitor_glue" {
   name = "iam-policy-monitor-glue-${local.naming_suffix}"
 
@@ -138,6 +143,10 @@ EOF
 
 }
 
+resource "aws_iam_group_policy_attachment" "monitor_glue" {
+  group      = aws_iam_group.monitor.name
+  policy_arn = aws_iam_policy.monitor_glue.arn
+}
 
 resource "aws_iam_policy" "monitor_ssm" {
   name = "iam-policy-monitor-ssm-${local.naming_suffix}"
@@ -173,16 +182,14 @@ resource "aws_iam_policy" "monitor_ssm" {
 EOF
 }
 
-resource "aws_iam_group_policy_attachmentt" "monitor" {
-  for_each = toset([
-    "arn:aws:iam::aws:policy/CloudWatchLogsReadOnlyAccess", 
-    aws_iam_policy.monitor_ssm.arn,
-    aws_iam_policy.monitor_glue.arn,
-    aws_iam_policy.monitor_athena.arn
-  ])
-
+resource "aws_iam_group_policy_attachment" "monitor_ssm" {
   group      = aws_iam_group.monitor.name
-  policy_arn = each.value
+  policy_arn = aws_iam_policy.monitor_ssm.arn
+}
+
+resource "aws_iam_group_policy_attachment" "monitor_cw" {
+  group      = aws_iam_group.monitor.name
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsReadOnlyAccess"
 }
 
 resource "aws_iam_user" "monitor" {

@@ -8,14 +8,14 @@ platform:
   arch: amd64
 
 steps:
-# - name: testsuite
-#   pull: if-not-exists
-#   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-#   commands:
-#   - docker run --rm -v $(pwd):/data -w /data hashicorp/terraform fmt --diff --check && echo $?
-#   when:
-#     event:
-#     - push
+- name: testsuite
+  pull: if-not-exists
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  commands:
+  - docker run --rm -v $(pwd):/data -w /data hashicorp/terraform fmt --diff --check && echo $?
+  when:
+    event:
+    - push
 
 - name: run-testrunner-tests
   pull: if-not-exists
