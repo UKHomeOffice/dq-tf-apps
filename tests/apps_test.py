@@ -701,7 +701,7 @@ class TestE2E(unittest.TestCase):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.monitor_cw", "name"), "iam-policy-monitor-cw-apps-preprod-dq")
 
     def test_name_suffix_monitor_iam_user(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.monitor", "name"), "iam-user-montior-apps-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.monitor", "name"), "iam-user-monitor-apps-preprod-dq")
 
 
 if __name__ == '__main__':
