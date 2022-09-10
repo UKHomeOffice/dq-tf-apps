@@ -187,13 +187,9 @@ resource "aws_iam_group_policy_attachment" "monitor_ssm" {
   policy_arn = aws_iam_policy.monitor_ssm.arn
 }
 
-data "aws_iam_policy" "monitor_cw" {
-  arn = "arn:aws:iam::aws:policy/CloudWatchLogsReadOnlyAccess"
-}
-
 resource "aws_iam_group_policy_attachment" "monitor_cw" {
   group      = aws_iam_group.monitor.name
-  policy_arn = data.aws_iam_policy.monitor_cw
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsReadOnlyAccess"
 }
 
 resource "aws_iam_user" "monitor" {
