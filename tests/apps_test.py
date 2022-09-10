@@ -697,9 +697,6 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_monitor_athena_iam_policy(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.monitor_athena", "name"), "iam-policy-monitor-athena-apps-preprod-dq")
 
-    def test_name_suffix_monitor_cw_iam_policy(self):
-        self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.monitor_cw", "name"), "iam-policy-monitor-cw-apps-preprod-dq")
-
     def test_name_suffix_monitor_iam_user(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_user.monitor", "name"), "iam-user-monitor-apps-preprod-dq")
 
