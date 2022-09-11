@@ -2,6 +2,7 @@ resource "aws_iam_user" "dq_fs_archive_bucket" {
   name = "dq_fs_archive_bucket_user"
 }
 
+
 resource "aws_iam_group" "dq_fs_archive_bucket" {
   name = "dq_fs_archive_bucket"
 }
@@ -67,4 +68,3 @@ resource "aws_iam_group_membership" "dq_fs_archive_bucket" {
   group = aws_iam_group.dq_fs_archive_bucket.name
 }
 
-}
