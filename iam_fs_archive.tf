@@ -67,5 +67,4 @@ resource "aws_iam_group_membership" "dq_fs_archive_bucket" {
   group = aws_iam_group.dq_fs_archive_bucket.name
 }
 
-
 }
