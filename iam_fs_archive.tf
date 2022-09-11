@@ -2,11 +2,6 @@ resource "aws_iam_user" "dq_fs_archive_bucket" {
   name = "dq_fs_archive_bucket_user"
 }
 
-
-resource "aws_iam_access_key" "dq_fs_archive_bucket" {
-  user = aws_iam_user.dq_fs_archive_bucket.name
-}
-
 resource "aws_iam_group" "dq_fs_archive_bucket" {
   name = "dq_fs_archive_bucket"
 }
@@ -72,14 +67,5 @@ resource "aws_iam_group_membership" "dq_fs_archive_bucket" {
   group = aws_iam_group.dq_fs_archive_bucket.name
 }
 
-resource "aws_ssm_parameter" "dq_fs_archive_bucket_user" {
-  name  = "FS_ARCHIVE_BUCKET_AWS_ACCESS_KEY_ID"
-  type  = "SecureString"
-  value = aws_iam_access_key.dq_fs_archive_bucket.id
-}
 
-resource "aws_ssm_parameter" "dq_fs_archive_bucket_secret" {
-  name  = "FS_ARCHIVE_BUCKET_AWS_SECRET_ACCESS_KEY"
-  type  = "SecureString"
-  value = aws_iam_access_key.dq_fs_archive_bucket.secret
 }
