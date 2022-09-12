@@ -53,11 +53,6 @@ resource "aws_iam_user" "dq_pnr_archive_bucket" {
   name = "dq_pnr_archive_bucket_user"
 }
 
-
-resource "aws_iam_access_key" "dq_pnr_archive_bucket" {
-  user = aws_iam_user.dq_pnr_archive_bucket.name
-}
-
 resource "aws_iam_group" "dq_pnr_archive_bucket" {
   name = "dq_pnr_archive_bucket"
 }
@@ -68,16 +63,4 @@ resource "aws_iam_group_membership" "dq_pnr_archive_bucket" {
   users = [aws_iam_user.dq_pnr_archive_bucket.name]
 
   group = aws_iam_group.dq_pnr_archive_bucket.name
-}
-
-resource "aws_ssm_parameter" "dq_pnr_archive_bucket_id" {
-  name  = "pnr-archive-bucket-user-id-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.dq_pnr_archive_bucket.id
-}
-
-resource "aws_ssm_parameter" "dq_pnr_archive_bucket_key" {
-  name  = "pnr-archive-bucket-user-key-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.dq_pnr_archive_bucket.secret
 }
