@@ -2,11 +2,6 @@ resource "aws_iam_user" "dq_mds_extractor_bucket" {
   name = "dq_mds_extractor_bucket_user"
 }
 
-
-resource "aws_iam_access_key" "dq_mds_extractor_bucket" {
-  user = aws_iam_user.dq_mds_extractor_bucket.name
-}
-
 resource "aws_iam_group" "dq_mds_extractor_bucket" {
   name = "dq_mds_extractor_bucket"
 }
@@ -72,14 +67,3 @@ resource "aws_iam_group_membership" "dq_mds_extractor_bucket" {
   group = aws_iam_group.dq_mds_extractor_bucket.name
 }
 
-resource "aws_ssm_parameter" "dq_mds_extractor_bucket_user" {
-  name  = "MDS_BUCKET_BUCKET_AWS_ACCESS_KEY_ID"
-  type  = "SecureString"
-  value = aws_iam_access_key.dq_mds_extractor_bucket.id
-}
-
-resource "aws_ssm_parameter" "dq_mds_extractor_bucket_secret" {
-  name  = "MDS_BUCKET_BUCKET_AWS_SECRET_ACCESS_KEY"
-  type  = "SecureString"
-  value = aws_iam_access_key.dq_mds_extractor_bucket.secret
-}
