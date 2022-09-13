@@ -173,9 +173,7 @@ resource "aws_iam_policy" "monitor_ssm" {
       "Action": [
                  "ssm:GetParameter"
       ],
-      "Resource": [
-      "arn:aws:ssm:eu-west-2:*:parameter/*"
-      ]
+      "Resource": "*"
     }
   ]
 }
