@@ -171,7 +171,9 @@ resource "aws_iam_policy" "monitor_ssm" {
     {
       "Effect": "Allow",
       "Action": [
-                 "ssm:GetParameter"
+        "ssm:Describe*",
+        "ssm:Get*",
+        "ssm:List*"
       ],
       "Resource": "*"
     }
