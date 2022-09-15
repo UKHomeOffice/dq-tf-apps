@@ -34,16 +34,16 @@ steps:
     event:
     - push
 
-- name: retrieve_aws_secrets_test
+- name: retrieve_aws_secrets_np
   pull: if-not-exists
   image: *vault-image
   commands:
     *retrieve-deployment-aws-key
   environment:
     VAULT_ADDR:
-      from_secret: VAULT_ADDR_DEV
+      from_secret: VAULT_ADDR_NOTPROD
     VAULT_TOKEN:
-      from_secret: VAULT_TOKEN_DEV
+      from_secret: VAULT_TOKEN_NOTPROD
   when:
     event:
       - push
@@ -68,15 +68,15 @@ steps:
   image: *vault-image
   commands:
     # the below Dev section needs to be uncommented
-    - export VAULT_TOKEN=$${VAULT_TOKEN_DEV}
-    - export VAULT_ADDR=$${VAULT_ADDR_DEV}
+    - export VAULT_TOKEN=$${VAULT_TOKEN_NOTPROD}
+    - export VAULT_ADDR=$${VAULT_ADDR_NOTPROD}
     - vault token renew > /dev/null
   when:
     event:
       - cron
     cron:
       - renew-vault-tokens
-      
+
 services:
   - name: docker
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
