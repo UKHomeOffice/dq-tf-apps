@@ -27,7 +27,8 @@ resource "aws_iam_policy" "dq_ais_archive_bucket_policy" {
     },
     {
       "Action": [
-        "s3:PutObject"
+        "s3:PutObject",
+        "s3:GetObject"
       ],
       "Effect": "Allow",
       "Resource": [
