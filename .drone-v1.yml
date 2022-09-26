@@ -71,6 +71,11 @@ steps:
     - export VAULT_TOKEN=$${VAULT_TOKEN_NOTPROD}
     - export VAULT_ADDR=$${VAULT_ADDR_NOTPROD}
     - vault token renew > /dev/null
+  environment:
+    VAULT_ADDR_NOTPROD:
+      from_secret: VAULT_ADDR_NOTPROD
+    VAULT_TOKEN_NOTPROD:
+      from_secret: VAULT_TOKEN_NOTPROD  
   when:
     event:
       - cron
