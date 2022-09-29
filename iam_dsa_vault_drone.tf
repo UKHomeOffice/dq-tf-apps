@@ -369,22 +369,9 @@ resource "aws_iam_policy" "vault_drone_2" {
     },
     {
        "Sid": "KMSFullAccess",
-       "Effect": "Allow",
-       "Action": [
-           "kms:CreateAlias",
-           "kms:CreateKey",
-           "kms:DeleteAlias",
-           "kms:Describe*",
-           "kms:GenerateRandom",
-           "kms:Get*",
-           "kms:List*",
-           "kms:TagResource",
-           "kms:UntagResource",
-           "iam:ListGroups",
-           "iam:ListRoles",
-           "iam:ListUsers"
-       ],
-       "Resource": "*"
+            "Effect": "Allow",
+            "Action": "kms:*",
+            "Resource": "*"
     },
     {
       "Sid": "StepFullAccess",
