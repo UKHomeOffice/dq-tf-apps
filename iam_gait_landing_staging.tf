@@ -19,6 +19,7 @@ resource "aws_iam_policy" "dq_gait_landing_staging_bucket_policy" {
   "Statement": [
     {
       "Action": [
+        "s3:GetObject",
         "s3:GetBucketLocation",
         "s3:ListBucket",
         "s3:ListBucketMultipartUploads",
@@ -26,7 +27,8 @@ resource "aws_iam_policy" "dq_gait_landing_staging_bucket_policy" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${aws_s3_bucket.dq_gait_landing_staging_bucket[0].arn}"
+        "${aws_s3_bucket.dq_gait_landing_staging_bucket[0].arn}",
+        "${aws_s3_bucket.dq_gait_landing_staging_bucket[0].arn}/*"
       ]
     },
     {
