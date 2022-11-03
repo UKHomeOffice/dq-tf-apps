@@ -26,9 +26,10 @@ x-anchors:
 
 steps:
 - name: testsuite
-  pull: if-not-exists
-  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  pull: always
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind:latest
   commands:
+  - /usr/local/bin/wait
   - docker run --rm -v $(pwd):/data -w /data hashicorp/terraform fmt --diff --check && echo $?
   when:
     event:
@@ -84,4 +85,4 @@ steps:
 
 services:
   - name: docker
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind:latest
