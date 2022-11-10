@@ -19,6 +19,7 @@ resource "aws_iam_policy" "dq_gait_landing_staging_bucket_policy" {
   "Statement": [
     {
       "Action": [
+        "s3:PutObject",
         "s3:GetObject",
         "s3:GetBucketLocation",
         "s3:ListBucket",
