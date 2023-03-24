@@ -9,7 +9,8 @@ resource "aws_iam_policy" "athena_readonly_user" {
             "Action": [
                 "athena:StartQueryExecution",
                 "athena:GetQueryExecution",
-                "athena:GetQueryResults"
+                "athena:GetQueryResults",
+                "athena:GetQueryResultsStream"
             ],
             "Effect": "Allow",
             "Resource": "*"
@@ -19,6 +20,7 @@ resource "aws_iam_policy" "athena_readonly_user" {
                 "s3:GetBucketLocation",
                 "s3:GetObject",
                 "s3:ListBucket",
+                "s3:ListAllMyBuckets",
                 "s3:ListBucketMultipartUploads",
                 "s3:ListMultipartUploadParts",
                 "s3:AbortMultipartUpload"
@@ -28,9 +30,21 @@ resource "aws_iam_policy" "athena_readonly_user" {
         },
         {
             "Action": [
+                "s3:PutObject",
+                "s3:PutBucketPublicAccessBlock"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::s3-dq-athena-log-notprod",
+                "arn:aws:s3:::s3-dq-athena-log-notprod/*"
+            ]
+        },
+        {
+            "Action": [
                 "glue:GetDatabase",
                 "glue:GetDatabases",
                 "glue:GetTable",
+                "glue:GetTables",
                 "glue:GetPartition",
                 "glue:GetPartitions"
             ],
@@ -41,7 +55,7 @@ resource "aws_iam_policy" "athena_readonly_user" {
             "Action": [
                 "kms:Encrypt",
                 "kms:Decrypt",
-                "kms:GenerateDataKey*",
+                "kms:GenerateDataKey",
                 "kms:DescribeKey"
             ],
             "Effect": "Allow",
@@ -51,7 +65,8 @@ resource "aws_iam_policy" "athena_readonly_user" {
             "Action": [
                 "kms:Encrypt",
                 "kms:Decrypt",
-                "kms:GenerateDataKey"
+                "kms:GenerateDataKey",
+                "kms:DescribeKey"
             ],
             "Effect": "Allow",
             "Resource": "${data.aws_kms_key.glue.arn}"
