@@ -2472,14 +2472,6 @@ POLICY
 
 }
 
-resource "aws_s3_bucket_public_access_block" "dq_asn_marine_archive_bucket_pub_block" {
-  bucket = var.s3_bucket_name["dq_asn_marine_archive"]
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-}
-
 resource "aws_s3_bucket_metric" "dq_asn_marine_archive_bucket_logging" {
   bucket = var.s3_bucket_name["dq_asn_marine_archive"]
   name   = "dq_asn_marine_archive_metric"
