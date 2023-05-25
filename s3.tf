@@ -970,7 +970,7 @@ resource "aws_s3_bucket" "api_archive_bucket" {
 }
 
 resource "aws_s3_bucket_public_access_block" "dq-api-archive-notprod_pub_block" {
-  bucket = aws_s3_bucket.dq-api-archive-notprod.id
+  bucket = aws_s3_bucket.api_archive_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
