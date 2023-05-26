@@ -385,8 +385,8 @@ resource "aws_s3_bucket" "airports_internal_bucket" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "airports_internal_pub_block" {
-  bucket = aws_s3_bucket.airports_internal.id
+resource "aws_s3_bucket_public_access_block" "airports_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.airports_internal_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -564,8 +564,8 @@ resource "aws_s3_bucket" "oag_internal_bucket" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "oag_internal_pub_block" {
-  bucket = aws_s3_bucket.oag_internal.id
+resource "aws_s3_bucket_public_access_block" "oag_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.oag_internal_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -695,8 +695,8 @@ resource "aws_s3_bucket" "acl_archive_bucket" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "acl_archive_pub_block" {
-  bucket = aws_s3_bucket.acl_archive.id
+resource "aws_s3_bucket_public_access_block" "acl_archive_bucket_pub_block" {
+  bucket = aws_s3_bucket.acl_archive_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -821,8 +821,8 @@ resource "aws_s3_bucket" "reference_data_archive_bucket" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "reference_data_archive_pub_block" {
-  bucket = aws_s3_bucket.reference_data_archive.id
+resource "aws_s3_bucket_public_access_block" "reference_data_archive_bucket_pub_block" {
+  bucket = aws_s3_bucket.reference_data_archive_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -1185,8 +1185,8 @@ resource "aws_s3_bucket" "cross_record_scored_bucket" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "cross_record_scored_pub_block" {
-  bucket = aws_s3_bucket.cross_record_scored.id
+resource "aws_s3_bucket_public_access_block" "cross_record_scored_bucket_pub_block" {
+  bucket = aws_s3_bucket.cross_record_scored_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -2322,8 +2322,8 @@ resource "aws_s3_bucket" "dq_asn_internal_bucket" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "dq_asn_internal_pub_block" {
-  bucket = aws_s3_bucket.dq_asn_internal.id
+resource "aws_s3_bucket_public_access_block" "dq_asn_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_asn_internal_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
