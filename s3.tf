@@ -625,6 +625,15 @@ resource "aws_s3_bucket" "oag_transform_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "oag_transform_bucket_pub_block" {
+  bucket = aws_s3_bucket.oag_transform_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "oag_transform_policy" {
   bucket = var.s3_bucket_name["oag_transform"]
 
@@ -1005,7 +1014,7 @@ resource "aws_s3_bucket" "api_archive_bucket" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "dq-api-archive-notprod_pub_block" {
+resource "aws_s3_bucket_public_access_block" "api_archive_bucket_pub_block" {
   bucket = aws_s3_bucket.api_archive_bucket.id
 
   block_public_acls       = true
