@@ -332,6 +332,15 @@ resource "aws_s3_bucket" "airports_archive_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "airports_archive_bucket_pub_block" {
+  bucket = aws_s3_bucket.airports_archive_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "airports_archive_policy" {
   bucket = var.s3_bucket_name["airports_archive"]
 
@@ -919,6 +928,15 @@ resource "aws_s3_bucket" "reference_data_internal_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "reference_data_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.reference_data_internal_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "reference_data_internal_policy" {
   bucket = var.s3_bucket_name["reference_data_internal"]
 
@@ -1116,6 +1134,15 @@ resource "aws_s3_bucket" "api_internal_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "api_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.api_internal_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "api_internal_policy" {
   bucket = var.s3_bucket_name["api_internal"]
 
@@ -1171,6 +1198,15 @@ resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
   tags = {
     Name = "s3-dq-api-record-level-scoring-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "api_record_level_scoring_bucket_pub_block" {
+  bucket = aws_s3_bucket.api_record_level_scoring_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "api_record_level_scoring_policy" {
@@ -1349,6 +1385,15 @@ resource "aws_s3_bucket" "reporting_internal_working_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "reporting_internal_working_bucket_pub_block" {
+  bucket = aws_s3_bucket.reporting_internal_working_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "reporting_internal_working_policy" {
   bucket = var.s3_bucket_name["reporting_internal_working"]
 
@@ -1458,6 +1503,15 @@ resource "aws_s3_bucket" "mds_extract_bucket" {
   tags = {
     Name = "s3-dq-mds-extract-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "mds_extract_bucket_pub_block" {
+  bucket = aws_s3_bucket.mds_extract_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "mds_extract_policy" {
@@ -1573,6 +1627,15 @@ resource "aws_s3_bucket" "fms_working_bucket" {
   tags = {
     Name = "s3-dq-fms-working-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "fms_working_bucket_pub_block" {
+  bucket = aws_s3_bucket.fms_working_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "fms_working_policy" {
@@ -1946,6 +2009,15 @@ resource "aws_s3_bucket_object" "s3-dq-api-arrivals-test" {
   key    = "reference/"
 }
 
+resource "aws_s3_bucket_public_access_block" "api_arrivals_bucket_pub_block" {
+  bucket = aws_s3_bucket.api_arrivals_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "api_arrivals_policy" {
   bucket = var.s3_bucket_name["api_arrivals"]
 
@@ -2170,6 +2242,15 @@ resource "aws_s3_bucket" "dq_fs_archive" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "dq_fs_archive_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_fs_archive_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "dq_fs_archive_bucket_policy" {
   bucket = var.s3_bucket_name["dq_fs_archive"]
 
@@ -2338,6 +2419,15 @@ resource "aws_s3_bucket" "dq_asn_archive_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "dq_asn_archive_pub_block" {
+  bucket = aws_s3_bucket.dq_asn_archive_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "dq_asn_archive_bucket_policy" {
   bucket = var.s3_bucket_name["dq_asn_archive"]
 
@@ -2457,6 +2547,15 @@ resource "aws_s3_bucket" "dq_snsgb_archive_bucket" {
   tags = {
     Name = "s3-dq-snsgb-archive-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "dq_snsgb_archive_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_snsgb_archive_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "dq_snsgb_archive_bucket_policy" {
@@ -2636,6 +2735,15 @@ resource "aws_s3_bucket" "dq_asn_marine_internal_bucket" {
   tags = {
     Name = "s3-dq-asn-marine-internal-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "dq_asn_marine_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_asn_marine_internal_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "dq_asn_marine_internal_bucket_policy" {
@@ -2951,6 +3059,15 @@ resource "aws_s3_bucket" "dq_ais_internal_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "dq_ais_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_ais_internal_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "dq_ais_internal_bucket_policy" {
   bucket = var.s3_bucket_name["dq_ais_internal"]
 
@@ -3141,6 +3258,15 @@ resource "aws_s3_bucket" "dq_pnr_internal_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "dq_pnr_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_pnr_internal_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "dq_pnr_internal_bucket_policy" {
   bucket = var.s3_bucket_name["dq_pnr_internal"]
 
@@ -3217,6 +3343,15 @@ resource "aws_s3_bucket" "carrier_portal_docs" {
   tags = {
     Name = "s3-dq-carrier-portal-docs-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "carrier_portal_docs_bucket_pub_block" {
+  bucket = aws_s3_bucket.carrier_portal_docs_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "carrier_portal_docs" {
