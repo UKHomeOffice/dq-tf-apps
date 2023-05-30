@@ -3417,8 +3417,8 @@ resource "aws_s3_bucket" "carrier_portal_docs" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "carrier_portal_docs_bucket_pub_block" {
-  bucket = aws_s3_bucket.carrier_portal_docs_bucket.id
+resource "aws_s3_bucket_public_access_block" "carrier_portal_docs_pub_block" {
+  bucket = aws_s3_bucket.carrier_portal_docs.id
 
   block_public_acls       = true
   block_public_policy     = true
