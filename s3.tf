@@ -2123,8 +2123,8 @@ resource "aws_s3_bucket" "api_rls_xrs_reconciliation" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "api_rls_xrs_reconciliation_bucket_pub_block" {
-  bucket = aws_s3_bucket.api_rls_xrs_reconciliation_bucket.id
+resource "aws_s3_bucket_public_access_block" "rls_xrs_reconciliation_bucket_pub_block" {
+  bucket = aws_s3_bucket.rls_xrs_reconciliation_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
