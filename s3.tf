@@ -1897,6 +1897,15 @@ resource "aws_s3_bucket" "nats_internal_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "nats_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.nats_internal_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "nats_internal_policy" {
   bucket = var.s3_bucket_name["nats_internal"]
 
@@ -1946,6 +1955,15 @@ resource "aws_s3_bucket" "cdlz_bitd_input" {
   tags = {
     Name = "s3-dq-cdlz-bitd-input-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "cdlz_bitd_input_pub_block" {
+  bucket = aws_s3_bucket.cdlz_bitd_input.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "cdlz_bitd_input_policy" {
@@ -2074,6 +2092,15 @@ resource "aws_s3_bucket" "accuracy_score_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "accuracy_score_bucket_pub_block" {
+  bucket = aws_s3_bucket.accuracy_score_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "accuracy_score_policy" {
   bucket = var.s3_bucket_name["accuracy_score"]
 
@@ -2128,6 +2155,15 @@ resource "aws_s3_bucket" "api_cdlz_msk_bucket" {
   tags = {
     Name = "s3-dq-api-cdlz-msk-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "api_cdlz_msk_bucket_pub_block" {
+  bucket = aws_s3_bucket.api_cdlz_msk_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "api_cdlz_msk_bucket_policy" {
@@ -2186,6 +2222,15 @@ resource "aws_s3_bucket" "api_rls_xrs_reconciliation" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "api_rls_xrs_reconciliation_pub_block" {
+  bucket = aws_s3_bucket.api_rls_xrs_reconciliation.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "api_rls_xrs_reconciliation_bucket_policy" {
   bucket = var.s3_bucket_name["api_rls_xrs_reconciliation"]
 
@@ -2242,8 +2287,8 @@ resource "aws_s3_bucket" "dq_fs_archive" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "dq_fs_archive_bucket_pub_block" {
-  bucket = aws_s3_bucket.dq_fs_archive_bucket.id
+resource "aws_s3_bucket_public_access_block" "dq_fs_archive_pub_block" {
+  bucket = aws_s3_bucket.dq_fs_archive.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -2307,6 +2352,15 @@ resource "aws_s3_bucket" "dq_fs_internal" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "dq_fs_internal_pub_block" {
+  bucket = aws_s3_bucket.dq_fs_internal.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "dq_fs_internal_bucket_policy" {
   bucket = var.s3_bucket_name["dq_fs_internal"]
 
@@ -2361,6 +2415,15 @@ resource "aws_s3_bucket" "dq_aws_config_bucket" {
   tags = {
     Name = "s3-dq-aws-config-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "dq_aws_config_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_aws_config_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "dq_aws_config_bucket_policy" {
@@ -2612,6 +2675,15 @@ resource "aws_s3_bucket" "dq_snsgb_internal_bucket" {
   tags = {
     Name = "s3-dq-snsgb-internal-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "dq_snsgb_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_snsgb_internal_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "dq_snsgb_internal_bucket_policy" {
