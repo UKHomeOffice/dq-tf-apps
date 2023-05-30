@@ -1692,6 +1692,15 @@ resource "aws_s3_bucket" "drt_export" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "drt_export_pub_block" {
+  bucket = aws_s3_bucket.drt_export.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "drt_export_policy" {
   count  = var.namespace == "notprod" ? 1 : 0
   bucket = var.s3_bucket_name["drt_export"]
