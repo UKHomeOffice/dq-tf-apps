@@ -1885,15 +1885,6 @@ resource "aws_s3_bucket" "cdlz_bitd_input" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "cdlz_bitd_input_bucket_pub_block" {
-  bucket = aws_s3_bucket.cdlz_bitd_input_bucket.id
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-}
-
 resource "aws_s3_bucket_policy" "cdlz_bitd_input_policy" {
   bucket = var.s3_bucket_name["cdlz_bitd_input"]
 
@@ -2121,15 +2112,6 @@ resource "aws_s3_bucket" "api_rls_xrs_reconciliation" {
   tags = {
     Name = "s3-dq-rls-xrs-reconciliation-${local.naming_suffix}"
   }
-}
-
-resource "aws_s3_bucket_public_access_block" "rls_xrs_reconciliation_bucket_pub_block" {
-  bucket = aws_s3_bucket.rls_xrs_reconciliation_bucket.id
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "api_rls_xrs_reconciliation_bucket_policy" {
