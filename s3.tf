@@ -79,6 +79,15 @@ resource "aws_s3_bucket_metric" "log_archive_bucket_logging" {
   name   = "log_archive_bucket_metric"
 }
 
+resource "aws_s3_bucket_public_access_block" "log_archive_bucket_pub_block" {
+  bucket = aws_s3_bucket.log_archive_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "archive_log_policy" {
   bucket = var.s3_bucket_name["archive_log"]
 
@@ -265,6 +274,15 @@ resource "aws_s3_bucket" "data_working_bucket" {
 resource "aws_s3_bucket_metric" "data_working_bucket_logging" {
   bucket = var.s3_bucket_name["working_data"]
   name   = "data_working_bucket_metric"
+}
+
+resource "aws_s3_bucket_public_access_block" "data_working_bucket_pub_block" {
+  bucket = aws_s3_bucket.data_working_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "data_working_bucket" {
@@ -1333,6 +1351,15 @@ resource "aws_s3_bucket" "gait_internal_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "gait_internal_bucket_pub_block" {
+  bucket = aws_s3_bucket.gait_internal_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "gait_internal_policy" {
   bucket = var.s3_bucket_name["gait_internal"]
 
@@ -1692,8 +1719,8 @@ resource "aws_s3_bucket" "drt_export" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "drt_export_pub_block" {
-  bucket = aws_s3_bucket.drt_export.id
+resource "aws_s3_bucket_public_access_block" "drt_export[0]_pub_block" {
+  bucket = aws_s3_bucket.drt_export[0].id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -3020,6 +3047,15 @@ resource "aws_s3_bucket" "dq_data_generator_bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "dq_data_generator_bucket[0]_pub_block" {
+  bucket = aws_s3_bucket.dq_data_generator_bucket[0].id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 resource "aws_s3_bucket_policy" "dq_data_generator_bucket_policy" {
   count  = var.namespace == "notprod" ? 1 : 0
   bucket = var.s3_bucket_name["dq_data_generator"]
@@ -3082,6 +3118,15 @@ resource "aws_s3_bucket" "dq_ais_archive_bucket" {
   tags = {
     Name = "s3-dq-dq-ais-archive-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "dq_ais_archive_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_ais_archive_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "dq_ais_archive_bucket_policy" {
