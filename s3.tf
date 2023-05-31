@@ -1719,8 +1719,9 @@ resource "aws_s3_bucket" "drt_export" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "drt_export_bucket[0]_pub_block" {
-  bucket = aws_s3_bucket.drt_export[0].id
+resource "aws_s3_bucket_public_access_block" "drt_export_bucket_pub_block" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  bucket = aws_s3_bucket.drt_export.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -3047,8 +3048,9 @@ resource "aws_s3_bucket" "dq_data_generator_bucket" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "dq_data_generator_bucket[0]_pub_block" {
-  bucket = aws_s3_bucket.dq_data_generator_bucket[0].id
+resource "aws_s3_bucket_public_access_block" "dq_data_generator_bucket_pub_block" {
+  count  = var.namespace == "notprod" ? 1 : 0
+  bucket = aws_s3_bucket.dq_data_generator_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
