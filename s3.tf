@@ -1720,7 +1720,7 @@ resource "aws_s3_bucket" "drt_export" {
 }
 
 resource "aws_s3_bucket_public_access_block" "drt_export_pub_block" {
-  bucket = aws_s3_bucket.drt_export[count.0].id
+  bucket = aws_s3_bucket.drt_export[0].id
 
   block_public_acls       = true
   block_public_policy     = true
