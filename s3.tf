@@ -39,35 +39,12 @@ EOF
 
 }
 
+#
+# LOG ARCHIVE BUCKET
+#
 resource "aws_s3_bucket" "log_archive_bucket" {
   bucket = var.s3_bucket_name["archive_log"]
-  acl    = var.s3_bucket_acl["archive_log"]
   region = var.region
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = aws_kms_key.bucket_key.arn
-        sse_algorithm     = "aws:kms"
-      }
-    }
-  }
-
-  versioning {
-    enabled = true
-  }
-
-  lifecycle_rule {
-    enabled = true
-    transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
-    }
-    noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
-    }
-  }
 
   tags = {
     Name = "s3-log-archive-bucket-${local.naming_suffix}"
@@ -113,104 +90,169 @@ POLICY
 
 }
 
-resource "aws_s3_bucket" "data_archive_bucket" {
-  bucket = var.s3_bucket_name["archive_data"]
-  acl    = var.s3_bucket_acl["archive_data"]
-  region = var.region
+resource "aws_s3_bucket_acl" "log_archive_acl" {
+  bucket = aws_s3_bucket.log_archive_bucket.id
+  acl = var.s3_bucket_acl["archive_log"]
+}
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = aws_kms_key.bucket_key.arn
-        sse_algorithm     = "aws:kms"
-      }
+resource "aws_s3_bucket_versioning" "log_archive_versioning" {
+  bucket = aws_s3_bucket.log_archive_bucket.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "log_archive_encryption_configuration" {
+  bucket = aws_s3_bucket.log_archive_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = aws_kms_key.bucket_key.arn
+      sse_algorithm = "aws:kms"
     }
   }
+}
 
-  versioning {
-    enabled = true
-  }
+resource "aws_s3_bucket_lifecycle_configuration" "log_archive_lifecycle_configuration" {
+  bucket = aws_s3_bucket.log_archive_bucket.arn
 
-  logging {
-    target_bucket = aws_s3_bucket.log_archive_bucket.id
-    target_prefix = "data_archive_bucket/"
-  }
-
-  lifecycle_rule {
-    enabled = true
+  rule {
+    id     = "transition_to_infrequent_access"
+    status = "enabled"
+    filter {
+      prefix = "/"
+    }
     transition {
       days          = 30
       storage_class = "STANDARD_IA"
     }
-    noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
-    }
   }
+}
 
-  lifecycle_rule {
-    id      = "internal_tableau_green"
-    enabled = true
-
-    prefix = "tableau-int/green/"
-
-    expiration {
-      days = 15
-    }
-
-    noncurrent_version_expiration {
-      days = 1
-    }
-  }
-
-  lifecycle_rule {
-    id      = "internal_tableau_blue"
-    enabled = true
-
-    prefix = "tableau-int/blue/"
-
-    expiration {
-      days = 15
-    }
-
-    noncurrent_version_expiration {
-      days = 1
-    }
-  }
-
-  lifecycle_rule {
-    id      = "external_tableau_green"
-    enabled = true
-
-    prefix = "tableau-ext/green/"
-
-    expiration {
-      days = 15
-    }
-
-    noncurrent_version_expiration {
-      days = 1
-    }
-  }
-
-  lifecycle_rule {
-    id      = "external_tableau_blue"
-    enabled = true
-
-    prefix = "tableau-ext/blue/"
-
-    expiration {
-      days = 15
-    }
-
-    noncurrent_version_expiration {
-      days = 1
-    }
-  }
+#
+# DATA ARCHIVE BUCKET
+#
+resource "aws_s3_bucket" "data_archive_bucket" {
+  bucket = var.s3_bucket_name["archive_data"]
+  region = var.region
 
   tags = {
     Name = "s3-data-archive-bucket-${local.naming_suffix}"
   }
+}
+
+resource "aws_s3_bucket_acl" "data_archive_acl" {
+  bucket = aws_s3_bucket.data_archive_bucket.id
+  acl = var.s3_bucket_acl["archive_data"]
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "data_archive_encryption_configuration" {
+  bucket = aws_s3_bucket.data_archive_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = aws_kms_key.bucket_key.arn
+      sse_algorithm = "aws:kms"
+    }
+  }
+}
+
+resource "aws_s3_bucket_versioning" "data_archive_versioning" {
+  bucket = aws_s3_bucket.data_archive_bucket.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_logging" "data_archive_logging" {
+  bucket        = aws_s3_bucket.data_archive_bucket.id
+  target_bucket = aws_s3_bucket.log_archive_bucket.id
+  target_prefix = "data_archive_bucket/"
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "data_archive_lifecycle_configuration" {
+  bucket = aws_s3_bucket.data_archive_bucket.arn
+
+  rule {
+    id     = "transition_to_infrequent_access"
+    status = "enabled"
+    filter {
+      prefix = "/"
+    }
+    transition {
+      days = 30
+      storage_class = "STANDARD_IA"
+    }
+  }
+
+  rule {
+    id     = "expiration_external_tableau_blue"
+    expiration {
+      days = 15
+    }
+    filter {
+      prefix = "tableau-ext/blue/"
+    }
+    status = "Enabled"
+  }
+
+  rule {
+    id     = "expiration_external_tableau_green"
+    expiration {
+      days = 15
+    }
+    filter {
+      prefix = "tableau-ext/green/"
+    }
+    status = "Enabled"
+  }
+
+    rule {
+    id     = "expiration_external_tableau_staging"
+    expiration {
+      days = 15
+    }
+    filter {
+      prefix = "tableau-ext/staging/"
+    }
+    status = "Enabled"
+  }
+
+  rule {
+    id     = "expiration_internal_tableau_blue"
+    expiration {
+      days = 15
+    }
+    filter {
+      prefix = "tableau-int/blue/"
+    }
+    status = "Enabled"
+  }
+
+  rule {
+    id     = "expiration_internal_tableau_green"
+    expiration {
+      days = 15
+    }
+    filter {
+      prefix = "tableau-int/green/"
+    }
+    status = "Enabled"
+  }
+
+    rule {
+    id     = "expiration_internal_tableau_staging"
+    expiration {
+      days = 15
+    }
+    filter {
+      prefix = "tableau-int/staging/"
+    }
+    status = "Enabled"
+  }
+
 }
 
 resource "aws_s3_bucket_metric" "data_archive_bucket_logging" {
@@ -218,7 +260,7 @@ resource "aws_s3_bucket_metric" "data_archive_bucket_logging" {
   name   = "data_archive_bucket_metric"
 }
 
-resource "aws_s3_bucket_policy" "data_archive_bucket" {
+resource "aws_s3_bucket_policy" "data_archive_bucket_policy" {
   bucket = var.s3_bucket_name["archive_data"]
 
   policy = <<POLICY
@@ -243,6 +285,9 @@ POLICY
 
 }
 
+#
+# DATA WORKING BUCKET
+#
 resource "aws_s3_bucket" "data_working_bucket" {
   bucket = var.s3_bucket_name["working_data"]
   acl    = var.s3_bucket_acl["working_data"]
