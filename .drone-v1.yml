@@ -1,5 +1,5 @@
 ---
-lobal-variables:
+global-variables:
   vault-image: &vault-image docker.digital.homeoffice.gov.uk/dq/dq-vault-awscli:1.43
 
 kind: pipeline
