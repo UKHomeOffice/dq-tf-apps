@@ -92,7 +92,7 @@ POLICY
 
 resource "aws_s3_bucket_acl" "log_archive_acl" {
   bucket = aws_s3_bucket.log_archive_bucket.id
-  acl = var.s3_bucket_acl["archive_log"]
+  acl    = var.s3_bucket_acl["archive_log"]
 }
 
 resource "aws_s3_bucket_versioning" "log_archive_versioning" {
