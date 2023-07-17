@@ -109,7 +109,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "log_archive_encry
   rule {
     apply_server_side_encryption_by_default {
       kms_master_key_id = aws_kms_key.bucket_key.arn
-      sse_algorithm = "aws:kms"
+      sse_algorithm     = "aws:kms"
     }
   }
 }
@@ -144,7 +144,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
 
 resource "aws_s3_bucket_acl" "data_archive_acl" {
   bucket = aws_s3_bucket.data_archive_bucket.id
-  acl = var.s3_bucket_acl["archive_data"]
+  acl    = var.s3_bucket_acl["archive_data"]
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "data_archive_encryption_configuration" {
@@ -153,7 +153,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "data_archive_encr
   rule {
     apply_server_side_encryption_by_default {
       kms_master_key_id = aws_kms_key.bucket_key.arn
-      sse_algorithm = "aws:kms"
+      sse_algorithm     = "aws:kms"
     }
   }
 }
