@@ -209,7 +209,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "data_archive_lifecycle_configu
     status = "Enabled"
   }
 
-    rule {
+  rule {
     id = "expiration_external_tableau_staging"
     expiration {
       days = 15
@@ -242,7 +242,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "data_archive_lifecycle_configu
     status = "Enabled"
   }
 
-    rule {
+  rule {
     id = "expiration_internal_tableau_staging"
     expiration {
       days = 15
