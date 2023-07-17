@@ -182,13 +182,13 @@ resource "aws_s3_bucket_lifecycle_configuration" "data_archive_lifecycle_configu
       prefix = "/"
     }
     transition {
-      days = 30
+      days          = 30
       storage_class = "STANDARD_IA"
     }
   }
 
   rule {
-    id     = "expiration_external_tableau_blue"
+    id = "expiration_external_tableau_blue"
     expiration {
       days = 15
     }
@@ -199,7 +199,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "data_archive_lifecycle_configu
   }
 
   rule {
-    id     = "expiration_external_tableau_green"
+    id = "expiration_external_tableau_green"
     expiration {
       days = 15
     }
@@ -210,7 +210,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "data_archive_lifecycle_configu
   }
 
     rule {
-    id     = "expiration_external_tableau_staging"
+    id = "expiration_external_tableau_staging"
     expiration {
       days = 15
     }
@@ -221,7 +221,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "data_archive_lifecycle_configu
   }
 
   rule {
-    id     = "expiration_internal_tableau_blue"
+    id = "expiration_internal_tableau_blue"
     expiration {
       days = 15
     }
@@ -232,7 +232,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "data_archive_lifecycle_configu
   }
 
   rule {
-    id     = "expiration_internal_tableau_green"
+    id = "expiration_internal_tableau_green"
     expiration {
       days = 15
     }
@@ -243,7 +243,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "data_archive_lifecycle_configu
   }
 
     rule {
-    id     = "expiration_internal_tableau_staging"
+    id = "expiration_internal_tableau_staging"
     expiration {
       days = 15
     }
