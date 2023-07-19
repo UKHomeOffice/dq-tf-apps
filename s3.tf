@@ -179,6 +179,21 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   }
 
   lifecycle_rule {
+    id      = "internal_tableau_staging"
+    enabled = true
+
+    prefix = "tableau-int/staging/"
+
+    expiration {
+      days = 15
+    }
+
+    noncurrent_version_expiration {
+      days = 1
+    }
+  }
+
+  lifecycle_rule {
     id      = "external_tableau_green"
     enabled = true
 
@@ -198,6 +213,21 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     enabled = true
 
     prefix = "tableau-ext/blue/"
+
+    expiration {
+      days = 15
+    }
+
+    noncurrent_version_expiration {
+      days = 1
+    }
+  }
+
+  lifecycle_rule {
+    id      = "external_tableau_staging"
+    enabled = true
+
+    prefix = "tableau-ext/staging/"
 
     expiration {
       days = 15
