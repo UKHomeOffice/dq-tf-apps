@@ -65,6 +65,7 @@ resource "aws_s3_bucket_public_access_block" "log_archive_bucket_pub_block" {
   restrict_public_buckets = true
 }
 
+
 resource "aws_s3_bucket_policy" "archive_log_policy" {
   bucket = var.s3_bucket_name["archive_log"]
 
