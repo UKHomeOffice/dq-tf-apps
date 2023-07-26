@@ -51,7 +51,7 @@ steps:
 
 - name: run-testrunner-tests
   pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/tf-testrunner:32
+  image: quay.io/ukhomeofficedigital/tf-testrunner:b-131
   commands:
   - source ./set_aws_secrets.sh
   - mkdir /root/.ssh && echo "$SSH_KEY" > /root/.ssh/id_rsa && chmod 0600 /root/.ssh/id_rsa
