@@ -51,7 +51,7 @@ steps:
 
 - name: run-testrunner-tests
   pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/tf-testrunner:b-131
+  image: quay.io/ukhomeofficedigital/tf-testrunner:b-138
   when:
     event:
     - push
