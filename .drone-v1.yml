@@ -52,9 +52,17 @@ steps:
 - name: run-testrunner-tests
   pull: if-not-exists
   image: quay.io/ukhomeofficedigital/tf-testrunner:b-139
+  commands:
+    - source ./set_aws_secrets.sh
+    - mkdir /root/.ssh && echo "$SSH_KEY" > /root/.ssh/id_rsa && chmod 0600 /root/.ssh/id_rsa
+    - ssh-keyscan -t rsa -p 2222 gitlab.digital.homeoffice.gov.uk >>  ~/.ssh/known_hosts
+    - python -m unittest tests/*_test.py
+  environment:
+    SSH_KEY:
+      from_secret: SSH_KEY
   when:
     event:
-    - push
+      - push
 
 - name: renew-vault-tokens
   pull: if-not-exists
