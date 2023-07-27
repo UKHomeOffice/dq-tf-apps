@@ -1,9 +1,9 @@
 
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 1.5.3"
   required_providers {
-    archive = "~> 1.3"
-    aws     = "~> 2.70"
-    random  = "~> 2.3"
+    archive = "~> 2.4.0"
+    aws     = "~> 5.9.0"
+    random  = "~> 3.5.1"
   }
 }
