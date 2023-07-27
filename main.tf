@@ -1,6 +1,3 @@
-provider "aws" {
-}
-
 locals {
   naming_suffix = "apps-${var.naming_suffix}"
 }
