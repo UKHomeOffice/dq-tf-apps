@@ -9,7 +9,7 @@ module "external_tableau" {
   source                       = "github.com/UKHomeOffice/dq-tf-external-tableau"
   acp_prod_ingress_cidr        = "10.5.0.0/16"
   dq_ops_ingress_cidr          = var.route_table_cidr_blocks["ops_cidr"]
-  dq_external_dashboard_subnet = "10.1.14.0/24"
+  dq_external_dashboard_subnet = "10.1.14.0/27"
   peering_cidr_block           = "10.3.0.0/16"
   apps_vpc_id                  = aws_vpc.appsvpc.id
   route_table_id               = aws_route_table.apps_route_table.id
