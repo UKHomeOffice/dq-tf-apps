@@ -207,5 +207,5 @@ variable "athena_log_prefix" {
 
 variable "kms_key_s3" {
   type        = map(string)
-  description = "KMS encrypt S3 buckets" 
+  description = "KMS encrypt S3 buckets"
 }
