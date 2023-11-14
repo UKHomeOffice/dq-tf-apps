@@ -26,12 +26,12 @@ output "log_archive_bucket_arn" {
   value = aws_s3_bucket.log_archive_bucket.arn
 }
 
-output "iam_roles" {
-  value = concat(
-    module.external_tableau.iam_roles,
-    module.internal_tableau.iam_roles,
-  )
-}
+#output "iam_roles" {
+#  value = concat(
+#    module.external_tableau.iam_roles,
+#    module.internal_tableau.iam_roles,
+#  )
+#}
 
 output "athena_log_bucket" {
   value = aws_s3_bucket.athena_log_bucket.id
