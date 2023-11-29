@@ -59,7 +59,7 @@ resource "aws_iam_policy" "athena_readonly_user" {
                 "kms:DescribeKey"
             ],
             "Effect": "Allow",
-            "Resource": ["${aws_kms_key.bucket_key.arn}"]
+            "Resource": "*"
         },
         {
             "Action": [
