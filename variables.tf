@@ -206,7 +206,7 @@ variable "athena_log_prefix" {
 }
 
 variable "kms_key_s3" {
-  type        = map(string)  
+  type        = map(string)
   description = "The ARN of the KMS key that is used to encrypt S3 buckets"
   default = {
     preprod = "arn:aws:kms:eu-west-2:797728447925:key/ad7169c4-6d6a-4d21-84ee-a3b54f4bef87"
