@@ -56,7 +56,6 @@ steps:
   - source ./set_aws_secrets.sh
   - mkdir /root/.ssh && echo "$SSH_KEY" > /root/.ssh/id_rsa && chmod 0600 /root/.ssh/id_rsa
   - ssh-keyscan -t rsa -p 2222 gitlab.digital.homeoffice.gov.uk >>  ~/.ssh/known_hosts
-  - no-such-exe
   - python -m unittest tests/*_test.py
   environment:
     SSH_KEY:
