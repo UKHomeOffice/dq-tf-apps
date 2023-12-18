@@ -5,6 +5,14 @@ locals {
   naming_suffix = "apps-${var.naming_suffix}"
 }
 
+module "acl_input_pipeline" {
+  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-acl-input-pipeline.git?ref=yel-7817-upgrade-to-tf1.6"
+  kms_key_s3    = aws_kms_key.bucket_key.arn
+  naming_suffix = local.naming_suffix
+  lambda_slack  = module.ops_pipeline.lambda_slack
+  namespace     = var.namespace
+}
+
 module "external_tableau" {
   source                       = "github.com/UKHomeOffice/dq-tf-external-tableau"
   acp_prod_ingress_cidr        = "10.5.0.0/16"
@@ -155,14 +163,6 @@ module "oag_input_pipeline" {
 
 module "oag_transform_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-oag-transform-pipeline.git"
-  kms_key_s3    = aws_kms_key.bucket_key.arn
-  naming_suffix = local.naming_suffix
-  lambda_slack  = module.ops_pipeline.lambda_slack
-  namespace     = var.namespace
-}
-
-module "acl_input_pipeline" {
-  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-acl-input-pipeline.git"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   naming_suffix = local.naming_suffix
   lambda_slack  = module.ops_pipeline.lambda_slack
