@@ -59,7 +59,7 @@ x-anchors:
 
   run-testrunner-tests: &run-testrunner-tests
     # Get AWS secrets for TF State
-    - export AWS_SECRETS_FILE="set_aws_secrets_$${AWS_ENV}.sh"
+    - export AWS_SECRETS_FILE="/drone/src/set_aws_secrets_$${AWS_ENV}.sh"
     - source $${AWS_SECRETS_FILE}
     # Add SSH_KEY to allow git clone
     - mkdir /root/.ssh && echo "$SSH_KEY" > /root/.ssh/id_rsa && chmod 0600 /root/.ssh/id_rsa
