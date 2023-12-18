@@ -7,7 +7,7 @@ locals {
 
 module "acl_input_pipeline" {
   source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-acl-input-pipeline.git"
-#  source        = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-acl-input-pipeline.git?ref=yel-7817-upgrade-to-tf1.6"
+#  source       = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-acl-input-pipeline.git?ref=yel-7817-upgrade-to-tf1.6"
   kms_key_s3    = aws_kms_key.bucket_key.arn
   naming_suffix = local.naming_suffix
   lambda_slack  = module.ops_pipeline.lambda_slack
