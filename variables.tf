@@ -13,9 +13,6 @@ variable "az" {
 variable "az2" {
 }
 
-variable "adminpassword" {
-}
-
 variable "ad_aws_ssm_document_name" {
 }
 
