@@ -13,8 +13,8 @@ resource "aws_kms_key" "bucket_key" {
             "Effect": "Allow",
             "Principal": {
                 "AWS": [
-                  "${data.aws_caller_identity.current.arn}",
-                  "${data.aws_caller_identity.current.account_id}"
+                  "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
+                  "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/dq-tf-infra"
                 ]
             },
             "Action": "kms:*",
