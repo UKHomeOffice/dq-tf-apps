@@ -332,7 +332,7 @@ module "ops_pipeline" {
 }
 
 module "dailytasks" {
-  source        = "github.com/UKHomeOffice/dq-tf-dailytasks"
+  source        = "github.com/UKHomeOffice/dq-tf-dailytasks?ref=bugfix-bucket-principals"
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
