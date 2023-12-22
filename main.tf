@@ -249,7 +249,7 @@ module "rds_deploy" {
 }
 
 module "fms_pipeline" {
-  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fms-pipeline.git?ref=yel-8750-migrate-tf-version"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fms-pipeline.git"
   lambda_subnet     = module.lambda.lambda_subnet
   lambda_subnet_az2 = module.lambda.lambda_subnet_az2
   lambda_sgrp       = module.lambda.lambda_sgrp
@@ -297,7 +297,7 @@ module "raw_file_index" {
 }
 
 module "fms" {
-  source     = "github.com/UKHomeOffice/dq-tf-fms"
+  source     = "github.com/UKHomeOffice/dq-tf-fms?ref=yel-8750-migrate-tf-version"
   appsvpc_id = aws_vpc.appsvpc.id
 
   opssubnet_cidr_block = var.route_table_cidr_blocks["ops_cidr"]
