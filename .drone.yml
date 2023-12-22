@@ -84,4 +84,3 @@ steps:
   when:
     event:
       - push
-
