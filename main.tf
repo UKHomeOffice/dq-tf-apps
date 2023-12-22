@@ -36,7 +36,7 @@ module "external_tableau" {
 # }
 
 module "internal_tableau" {
-  source                                = "github.com/UKHomeOffice/dq-tf-internal-tableau"
+  source                                = "github.com/UKHomeOffice/dq-tf-internal-tableau?ref=yel-8750-migrate-tf-version"
   acp_prod_ingress_cidr                 = "10.5.0.0/16"
   dq_ops_ingress_cidr                   = var.route_table_cidr_blocks["ops_cidr"]
   dq_internal_dashboard_subnet_cidr     = "10.1.12.0/24"
