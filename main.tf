@@ -249,7 +249,7 @@ module "rds_deploy" {
 }
 
 module "fms_pipeline" {
-  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fms-pipeline.git"
+  source            = "git::ssh://git@gitlab.digital.homeoffice.gov.uk:2222/dacc-dq/dq-tf-fms-pipeline.git?ref=yel-8750-migrate-tf-version"
   lambda_subnet     = module.lambda.lambda_subnet
   lambda_subnet_az2 = module.lambda.lambda_subnet_az2
   lambda_sgrp       = module.lambda.lambda_sgrp
