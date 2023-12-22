@@ -111,13 +111,13 @@ module "lambda" {
 }
 
 module "acl_oag_nats_ingest_monitor" {
-  source        = "github.com/UKHomeOffice/dq-tf-acl-oag-nats-ingest-monitor"
+  source        = "github.com/UKHomeOffice/dq-tf-acl-oag-nats-ingest-monitor?ref=yel-8750-migrate-tf-version"
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
 
 module "tableau_backup_monitor" {
-  source        = "github.com/UKHomeOffice/dq-tf-tableau-backup-monitor"
+  source        = "github.com/UKHomeOffice/dq-tf-tableau-backup-monitor?ref=yel-8750-migrate-tf-version"
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
