@@ -60,7 +60,7 @@ module "internal_tableau" {
 }
 
 module "data_feeds" {
-  source                       = "github.com/UKHomeOffice/dq-tf-datafeeds"
+  source                       = "github.com/UKHomeOffice/dq-tf-datafeeds?ref=yel-8750-migrate-tf-version"
   appsvpc_id                   = aws_vpc.appsvpc.id
   opssubnet_cidr_block         = var.route_table_cidr_blocks["ops_cidr"]
   data_feeds_cidr_block        = "10.1.4.0/24"
