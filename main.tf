@@ -58,7 +58,7 @@ module "internal_tableau" {
   security_group_ids                    = module.lambda.lambda_sgrp
   lambda_subnet                         = module.lambda.lambda_subnet
   lambda_subnet_az2                     = module.lambda.lambda_subnet_az2
-  rds_enhanced_monitoring_role          = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
+  rds_enhanced_monitoring_role          = aws_iam_role.rds_enhanced_monitoring_role.arn
   account_id                            = var.account_id
 }
 
@@ -76,7 +76,7 @@ module "data_feeds" {
   lambda_sgrp                  = module.lambda.lambda_sgrp
   naming_suffix                = local.naming_suffix
   route_table_id               = aws_route_table.apps_route_table.id
-  rds_enhanced_monitoring_role = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
+  rds_enhanced_monitoring_role = aws_iam_role.rds_enhanced_monitoring_role.arn
   environment                  = var.namespace
 }
 
@@ -96,7 +96,7 @@ module "data_ingest" {
   archive_bucket_name          = aws_s3_bucket.data_archive_bucket.id
   apps_buckets_kms_key         = aws_kms_key.bucket_key.arn
   environment                  = var.namespace
-  rds_enhanced_monitoring_role = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
+  rds_enhanced_monitoring_role = aws_iam_role.rds_enhanced_monitoring_role.arn
 }
 
 module "lambda" {
@@ -312,7 +312,7 @@ module "fms" {
   az2                          = var.az2
   naming_suffix                = local.naming_suffix
   route_table_id               = aws_route_table.apps_route_table.id
-  rds_enhanced_monitoring_role = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
+  rds_enhanced_monitoring_role = aws_iam_role.rds_enhanced_monitoring_role.arn
   environment                  = var.namespace
 }
 
