@@ -78,7 +78,7 @@ module "data_feeds" {
 }
 
 module "data_ingest" {
-  source                       = "github.com/UKHomeOffice/dq-tf-dataingest"
+  source                       = "github.com/UKHomeOffice/dq-tf-dataingest?ref=yel-8750-migrate-tf-version"
   appsvpc_id                   = aws_vpc.appsvpc.id
   opssubnet_cidr_block         = var.route_table_cidr_blocks["ops_cidr"]
   data_ingest_cidr_block       = "10.1.6.0/24"
