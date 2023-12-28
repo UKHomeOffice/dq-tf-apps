@@ -33,7 +33,7 @@ module "external_tableau" {
 # }
 
 module "internal_tableau" {
-  source                                = "github.com/UKHomeOffice/dq-tf-internal-tableau?ref=yel-8750-migrate-tf-version"
+  source                                = "github.com/UKHomeOffice/dq-tf-internal-tableau"
   acp_prod_ingress_cidr                 = "10.5.0.0/16"
   dq_ops_ingress_cidr                   = var.route_table_cidr_blocks["ops_cidr"]
   dq_internal_dashboard_subnet_cidr     = "10.1.12.0/24"
@@ -60,7 +60,7 @@ module "internal_tableau" {
 }
 
 module "data_feeds" {
-  source                       = "github.com/UKHomeOffice/dq-tf-datafeeds?ref=yel-8750-migrate-tf-version"
+  source                       = "github.com/UKHomeOffice/dq-tf-datafeeds"
   appsvpc_id                   = aws_vpc.appsvpc.id
   opssubnet_cidr_block         = var.route_table_cidr_blocks["ops_cidr"]
   data_feeds_cidr_block        = "10.1.4.0/24"
@@ -78,7 +78,7 @@ module "data_feeds" {
 }
 
 module "data_ingest" {
-  source                       = "github.com/UKHomeOffice/dq-tf-dataingest?ref=yel-8750-migrate-tf-version"
+  source                       = "github.com/UKHomeOffice/dq-tf-dataingest"
   appsvpc_id                   = aws_vpc.appsvpc.id
   opssubnet_cidr_block         = var.route_table_cidr_blocks["ops_cidr"]
   data_ingest_cidr_block       = "10.1.6.0/24"
@@ -108,13 +108,13 @@ module "lambda" {
 }
 
 module "acl_oag_nats_ingest_monitor" {
-  source        = "github.com/UKHomeOffice/dq-tf-acl-oag-nats-ingest-monitor?ref=yel-8750-migrate-tf-version"
+  source        = "github.com/UKHomeOffice/dq-tf-acl-oag-nats-ingest-monitor"
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
 
 module "tableau_backup_monitor" {
-  source        = "github.com/UKHomeOffice/dq-tf-tableau-backup-monitor?ref=yel-8750-migrate-tf-version"
+  source        = "github.com/UKHomeOffice/dq-tf-tableau-backup-monitor"
   naming_suffix = local.naming_suffix
   namespace     = var.namespace
 }
@@ -297,7 +297,7 @@ module "raw_file_index" {
 }
 
 module "fms" {
-  source     = "github.com/UKHomeOffice/dq-tf-fms?ref=yel-8750-migrate-tf-version"
+  source     = "github.com/UKHomeOffice/dq-tf-fms"
   appsvpc_id = aws_vpc.appsvpc.id
 
   opssubnet_cidr_block = var.route_table_cidr_blocks["ops_cidr"]
