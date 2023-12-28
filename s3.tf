@@ -42,7 +42,6 @@ EOF
 resource "aws_s3_bucket" "log_archive_bucket" {
   bucket = var.s3_bucket_name["archive_log"]
   acl    = var.s3_bucket_acl["archive_log"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -116,7 +115,6 @@ POLICY
 resource "aws_s3_bucket" "data_archive_bucket" {
   bucket = var.s3_bucket_name["archive_data"]
   acl    = var.s3_bucket_acl["archive_data"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -276,7 +274,6 @@ POLICY
 resource "aws_s3_bucket" "data_working_bucket" {
   bucket = var.s3_bucket_name["working_data"]
   acl    = var.s3_bucket_acl["working_data"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -343,7 +340,6 @@ POLICY
 resource "aws_s3_bucket" "airports_archive_bucket" {
   bucket = var.s3_bucket_name["airports_archive"]
   acl    = var.s3_bucket_acl["airports_archive"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -417,7 +413,6 @@ POLICY
 resource "aws_s3_bucket" "airports_internal_bucket" {
   bucket = var.s3_bucket_name["airports_internal"]
   acl    = var.s3_bucket_acl["airports_internal"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -479,7 +474,6 @@ POLICY
 resource "aws_s3_bucket" "airports_working_bucket" {
   bucket = var.s3_bucket_name["airports_working"]
   acl    = var.s3_bucket_acl["airports_working"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -541,7 +535,6 @@ POLICY
 resource "aws_s3_bucket" "oag_archive_bucket" {
   bucket = var.s3_bucket_name["oag_archive"]
   acl    = var.s3_bucket_acl["oag_archive"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -615,7 +608,6 @@ POLICY
 resource "aws_s3_bucket" "oag_internal_bucket" {
   bucket = var.s3_bucket_name["oag_internal"]
   acl    = var.s3_bucket_acl["oag_internal"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -676,7 +668,6 @@ POLICY
 resource "aws_s3_bucket" "oag_transform_bucket" {
   bucket = var.s3_bucket_name["oag_transform"]
   acl    = var.s3_bucket_acl["oag_transform"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -742,7 +733,6 @@ resource "aws_s3_bucket_metric" "oag_transform_bucket_logging" {
 resource "aws_s3_bucket" "acl_archive_bucket" {
   bucket = var.s3_bucket_name["acl_archive"]
   acl    = var.s3_bucket_acl["acl_archive"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -816,7 +806,6 @@ POLICY
 resource "aws_s3_bucket" "acl_internal_bucket" {
   bucket = var.s3_bucket_name["acl_internal"]
   acl    = var.s3_bucket_acl["acl_internal"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -877,7 +866,6 @@ POLICY
 resource "aws_s3_bucket" "reference_data_archive_bucket" {
   bucket = var.s3_bucket_name["reference_data_archive"]
   acl    = var.s3_bucket_acl["reference_data_archive"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -951,7 +939,6 @@ POLICY
 resource "aws_s3_bucket" "reference_data_internal_bucket" {
   bucket = var.s3_bucket_name["reference_data_internal"]
   acl    = var.s3_bucket_acl["reference_data_internal"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1013,7 +1000,6 @@ POLICY
 resource "aws_s3_bucket" "consolidated_schedule_bucket" {
   bucket = var.s3_bucket_name["consolidated_schedule"]
   acl    = var.s3_bucket_acl["consolidated_schedule"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1079,7 +1065,6 @@ resource "aws_s3_bucket_metric" "consolidated_schedule_bucket_logging" {
 resource "aws_s3_bucket" "api_archive_bucket" {
   bucket = var.s3_bucket_name["api_archive"]
   acl    = var.s3_bucket_acl["api_archive"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1158,7 +1143,6 @@ resource "aws_s3_bucket_metric" "api_archive_bucket_logging" {
 resource "aws_s3_bucket" "api_internal_bucket" {
   bucket = var.s3_bucket_name["api_internal"]
   acl    = var.s3_bucket_acl["api_internal"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1224,7 +1208,6 @@ resource "aws_s3_bucket_metric" "api_internal_bucket_logging" {
 resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
   bucket = var.s3_bucket_name["api_record_level_scoring"]
   acl    = var.s3_bucket_acl["api_record_level_scoring"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1290,7 +1273,6 @@ resource "aws_s3_bucket_metric" "api_record_level_scoring_logging" {
 resource "aws_s3_bucket" "cross_record_scored_bucket" {
   bucket = var.s3_bucket_name["cross_record_scored"]
   acl    = var.s3_bucket_acl["cross_record_scored"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1356,7 +1338,6 @@ resource "aws_s3_bucket_metric" "cross_record_scored_logging" {
 resource "aws_s3_bucket" "gait_internal_bucket" {
   bucket = var.s3_bucket_name["gait_internal"]
   acl    = var.s3_bucket_acl["gait_internal"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1418,7 +1399,6 @@ POLICY
 resource "aws_s3_bucket" "reporting_internal_working_bucket" {
   bucket = var.s3_bucket_name["reporting_internal_working"]
   acl    = var.s3_bucket_acl["reporting_internal_working"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1484,7 +1464,6 @@ resource "aws_s3_bucket_metric" "reporting_internal_working_logging" {
 resource "aws_s3_bucket" "athena_log_bucket" {
   bucket = var.s3_bucket_name["athena_log"]
   acl    = var.s3_bucket_acl["athena_log"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1537,7 +1516,6 @@ POLICY
 resource "aws_s3_bucket" "mds_extract_bucket" {
   bucket = var.s3_bucket_name["mds_extract"]
   acl    = var.s3_bucket_acl["mds_extract"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1599,7 +1577,6 @@ POLICY
 resource "aws_s3_bucket" "raw_file_index_internal_bucket" {
   bucket = var.s3_bucket_name["raw_file_index_internal"]
   acl    = var.s3_bucket_acl["raw_file_index_internal"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1661,7 +1638,6 @@ POLICY
 resource "aws_s3_bucket" "fms_working_bucket" {
   bucket = var.s3_bucket_name["fms_working"]
   acl    = var.s3_bucket_acl["fms_working"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1724,7 +1700,6 @@ resource "aws_s3_bucket" "drt_export" {
   count  = var.namespace == "notprod" ? 1 : 0
   bucket = var.s3_bucket_name["drt_export"]
   acl    = var.s3_bucket_acl["drt_export"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1801,7 +1776,6 @@ resource "aws_ssm_parameter" "drt_export_S3_kms" {
 resource "aws_s3_bucket" "drt_working_bucket" {
   bucket = var.s3_bucket_name["drt_working"]
   acl    = var.s3_bucket_acl["drt_working"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1867,7 +1841,6 @@ resource "aws_s3_bucket_metric" "drt_working_logging" {
 resource "aws_s3_bucket" "nats_archive_bucket" {
   bucket = var.s3_bucket_name["nats_archive"]
   acl    = var.s3_bucket_acl["nats_archive"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -1940,7 +1913,6 @@ POLICY
 resource "aws_s3_bucket" "nats_internal_bucket" {
   bucket = var.s3_bucket_name["nats_internal"]
   acl    = var.s3_bucket_acl["nats_internal"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
@@ -3466,7 +3438,6 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
 resource "aws_s3_bucket" "carrier_portal_docs" {
   bucket = var.s3_bucket_name["carrier_portal_docs"]
   acl    = var.s3_bucket_acl["carrier_portal_docs"]
-  region = var.region
 
   server_side_encryption_configuration {
     rule {
