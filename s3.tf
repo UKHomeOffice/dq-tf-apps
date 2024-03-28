@@ -66,6 +66,7 @@ resource "aws_s3_bucket" "log_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+  }
 
   tags = {
     Name = "s3-log-archive-bucket-${local.naming_suffix}"
