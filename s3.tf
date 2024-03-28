@@ -303,6 +303,7 @@ resource "aws_s3_bucket" "data_working_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+  }
 
   tags = {
     Name = "s3-data-working-bucket-${local.naming_suffix}"
