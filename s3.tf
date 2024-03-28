@@ -144,6 +144,7 @@ resource "aws_s3_bucket" "data_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+  }
 
   lifecycle_rule {
     id      = "internal_tableau_green"
