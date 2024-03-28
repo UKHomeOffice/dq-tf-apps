@@ -381,6 +381,7 @@ resource "aws_s3_bucket" "airports_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+  }
 
   tags = {
     Name = "s3-dq-airports-archive-${local.naming_suffix}"
