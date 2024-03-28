@@ -454,6 +454,7 @@ resource "aws_s3_bucket" "airports_internal_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+  }
 
   tags = {
     Name = "s3-dq-airports-internal-${local.naming_suffix}"
