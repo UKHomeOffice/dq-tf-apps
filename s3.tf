@@ -59,12 +59,12 @@ resource "aws_s3_bucket" "log_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
     noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
   }
 
@@ -137,12 +137,12 @@ resource "aws_s3_bucket" "data_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
     noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
   }
 
@@ -293,6 +293,18 @@ resource "aws_s3_bucket" "data_working_bucket" {
     target_prefix = "data_working_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-data-working-bucket-${local.naming_suffix}"
   }
@@ -362,12 +374,12 @@ resource "aws_s3_bucket" "airports_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
     noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
   }
 
@@ -432,6 +444,18 @@ resource "aws_s3_bucket" "airports_internal_bucket" {
     target_prefix = "airports_internal_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-airports-internal-${local.naming_suffix}"
   }
@@ -491,6 +515,18 @@ resource "aws_s3_bucket" "airports_working_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "airports_working_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -557,12 +593,12 @@ resource "aws_s3_bucket" "oag_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
     noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
   }
 
@@ -626,6 +662,18 @@ resource "aws_s3_bucket" "oag_internal_bucket" {
     target_prefix = "oag_internal_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-oag-internal-${local.naming_suffix}"
   }
@@ -684,6 +732,18 @@ resource "aws_s3_bucket" "oag_transform_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "oag_transform_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -755,12 +815,12 @@ resource "aws_s3_bucket" "acl_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
     noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
   }
 
@@ -822,6 +882,18 @@ resource "aws_s3_bucket" "acl_internal_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "acl_internal_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -888,12 +960,12 @@ resource "aws_s3_bucket" "reference_data_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
     noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
   }
 
@@ -958,6 +1030,18 @@ resource "aws_s3_bucket" "reference_data_internal_bucket" {
     target_prefix = "reference_data_internal_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-reference-data-internal-${local.naming_suffix}"
   }
@@ -1016,6 +1100,18 @@ resource "aws_s3_bucket" "consolidated_schedule_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "consolidated_schedule_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -1087,12 +1183,12 @@ resource "aws_s3_bucket" "api_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
     noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
   }
 
@@ -1161,6 +1257,18 @@ resource "aws_s3_bucket" "api_internal_bucket" {
     target_prefix = "api_internal_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-api-internal-${local.naming_suffix}"
   }
@@ -1226,6 +1334,18 @@ resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
     target_prefix = "api_record_level_scoring_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-api-record-level-scoring-${local.naming_suffix}"
   }
@@ -1289,6 +1409,18 @@ resource "aws_s3_bucket" "cross_record_scored_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "cross_record_scored_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -1357,6 +1489,18 @@ resource "aws_s3_bucket" "gait_internal_bucket" {
     target_prefix = "gait_internal_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-gait-internal-${local.naming_suffix}"
   }
@@ -1415,6 +1559,18 @@ resource "aws_s3_bucket" "reporting_internal_working_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "reporting_internal_working_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -1483,6 +1639,18 @@ resource "aws_s3_bucket" "athena_log_bucket" {
     target_prefix = "athena_log_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-athena-log-${local.naming_suffix}"
   }
@@ -1533,6 +1701,18 @@ resource "aws_s3_bucket" "mds_extract_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "mds_extract_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -1596,6 +1776,18 @@ resource "aws_s3_bucket" "raw_file_index_internal_bucket" {
     target_prefix = "raw_file_index_internal_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-raw-file-retrieval-index-${local.naming_suffix}"
   }
@@ -1655,6 +1847,18 @@ resource "aws_s3_bucket" "fms_working_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "fms_working_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -1717,6 +1921,18 @@ resource "aws_s3_bucket" "drt_export" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "drt_export_bucket/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -1794,6 +2010,18 @@ resource "aws_s3_bucket" "drt_working_bucket" {
     target_prefix = "drt_working_bucket/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-drt-working-${local.naming_suffix}"
   }
@@ -1862,12 +2090,12 @@ resource "aws_s3_bucket" "nats_archive_bucket" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
     noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
   }
 
@@ -1931,6 +2159,18 @@ resource "aws_s3_bucket" "nats_internal_bucket" {
     target_prefix = "nats_internal/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "nats-internal-${local.naming_suffix}"
   }
@@ -1989,6 +2229,18 @@ resource "aws_s3_bucket" "cdlz_bitd_input" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "cdlz_bitd_input/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -2054,6 +2306,18 @@ resource "aws_s3_bucket" "api_arrivals_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "api_arrivals/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -2126,6 +2390,18 @@ resource "aws_s3_bucket" "accuracy_score_bucket" {
     target_prefix = "accuracy_score/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-accuracy-score-${local.naming_suffix}"
   }
@@ -2189,6 +2465,18 @@ resource "aws_s3_bucket" "api_cdlz_msk_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "api_cdlz_msk/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -2256,6 +2544,18 @@ resource "aws_s3_bucket" "api_rls_xrs_reconciliation" {
     target_prefix = "api_rls_xrs_reconciliation/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-rls-xrs-reconciliation-${local.naming_suffix}"
   }
@@ -2319,6 +2619,18 @@ resource "aws_s3_bucket" "dq_fs_archive" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "dq_fs_archive/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -2386,6 +2698,18 @@ resource "aws_s3_bucket" "dq_fs_internal" {
     target_prefix = "dq_fs_internal/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-fs-internal-${local.naming_suffix}"
   }
@@ -2449,6 +2773,18 @@ resource "aws_s3_bucket" "dq_aws_config_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "dq_aws_config/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -2516,6 +2852,18 @@ resource "aws_s3_bucket" "dq_asn_archive_bucket" {
     target_prefix = "dq_asn_archive/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-asn-archive-${local.naming_suffix}"
   }
@@ -2579,6 +2927,18 @@ resource "aws_s3_bucket" "dq_asn_internal_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "dq_asn_internal/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -2646,6 +3006,18 @@ resource "aws_s3_bucket" "dq_snsgb_archive_bucket" {
     target_prefix = "dq_snsgb_archive/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-snsgb-archive-${local.naming_suffix}"
   }
@@ -2711,6 +3083,18 @@ resource "aws_s3_bucket" "dq_snsgb_internal_bucket" {
     target_prefix = "dq_snsgb_internal/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-snsgb-internal-${local.naming_suffix}"
   }
@@ -2774,6 +3158,18 @@ resource "aws_s3_bucket" "dq_asn_marine_archive_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "dq_asn_marine_archive/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -2843,6 +3239,18 @@ resource "aws_s3_bucket" "dq_asn_marine_internal_bucket" {
     target_prefix = "dq_asn_marine_internal/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-asn-marine-internal-${local.naming_suffix}"
   }
@@ -2910,6 +3318,18 @@ resource "aws_s3_bucket" "dq_rm_archive_bucket" {
     target_prefix = "dq_rm_archive/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-rm-archive-${local.naming_suffix}"
   }
@@ -2975,6 +3395,18 @@ resource "aws_s3_bucket" "dq_rm_internal_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "dq_rm_internal/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -3045,6 +3477,18 @@ resource "aws_s3_bucket" "dq_data_generator_bucket" {
     target_prefix = "dq_data_generator/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-data-generator-${local.naming_suffix}"
   }
@@ -3095,7 +3539,7 @@ resource "aws_s3_bucket_metric" "dq_data_generator_bucket_logging" {
 }
 
 #######
-# AIS
+# AIS #
 #######
 
 resource "aws_s3_bucket" "dq_ais_archive_bucket" {
@@ -3117,6 +3561,18 @@ resource "aws_s3_bucket" "dq_ais_archive_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "dq_ais_archive/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -3184,6 +3640,18 @@ resource "aws_s3_bucket" "dq_ais_internal_bucket" {
     target_prefix = "dq_ais_internal/"
   }
 
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+
   tags = {
     Name = "s3-dq-ais-internal-${local.naming_suffix}"
   }
@@ -3230,9 +3698,9 @@ resource "aws_s3_bucket_metric" "dq_ais_internal_bucket_logging" {
   name   = "dq_ais_internal_metric"
 }
 
-########
-# GAIT Landing STG
-#########
+####################
+# GAIT Landing STG #
+####################
 
 resource "aws_s3_bucket" "dq_gait_landing_staging_bucket" {
   count  = var.namespace == "notprod" ? 0 : 1
@@ -3254,6 +3722,17 @@ resource "aws_s3_bucket" "dq_gait_landing_staging_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "dq_gait_landing_staging/"
+  }
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -3314,6 +3793,18 @@ resource "aws_s3_bucket" "dq_pnr_archive_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "dq_pnr_archive/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -3381,6 +3872,18 @@ resource "aws_s3_bucket" "dq_pnr_internal_bucket" {
   logging {
     target_bucket = aws_s3_bucket.log_archive_bucket.id
     target_prefix = "dq_pnr_internal/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
   }
 
   tags = {
@@ -3460,12 +3963,12 @@ resource "aws_s3_bucket" "carrier_portal_docs" {
   lifecycle_rule {
     enabled = true
     transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
     noncurrent_version_transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
     }
   }
 
