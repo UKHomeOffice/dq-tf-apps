@@ -4040,7 +4040,7 @@ resource "aws_s3_bucket" "dq_pnr_internal_bucket" {
     Name = "s3-dq-pnr-internal-${local.naming_suffix}"
   }
 }
- 
+
 resource "aws_s3_bucket_public_access_block" "dq_pnr_internal_bucket_pub_block" {
   bucket = aws_s3_bucket.dq_pnr_internal_bucket.id
 
