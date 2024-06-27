@@ -66,6 +66,9 @@ resource "aws_s3_bucket" "log_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -143,6 +146,9 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -303,6 +309,9 @@ resource "aws_s3_bucket" "data_working_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -381,6 +390,9 @@ resource "aws_s3_bucket" "airports_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -453,6 +465,9 @@ resource "aws_s3_bucket" "airports_internal_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -527,6 +542,9 @@ resource "aws_s3_bucket" "airports_working_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -600,6 +618,9 @@ resource "aws_s3_bucket" "oag_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -672,6 +693,9 @@ resource "aws_s3_bucket" "oag_internal_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -743,6 +767,9 @@ resource "aws_s3_bucket" "oag_transform_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -822,6 +849,9 @@ resource "aws_s3_bucket" "acl_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -893,6 +923,9 @@ resource "aws_s3_bucket" "acl_internal_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -967,6 +1000,9 @@ resource "aws_s3_bucket" "reference_data_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -1040,6 +1076,9 @@ resource "aws_s3_bucket" "reference_data_internal_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -1111,6 +1150,9 @@ resource "aws_s3_bucket" "consolidated_schedule_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -1190,6 +1232,9 @@ resource "aws_s3_bucket" "api_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -1266,6 +1311,9 @@ resource "aws_s3_bucket" "api_internal_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -1344,6 +1392,9 @@ resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -1420,6 +1471,9 @@ resource "aws_s3_bucket" "cross_record_scored_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -1499,6 +1553,9 @@ resource "aws_s3_bucket" "gait_internal_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -1570,6 +1627,9 @@ resource "aws_s3_bucket" "reporting_internal_working_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -1649,6 +1709,9 @@ resource "aws_s3_bucket" "athena_log_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -1712,6 +1775,9 @@ resource "aws_s3_bucket" "mds_extract_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -1786,6 +1852,9 @@ resource "aws_s3_bucket" "raw_file_index_internal_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -1858,6 +1927,9 @@ resource "aws_s3_bucket" "fms_working_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -1932,6 +2004,9 @@ resource "aws_s3_bucket" "drt_export" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -2020,6 +2095,9 @@ resource "aws_s3_bucket" "drt_working_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -2097,6 +2175,9 @@ resource "aws_s3_bucket" "nats_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -2169,6 +2250,9 @@ resource "aws_s3_bucket" "nats_internal_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -2240,6 +2324,9 @@ resource "aws_s3_bucket" "cdlz_bitd_input" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -2317,6 +2404,9 @@ resource "aws_s3_bucket" "api_arrivals_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -2400,6 +2490,9 @@ resource "aws_s3_bucket" "accuracy_score_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -2476,6 +2569,9 @@ resource "aws_s3_bucket" "api_cdlz_msk_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -2554,6 +2650,9 @@ resource "aws_s3_bucket" "api_rls_xrs_reconciliation" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -2630,6 +2729,9 @@ resource "aws_s3_bucket" "dq_fs_archive" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -2708,6 +2810,9 @@ resource "aws_s3_bucket" "dq_fs_internal" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -2784,6 +2889,9 @@ resource "aws_s3_bucket" "dq_aws_config_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -2862,6 +2970,9 @@ resource "aws_s3_bucket" "dq_asn_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -2938,6 +3049,9 @@ resource "aws_s3_bucket" "dq_asn_internal_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -3016,6 +3130,9 @@ resource "aws_s3_bucket" "dq_snsgb_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -3093,6 +3210,9 @@ resource "aws_s3_bucket" "dq_snsgb_internal_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -3169,6 +3289,9 @@ resource "aws_s3_bucket" "dq_asn_marine_archive_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -3249,6 +3372,9 @@ resource "aws_s3_bucket" "dq_asn_marine_internal_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -3327,6 +3453,9 @@ resource "aws_s3_bucket" "dq_rm_archive_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -3407,6 +3536,9 @@ resource "aws_s3_bucket" "dq_rm_internal_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -3486,6 +3618,9 @@ resource "aws_s3_bucket" "dq_data_generator_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -3573,6 +3708,9 @@ resource "aws_s3_bucket" "dq_ais_archive_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -3649,6 +3787,9 @@ resource "aws_s3_bucket" "dq_ais_internal_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -3733,6 +3874,9 @@ resource "aws_s3_bucket" "dq_gait_landing_staging_bucket" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    noncurrent_version_expiration {
+      days = 1
+    }
   }
 
   tags = {
@@ -3804,6 +3948,9 @@ resource "aws_s3_bucket" "dq_pnr_archive_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -3883,6 +4030,9 @@ resource "aws_s3_bucket" "dq_pnr_internal_bucket" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
@@ -3969,6 +4119,9 @@ resource "aws_s3_bucket" "carrier_portal_docs" {
     noncurrent_version_transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
     }
   }
 
