@@ -88,7 +88,6 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
     "aftc_sc",
     "pnr",
     "ais_marinetraffic",
-    "mi_reporting",
   ]
 }
 
@@ -122,7 +121,6 @@ variable "dq_pipeline_athena_readwrite_database_name_list" {
     "aftc_sc",
     "pnr",
     "ais_marinetraffic",
-    "mi_reporting",
   ]
 }
 
