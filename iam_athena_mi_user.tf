@@ -1,6 +1,12 @@
 resource "aws_iam_policy" "athena_mi_user" {
   name = "athena_mi_user_policy"
-
+#lifecycle {
+#    ignore_changes = [
+#       filename,
+#       last_modified,
+#       source_code_hash,
+#    ]
+#}
   policy = <<EOF
     {
         "Version": "2012-10-17",
@@ -82,13 +88,6 @@ resource "aws_iam_policy" "athena_mi_user" {
         ]
     }
     EOF
-#lifecycle {
-#    ignore_changes = [
-#    filename,
-#    last_modified,
-#    source_code_hash,
-#    ]
-#}
 }
 
 resource "aws_iam_group_policy_attachment" "athena_mi_user" {
