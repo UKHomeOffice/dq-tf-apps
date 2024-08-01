@@ -6,88 +6,89 @@ resource "aws_iam_policy" "athena_mi_user" {
 #       last_modified,
 #       source_code_hash,
 #    ]
+#
 #}
-  policy = <<EOF
-    {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Action": [
-                    "athena:StartQueryExecution",
-                    "athena:GetQueryExecution",
-                    "athena:GetQueryResults",
-                    "athena:GetQueryResultsStream",
-                    "athena:UpdateWorkGroup",
-                    "athena:GetWorkGroup",
-                    "athena:CreatePreparedStatement"
-                ],
-                "Effect": "Allow",
-                "Resource": "*"
-            },
-            {
-                "Action": [
-                    "s3:GetBucketLocation",
-                    "s3:GetObject",
-                    "s3:ListBucket",
-                    "s3:ListBucketMultipartUploads",
-                    "s3:ListMultipartUploadParts",
-                    "s3:AbortMultipartUpload",
-                    "s3:PutObject",
-                    "s3:DeleteObject"
-                ],
-                "Effect": "Allow",
-                "Resource": [
-                    "arn:aws:s3:::test-flightstats-non-prod",
-                    "arn:aws:s3:::test-flightstats-non-prod/*"
-                ]
-            },
-            {
-                "Action": [
-                    "s3:PutObject",
-                    "s3:PutBucketPublicAccessBlock"
-                ],
-                "Effect": "Allow",
-                "Resource": [
-                    "arn:aws:s3:::s3-dq-athena-log-${var.namespace}",
-                    "arn:aws:s3:::s3-dq-athena-log-${var.namespace}/*"
-                ]
-            },
-            {
-                "Action": [
-                    "glue:GetDatabase",
-                    "glue:GetDatabases",
-                    "glue:GetTable",
-                    "glue:GetTables",
-                    "glue:GetPartition",
-                    "glue:GetPartitions",
-                    "glue:BatchGetPartition"
-                ],
-                "Effect": "Allow",
-                "Resource": "mi_reporting"
-            },
-            {
-                "Action": [
-                    "kms:Encrypt",
-                    "kms:Decrypt",
-                    "kms:GenerateDataKey",
-                    "kms:DescribeKey"
-                ],
-                "Effect": "Allow",
-                "Resource": "${var.kms_key_s3[var.namespace]}"
-            },
-            {
-                "Action": [
-                    "kms:Encrypt",
-                    "kms:Decrypt",
-                    "kms:GenerateDataKey",
-                    "kms:DescribeKey"
-                ],
-                "Effect": "Allow",
-                "Resource": "${data.aws_kms_key.glue.arn}"
-            }
-        ]
-    }
-    EOF
+policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "athena:StartQueryExecution",
+                "athena:GetQueryExecution",
+                "athena:GetQueryResults",
+                "athena:GetQueryResultsStream",
+                "athena:UpdateWorkGroup",
+                "athena:GetWorkGroup",
+                "athena:CreatePreparedStatement"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListBucketMultipartUploads",
+                "s3:ListMultipartUploadParts",
+                "s3:AbortMultipartUpload",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::test-flightstats-non-prod",
+                "arn:aws:s3:::test-flightstats-non-prod/*"
+            ]
+        },
+        {
+            "Action": [
+                "s3:PutObject",
+                "s3:PutBucketPublicAccessBlock"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::s3-dq-athena-log-${var.namespace}",
+                "arn:aws:s3:::s3-dq-athena-log-${var.namespace}/*"
+            ]
+        },
+        {
+            "Action": [
+                "glue:GetDatabase",
+                "glue:GetDatabases",
+                "glue:GetTable",
+                "glue:GetTables",
+                "glue:GetPartition",
+                "glue:GetPartitions",
+                "glue:BatchGetPartition"
+            ],
+            "Effect": "Allow",
+            "Resource": "mi_reporting"
+        },
+        {
+            "Action": [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:GenerateDataKey",
+                "kms:DescribeKey"
+            ],
+            "Effect": "Allow",
+            "Resource": "${var.kms_key_s3[var.namespace]}"
+        },
+        {
+            "Action": [
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:GenerateDataKey",
+                "kms:DescribeKey"
+            ],
+            "Effect": "Allow",
+            "Resource": "${data.aws_kms_key.glue.arn}"
+        }
+    ]
+}
+EOF
 }
 
 resource "aws_iam_group_policy_attachment" "athena_mi_user" {
