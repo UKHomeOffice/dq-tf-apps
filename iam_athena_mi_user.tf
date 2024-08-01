@@ -1,13 +1,13 @@
 resource "aws_iam_policy" "athena_mi_user" {
   name = "athena_mi_user_policy"
   
-  lifecycle {
-    ignore_changes = [
-      filename,
-      last_modified,
-      source_code_hash,
-    ]
-  }
+lifecycle {
+ignore_changes = [
+    filename,
+    last_modified,
+    source_code_hash,
+]
+}
   
 policy = <<EOF
 {
