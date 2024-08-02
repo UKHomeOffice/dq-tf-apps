@@ -57,7 +57,7 @@ resource "aws_iam_policy" "athena_mi_user" {
                 "glue:BatchGetPartition"
             ],
             "Effect": "Allow",
-            "Resource": "mi_reporting"
+            "Resource": "arn:aws:glue:eu-west-2:483846886818:database/mi_reporting"
         },
         {
             "Action": [
