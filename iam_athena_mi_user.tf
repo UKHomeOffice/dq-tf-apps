@@ -1,6 +1,6 @@
 resource "aws_iam_policy" "athena_mi_user" {
   name = "athena_mi_user_policy"
-  
+
   policy = <<EOF
 {
     "Version": "2012-10-17",
