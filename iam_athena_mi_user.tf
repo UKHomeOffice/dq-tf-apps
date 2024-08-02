@@ -82,11 +82,11 @@ resource "aws_iam_policy" "athena_mi_user" {
     ]
 }
 EOF
-  lifecycle {
-    ignore_changes = [
-      policy
-    ]
-  }
+  #lifecycle {
+  #  ignore_changes = [
+  #    policy
+  #  ]
+  #}
 }
 
 resource "aws_iam_group_policy_attachment" "athena_mi_user" {
