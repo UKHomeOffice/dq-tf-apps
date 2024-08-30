@@ -4171,3 +4171,81 @@ resource "aws_s3_bucket_metric" "carrier_portal_docs_logging" {
   name   = "dq_carrier_portal_docs_metric"
 }
 
+####################
+# GAIT Apps NOTPROD #
+####################
+
+resource "aws_s3_bucket" "dq_apps_notprod_gait_s3_bucket" {
+  count  = var.namespace == "notprod" ? 0 : 1
+  bucket = var.s3_bucket_name["dq_apps_notprod_gait_s3"]
+  acl    = var.s3_bucket_acl["dq_apps_notprod_gait_s3"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "dq_apps_notprod_gait_s3/"
+  }
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
+    }
+  }
+
+  tags = {
+    Name = "s3-dq-gait-landing-staging"
+  }
+}
+
+resource "aws_s3_bucket_policy" "dq_apps_notprod_gait_s3_bucket_policy" {
+  count  = var.namespace == "notprod" ? 0 : 1
+  bucket = var.s3_bucket_name["dq_apps_notprod_gait_s3"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["dq_apps_notprod_gait_s3"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+  depends_on = [aws_s3_bucket.dq_apps_notprod_gait_s3_bucket]
+
+}
+
+resource "aws_s3_bucket_metric" "dq_apps_notprod_gait_s3_bucket_logging" {
+  count  = var.namespace == "notprod" ? 0 : 1
+  bucket = var.s3_bucket_name["dq_apps_notprod_gait_s3"]
+  name   = "dq_apps_notprod_gait_s3_metric"
+}

@@ -91,6 +91,7 @@ class TestE2E(unittest.TestCase):
                 dq_pnr_archive                = "abcd"
                 dq_pnr_internal               = "abcd"
                 carrier_portal_docs           = "abcd"
+                dq_apps_notprod_gait_s3       = "abcd"
 
               }
 
@@ -148,6 +149,7 @@ class TestE2E(unittest.TestCase):
                 dq_pnr_archive                = "private"
                 dq_pnr_internal               = "private"
                 carrier_portal_docs           = "private"
+                dq_apps_notprod_gait_s3       = "private"
               }
 
               route_table_cidr_blocks     = {
