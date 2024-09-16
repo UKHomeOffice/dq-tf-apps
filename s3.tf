@@ -69,6 +69,9 @@ resource "aws_s3_bucket" "log_archive_bucket" {
     noncurrent_version_expiration {
       days = 1
     }
+    expiration {
+      days = 90
+    }
   }
 
   tags = {
