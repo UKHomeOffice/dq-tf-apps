@@ -153,6 +153,9 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     noncurrent_version_expiration {
       days = 1
     }
+    expiration {
+      days = 90
+    }
   }
 
   lifecycle_rule {
@@ -1157,6 +1160,9 @@ resource "aws_s3_bucket" "consolidated_schedule_bucket" {
     noncurrent_version_expiration {
       days = 1
     }
+    expiration {
+      days = 90
+    }
   }
 
   tags = {
@@ -1318,6 +1324,9 @@ resource "aws_s3_bucket" "api_internal_bucket" {
     noncurrent_version_expiration {
       days = 1
     }
+    expiration {
+      days = 90
+    }
   }
 
   tags = {
@@ -1398,6 +1407,9 @@ resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
     noncurrent_version_expiration {
       days = 1
     }
+    expiration {
+      days = 90
+    }
   }
 
   tags = {
@@ -1477,6 +1489,9 @@ resource "aws_s3_bucket" "cross_record_scored_bucket" {
     }
     noncurrent_version_expiration {
       days = 1
+    }
+    expiration {
+      days = 90
     }
   }
 
@@ -1634,6 +1649,9 @@ resource "aws_s3_bucket" "reporting_internal_working_bucket" {
     noncurrent_version_expiration {
       days = 1
     }
+    expiration {
+      days = 90
+    }
   }
 
   tags = {
@@ -1714,6 +1732,9 @@ resource "aws_s3_bucket" "athena_log_bucket" {
     }
     noncurrent_version_expiration {
       days = 1
+    }
+    expiration {
+      days = 90
     }
   }
 
@@ -2100,6 +2121,9 @@ resource "aws_s3_bucket" "drt_working_bucket" {
     }
     noncurrent_version_expiration {
       days = 1
+    }
+    expiration {
+      days = 90
     }
   }
 
@@ -2575,6 +2599,9 @@ resource "aws_s3_bucket" "api_cdlz_msk_bucket" {
     }
     noncurrent_version_expiration {
       days = 1
+    }
+    expiration {
+      days = 90
     }
   }
 
