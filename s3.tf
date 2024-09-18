@@ -69,7 +69,15 @@ resource "aws_s3_bucket" "log_archive_bucket" {
     noncurrent_version_expiration {
       days = 1
     }
+  }
+
+  lifecycle_rule {
+    id      = "Expire_Objects_After_90_Days"
+    enabled = true
     expiration {
+      days = 90
+    }
+    noncurrent_version_expiration {
       days = 90
     }
   }
