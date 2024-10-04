@@ -158,7 +158,8 @@ variable "dq_pipeline_ops_readwrite_bucket_list" {
     "s3-dq-asn-marine-internal",
     "s3-dq-pnr-internal",
     "s3-dq-ais-internal",
-    "s3-dq-test"
+    "s3-dq-test",
+    "s3-dq-test-poc"
   ]
 }
 
