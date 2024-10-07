@@ -4281,3 +4281,82 @@ resource "aws_s3_bucket_metric" "carrier_portal_docs_logging" {
   name   = "dq_carrier_portal_docs_metric"
 }
 
+resource "aws_s3_bucket" "dq_roro_tsv_archive_bucket" {
+  bucket = var.s3_bucket_name["dq_roro_tsv_archive"]
+  acl    = var.s3_bucket_acl["dq_roro_tsv_archive"]
+
+  versioning {
+    enabled = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_archive_bucket.id
+    target_prefix = "roro_tsv_archive/"
+  }
+
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
+    }
+  }
+
+  tags = {
+    Name = "s3-dq-roro-tsv-archive-bucket-${local.naming_suffix}"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "dq_roro_tsv_archive_bucket_pub_block" {
+  bucket = aws_s3_bucket.dq_roro_tsv_archive_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+resource "aws_s3_bucket_policy" "dq_roro_tsv_archive_bucket_policy" {
+  bucket = var.s3_bucket_name["dq_roro_tsv_archive"]
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "HTTP",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "arn:aws:s3:::${var.s3_bucket_name["dq_roro_tsv_archive"]}/*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    }
+  ]
+}
+POLICY
+
+}
+
+resource "aws_s3_bucket_metric" "dq_roro_tsv_archive_bucket_logging" {
+  bucket = var.s3_bucket_name["dq_roro_tsv_archive"]
+  name   = "dq_roro_tsv_archive_bucket_metric"
+}
