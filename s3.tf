@@ -71,17 +71,6 @@ resource "aws_s3_bucket" "log_archive_bucket" {
     }
   }
 
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
-    }
-  }
-
   tags = {
     Name = "s3-log-archive-bucket-${local.naming_suffix}"
   }
@@ -160,17 +149,6 @@ resource "aws_s3_bucket" "data_archive_bucket" {
     }
     noncurrent_version_expiration {
       days = 1
-    }
-  }
-
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
     }
   }
 
@@ -1178,17 +1156,6 @@ resource "aws_s3_bucket" "consolidated_schedule_bucket" {
     }
   }
 
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
-    }
-  }
-
   tags = {
     Name = "s3-dq-consolidated-schedule-${local.naming_suffix}"
   }
@@ -1350,17 +1317,6 @@ resource "aws_s3_bucket" "api_internal_bucket" {
     }
   }
 
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
-    }
-  }
-
   tags = {
     Name = "s3-dq-api-internal-${local.naming_suffix}"
   }
@@ -1441,17 +1397,6 @@ resource "aws_s3_bucket" "api_record_level_scoring_bucket" {
     }
   }
 
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
-    }
-  }
-
   tags = {
     Name = "s3-dq-api-record-level-scoring-${local.naming_suffix}"
   }
@@ -1529,17 +1474,6 @@ resource "aws_s3_bucket" "cross_record_scored_bucket" {
     }
     noncurrent_version_expiration {
       days = 1
-    }
-  }
-
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
     }
   }
 
@@ -1699,17 +1633,6 @@ resource "aws_s3_bucket" "reporting_internal_working_bucket" {
     }
   }
 
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
-    }
-  }
-
   tags = {
     Name = "s3-dq-reporting-internal-working-${local.naming_suffix}"
   }
@@ -1788,17 +1711,6 @@ resource "aws_s3_bucket" "athena_log_bucket" {
     }
     noncurrent_version_expiration {
       days = 1
-    }
-  }
-
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
     }
   }
 
@@ -2185,17 +2097,6 @@ resource "aws_s3_bucket" "drt_working_bucket" {
     }
     noncurrent_version_expiration {
       days = 1
-    }
-  }
-
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
     }
   }
 
@@ -2671,17 +2572,6 @@ resource "aws_s3_bucket" "api_cdlz_msk_bucket" {
     }
     noncurrent_version_expiration {
       days = 1
-    }
-  }
-
-  lifecycle_rule {
-    id      = "Expire_Objects_After_90_Days"
-    enabled = true
-    expiration {
-      days = 90
-    }
-    noncurrent_version_expiration {
-      days = 90
     }
   }
 
