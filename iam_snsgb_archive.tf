@@ -19,6 +19,15 @@ resource "aws_iam_policy" "dq_snsgb_archive_bucket_policy" {
     },
     {
       "Action": [
+        "s3:*"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:s3:::dsa-cdl-s3-hmrc-prod"
+      ]
+    },
+    {
+      "Action": [
         "s3:PutObject"
       ],
       "Effect": "Allow",
