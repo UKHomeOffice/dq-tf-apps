@@ -80,20 +80,12 @@ module "data_feeds" {
 module "data_ingest" {
   source                       = "github.com/UKHomeOffice/dq-tf-dataingest"
   appsvpc_id                   = aws_vpc.appsvpc.id
-  opssubnet_cidr_block         = var.route_table_cidr_blocks["ops_cidr"]
-  data_ingest_cidr_block       = "10.1.6.0/24"
-  data_ingest_rds_cidr_block   = "10.1.7.0/24"
-  peering_cidr_block           = "10.3.0.0/16"
-  az                           = var.az
-  az2                          = var.az2
   naming_suffix                = local.naming_suffix
-  route_table_id               = aws_route_table.apps_route_table.id
   logging_bucket_id            = aws_s3_bucket.log_archive_bucket.id
   archive_bucket               = aws_s3_bucket.data_archive_bucket.arn
   archive_bucket_name          = aws_s3_bucket.data_archive_bucket.id
   apps_buckets_kms_key         = aws_kms_key.bucket_key.arn
   environment                  = var.namespace
-  rds_enhanced_monitoring_role = aws_iam_role.rds_enhanced_monitoring_role.arn
 }
 
 module "lambda" {
@@ -277,7 +269,6 @@ module "mds_extractor" {
   lambda_subnet     = module.lambda.lambda_subnet
   lambda_subnet_az2 = module.lambda.lambda_subnet_az2
   lambda_sgrp       = module.lambda.lambda_sgrp
-  server            = module.data_ingest.rds_mds_address
   kms_key_s3        = aws_kms_key.bucket_key.arn
   naming_suffix     = local.naming_suffix
   namespace         = var.namespace
