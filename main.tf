@@ -78,14 +78,14 @@ module "data_feeds" {
 }
 
 module "data_ingest" {
-  source                       = "github.com/UKHomeOffice/dq-tf-dataingest"
-  appsvpc_id                   = aws_vpc.appsvpc.id
-  naming_suffix                = local.naming_suffix
-  logging_bucket_id            = aws_s3_bucket.log_archive_bucket.id
-  archive_bucket               = aws_s3_bucket.data_archive_bucket.arn
-  archive_bucket_name          = aws_s3_bucket.data_archive_bucket.id
-  apps_buckets_kms_key         = aws_kms_key.bucket_key.arn
-  environment                  = var.namespace
+  source               = "github.com/UKHomeOffice/dq-tf-dataingest"
+  appsvpc_id           = aws_vpc.appsvpc.id
+  naming_suffix        = local.naming_suffix
+  logging_bucket_id    = aws_s3_bucket.log_archive_bucket.id
+  archive_bucket       = aws_s3_bucket.data_archive_bucket.arn
+  archive_bucket_name  = aws_s3_bucket.data_archive_bucket.id
+  apps_buckets_kms_key = aws_kms_key.bucket_key.arn
+  environment          = var.namespace
 }
 
 module "lambda" {
