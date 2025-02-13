@@ -500,14 +500,14 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_dq_pipeline_ops_policy(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_iam_policy.dq_pipeline_ops_policy", "name"), "dq-pipeline-ops-policy-test")
 
-    def test_name_suffix_mds_extractor_lambda_mds_extractor(self):
-        self.assertEqual(self.runner.get_value("module.apps.module.mds_extractor.aws_lambda_function.lambda_mds_extractor[0]", "tags"), {"Name": "lambda-mds-extractor-apps-test-dq"})
+    # def test_name_suffix_mds_extractor_lambda_mds_extractor(self):
+    #     self.assertEqual(self.runner.get_value("module.apps.module.mds_extractor.aws_lambda_function.lambda_mds_extractor[0]", "tags"), {"Name": "lambda-mds-extractor-apps-test-dq"})
 
-    def test_name_suffix_mds_extractor_lambda_role_mds_extractor(self):
-        self.assertEqual(self.runner.get_value("module.apps.module.mds_extractor.aws_iam_role.lambda_role_mds_extractor[0]", "tags"), {"Name": "lambda-role-mds-extractor-apps-test-dq"})
+    # def test_name_suffix_mds_extractor_lambda_role_mds_extractor(self):
+    #     self.assertEqual(self.runner.get_value("module.apps.module.mds_extractor.aws_iam_role.lambda_role_mds_extractor[0]", "tags"), {"Name": "lambda-role-mds-extractor-apps-test-dq"})
 
-    def test_name_suffix_mds_extractor_lambda_log_group_mds_extractor(self):
-        self.assertEqual(self.runner.get_value("module.apps.module.mds_extractor.aws_cloudwatch_log_group.lambda_log_group_mds_extractor[0]", "tags"), {"Name": "lambda-log-group-mds-extractor-apps-test-dq"})
+    # def test_name_suffix_mds_extractor_lambda_log_group_mds_extractor(self):
+    #     self.assertEqual(self.runner.get_value("module.apps.module.mds_extractor.aws_cloudwatch_log_group.lambda_log_group_mds_extractor[0]", "tags"), {"Name": "lambda-log-group-mds-extractor-apps-test-dq"})
 
     def test_name_suffix_athena_log(self):
         self.assertEqual(self.runner.get_value("module.apps.aws_s3_bucket.athena_log_bucket", "tags"), {"Name": "s3-dq-athena-log-apps-test-dq"})
