@@ -110,7 +110,8 @@ resource "aws_iam_user" "athena" {
 }
 
 resource "aws_iam_access_key" "athena" {
-  user = aws_iam_user.athena.name
+  user   = aws_iam_user.athena.name
+  status = "Inactive"
 }
 
 resource "aws_ssm_parameter" "athena_id" {

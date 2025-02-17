@@ -69,7 +69,8 @@ resource "aws_iam_user" "nats_history" {
 }
 
 resource "aws_iam_access_key" "nats_history" {
-  user = aws_iam_user.nats_history.name
+  user   = aws_iam_user.nats_history.name
+  status = "Inactive"
 }
 
 resource "aws_ssm_parameter" "nats_history_id" {
