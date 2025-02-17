@@ -3,7 +3,7 @@ resource "aws_iam_user" "data_archive_bucket" {
 }
 
 resource "aws_iam_access_key" "data_archive_bucket_v2" {
-  user = aws_iam_user.data_archive_bucket.name
+  user   = aws_iam_user.data_archive_bucket.name
   status = "Inactive"
 }
 
