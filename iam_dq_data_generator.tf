@@ -64,8 +64,8 @@ resource "aws_iam_user" "dq_data_generator_bucket" {
 
 
 resource "aws_iam_access_key" "dq_data_generator_bucket" {
-  count = var.namespace == "notprod" ? 1 : 0
-  user  = aws_iam_user.dq_data_generator_bucket[count.index].name
+  count  = var.namespace == "notprod" ? 1 : 0
+  user   = aws_iam_user.dq_data_generator_bucket[count.index].name
   status = "Inactive"
 }
 
