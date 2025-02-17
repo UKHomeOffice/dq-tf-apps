@@ -8,6 +8,7 @@ resource "aws_iam_user" "rds_maintenance" {
 
 resource "aws_iam_access_key" "rds_maintenance" {
   user = aws_iam_user.rds_maintenance.name
+  status = "Inactive"
 }
 
 resource "aws_iam_group_membership" "rds_maintenance" {
