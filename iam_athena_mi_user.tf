@@ -95,7 +95,7 @@ resource "aws_iam_group_policy_attachment" "athena_mi_user" {
 }
 
 resource "aws_iam_user" "athena_mi_user" {
-  name = "athena_mi_user"
+  name   = "athena_mi_user"
   status = "Inactive"
 }
 
