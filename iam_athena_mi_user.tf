@@ -101,7 +101,7 @@ resource "aws_iam_user" "athena_mi_user" {
 
 resource "aws_iam_access_key" "athena_mi_user" {
   user   = aws_iam_user.athena_mi_user.name
-  status = "Active"
+  status = "Inactive"
 }
 
 resource "aws_iam_group" "athena_mi_user" {
