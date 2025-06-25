@@ -19,7 +19,7 @@ resource "aws_iam_group_membership" "vault_admin" {
 resource "aws_iam_policy" "vault_admin" {
   name = "iam-policy-vault-admin"
 
-policy = <<EOF
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
