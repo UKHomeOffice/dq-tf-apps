@@ -1,3 +1,7 @@
+locals {
+  ip_list = split(",", data.aws_ssm_parameter.vault_admin_ip_addresses)
+}
+
 resource "aws_iam_group" "vault_admin" {
   name = "iam-group-vault-admin"
 }
@@ -36,10 +40,28 @@ resource "aws_iam_policy" "vault_admin" {
           "iam:PutUserPolicy",
           "iam:AddUserToGroup",
           "iam:RemoveUserFromGroup",
-          "iam:GetUser"
+          "iam:GetUser",
+          "iam:TagUser"
         ],
+      "Resource": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/*"
+    },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "iam:AddUserToGroup",
+          "iam:RemoveUserFromGroup",
+        ],
+      "Resource": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:group/*"
+    },
+      {
+      "Effect": "Deny",
       "Resource": "*"
-    }
+      "Condition": {
+      "NotIpAddress": {
+        "aws:SourceIp": ${jsonencode(local.ip_list)}
+        } 
+      }
+    },
   ]
 }
 EOF
