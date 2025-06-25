@@ -56,6 +56,7 @@ resource "aws_iam_policy" "vault_admin" {
     {
       "Effect": "Deny",
       "Resource": "*",
+      "Action": "*",
       "Condition": {
         "NotIpAddress": {
           "aws:SourceIp": ${jsonencode(local.ip_list)}
