@@ -42,3 +42,8 @@ data "aws_region" "current" {
 data "aws_kms_key" "glue" {
   key_id = "alias/aws/glue"
 }
+
+data "aws_ssm_parameter" "vault_admin_ip_addresses" {
+  name            = "vault-admin-ip-addresses"
+  with_decryption = true
+}

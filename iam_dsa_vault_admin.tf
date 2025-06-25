@@ -1,3 +1,7 @@
+locals {
+  ip_list = split(",", data.aws_ssm_parameter.vault_admin_ip_addresses.value)
+}
+
 resource "aws_iam_group" "vault_admin" {
   name = "iam-group-vault-admin"
 }
@@ -17,28 +21,46 @@ resource "aws_iam_policy" "vault_admin" {
 
   policy = <<EOF
 {
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Effect": "Allow",
-        "Action": [
-          "iam:AttachUserPolicy",
-          "iam:CreateAccessKey",
-          "iam:CreateUser",
-          "iam:DeleteAccessKey",
-          "iam:DeleteUser",
-          "iam:DeleteUserPolicy",
-          "iam:DetachUserPolicy",
-          "iam:ListAccessKeys",
-          "iam:ListAttachedUserPolicies",
-          "iam:ListGroupsForUser",
-          "iam:ListUserPolicies",
-          "iam:PutUserPolicy",
-          "iam:AddUserToGroup",
-          "iam:RemoveUserFromGroup",
-          "iam:GetUser"
-        ],
-      "Resource": "*"
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:AttachUserPolicy",
+        "iam:CreateAccessKey",
+        "iam:CreateUser",
+        "iam:DeleteAccessKey",
+        "iam:DeleteUser",
+        "iam:DeleteUserPolicy",
+        "iam:DetachUserPolicy",
+        "iam:ListAccessKeys",
+        "iam:ListAttachedUserPolicies",
+        "iam:ListGroupsForUser",
+        "iam:ListUserPolicies",
+        "iam:PutUserPolicy",
+        "iam:AddUserToGroup",
+        "iam:RemoveUserFromGroup",
+        "iam:GetUser",
+        "iam:TagUser"
+      ],
+      "Resource": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:AddUserToGroup",
+        "iam:RemoveUserFromGroup"
+      ],
+      "Resource": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:group/*"
+    },
+    {
+      "Effect": "Deny",
+      "Resource": "*",
+      "Condition": {
+        "NotIpAddress": {
+          "aws:SourceIp": ${jsonencode(local.ip_list)}
+        }
+      }
     }
   ]
 }
