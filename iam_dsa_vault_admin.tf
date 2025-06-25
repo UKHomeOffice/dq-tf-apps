@@ -1,5 +1,5 @@
 locals {
-  ip_list = split(",", data.aws_ssm_parameter.vault_admin_ip_addresses)
+  ip_list = split(",", data.aws_ssm_parameter.vault_admin_ip_addresses.value)
 }
 
 resource "aws_iam_group" "vault_admin" {
