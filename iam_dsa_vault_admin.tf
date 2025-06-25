@@ -19,49 +19,49 @@ resource "aws_iam_group_membership" "vault_admin" {
 resource "aws_iam_policy" "vault_admin" {
   name = "iam-policy-vault-admin"
 
-  policy = <<EOF
+policy = <<EOF
 {
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Effect": "Allow",
-        "Action": [
-          "iam:AttachUserPolicy",
-          "iam:CreateAccessKey",
-          "iam:CreateUser",
-          "iam:DeleteAccessKey",
-          "iam:DeleteUser",
-          "iam:DeleteUserPolicy",
-          "iam:DetachUserPolicy",
-          "iam:ListAccessKeys",
-          "iam:ListAttachedUserPolicies",
-          "iam:ListGroupsForUser",
-          "iam:ListUserPolicies",
-          "iam:PutUserPolicy",
-          "iam:AddUserToGroup",
-          "iam:RemoveUserFromGroup",
-          "iam:GetUser",
-          "iam:TagUser"
-        ],
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:AttachUserPolicy",
+        "iam:CreateAccessKey",
+        "iam:CreateUser",
+        "iam:DeleteAccessKey",
+        "iam:DeleteUser",
+        "iam:DeleteUserPolicy",
+        "iam:DetachUserPolicy",
+        "iam:ListAccessKeys",
+        "iam:ListAttachedUserPolicies",
+        "iam:ListGroupsForUser",
+        "iam:ListUserPolicies",
+        "iam:PutUserPolicy",
+        "iam:AddUserToGroup",
+        "iam:RemoveUserFromGroup",
+        "iam:GetUser",
+        "iam:TagUser"
+      ],
       "Resource": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/*"
     },
-      {
-        "Effect": "Allow",
-        "Action": [
-          "iam:AddUserToGroup",
-          "iam:RemoveUserFromGroup",
-        ],
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:AddUserToGroup",
+        "iam:RemoveUserFromGroup"
+      ],
       "Resource": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:group/*"
     },
-      {
+    {
       "Effect": "Deny",
-      "Resource": "*"
+      "Resource": "*",
       "Condition": {
-      "NotIpAddress": {
-        "aws:SourceIp": ${jsonencode(local.ip_list)}
-        } 
+        "NotIpAddress": {
+          "aws:SourceIp": ${jsonencode(local.ip_list)}
+        }
       }
-    },
+    }
   ]
 }
 EOF
