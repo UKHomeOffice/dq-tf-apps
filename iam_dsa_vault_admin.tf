@@ -66,11 +66,6 @@ resource "aws_iam_policy" "vault_admin" {
   ]
 }
 EOF
-  lifecycle {
-    ignore_changes = [
-      policy
-    ]
-  }
 }
 
 resource "aws_iam_group_policy_attachment" "vault_admin" {
