@@ -65,7 +65,7 @@ resource "aws_iam_policy" "vault_drone_0" {
        "Effect": "Allow",
        "Action": "config:PutConfig",
        "Resource": "*"
-    },
+    }
   ]
 }
 EOF
