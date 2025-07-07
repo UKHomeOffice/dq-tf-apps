@@ -61,19 +61,22 @@ resource "aws_iam_policy" "vault_drone_0" {
        }
     },
     {
-       "Sid": "PutConfig",
+       "Sid": "Config",
        "Effect": "Allow",
-       "Action": "config:PutConfigRule",
+       "Action": [
+       "config:PutConfigRule",
+       "config:TagResource"
+        ]
        "Resource": "*"
     }
   ]
 }
 EOF
-  lifecycle {
-    ignore_changes = [
-      policy
-    ]
-  }
+  #   lifecycle {
+  #     ignore_changes = [
+  #       policy
+  #     ]
+  #   }
 }
 
 resource "aws_iam_policy" "vault_drone_1" {
