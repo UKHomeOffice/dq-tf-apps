@@ -67,7 +67,8 @@ resource "aws_iam_policy" "vault_drone_0" {
        "config:PutConfigRule",
        "config:TagResource",
        "config:DescribeConfigRules",
-       "config:ListTagsForResource"
+       "config:ListTagsForResource",
+       "config:DeleteConfigRule"
         ],
        "Resource": "*"
     }
