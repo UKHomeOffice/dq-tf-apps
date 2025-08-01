@@ -98,18 +98,16 @@ resource "aws_iam_group_membership" "athena_readonly_user" {
 }
 
 resource "aws_ssm_parameter" "athena_readonly_user_id" {
-  name  = "athena-readonly-user-id-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.athena_readonly_user.id
+  name = "athena-readonly-user-id-${local.naming_suffix}"
+  type = "SecureString"
   lifecycle {
     ignore_changes = all
   }
 }
 
 resource "aws_ssm_parameter" "athena_readonly_user_key" {
-  name  = "athena-readonly-user-key-${local.naming_suffix}"
-  type  = "SecureString"
-  value = aws_iam_access_key.athena_readonly_user.secret
+  name = "athena-readonly-user-key-${local.naming_suffix}"
+  type = "SecureString"
   lifecycle {
     ignore_changes = all
   }
