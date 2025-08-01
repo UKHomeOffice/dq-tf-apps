@@ -85,11 +85,6 @@ resource "aws_iam_user" "athena_readonly_user" {
   name = "athena_readonly_user"
 }
 
-
-resource "aws_iam_access_key" "athena_readonly_user" {
-  user = aws_iam_user.athena_readonly_user.name
-}
-
 resource "aws_iam_group" "athena_readonly_user" {
   name = "athena_readonly_user"
 }
