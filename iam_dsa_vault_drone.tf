@@ -75,11 +75,11 @@ resource "aws_iam_policy" "vault_drone_0" {
   ]
 }
 EOF
-  lifecycle {
-    ignore_changes = [
-      policy
-    ]
-  }
+  #   lifecycle {
+  #     ignore_changes = [
+  #       policy
+  #     ]
+  #   }
 }
 
 resource "aws_iam_policy" "vault_drone_1" {
