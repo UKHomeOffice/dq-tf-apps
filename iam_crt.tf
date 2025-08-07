@@ -23,7 +23,10 @@ resource "aws_iam_policy" "crt" {
       "Sid": "ListS3Bucket",
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}"
+      "Resource": [
+      "${aws_s3_bucket.data_archive_bucket.arn}",
+      "${aws_s3_bucket.data_archive_bucket.arn}-temp"
+      ]
     },
     {
       "Sid": "GetS3Bucket",
@@ -32,7 +35,10 @@ resource "aws_iam_policy" "crt" {
         "s3:PutObject",
         "s3:GetObject"
       ],
-      "Resource": "${aws_s3_bucket.data_archive_bucket.arn}/crt-backup/*"
+      "Resource": [
+      "${aws_s3_bucket.data_archive_bucket.arn}/crt-backup/*",
+      "${aws_s3_bucket.data_archive_bucket.arn}-temp/crt-backup/*"
+      ]
     },
     {
       "Sid": "UseKMSKey",
