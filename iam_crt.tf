@@ -55,7 +55,11 @@ resource "aws_iam_policy" "crt" {
   ]
 }
 EOF
-
+  lifecycle {
+    ignore_changes = [
+      policy
+    ]
+  }
 }
 
 resource "aws_iam_group_policy_attachment" "crt" {
