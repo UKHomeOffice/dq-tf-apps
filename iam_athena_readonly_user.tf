@@ -1,7 +1,7 @@
 resource "aws_iam_policy" "athena_readonly_user" {
   name = "athena_readonly_user_policy"
 
-  policy = <<EOF
+  policy     = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -59,7 +59,7 @@ resource "aws_iam_policy" "athena_readonly_user" {
                 "kms:DescribeKey"
             ],
             "Effect": "Allow",
-            "Resource": "${var.kms_key_s3[var.namespace]}"
+            "Resource": "*"
         },
         {
             "Action": [
@@ -74,6 +74,7 @@ resource "aws_iam_policy" "athena_readonly_user" {
     ]
 }
 EOF
+  depends_on = [aws_kms_key.bucket_key]
 }
 
 resource "aws_iam_group_policy_attachment" "athena_readonly_user" {
