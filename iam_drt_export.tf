@@ -69,17 +69,3 @@ resource "aws_iam_access_key" "drt_export" {
   count = var.namespace == "notprod" ? 1 : 0
   user  = aws_iam_user.drt_export[count.index].name
 }
-
-resource "aws_ssm_parameter" "drt_export_id" {
-  count = var.namespace == "notprod" ? 1 : 0
-  name  = "DRT_AWS_ACCESS_KEY_ID"
-  type  = "SecureString"
-  value = aws_iam_access_key.drt_export[count.index].id
-}
-
-resource "aws_ssm_parameter" "drt_export_key" {
-  count = var.namespace == "notprod" ? 1 : 0
-  name  = "DRT_AWS_SECRET_ACCESS_KEY"
-  type  = "SecureString"
-  value = aws_iam_access_key.drt_export[count.index].secret
-}
