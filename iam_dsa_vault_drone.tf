@@ -472,6 +472,42 @@ EOF
 
 }
 
+resource "aws_iam_policy" "vault_drone_3" {
+  name = "iam-vault-drone-policy-3"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DynamoDBAccess",
+       "Action": [
+        "dynamodb:CreateTable",
+        "dynamodb:UpdateTable",
+        "dynamodb:DeleteTable",
+        "dynamodb:DescribeTable",
+        "dynamodb:ListTables",
+        "dynamodb:TagResource",
+        "dynamodb:UntagResource",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+    }
+  ]
+}
+EOF
+
+}
+
+
 resource "aws_iam_group_policy_attachment" "vault_drone_0" {
   group      = aws_iam_group.vault_drone.name
   policy_arn = aws_iam_policy.vault_drone_0.arn
