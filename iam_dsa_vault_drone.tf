@@ -522,3 +522,8 @@ resource "aws_iam_group_policy_attachment" "vault_drone_2" {
   group      = aws_iam_group.vault_drone.name
   policy_arn = aws_iam_policy.vault_drone_2.arn
 }
+
+resource "aws_iam_group_policy_attachment" "vault_drone_3" {
+  group      = aws_iam_group.vault_drone.name
+  policy_arn = aws_iam_policy.vault_drone_3.arn
+}
