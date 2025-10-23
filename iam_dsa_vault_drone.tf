@@ -469,7 +469,7 @@ resource "aws_iam_policy" "vault_drone_2" {
     {
        "Sid": "EBSAccess",
        "Effect": "Allow",
-       "Action": "ebs:ListSnapshotBlocks,
+       "Action": "ebs:ListSnapshotBlocks",
        "Resource": "*"
     }
   ]
