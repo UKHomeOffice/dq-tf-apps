@@ -496,7 +496,8 @@ resource "aws_iam_policy" "vault_drone_3" {
         "dynamodb:BatchGetItem",
         "dynamodb:BatchWriteItem",
         "dynamodb:Query",
-        "dynamodb:Scan"
+        "dynamodb:Scan",
+        "dynamodb:DescribeContinuousBackups"
        ],
        "Effect": "Allow",
        "Resource": "*"
