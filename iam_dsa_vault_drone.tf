@@ -472,7 +472,7 @@ resource "aws_iam_policy" "vault_drone_2" {
        "Action": [
         "ebs:ListSnapshotBlocks",
         "ebs:GetSnapshotBlock"
-        ]
+        ],
        "Resource": "*"
     }
   ]
