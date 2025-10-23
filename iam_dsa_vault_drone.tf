@@ -498,7 +498,8 @@ resource "aws_iam_policy" "vault_drone_3" {
         "dynamodb:Query",
         "dynamodb:Scan",
         "dynamodb:DescribeContinuousBackups",
-        "dynamodb:DescribeTimeToLive"
+        "dynamodb:DescribeTimeToLive",
+        "dynamodb:ListTagsOfResource"
        ],
        "Effect": "Allow",
        "Resource": "*"
