@@ -1699,20 +1699,20 @@ resource "aws_s3_bucket" "athena_log_bucket" {
     target_prefix = "athena_log_bucket/"
   }
 
-  lifecycle_rule {
-    enabled = true
-    transition {
-      days          = 0
-      storage_class = "INTELLIGENT_TIERING"
-    }
-    noncurrent_version_transition {
-      days          = 0
-      storage_class = "INTELLIGENT_TIERING"
-    }
-    noncurrent_version_expiration {
-      days = 1
-    }
-  }
+  # lifecycle_rule {
+  #   enabled = true
+  #   transition {
+  #     days          = 0
+  #     storage_class = "INTELLIGENT_TIERING"
+  #   }
+  #   noncurrent_version_transition {
+  #     days          = 0
+  #     storage_class = "INTELLIGENT_TIERING"
+  #   }
+  #   noncurrent_version_expiration {
+  #     days = 1
+  #   }
+  # }
 
   tags = {
     Name = "s3-dq-athena-log-${local.naming_suffix}"
@@ -1756,24 +1756,24 @@ resource "aws_s3_bucket_lifecycle_configuration" "athena_log_lifecycle_policy" {
     }
   }
 
-  # rule {
-  #   id     = "intelligent-tiering-transition"
-  #   status = "Enabled"
+  rule {
+    id     = "intelligent-tiering-transition"
+    status = "Enabled"
 
-  #   transition {
-  #     days          = 0
-  #     storage_class = "INTELLIGENT_TIERING"
-  #   }
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
 
-  #   noncurrent_version_transition {
-  #     noncurrent_days = 0
-  #     storage_class   = "INTELLIGENT_TIERING"
-  #   }
+    noncurrent_version_transition {
+      noncurrent_days = 0
+      storage_class   = "INTELLIGENT_TIERING"
+    }
 
-  #   noncurrent_version_expiration {
-  #     noncurrent_days = 1
-  #   }
-  # }
+    noncurrent_version_expiration {
+      noncurrent_days = 1
+    }
+  }
 }
 
 resource "aws_s3_bucket" "mds_extract_bucket" {
