@@ -1699,18 +1699,22 @@ resource "aws_s3_bucket" "athena_log_bucket" {
     target_prefix = "athena_log_bucket/"
   }
 
-  lifecycle_rule {
-    enabled = true
-    transition {
-      days          = 0
-      storage_class = "INTELLIGENT_TIERING"
-    }
-    noncurrent_version_transition {
-      days          = 0
-      storage_class = "INTELLIGENT_TIERING"
-    }
-    noncurrent_version_expiration {
-      days = 1
+
+  dynamic "lifecycle_rule" {
+    for_each = var.namespace == "prod" ? [1] : []
+    content {
+      enabled = true
+      transition {
+        days          = 0
+        storage_class = "INTELLIGENT_TIERING"
+      }
+      noncurrent_version_transition {
+        days          = 0
+        storage_class = "INTELLIGENT_TIERING"
+      }
+      noncurrent_version_expiration {
+        days = 1
+      }
     }
   }
 
