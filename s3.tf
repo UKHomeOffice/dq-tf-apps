@@ -1699,20 +1699,20 @@ resource "aws_s3_bucket" "athena_log_bucket" {
     target_prefix = "athena_log_bucket/"
   }
 
-  # lifecycle_rule {
-  #   enabled = true
-  #   transition {
-  #     days          = 0
-  #     storage_class = "INTELLIGENT_TIERING"
-  #   }
-  #   noncurrent_version_transition {
-  #     days          = 0
-  #     storage_class = "INTELLIGENT_TIERING"
-  #   }
-  #   noncurrent_version_expiration {
-  #     days = 1
-  #   }
-  # }
+  lifecycle_rule {
+    enabled = true
+    transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_transition {
+      days          = 0
+      storage_class = "INTELLIGENT_TIERING"
+    }
+    noncurrent_version_expiration {
+      days = 1
+    }
+  }
 
   tags = {
     Name = "s3-dq-athena-log-${local.naming_suffix}"
@@ -1745,6 +1745,7 @@ POLICY
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "athena_log_lifecycle_policy" {
+  count  = var.namespace == "notprod" ? 1 : 0
   bucket = aws_s3_bucket.athena_log_bucket.id
 
   rule {
