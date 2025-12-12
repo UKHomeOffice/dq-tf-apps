@@ -129,6 +129,7 @@ variable "dq_pipeline_athena_unscoped_readwrite_database_name_list" {
     "fedat_reporting",
     "pnr_reporting",
     "consolidated_schedule_reporting",
+    "api_demo",
   ]
 }
 
