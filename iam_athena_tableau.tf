@@ -140,12 +140,20 @@ resource "aws_iam_policy" "athena_tableau_glue" {
   ]
 }
 EOF
-
+lifecycle {
+  create_before_destroy = true
+  # Adding new lifecycle block to prevent iam policy changes into Prod
+}
 }
 
 resource "aws_iam_group_policy_attachment" "athena_tableau_glue" {
   group      = aws_iam_group.athena_tableau.name
   policy_arn = aws_iam_policy.athena_tableau_glue.arn
+
+  lifecycle {
+    create_before_destroy = true
+    # Added life cycle block
+  }
 }
 
 resource "aws_iam_user" "athena_tableau" {
