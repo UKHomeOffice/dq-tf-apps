@@ -152,7 +152,7 @@ resource "aws_iam_group_policy_attachment" "athena_tableau_glue" {
 
   lifecycle {
     create_before_destroy = true
-    # Optional: prevents recreation when only database list changes
+    # Added life cycle block
   }
 }
 
