@@ -443,6 +443,7 @@ resource "aws_route_table_association" "public_subnet" {
 resource "aws_default_security_group" "default" {
   vpc_id = aws_vpc.appsvpc.id
 
+  egress = []
   #egress {
   #  from_port   = 0
   #  to_port     = 0
