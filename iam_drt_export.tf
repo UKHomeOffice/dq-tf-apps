@@ -68,13 +68,13 @@ resource "aws_iam_user" "drt_export" {
   }
 }
 
-#resource "aws_iam_access_key" "drt_export" {
-#  count = var.namespace == "notprod" ? 1 : 0
-#  user  = aws_iam_user.drt_export[count.index].name
-#  lifecycle {
-#    ignore_changes = all
-#  }
-#}
+resource "aws_iam_access_key" "drt_export" {
+  count = var.namespace == "notprod" ? 1 : 0
+  user  = aws_iam_user.drt_export[count.index].name
+  lifecycle {
+    ignore_changes = all
+  }
+}
 
 #resource "aws_ssm_parameter" "drt_export_id" {
 #  count = var.namespace == "notprod" ? 1 : 0
