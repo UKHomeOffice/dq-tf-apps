@@ -60,12 +60,12 @@ resource "aws_iam_group_policy_attachment" "drt_export" {
   policy_arn = aws_iam_policy.drt_export[count.index].arn
 }
 
-resource "aws_iam_user" "drt_export" {
-  count = var.namespace == "notprod" ? 1 : 0
-  name  = "iam-user-drt-export-${local.naming_suffix}"
-  lifecycle {
-    ignore_changes = all
-  }
+#resource "aws_iam_user" "drt_export" {
+#  count = var.namespace == "notprod" ? 1 : 0
+#  name  = "iam-user-drt-export-${local.naming_suffix}"
+#  lifecycle {
+#    ignore_changes = all
+#  }
 }
 
 resource "aws_iam_access_key" "drt_export" {
@@ -83,15 +83,15 @@ resource "aws_ssm_parameter" "drt_export_id" {
   value = aws_iam_access_key.drt_export[count.index].id
   lifecycle {
     ignore_changes = all
-  }
-}
+#  }
+#}
 
-resource "aws_ssm_parameter" "drt_export_key" {
-  count = var.namespace == "notprod" ? 1 : 0
-  name  = "DRT_AWS_SECRET_ACCESS_KEY"
-  type  = "SecureString"
-  value = aws_iam_access_key.drt_export[count.index].secret
-  lifecycle {
-    ignore_changes = all
-  }
-}
+#resource "aws_ssm_parameter" "drt_export_key" {
+#  count = var.namespace == "notprod" ? 1 : 0
+#  name  = "DRT_AWS_SECRET_ACCESS_KEY"
+#  type  = "SecureString"
+#  value = aws_iam_access_key.drt_export[count.index].secret
+#  lifecycle {
+#    ignore_changes = all
+#  }
+#}
