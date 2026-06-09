@@ -421,7 +421,20 @@ resource "aws_iam_policy" "vault_drone_2" {
            "states:ListStateMachines",
            "tag:GetResources",
            "xray:GetTraceSummaries",
-           "xray:BatchGetTraces"
+           "xray:BatchGetTraces",
+           "lambda:CreateFunction",
+            "lambda:UpdateFunctionCode",
+            "lambda:UpdateFunctionConfiguration",
+            "lambda:DeleteFunction",
+            "lambda:ListFunctions",
+            "lambda:InvokeFunction",
+            "lambda:GetFunctionConfiguration",
+            "lambda:PublishVersion",
+            "lambda:CreateAlias",
+            "lambda:UpdateAlias",
+            "lambda:DeleteAlias",
+            "lambda:ListAliases",
+            "lambda:GetAlias"
        ],
        "Resource": "*"
     },
